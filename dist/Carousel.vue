@@ -41,6 +41,14 @@
     },
     props: {
       /**
+       * Slide transition easing
+       * Any valid CSS transition easing accepted
+       */
+      easing: {
+        type: String,
+        default: 'ease',
+      },
+      /**
        * Navigation settings
        * @type {Object}
        */
@@ -65,20 +73,18 @@
             color: '#efefef', // any valid CSS color
             padding: 10, // in pixels
             size: 10, // in pixels
-            speed: 500, // transition speed in milliseconds
-            easing: 'ease', // any valid CSS transform ease
           };
         },
       },
       /**
-       * Maximum amount of slides displayed at a time
+       * Maximum number of slides displayed on each page
        */
       perPage: {
         type: Number,
         default: 4,
       },
       /**
-       * Preset the number of visible slides with a particular browser width.
+       * Configure the number of visible slides with a particular browser width.
        * This will be an array of arrays, ex. [[320, 2], [1199, 4]]
        * Formatted as [x, y] where x=browser width, and y=number of slides displayed.
        * ex. [1199, 4] means if (window <= 1199) then show 4 slides per page
@@ -92,6 +98,14 @@
       scrollPerPage: {
         type: Boolean,
         default: false,
+      },
+      /**
+       * Slide transition speed
+       * Number of milliseconds accepted
+       */
+      speed: {
+        type: Number,
+        default: 500,
       },
     },
     computed: {
@@ -173,7 +187,7 @@
         return pageCount;
       },
       transitionStyle() {
-        return `${this.pagination.speed / 1000}s ${this.pagination.easing} transform`;
+        return `${this.speed / 1000}s ${this.easing} transform`;
       }
     },
     methods: {

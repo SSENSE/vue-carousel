@@ -77,14 +77,14 @@
         },
       },
       /**
-       * Maximum amount of slides displayed at a time
+       * Maximum number of slides displayed on each page
        */
       perPage: {
         type: Number,
         default: 4,
       },
       /**
-       * Preset the number of visible slides with a particular browser width.
+       * Configure the number of visible slides with a particular browser width.
        * This will be an array of arrays, ex. [[320, 2], [1199, 4]]
        * Formatted as [x, y] where x=browser width, and y=number of slides displayed.
        * ex. [1199, 4] means if (window <= 1199) then show 4 slides per page
