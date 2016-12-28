@@ -6,7 +6,7 @@ order: 2
 ## Installation
 
 ``` bash
-npm install -S vue-carousel
+npm install -S @ssense/vue-carousel
 ```
 
 ## Usage (Global)
@@ -15,7 +15,7 @@ You may install Vue Carousel globally:
 
 ``` js
 import Vue from 'vue';
-import VueCarousel from 'vue-carousel';
+import VueCarousel from '@ssense/vue-carousel';
 
 Vue.use(VueCarousel);
 ```
@@ -26,7 +26,7 @@ This will make **&lt;carousel&gt;** and **&lt;slide&gt;** available to all compo
 Include the carousel directly into your component using import:
 
 ``` js
-import { Carousel, Slide } from 'vue-carousel';
+import { Carousel, Slide } from '@ssense/vue-carousel';
 
 export default {
   ...
