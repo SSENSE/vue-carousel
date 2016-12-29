@@ -2,9 +2,9 @@
 
 <img width="60" src="https://ssense.github.io/vue-carousel/images/logo.png" alt="Vue Carousel" />
 
-*[Installation and usage guide](https://ssense.github.io/vue-carousel/guide/)
-*[API guide](https://ssense.github.io/vue-carousel/api/)
-*[Examples](https://ssense.github.io/vue-carousel/examples/)
+* [Installation and usage guide](https://ssense.github.io/vue-carousel/guide/)
+* [API guide](https://ssense.github.io/vue-carousel/api/)
+* [Examples](https://ssense.github.io/vue-carousel/examples/)
 
 ## Installation
 
