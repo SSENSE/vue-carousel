@@ -21,4 +21,10 @@ Instead of scrolling on a per item basis, the carousel will scroll the configure
 
 <script async src="//jsfiddle.net/toddlawton/6ckc1pqv/embed/result,js/"></script>
 
+## Customized
+
+Customized pagination dot colors and sizes. Customized speed and easing.
+
+<script async src="//jsfiddle.net/toddlawton/ycp9bwhp/embed/result,js/"></script>
+
 <style type="text/css">iframe { min-height: 230px; }</style>
