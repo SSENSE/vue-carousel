@@ -4,7 +4,8 @@
   "description": "A flexible, responsive, touch-friendly carousel for Vue.js",
   "main": "src/index.js",
   "scripts": {
-    "build": "webpack --config config/webpack.min.conf.js",
+    "build": "webpack --config config/webpack.min.conf.js && npm run updateDocAssets",
+    "updateDocAssets": "cp ./dist/vue-carousel.min.js ./docs/themes/vue/source/js/",
     "test": "npm run unit",
     "unit": "./node_modules/.bin/karma start test/unit/karma.conf.js --single-run",
     "lint": "eslint --ext .js,.vue src test/unit/specs"
