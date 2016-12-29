@@ -50,14 +50,7 @@ Size of each pagination dot. Pixel values are accepted.
 
 Configure the navigation component (next/prev buttons)
 
-* **Type**: `Object`
-* **Usage**:
-
-``` html
-<carousel :navigation="{ enabled: true }">
-```
-
-### enabled
+### navigationEnabled
 
 * **Type**: `Boolean`
 * **Default**: `false`
@@ -66,40 +59,33 @@ Configure the navigation component (next/prev buttons)
 
 Configure the pagination component (clickable page dots)
 
-* **Type**: `Object`
-* **Usage**:
-
-``` html
-<carousel :pagination="{ activeColor: '#ff0' }">
-```
-
-### enabled
+### paginationEnabled
 
 * **Type**: `Boolean`
 * **Default**: `false`
 
-### activeColor
+### paginationActiveColor
 
 The fill color of the active pagination dot. Any valid CSS color is accepted.
 
 * **Type**: `String`
 * **Default**: `#000000`
 
-### activeColor
+### paginationColor
 
 The fill color of pagination dots. Any valid CSS color is accepted.
 
 * **Type**: `String`
 * **Default**: `#efefef`
 
-### padding
+### paginationPadding
 
 The padding inside each pagination dot. Pixel values are accepted.
 
 * **Type**: `Number`
 * **Default**: `10`
 
-### size
+### paginationSize
 
 The size of each pagination dot. Pixel values are accepted.
 

@@ -6,16 +6,16 @@
         v-for="(page, index) in parentContainer.pageCount"
         v-on:click="parentContainer.goToPage(index)"
         :style="`
-          margin-top: ${parentContainer.pagination.padding * 2}px;
-          padding: ${parentContainer.pagination.padding}px;
+          margin-top: ${parentContainer.paginationPadding * 2}px;
+          padding: ${parentContainer.paginationPadding}px;
         `"
       >
         <div
           class="dot-inner"
           :style="`
-            width: ${parentContainer.pagination.size}px;
-            height: ${parentContainer.pagination.size}px;
-            background: ${(index === parentContainer.currentPage) ? parentContainer.pagination.activeColor : parentContainer.pagination.color};
+            width: ${parentContainer.paginationSize}px;
+            height: ${parentContainer.paginationSize}px;
+            background: ${(index === parentContainer.currentPage) ? parentContainer.paginationActiveColor : parentContainer.paginationColor};
           `"
         ></div>
       </div>

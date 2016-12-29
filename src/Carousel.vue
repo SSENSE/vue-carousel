@@ -10,8 +10,8 @@
     >
       <slot></slot>
     </div>
-    <navigation v-if="navigation.enabled"></navigation>
-    <pagination v-if="pagination.enabled && pageCount > 0"></pagination>
+    <navigation v-if="navigationEnabled"></navigation>
+    <pagination v-if="paginationEnabled && pageCount > 0"></pagination>
 </template>
 
 <script>
@@ -49,32 +49,51 @@
         default: 'ease',
       },
       /**
-       * Navigation settings
-       * @type {Object}
+       * Flag to render the navigation component
+       * (next/prev buttons)
        */
-      navigation: {
-        type: Object,
-        default() {
-          return {
-            enabled: false,
-          };
-        },
+      navigationEnabled: {
+        type: Boolean,
+        default: false,
       },
       /**
-       * Pagination settings
-       * @type {Object}
+       * The fill color of the active pagination dot
+       * Any valid CSS color is accepted
        */
-      pagination: {
-        type: Object,
-        default() {
-          return {
-            enabled: true,
-            activeColor: '#000000', // any valid CSS color
-            color: '#efefef', // any valid CSS color
-            padding: 10, // in pixels
-            size: 10, // in pixels
-          };
-        },
+      paginationActiveColor: {
+        type: String,
+        default: '#000000',
+      },
+      /**
+       * The fill color of pagination dots
+       * Any valid CSS color is accepted
+       */
+      paginationColor: {
+        type: String,
+        default: '#efefef',
+      },
+      /**
+       * Flag to render pagination component
+       */
+      paginationEnabled: {
+        type: Boolean,
+        default: true,
+      },
+      /**
+       * The padding inside each pagination dot
+       * Pixel values are accepted
+       */
+      paginationPadding: {
+        type: Number,
+        default: 10,
+      },
+      /**
+       * The size of each pagination dot
+       * Pixel values are accepted
+       */
+      paginationSize: {
+        type: Number,
+        default: 10,
       },
       /**
        * Maximum number of slides displayed on each page
