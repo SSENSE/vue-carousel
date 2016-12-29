@@ -246,7 +246,7 @@
        * @return {Number} Browser's width in pixels
        */
       getBrowserWidth() {
-        this.browserWidth = document.documentElement.clientWidth;
+        this.browserWidth = window.innerWidth;
         return this.browserWidth;
       },
       /**
