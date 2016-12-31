@@ -16,7 +16,7 @@ Transition speed between slides. Any valid CSS transition easing is accepted.
 Maximum number of slides displayed on each page
 
 * **Type**: `Number`
-* **Default**: `4`
+* **Default**: `2`
 
 ### perPageCustom
 
@@ -28,9 +28,10 @@ This will be an array of arrays. Each array is formatted as [x, y] where x is th
 * **Usage**:
 
 ``` html
-<carousel :perPageCustom="[[320, 2], [1199, 4]]">
+<carousel :perPageCustom="[[768, 3], [1024, 4]]">
 ```
-In this case if (window width <= 1199px) then show 4 slides per page.
+
+A mobile-first strategy is used to determine the matching breakpoint. In the above example, the [perPage](/vue-carousel/api#perPage) variable has not been set, so the default of **2** is used. If the window size is greater than or equal to 768px, then 3 slides are shown. If the width is greater than or equal to 1024, then 4 slides are shown.
 
 ### scrollPerPage
 

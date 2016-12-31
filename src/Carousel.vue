@@ -100,7 +100,7 @@
        */
       perPage: {
         type: Number,
-        default: 4,
+        default: 2,
       },
       /**
        * Configure the number of visible slides with a particular browser width.
@@ -236,6 +236,7 @@
 
         this.slideWidth = width / perPage;
         this.setChildSlideWidth(this.slideWidth);
+
         return this.slideWidth;
       },
       /**
@@ -244,21 +245,21 @@
        * @return {Number}       Number of slides to display
        */
       getBreakpointSlidesPerPage(width) {
+        const breakpoints = this.perPageCustom.sort((a, b) => {
+          return (a[0] > b[0]) ? -1 : 1;
+        });
+
         let match = null;
 
         // Look through the prop array for entries where the width matches the breakpoint
         // The array must contain entries with this format: [winWidth, numberOfSlides]
-        this.perPageCustom.forEach((breakpoint) => {
-          if (!match && width <= breakpoint[0]) {
+        breakpoints.forEach((breakpoint) => {
+          if (!match && width >= breakpoint[0]) {
             match = breakpoint[1]; // If there is a match, return the breakpoint's number of slides
           }
         });
 
-        if (!match) {
-          match = this.perPage; // If no match is found, use the default perPage prop
-        }
-
-        return match;
+        return match || this.perPage;
       },
       /**
        * Get the current browser viewport width
