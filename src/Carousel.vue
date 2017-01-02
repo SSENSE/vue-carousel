@@ -285,7 +285,7 @@
         const children = this.$slots.default;
         let count = 0;
 
-        if (!children.length) {
+        if (!children) {
           this.slideCount = 0;
           return 0;
         }
@@ -398,7 +398,7 @@
        * @param {Number} width Width to set on slides
        */
       setChildSlideWidth(width) {
-        if (this.$slots.default.length > 0) {
+        if (this.$slots.default) {
           this.$slots.default.forEach((child) => {
             const slotChild = child;
             slotChild.child.width = width;
