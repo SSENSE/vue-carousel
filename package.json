@@ -21,7 +21,7 @@
     "responsive"
   ],
   "author": "todd.beauchamp@ssense.com",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ssense/vue-carousel/issues"
   },
