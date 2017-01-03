@@ -6,8 +6,9 @@ const install = (Vue) => {
   Vue.component('slide', Slide);
 };
 
-export default {
-  install,
+export default install;
+
+export {
   Carousel,
   Slide,
 };
