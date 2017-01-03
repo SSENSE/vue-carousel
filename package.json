@@ -6,8 +6,8 @@
   "scripts": {
     "build": "webpack --config config/webpack.min.conf.js && npm run updateDocAssets",
     "updateDocAssets": "cp ./dist/vue-carousel.min.js ./docs/themes/vue/source/js/",
-    "test": "npm run unit",
-    "unit": "./node_modules/.bin/karma start test/unit/karma.conf.js --single-run",
+    "test": "npm run test:unit",
+    "test:unit": "./node_modules/.bin/karma start test/unit/karma.conf.js --single-run",
     "lint": "eslint 'src/**/?(*.js|*.vue)' || exit 1",
     "precommit": "npm run lint && npm run test",
     "coveralls": "cat test/unit/coverage/lcov.info | ./node_modules/.bin/coveralls"

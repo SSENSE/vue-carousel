@@ -8,9 +8,12 @@
 
 **Feel free to submit issues and feature requests [here](https://github.com/SSENSE/vue-carousel/issues)**.
 
-* [Installation and usage guide](https://ssense.github.io/vue-carousel/guide/)
-* [API guide](https://ssense.github.io/vue-carousel/api/)
-* [Examples](https://ssense.github.io/vue-carousel/examples/)
+* [Full documentation](https://ssense.github.io/vue-carousel)
+
+## Table of Contents
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
 
 ## Installation
 
@@ -18,7 +21,11 @@
 npm install -S @ssense/vue-carousel
 ```
 
-## Usage (Global)
+* [Full installation and usage guide](https://ssense.github.io/vue-carousel/guide/)
+
+## Usage
+
+### Global
 
 You may install Vue Carousel globally:
 
@@ -30,7 +37,7 @@ Vue.use(VueCarousel);
 ```
 This will make **&lt;carousel&gt;** and **&lt;slide&gt;** available to all components within your Vue app.
 
-## Usage (Local)
+### Local
 
 Include the carousel directly into your component using import:
 
@@ -47,7 +54,7 @@ export default {
 };
 ```
 
-## HTML Structure
+### HTML Structure
 
 Once the **Carousel** and **Slide** components are installed globally or imported, they can be used in templates in the following manner:
 
@@ -61,3 +68,7 @@ Once the **Carousel** and **Slide** components are installed globally or importe
     </slide>
   </carousel>
 ```
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
