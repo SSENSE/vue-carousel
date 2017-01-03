@@ -4,4 +4,3 @@ script: npm run test
 
 node_js:
   - "7"
-  - "6"
