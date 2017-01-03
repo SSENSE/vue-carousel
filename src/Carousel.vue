@@ -164,7 +164,7 @@
 
         runIfBrowser(() => {
           if (this.browserWidth) {
-            customItems = this.getBreakpointSlidesPerPage(this.browserWidth);
+            customItems = this.getBreakpointSlidesPerPage(this.perPageCustom, this.browserWidth);
           }
         });
 
@@ -241,24 +241,25 @@
       },
       /**
        * Given a viewport width, find the number of slides to display
-       * @param  {Number} width Viewport width in pixels
+       * @param  {Number} width Current viewport width in pixels
        * @return {Number}       Number of slides to display
        */
-      getBreakpointSlidesPerPage(width) {
-        const breakpoints = this.perPageCustom.sort((a, b) => {
+      getBreakpointSlidesPerPage(breakpointArray, width) {
+        const breakpoints = breakpointArray.sort((a, b) => {
           const isMatching = (a[0] > b[0]) ? -1 : 1;
           return isMatching;
         });
 
-        let match = null;
-
-        // Look through the prop array for entries where the width matches the breakpoint
-        // The array must contain entries with this format: [winWidth, numberOfSlides]
-        breakpoints.forEach((breakpoint) => {
-          if (!match && width >= breakpoint[0]) {
-            match = breakpoint[1]; // If there is a match, return the breakpoint's number of slides
-          }
+        // Reduce the breakpoints to entries where the width is in range
+        // The breakpoint arrays are formatted as [widthToMatch, numberOfSlides]
+        const matches = breakpoints.filter((breakpoint) => {
+          const isMatching = (width >= breakpoint[0]);
+          return isMatching;
         });
+
+        // If there is a match, the result should return only
+        // the slide count from the first matching breakpoint
+        const match = matches[0] && matches[0][1];
 
         return match || this.perPage;
       },
@@ -314,7 +315,9 @@
        * @param  {Object} e The event object
        */
       handleMousedown(e) {
-        e.preventDefault();
+        if (!e.touches) {
+          e.preventDefault();
+        }
 
         this.mousedown = true;
         this.dragStartX = ('ontouchstart' in window) ? e.touches[0].clientX : e.clientX;
