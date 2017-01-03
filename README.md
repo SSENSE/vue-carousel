@@ -1,6 +1,7 @@
 # Vue Carousel
 
 [![Build Status](https://travis-ci.org/SSENSE/vue-carousel.svg?branch=master)](https://travis-ci.org/SSENSE/vue-carousel)
+[![Latest Stable Version](https://img.shields.io/npm/v/@ssense/vue-carousel.svg)](https://www.npmjs.com/package/@ssense/vue-carousel)
 
 **WARNING: vue-carousel is at pre-alpha stage of development and may undergo significant changes.**
 
