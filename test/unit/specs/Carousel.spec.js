@@ -79,6 +79,16 @@ describe('Carousel.vue', (done) => {
     vm.$mount();
     expect(vm.$children[0].currentPerPage).to.equal(20);
   });
+  it('should fall back to default slides per page when no responsive param provided', () => {
+    Vue.component('carousel', Carousel);
+    createAppContainer();
+    const vm = new Vue({
+      el: '#appInner',
+      template: '<carousel :perPageCustom="[[9999, 20]]"></carousel>',
+    });
+    vm.$mount();
+    expect(vm.$children[0].currentPerPage).to.equal(2);
+  });
   it('should apply default carousel width when element has 0 width', () => {
     Vue.component('carousel', Carousel);
     createAppContainer();
@@ -141,6 +151,27 @@ describe('Carousel.vue', (done) => {
       done();
     }, 1000)
   });
+  it('should apply dirty checking for width when carousel is initialized in a hidden state', () => {
+    Vue.component('carousel', Carousel);
+    Vue.component('slide', Slide);
+    createAppContainer();
+    const vm = new Vue({
+      el: '#appInner',
+      template: '<div id="hidden" style="display: none;"><carousel><slide>1</slide><slide>2</slide></carousel></div>',
+    });
+    vm.$mount();
+    expect(vm.$children[0].pollInterval).to.not.equal(undefined);
+    expect(vm.$children[0].getCarouselWidth()).to.equal(0);
+    document.querySelector('#hidden').style.display = 'block';
+    const recompSpy = new sinon.spy(vm.$children[0].recomputeCarouselWidth);
+    setTimeout(() => {
+      expect(vm.$children[0].pollInterval).to.equal(undefined);
+      expect(vm.$children[0].getCarouselWidth()).to.be.above(0);
+      expect(recompSpy.called).to.equal(true);
+      done();
+    }, 1000);
+  });
+  
   // @TODO: fix mouse event tests
   // it('should listen on mouse events', (done) => {
   //   Vue.component('carousel', Carousel);

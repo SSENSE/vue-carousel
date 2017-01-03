@@ -315,9 +315,7 @@
        * @param  {Object} e The event object
        */
       handleMousedown(e) {
-        if (!e.touches) {
-          e.preventDefault();
-        }
+        if (!e.touches) { e.preventDefault(); }
 
         this.mousedown = true;
         this.dragStartX = ('ontouchstart' in window) ? e.touches[0].clientX : e.clientX;
@@ -423,9 +421,7 @@
       runIfBrowser(() => {
         this.getBrowserWidth();
 
-        window.addEventListener('resize', debounce(() => {
-          this.handleResize();
-        }, 16));
+        window.addEventListener('resize', debounce(this.handleResize, 16));
 
         if ('ontouchstart' in window) {
           this.$el.addEventListener('touchstart', this.handleMousedown);

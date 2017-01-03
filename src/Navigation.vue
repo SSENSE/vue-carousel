@@ -1,7 +1,7 @@
 <template>
   <div class="navigation">
-    <a href="#" v-on:click.prevent="triggerPageAdvance('backward')" v-bind:class="{ disabled: !canAdvanceBackward }">Prev</a>
-    <a href="#" v-on:click.prevent="triggerPageAdvance()" v-bind:class="{ disabled: !canAdvanceForward }">Next</a>
+    <a href="#" class="next" v-on:click.prevent="triggerPageAdvance('backward')" v-bind:class="{ disabled: !canAdvanceBackward }">Prev</a>
+    <a href="#" class="prev" v-on:click.prevent="triggerPageAdvance()" v-bind:class="{ disabled: !canAdvanceForward }">Next</a>
   </div>
 </template>
 
