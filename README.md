@@ -8,7 +8,7 @@
 
 **Feel free to submit issues and feature requests [here](https://github.com/SSENSE/vue-carousel/issues)**.
 
-* [Full documentation](https://ssense.github.io/vue-carousel)
+**[Full documentation and examples](https://ssense.github.io/vue-carousel)**
 
 ## Table of Contents
 - [Installation](#installation)
@@ -20,8 +20,6 @@
 ``` bash
 npm install -S @ssense/vue-carousel
 ```
-
-* [Full installation and usage guide](https://ssense.github.io/vue-carousel/guide/)
 
 ## Usage
 
