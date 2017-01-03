@@ -1,3 +1,7 @@
+**Note: vue-carousel is at pre-alpha stage of development and may undergo significant changes.**
+
+**Feel free to submit issues and feature requests [here](https://github.com/SSENSE/vue-carousel/issues)**.
+
 # Vue Carousel
 
 <img width="60" src="https://ssense.github.io/vue-carousel/images/logo.png" alt="Vue Carousel" />
