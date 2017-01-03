@@ -8,8 +8,8 @@ Function.prototype.bind = require('function-bind')
 var testsContext = require.context('./specs', true, /\.spec$/)
 testsContext.keys().forEach(testsContext)
 
-// require all src files except main.js for coverage.
+// require all src files except index.js for coverage.
 // you can also change this to match only the subset of files that
 // you want coverage for.
-var srcContext = require.context('../../src', true, /^\.\/(?!main(\.js)?$)/)
+var srcContext = require.context('../../src', true, /^\.\/(?!index(\.js)?$)/)
 srcContext.keys().forEach(srcContext)
