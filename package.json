@@ -9,11 +9,12 @@
     "test": "npm run unit",
     "unit": "./node_modules/.bin/karma start test/unit/karma.conf.js --single-run",
     "lint": "eslint 'src/**/?(*.js|*.vue)' || exit 1",
-    "precommit": "npm run lint && npm run test"
+    "precommit": "npm run lint && npm run test",
+    "coveralls": "cat test/unit/coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/ssense/vue-carousel.git"
+    "url": "git+ssh://git@github.com/SSENSE/vue-carousel.git"
   },
   "keywords": [
     "Vue",
@@ -38,6 +39,7 @@
     "babel-register": "^6.18.0",
     "chai": "^3.5.0",
     "copy-webpack-plugin": "^4.0.1",
+    "coveralls": "^2.11.15",
     "css-loader": "^0.26.1",
     "eslint": "^3.12.2",
     "eslint-config-airbnb-base": "^11.0.0",
@@ -67,9 +69,5 @@
     "vue-template-compiler": "^2.1.7",
     "webpack": "^1.14.0",
     "webpack-merge": "^1.1.2"
-  },
-  "engines": {
-    "node": ">= 4.0.0",
-    "npm": ">= 3.0.0"
   }
 }
