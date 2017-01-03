@@ -9,5 +9,5 @@ const install = (Vue) => {
 export default {
   install,
   Carousel,
-  Slide
+  Slide,
 };

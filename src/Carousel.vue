@@ -24,7 +24,7 @@
     name: 'carousel',
     components: {
       Navigation,
-      Pagination
+      Pagination,
     },
     data() {
       return {
@@ -207,7 +207,7 @@
       },
       transitionStyle() {
         return `${this.speed / 1000}s ${this.easing} transform`;
-      }
+      },
     },
     methods: {
       /**
@@ -246,7 +246,8 @@
        */
       getBreakpointSlidesPerPage(width) {
         const breakpoints = this.perPageCustom.sort((a, b) => {
-          return (a[0] > b[0]) ? -1 : 1;
+          const isMatching = (a[0] > b[0]) ? -1 : 1;
+          return isMatching;
         });
 
         let match = null;

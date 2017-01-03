@@ -34,5 +34,5 @@ const runIfBrowser = (func) => {
 
 export {
   debounce,
-  runIfBrowser
+  runIfBrowser,
 };
