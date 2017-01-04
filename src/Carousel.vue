@@ -284,21 +284,7 @@
        * @return {Number} Number of slides
        */
       getSlideCount() {
-        const children = this.$slots.default;
-        let count = 0;
-
-        if (!children) {
-          this.slideCount = 0;
-          return 0;
-        }
-        children.forEach((component) => {
-          if (component.child.$options._componentTag === 'slide') { // eslint-disable-line no-underscore-dangle,max-len
-            count += 1;
-          }
-        });
-
-        this.slideCount = count;
-        return this.slideCount;
+        return (this.$slots && this.$slots.default && this.$slots.default.length) || 0;
       },
       /**
        * Set the current page to a specific value
@@ -432,7 +418,7 @@
         }
       });
 
-      this.getSlideCount();
+      this.slideCount = this.getSlideCount();
       this.recomputeCarouselWidth();
 
       if (this.isHidden) {
