@@ -18,6 +18,7 @@ describe('Carousel.vue', (done) => {
     vm.$mount();
     expect(vm.$children[0]._isMounted).to.equal(true);
   });
+
   it('should mount successfully', () => {
     Vue.component('carousel', Carousel);
     createAppContainer();
@@ -28,6 +29,7 @@ describe('Carousel.vue', (done) => {
     vm.$mount();
     expect(vm.$children[0]._isMounted).to.equal(true);
   });
+
   it('should unmount successfully', () => {
     Vue.component('carousel', Carousel);
     createAppContainer();
@@ -39,6 +41,7 @@ describe('Carousel.vue', (done) => {
     vm.$destroy();
     expect(vm.$children[0]._isDestroyed).to.equal(true);
   });
+
   it('should have an offset matching the slide width when scroll per page set', () => {
     Vue.component('carousel', Carousel);
     Vue.component('slide', Slide);
@@ -58,6 +61,7 @@ describe('Carousel.vue', (done) => {
     expect(vm.$children[0].pageCount).to.equal(2);
     expect(vm.$children[0].currentOffset).to.equal(expectedOffset);
   });
+
   it('should be unable to advance backward by default', () => {
     Vue.component('carousel', Carousel);
     createAppContainer();
@@ -69,6 +73,7 @@ describe('Carousel.vue', (done) => {
     vm.$destroy();
     expect(vm.$children[0].canAdvanceBackward).to.equal(false);
   });
+
   it('should apply custom slides per page when responsive param provided', () => {
     Vue.component('carousel', Carousel);
     createAppContainer();
@@ -79,6 +84,7 @@ describe('Carousel.vue', (done) => {
     vm.$mount();
     expect(vm.$children[0].currentPerPage).to.equal(20);
   });
+
   it('should fall back to default slides per page when no responsive param provided', () => {
     Vue.component('carousel', Carousel);
     createAppContainer();
@@ -89,6 +95,7 @@ describe('Carousel.vue', (done) => {
     vm.$mount();
     expect(vm.$children[0].currentPerPage).to.equal(2);
   });
+
   it('should apply default carousel width when element has 0 width', () => {
     Vue.component('carousel', Carousel);
     createAppContainer();
@@ -103,6 +110,7 @@ describe('Carousel.vue', (done) => {
     vm.$children[0].getCarouselWidth();
     expect(vm.$children[0].carouselWidth).to.equal(0);
   });
+
   it('should advance slide number backward when advance page backward is called', () => {
     Vue.component('carousel', Carousel);
     Vue.component('slide', Slide);
@@ -119,6 +127,7 @@ describe('Carousel.vue', (done) => {
       done();
     }, 1000)
   });
+
   it('should advance slide number when advance page is called', () => {
     Vue.component('carousel', Carousel);
     Vue.component('slide', Slide);
@@ -135,6 +144,7 @@ describe('Carousel.vue', (done) => {
       done();
     }, 1000)
   });
+
   it('should advance slide number when advance page is called with a non-accepted argument', () => {
     Vue.component('carousel', Carousel);
     Vue.component('slide', Slide);
@@ -151,6 +161,7 @@ describe('Carousel.vue', (done) => {
       done();
     }, 1000)
   });
+
   it('should apply dirty checking for width when carousel is initialized in a hidden state', () => {
     Vue.component('carousel', Carousel);
     Vue.component('slide', Slide);

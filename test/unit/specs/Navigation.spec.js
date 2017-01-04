@@ -18,6 +18,7 @@ describe('Navigation.vue', (done) => {
     vm.$mount();
     expect(vm.$children[0].$children[0]._isMounted).to.equal(true);
   });
+
   it('should advance carousel forward when next is clicked', () => {
     Vue.use(VueCarousel);
     createAppContainer();
@@ -33,6 +34,7 @@ describe('Navigation.vue', (done) => {
       done();
     }, 1000);
   });
+
   it('should advance carousel backward when prev is clicked', () => {
     Vue.use(VueCarousel);
     createAppContainer();
