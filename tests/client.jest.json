@@ -10,6 +10,9 @@
       "/node_modules/",
       "/debug/"
     ],
+    "collectCoverageFrom": [
+      "src/*.vue"
+    ],
     "moduleFileExtensions": [
       "node",
       "json",

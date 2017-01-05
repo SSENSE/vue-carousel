@@ -23,16 +23,4 @@ const debounce = (func, wait, immediate) => {
   };
 };
 
-/**
- * Run a function only if window exists
- */
-const runIfBrowser = (func) => {
-  if (typeof window !== 'undefined') {
-    func();
-  }
-};
-
-export {
-  debounce,
-  runIfBrowser,
-};
+export default debounce;
