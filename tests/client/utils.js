@@ -1,5 +1,5 @@
 const Vue = require('vue');
-const tidy = require('libtidy').compat.htmltidy.tidy;
+const tidy = require('htmltidy').tidy;
 
 const options = {
   doctype: 'html5',
