@@ -3,11 +3,11 @@ const tidy = require('htmltidy').tidy;
 
 const options = {
   doctype: 'html5',
-  'hide-comments': true,
-  'show-body-only': true,
+  hideComments: true,
+  showBodyOnly: true,
   indent: true,
-  'indent-attributes': true,
-  'vertical-space': true,
+  indentAttributes: true,
+  verticalSpace: true,
   wrap: 0,
   tabSize: 2
 };
