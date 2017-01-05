@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --config config/webpack.min.conf.js && npm run updateDocAssets",
     "updateDocAssets": "cp ./dist/vue-carousel.min.js ./docs/themes/vue/source/js/",
-    "test": "npm run test:client --watch",
+    "test": "npm run test:client",
     "test-coverage": "npm run build && npm run test:client:coverage",
     "test:client": "jest --config tests/client.jest.json --forceExit",
     "test:client:coverage": "jest --config tests/client.jest.json --coverage --forceExit",
