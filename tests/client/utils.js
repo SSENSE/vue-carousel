@@ -1,32 +1,34 @@
 const Vue = require('vue');
-const tidy = require('libtidy').compat.htmltidy.tidy;
+const Html2jade = require('html2jade');
 
-const options = {
-  doctype: 'html5',
-  'hide-comments': true,
-  'show-body-only': true,
-  indent: true,
-  'indent-attributes': true,
-  'vertical-space': true,
-  'drop-empty-elements': false,
-  wrap: 0,
-  tabSize: 2
-};
+/** convert html to pug as a Promise */
+function html2pug(html) {
+  return new Promise((resolve, reject) => {
+    Html2jade.convertHtml(html, {bodyless: true}, (err, jade) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve(jade)
+      }
+    })
+  })
+}
 
+/** call vm.nextTick() as a Promise */
+function nextTick(vm) {
+  return new Promise((resolve, reject) => {
+    Vue.nextTick(() => resolve())
+  })
+}
+
+/** call vm.nextTick() and check the snapshot as a Promise */
 function expectToMatchSnapshot(vm, element) {
   return new Promise((resolve, reject) => {
-    Vue.nextTick().then(() => {
-      const html = (element || vm.$el).innerHTML;
-      tidy(html, options, (err, cleanHtml) => {
-        if (err) {
-          return reject(err);
-        }
-
-        expect(cleanHtml).toMatchSnapshot();
-        resolve();
-      });
-    }).catch(reject);
-  });
+    nextTick(vm).then(() => html2pug((element || vm.$el).innerHTML)).then((jade) => {
+      expect(jade).toMatchSnapshot()
+      resolve()
+    }).catch((err)=>(reject(err)))
+  })
 }
 
 exports.expectToMatchSnapshot = expectToMatchSnapshot;

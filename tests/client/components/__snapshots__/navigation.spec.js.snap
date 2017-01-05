@@ -1,189 +1,94 @@
 exports[`Navigation should mount successfully 1`] = `
-"<div class=\"carousel-inner\"
-     style=\"width: 0px;\">
-  <div class=\"slide\"
-       style=\"width: 0px;\">
-  </div>
-
-  <div class=\"slide\"
-       style=\"width: 0px;\">
-  </div>
-</div>
-
-<div class=\"navigation\">
-  <a href=\"#\"
-       class=\"next disabled\">Prev</a> <a href=\"#\"
-       class=\"prev\">Next</a>
-</div>
-
-<div class=\"pagination\">
-  <div class=\"dot-container\">
-    <div class=\"dot\"
-         style=\"margin-top: 20px; padding: 10px;\">
-      <div class=\"dot-inner\"
-           style=\"width: 10px; height: 10px; background: rgb(0, 0, 0);\">
-      </div>
-    </div>
-
-    <div class=\"dot\"
-         style=\"margin-top: 20px; padding: 10px;\">
-      <div class=\"dot-inner\"
-           style=\"width: 10px; height: 10px; background: rgb(239, 239, 239);\">
-      </div>
-    </div>
-  </div>
-</div>
+".carousel-inner(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+|  
+.navigation
+  a.next.disabled(href=\'#\') Prev
+  |  
+  a.prev(href=\'#\') Next
+|  
+.pagination
+  .dot-container
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
 "
 `;
 
 exports[`Navigation should render a next button 1`] = `
-"<div class=\"carousel-inner\"
-     style=\"width: 0px;\">
-  <div class=\"slide\"
-       style=\"width: 0px;\">
-  </div>
-
-  <div class=\"slide\"
-       style=\"width: 0px;\">
-  </div>
-</div>
-
-<div class=\"navigation\">
-  <a href=\"#\"
-       class=\"next disabled\">Prev</a> <a href=\"#\"
-       class=\"prev\">Next</a>
-</div>
-
-<div class=\"pagination\">
-  <div class=\"dot-container\">
-    <div class=\"dot\"
-         style=\"margin-top: 20px; padding: 10px;\">
-      <div class=\"dot-inner\"
-           style=\"width: 10px; height: 10px; background: rgb(0, 0, 0);\">
-      </div>
-    </div>
-
-    <div class=\"dot\"
-         style=\"margin-top: 20px; padding: 10px;\">
-      <div class=\"dot-inner\"
-           style=\"width: 10px; height: 10px; background: rgb(239, 239, 239);\">
-      </div>
-    </div>
-  </div>
-</div>
+".carousel-inner(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+|  
+.navigation
+  a.next.disabled(href=\'#\') Prev
+  |  
+  a.prev(href=\'#\') Next
+|  
+.pagination
+  .dot-container
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
 "
 `;
 
 exports[`Navigation should render a prev button 1`] = `
-"<div class=\"carousel-inner\"
-     style=\"width: 0px;\">
-  <div class=\"slide\"
-       style=\"width: 0px;\">
-  </div>
-
-  <div class=\"slide\"
-       style=\"width: 0px;\">
-  </div>
-</div>
-
-<div class=\"navigation\">
-  <a href=\"#\"
-       class=\"next disabled\">Prev</a> <a href=\"#\"
-       class=\"prev\">Next</a>
-</div>
-
-<div class=\"pagination\">
-  <div class=\"dot-container\">
-    <div class=\"dot\"
-         style=\"margin-top: 20px; padding: 10px;\">
-      <div class=\"dot-inner\"
-           style=\"width: 10px; height: 10px; background: rgb(0, 0, 0);\">
-      </div>
-    </div>
-
-    <div class=\"dot\"
-         style=\"margin-top: 20px; padding: 10px;\">
-      <div class=\"dot-inner\"
-           style=\"width: 10px; height: 10px; background: rgb(239, 239, 239);\">
-      </div>
-    </div>
-  </div>
-</div>
+".carousel-inner(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+|  
+.navigation
+  a.next.disabled(href=\'#\') Prev
+  |  
+  a.prev(href=\'#\') Next
+|  
+.pagination
+  .dot-container
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
 "
 `;
 
 exports[`Navigation should trigger page advance backward when prev is clicked 1`] = `
-"<div class=\"carousel-inner\"
-     style=\"width: 0px;\">
-  <div class=\"slide\"
-       style=\"width: 0px;\">
-  </div>
-
-  <div class=\"slide\"
-       style=\"width: 0px;\">
-  </div>
-</div>
-
-<div class=\"navigation\">
-  <a href=\"#\"
-       class=\"next\">Prev</a> <a href=\"#\"
-       class=\"prev disabled\">Next</a>
-</div>
-
-<div class=\"pagination\">
-  <div class=\"dot-container\">
-    <div class=\"dot\"
-         style=\"margin-top: 20px; padding: 10px;\">
-      <div class=\"dot-inner\"
-           style=\"width: 10px; height: 10px; background: rgb(239, 239, 239);\">
-      </div>
-    </div>
-
-    <div class=\"dot\"
-         style=\"margin-top: 20px; padding: 10px;\">
-      <div class=\"dot-inner\"
-           style=\"width: 10px; height: 10px; background: rgb(0, 0, 0);\">
-      </div>
-    </div>
-  </div>
-</div>
+".carousel-inner(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+|  
+.navigation
+  a.next(href=\'#\') Prev
+  |  
+  a.prev.disabled(href=\'#\') Next
+|  
+.pagination
+  .dot-container
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
 "
 `;
 
 exports[`Navigation should trigger page advance when next is clicked 1`] = `
-"<div class=\"carousel-inner\"
-     style=\"width: 0px;\">
-  <div class=\"slide\"
-       style=\"width: 0px;\">
-  </div>
-
-  <div class=\"slide\"
-       style=\"width: 0px;\">
-  </div>
-</div>
-
-<div class=\"navigation\">
-  <a href=\"#\"
-       class=\"next\">Prev</a> <a href=\"#\"
-       class=\"prev disabled\">Next</a>
-</div>
-
-<div class=\"pagination\">
-  <div class=\"dot-container\">
-    <div class=\"dot\"
-         style=\"margin-top: 20px; padding: 10px;\">
-      <div class=\"dot-inner\"
-           style=\"width: 10px; height: 10px; background: rgb(239, 239, 239);\">
-      </div>
-    </div>
-
-    <div class=\"dot\"
-         style=\"margin-top: 20px; padding: 10px;\">
-      <div class=\"dot-inner\"
-           style=\"width: 10px; height: 10px; background: rgb(0, 0, 0);\">
-      </div>
-    </div>
-  </div>
-</div>
+".carousel-inner(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+|  
+.navigation
+  a.next(href=\'#\') Prev
+  |  
+  a.prev.disabled(href=\'#\') Next
+|  
+.pagination
+  .dot-container
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
 "
 `;
