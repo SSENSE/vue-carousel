@@ -1,5 +1,12 @@
 language: node_js
 
+sudo: required
+
+before_install:
+  - sudo dpkg --add-architecture i386
+  - sudo sudo apt-get update
+  - sudo apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386
+
 script: npm run test
 
 after_script:
