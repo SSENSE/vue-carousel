@@ -12,10 +12,11 @@
     </div>
     <navigation v-if="navigationEnabled"></navigation>
     <pagination v-if="paginationEnabled && pageCount > 0"></pagination>
+  </div>
 </template>
 
 <script>
-  import { debounce, runIfBrowser } from './utils/index';
+  import debounce from './utils/debounce';
 
   import Navigation from './Navigation.vue';
   import Pagination from './Pagination.vue';
@@ -162,11 +163,11 @@
 
         let customItems = null;
 
-        runIfBrowser(() => {
+        if (!this.$isServer) {
           if (this.browserWidth) {
             customItems = this.getBreakpointSlidesPerPage(this.perPageCustom, this.browserWidth);
           }
-        });
+        }
 
         return customItems;
       },
@@ -300,6 +301,7 @@
        * Trigger actions when mouse is pressed
        * @param  {Object} e The event object
        */
+      /* istanbul ignore next */
       handleMousedown(e) {
         if (!e.touches) { e.preventDefault(); }
 
@@ -404,7 +406,7 @@
       },
     },
     mounted() {
-      runIfBrowser(() => {
+      if (!this.$isServer) {
         this.getBrowserWidth();
 
         window.addEventListener('resize', debounce(this.handleResize, 16));
@@ -416,7 +418,7 @@
           this.$el.addEventListener('mousedown', this.handleMousedown);
           this.$el.addEventListener('mouseup', this.handleMouseup);
         }
-      });
+      }
 
       this.slideCount = this.getSlideCount();
       this.recomputeCarouselWidth();
@@ -426,9 +428,9 @@
       }
     },
     destroyed() {
-      runIfBrowser(() => {
+      if (!this.$isServer) {
         window.removeEventListener('resize', this.getBrowserWidth);
-      });
+      }
     },
   };
 </script>

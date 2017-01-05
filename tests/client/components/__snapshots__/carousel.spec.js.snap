@@ -1,3 +1,18 @@
+exports[`Carousel should apply 200px carousel width when element has 200px width 1`] = `
+".carousel-inner(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+// 
+.pagination
+  .dot-container
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
+"
+`;
+
 exports[`Carousel should apply custom slides per page when responsive param provided 1`] = `
 ".carousel-inner(style=\'width: 0px;\')
 // 
@@ -42,8 +57,16 @@ exports[`Carousel should decrease current slide number by 1 when advance page ba
 
 exports[`Carousel should fall back to default slides per page when no responsive param provided 1`] = `
 ".carousel-inner(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
 // 
-// 
+.pagination
+  .dot-container
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
 "
 `;
 
@@ -79,6 +102,28 @@ exports[`Carousel should mount successfully 1`] = `
 ".carousel-inner(style=\'width: 0px;\')
 // 
 // 
+"
+`;
+
+exports[`Carousel should register 0 slides when 0 slides are added to the slots 1`] = `
+".carousel-inner(style=\'width: 0px;\')
+// 
+// 
+"
+`;
+
+exports[`Carousel should register 3 slides when 3 slides are added to the slots 1`] = `
+".carousel-inner(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+// 
+.pagination
+  .dot-container
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
 "
 `;
 

@@ -71,11 +71,12 @@ describe('Carousel', () => {
   it('should fall back to default slides per page when no responsive param provided', () => {
     const vm = new Vue({
       el: document.createElement('div'),
-      render: (h) => h(Carousel, { props: { perPageCustom: [[9999, 20]] } }),
+      render: (h) => h(Carousel, { props: { scrollPerPage: true, perPageCustom: [[9999, 20]] } }, [h(Slide), h(Slide), h(Slide)]),
     });
     const carouselInstance = vm.$children[0];
 
     expect(carouselInstance.currentPerPage).toBe(2);
+    expect(carouselInstance.pageCount).toBe(2);
 
     return utils.expectToMatchSnapshot(vm);
   });
@@ -88,6 +89,47 @@ describe('Carousel', () => {
     const carouselInstance = vm.$children[0];
 
     expect(carouselInstance.carouselWidth).toBe(0);
+
+    return utils.expectToMatchSnapshot(vm);
+  });
+
+  it('should apply 200px carousel width when element has 200px width', () => {
+    const vm = new Vue({
+      el: document.createElement('div'),
+      render: (h) => h(Carousel, {},
+      [h(Slide), h(Slide), h(Slide)]
+      ),
+    });
+    const carouselInstance = vm.$children[0];
+
+    carouselInstance.$el.clientWidth = 200;
+    carouselInstance.getCarouselWidth();
+
+    expect(carouselInstance.carouselWidth).toBe(200);
+
+    return utils.expectToMatchSnapshot(vm);
+  });
+
+  it('should register 0 slides when 0 slides are added to the slots', () => {
+    const vm = new Vue({
+      el: document.createElement('div'),
+      render: (h) => h(Carousel),
+    });
+    const carouselInstance = vm.$children[0];
+
+    expect(carouselInstance.getSlideCount()).toBe(0);
+
+    return utils.expectToMatchSnapshot(vm);
+  });
+
+  it('should register 3 slides when 3 slides are added to the slots', () => {
+    const vm = new Vue({
+      el: document.createElement('div'),
+      render: (h) => h(Carousel, {}, [h(Slide), h(Slide), h(Slide)]),
+    });
+    const carouselInstance = vm.$children[0];
+
+    expect(carouselInstance.getSlideCount()).toBe(3);
 
     return utils.expectToMatchSnapshot(vm);
   });
@@ -140,4 +182,21 @@ describe('Carousel', () => {
       return utils.expectToMatchSnapshot(vm);
     });
   });
+
+  // it('should apply dirty checking when carousel is initialized in a hidden state', () => {
+  //   const vm = new Vue({
+  //     el: document.createElement('div'),
+  //     render: (h) => h(Carousel, {}, [h(Slide), h(Slide)]),
+  //   });
+
+  //   const carouselInstance = vm.$children[0];
+
+  //   expect(carouselInstance.pollInterval).toBeDefined();
+
+  //   return carouselInstance.$nextTick().then(() => {
+  //     expect(carouselInstance.getCarouselWidth()).toBe(200);
+
+  //     return utils.expectToMatchSnapshot(vm);
+  //   });
+  // });
 });
