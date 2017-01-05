@@ -5,5 +5,8 @@ script: npm run test
 after_script:
   - npm run coveralls
 
+os:
+  - osx
+
 node_js:
   - "6"
