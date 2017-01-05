@@ -1,0 +1,94 @@
+exports[`Navigation should mount successfully 1`] = `
+".carousel-inner(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+|  
+.navigation
+  a.next.disabled(href=\'#\') Prev
+  |  
+  a.prev(href=\'#\') Next
+|  
+.pagination
+  .dot-container
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
+"
+`;
+
+exports[`Navigation should render a next button 1`] = `
+".carousel-inner(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+|  
+.navigation
+  a.next.disabled(href=\'#\') Prev
+  |  
+  a.prev(href=\'#\') Next
+|  
+.pagination
+  .dot-container
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
+"
+`;
+
+exports[`Navigation should render a prev button 1`] = `
+".carousel-inner(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+|  
+.navigation
+  a.next.disabled(href=\'#\') Prev
+  |  
+  a.prev(href=\'#\') Next
+|  
+.pagination
+  .dot-container
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
+"
+`;
+
+exports[`Navigation should trigger page advance backward when prev is clicked 1`] = `
+".carousel-inner(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+|  
+.navigation
+  a.next(href=\'#\') Prev
+  |  
+  a.prev.disabled(href=\'#\') Next
+|  
+.pagination
+  .dot-container
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
+"
+`;
+
+exports[`Navigation should trigger page advance when next is clicked 1`] = `
+".carousel-inner(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+|  
+.navigation
+  a.next(href=\'#\') Prev
+  |  
+  a.prev.disabled(href=\'#\') Next
+|  
+.pagination
+  .dot-container
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
+"
+`;

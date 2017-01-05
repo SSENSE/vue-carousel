@@ -1,0 +1,7 @@
+exports[`Slide should mount successfully 1`] = `
+".carousel-inner(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+// 
+// 
+"
+`;
