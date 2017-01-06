@@ -12,7 +12,8 @@
     "test:client:coverage": "jest --config tests/client.jest.json --coverage --forceExit",
     "lint": "eslint 'src/**/?(*.js|*.vue)' || exit 1",
     "precommit": "npm run lint && npm run test",
-    "coveralls": "cat coverage/client/lcov.info | ./node_modules/.bin/coveralls"
+    "coveralls": "cat coverage/client/lcov.info | ./node_modules/.bin/coveralls",
+    "docs:build": "npm run build && rm -rf ./docs/public && mkdir ./docs/public/ && cd ./docs/public/ && git init && git remote add origin git@github.com:SSENSE/vue-carousel.git && git fetch && git checkout -f gh-pages && cd .. && npm install && ./node_modules/.bin/hexo clean && ./node_modules/.bin/hexo generate"
   },
   "repository": {
     "type": "git",
@@ -55,6 +56,7 @@
     "isparta-loader": "^2.0.0",
     "jest": "^18.1.0",
     "mocha": "^3.2.0",
+    "shelljs": "^0.7.5",
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0",
     "vue": "^2.1.8",
