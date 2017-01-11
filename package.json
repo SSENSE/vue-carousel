@@ -4,6 +4,8 @@
   "description": "A flexible, responsive, touch-friendly carousel for Vue.js",
   "main": "src/index.js",
   "scripts": {
+    "dev": "vue-play start",
+    "dev:build": "vue-play build",
     "build": "webpack --config config/webpack.min.conf.js && npm run updateDocAssets",
     "updateDocAssets": "cp ./dist/vue-carousel.min.js ./docs/themes/vue/source/js/",
     "test": "npm run test:client",
@@ -61,6 +63,8 @@
     "sinon-chai": "^2.8.0",
     "vue": "^2.1.8",
     "vue-loader": "^10.0.2",
+    "vue-play": "^2.2.0",
+    "vue-play-cli": "^1.0.4",
     "vue-style-loader": "^1.0.0",
     "vue-template-compiler": "^2.1.8",
     "webpack": "^1.14.0",
