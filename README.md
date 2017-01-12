@@ -32,7 +32,7 @@ You may install Vue Carousel globally:
 import Vue from 'vue';
 import VueCarousel from '@ssense/vue-carousel';
 
-Vue.use(VueCarousel);
+Vue.use(VueCarousel.default);
 ```
 This will make **&lt;carousel&gt;** and **&lt;slide&gt;** available to all components within your Vue app.
 
