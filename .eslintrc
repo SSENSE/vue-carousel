@@ -1,15 +1,3 @@
 {
-  "extends": ["vue", "airbnb-base"],
-  "env": {
-    "browser": true,
-    "jest": true
-  },
-  "rules": {
-    "semi": [2, "always"],
-    "comma-dangle": [2, "only-multiline"],
-    "vue/jsx-uses-vars": 0,
-    "space-before-function-paren": 0,
-    "operator-linebreak": 0,
-    "object-curly-spacing": 0
-  }
+  "extends": "ssense/client",
 }

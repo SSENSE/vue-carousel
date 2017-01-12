@@ -25,13 +25,13 @@
 
 <script>
   export default {
-    name: 'pagination',
+    name: "pagination",
     data() {
       return {
         parentContainer: this.$parent,
-      };
+      }
     },
-  };
+  }
 </script>
 
 <style scoped>

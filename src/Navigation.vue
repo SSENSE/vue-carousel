@@ -7,30 +7,30 @@
 
 <script>
   export default {
-    name: 'navigation',
+    name: "navigation",
     data() {
       return {
         parentContainer: this.$parent,
-      };
+      }
     },
     computed: {
       canAdvanceForward() {
-        return this.parentContainer.canAdvanceForward || false;
+        return this.parentContainer.canAdvanceForward || false
       },
       canAdvanceBackward() {
-        return this.parentContainer.canAdvanceBackward || false;
+        return this.parentContainer.canAdvanceBackward || false
       },
     },
     methods: {
       triggerPageAdvance(direction) {
         if (direction) {
-          this.$parent.advancePage(direction);
+          this.$parent.advancePage(direction)
         } else {
-          this.$parent.advancePage();
+          this.$parent.advancePage()
         }
       },
     },
-  };
+  }
 </script>
 
 <style scoped>

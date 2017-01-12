@@ -6,13 +6,13 @@
 
 <script>
   export default {
-    name: 'slide',
+    name: "slide",
     data() {
       return {
         width: null,
-      };
+      }
     },
-  };
+  }
 </script>
 
 <style scoped>
