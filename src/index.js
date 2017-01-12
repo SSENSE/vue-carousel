@@ -1,15 +1,16 @@
-/* eslint-disable */
+import Carousel from "./Carousel.vue"
+import Slide from "./Slide.vue"
 
-var Carousel = require("./Carousel.vue")
-var Slide = require("./Slide.vue")
-
-var install = function(Vue) {
+const install = (Vue) => {
   Vue.component("carousel", Carousel)
   Vue.component("slide", Slide)
 }
 
-module.exports = {
-  'default': install,
-  'Carousel': Carousel,
-  'Slide': Slide
-};
+export default {
+  install,
+}
+
+export {
+  Carousel,
+  Slide
+}

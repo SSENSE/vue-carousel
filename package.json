@@ -1,8 +1,8 @@
 {
   "name": "@ssense/vue-carousel",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "A flexible, responsive, touch-friendly carousel for Vue.js",
-  "main": "src/index.js",
+  "main": "dist/vue-carousel.min.js",
   "scripts": {
     "build": "webpack --config config/webpack.min.conf.js && npm run updateDocAssets",
     "coveralls": "cat coverage/client/lcov.info | ./node_modules/.bin/coveralls",
