@@ -3,8 +3,11 @@
 const Vue = require('vue');
 const utils = require('../utils');
 
+const VueCarousel = require('../../../src/index.js');
 const Carousel = require('../../../src/Carousel.vue');
 const Slide = require('../../../src/Slide.vue');
+
+Vue.use(VueCarousel.default);
 
 describe('Carousel', () => {
   it('should mount successfully', () => {
