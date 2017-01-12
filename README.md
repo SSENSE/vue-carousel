@@ -13,6 +13,7 @@
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
+- [Development](#development)
 - [License](#license)
 
 ## Installation
@@ -66,6 +67,21 @@ Once the **Carousel** and **Slide** components are installed globally or importe
     </slide>
   </carousel>
 ```
+
+## Development
+
+A sandboxed dev environment is provided by [vue-play](https://github.com/vue-play/vue-play). Changes made to the component files will appear in real time in the sandbox. 
+
+To begin development, run:
+
+``` bash
+npm install
+npm run dev
+```
+
+then navigate to `http://localhost:5000`
+
+To modify and add sandbox scenarios, edit `play/index.js`
 
 ## License
 
