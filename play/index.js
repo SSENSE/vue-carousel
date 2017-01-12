@@ -47,5 +47,5 @@ play("Carousel", module)
     h(Carousel, { props: { scrollPerPage: true } }, generateSlideImages(h)))
   )
   .add("responsive, with images", h => createContainer(h, 500, 
-    h(Carousel, { props: { scrollPerPage: true } }, generateSlideImages(h)))
+    h(Carousel, { props: { perPageCustom: [[480, 3], [768, 4]], scrollPerPage: true } }, generateSlideImages(h)))
   )
