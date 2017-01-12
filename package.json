@@ -1,21 +1,21 @@
 {
   "name": "@ssense/vue-carousel",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "A flexible, responsive, touch-friendly carousel for Vue.js",
   "main": "src/index.js",
   "scripts": {
+    "build": "webpack --config config/webpack.min.conf.js && npm run updateDocAssets",
+    "coveralls": "cat coverage/client/lcov.info | ./node_modules/.bin/coveralls",
     "dev": "vue-play start",
     "dev:build": "vue-play build",
-    "build": "webpack --config config/webpack.min.conf.js && npm run updateDocAssets",
-    "updateDocAssets": "cp ./dist/vue-carousel.min.js ./docs/themes/vue/source/js/",
-    "test": "npm run test:client",
-    "test-coverage": "npm run build && npm run test:client:coverage",
-    "test:client": "jest --config tests/client.jest.json --forceExit",
-    "test:client:coverage": "jest --config tests/client.jest.json --coverage --forceExit",
+    "docs:build": "npm run build && rm -rf ./docs/public && mkdir ./docs/public/ && cd ./docs/public/ && git init && git remote add origin git@github.com:SSENSE/vue-carousel.git && git fetch && git checkout -f gh-pages && cd .. && npm install && ./node_modules/.bin/hexo clean && ./node_modules/.bin/hexo generate",
     "lint": "eslint 'src/**/?(*.js|*.vue)' || exit 1",
     "precommit": "npm run lint && npm run test",
-    "coveralls": "cat coverage/client/lcov.info | ./node_modules/.bin/coveralls",
-    "docs:build": "npm run build && rm -rf ./docs/public && mkdir ./docs/public/ && cd ./docs/public/ && git init && git remote add origin git@github.com:SSENSE/vue-carousel.git && git fetch && git checkout -f gh-pages && cd .. && npm install && ./node_modules/.bin/hexo clean && ./node_modules/.bin/hexo generate"
+    "test": "npm run test:client",
+    "test:client": "jest --config tests/client.jest.json --forceExit",
+    "test:client:coverage": "jest --config tests/client.jest.json --coverage --forceExit",
+    "test-coverage": "npm run test:client:coverage",
+    "updateDocAssets": "cp ./dist/vue-carousel.min.js ./docs/themes/vue/source/js/"
   },
   "repository": {
     "type": "git",
