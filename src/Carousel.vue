@@ -380,7 +380,9 @@
         if (this.$slots.default) {
           this.$slots.default.forEach((child) => {
             const slotChild = child
-            slotChild.child.width = width
+            if (slotChild && slotChild.child) {
+              slotChild.child.width = width
+            }
           })
         }
       },
