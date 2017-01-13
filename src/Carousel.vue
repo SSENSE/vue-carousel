@@ -16,6 +16,7 @@
 </template>
 
 <script>
+  import autoplay from "./mixins/autoplay"
   import debounce from "./utils/debounce"
   import Navigation from "./Navigation.vue"
   import Pagination from "./Pagination.vue"
@@ -39,6 +40,9 @@
         mousedown: false,
       }
     },
+    mixins: [
+      autoplay
+    ],
     props: {
       /**
        * Slide transition easing
@@ -215,6 +219,8 @@
       advancePage(direction) {
         if (direction && direction === "backward" && this.canAdvanceBackward) {
           this.goToPage(this.currentPage - 1)
+        } else if (direction && direction === "backward" && !this.canAdvanceBackward) {
+          this.goToPage(this.pageCount - 1)
         } else if (
           (
             !direction
@@ -222,6 +228,8 @@
             && this.canAdvanceForward
           ) {
           this.goToPage(this.currentPage + 1)
+        } else {
+          this.goToPage(0)
         }
       },
       /**
