@@ -189,7 +189,7 @@ describe('Carousel', () => {
   it('should begin autoplaying when option specified', () => {
     const vm = new Vue({
       el: document.createElement('div'),
-      render: (h) => h(Carousel, { props: { perPage: 1, autoplay: true } }, [h(Slide), h(Slide)]),
+      render: (h) => h(Carousel, { props: { perPage: 1, autoplay: true, autoplayHoverPause: true } }, [h(Slide), h(Slide)]),
     });
 
     const carouselInstance = vm.$children[0];
