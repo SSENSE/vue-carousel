@@ -46,7 +46,7 @@ const autoplay = {
     },
   },
   mounted() {
-    if (!this.$isServer) {
+    if (!this.$isServer && this.autoplayHoverPause) {
       this.$el.addEventListener("mouseenter", this.pauseAutoplay)
       this.$el.addEventListener("mouseleave", this.startAutoplay)
     }

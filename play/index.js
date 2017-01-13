@@ -52,3 +52,6 @@ play("Carousel", module)
   .add("autoplay", h => createContainer(h, 500, 
     h(Carousel, { props: { autoplay: true } }, generateSlideImages(h)))
   )
+  .add("autoplay, pause on hover", h => createContainer(h, 500, 
+    h(Carousel, { props: { autoplay: true, autoplayHoverPause: true } }, generateSlideImages(h)))
+  )
