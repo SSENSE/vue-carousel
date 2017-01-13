@@ -49,6 +49,14 @@
         default: "ease",
       },
       /**
+       * Minimum distance for the swipe to trigger
+       * a slide advance
+       */
+      minSwipeDistance: {
+        type: Number,
+        default: 8,
+      },
+      /**
        * Flag to render the navigation component
        * (next/prev buttons)
        */
@@ -296,12 +304,6 @@
 
         this.mousedown = true
         this.dragStartX = ("ontouchstart" in window) ? e.touches[0].clientX : e.clientX
-
-        if ("ontouchstart" in window) {
-          this.$el.addEventListener("touchmove", this.handleMousemove)
-        } else {
-          this.$el.addEventListener("mousemove", this.handleMousemove)
-        }
       },
       /**
        * Trigger actions when mouse is released
@@ -310,12 +312,6 @@
       handleMouseup() {
         this.mousedown = false
         this.dragOffset = 0
-
-        if ("ontouchstart" in window) {
-          this.$el.removeEventListener("touchmove", this.handleMousemove)
-        } else {
-          this.$el.removeEventListener("mousemove", this.handleMousemove)
-        }
       },
       /**
        * Trigger actions when mouse is pressed and then moved (mouse drag)
@@ -327,19 +323,16 @@
         }
 
         const eventPosX = ("ontouchstart" in window) ? e.touches[0].clientX : e.clientX
-        const deltaX = (this.dragStartX - eventPosX) // Distance the mouse has moved
+        const deltaX = (this.dragStartX - eventPosX)
 
-        this.dragOffset = deltaX // Drag offset to update the carousel"s transform in real time
+        this.dragOffset = deltaX
 
-        if (this.dragOffset >= (this.slideWidth / 2)) { // Moved far enough to advance forward?
-          this.handleMouseup() // Unbind the mousemove event
-          this.advancePage() // Trigger the movement forward
-        } else if (
-          this.dragOffset <= ((this.slideWidth / 2) * -1) // ... far enough to advance backeard?
-        ) {
-          this.mousedown = false
-          this.handleMouseup() // Unbind the mousemove event
-          this.advancePage("backward") // Trigger the movement forward
+        if (this.dragOffset > this.minSwipeDistance) {
+          this.handleMouseup()
+          this.advancePage()
+        } else if (this.dragOffset < -this.minSwipeDistance) {
+          this.handleMouseup()
+          this.advancePage("backward")
         }
       },
       /**
@@ -405,9 +398,11 @@
         if ("ontouchstart" in window) {
           this.$el.addEventListener("touchstart", this.handleMousedown)
           this.$el.addEventListener("touchend", this.handleMouseup)
+          this.$el.addEventListener("touchmove", this.handleMousemove)
         } else {
           this.$el.addEventListener("mousedown", this.handleMousedown)
           this.$el.addEventListener("mouseup", this.handleMouseup)
+          this.$el.addEventListener("mousemove", this.handleMousemove)
         }
       }
 
@@ -421,6 +416,11 @@
     destroyed() {
       if (!this.$isServer) {
         window.removeEventListener("resize", this.getBrowserWidth)
+        if ("ontouchstart" in window) {
+          this.$el.removeEventListener("touchmove", this.handleMousemove)
+        } else {
+          this.$el.removeEventListener("mousemove", this.handleMousemove)
+        }
       }
     },
   }

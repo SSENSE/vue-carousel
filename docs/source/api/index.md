@@ -11,6 +11,13 @@ Transition speed between slides. Any valid CSS transition easing is accepted.
 * **Type**: `String`
 * **Default**: `ease`
 
+### minSwipeDistance
+
+Minimum distance in pixels to swipe before a slide advance is triggered
+
+* **Type**: `Number`
+* **Default**: `8`
+
 ### perPage
 
 Maximum number of slides displayed on each page
