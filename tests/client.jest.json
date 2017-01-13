@@ -11,7 +11,8 @@
       "/debug/"
     ],
     "collectCoverageFrom": [
-      "src/*.vue"
+      "src/*.vue",
+      "src/mixins/*.js"
     ],
     "moduleFileExtensions": [
       "node",

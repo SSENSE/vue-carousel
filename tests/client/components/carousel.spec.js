@@ -186,6 +186,19 @@ describe('Carousel', () => {
     });
   });
 
+  it('should begin autoplaying when option specified', () => {
+    const vm = new Vue({
+      el: document.createElement('div'),
+      render: (h) => h(Carousel, { props: { perPage: 1, autoplay: true } }, [h(Slide), h(Slide)]),
+    });
+
+    const carouselInstance = vm.$children[0];
+    expect(carouselInstance.autoplayInterval).toBeDefined();
+    carouselInstance.pauseAutoplay();
+    expect(carouselInstance.autoplayInterval).toBe(undefined);
+    return utils.expectToMatchSnapshot(vm);
+  });
+
   // it('should apply dirty checking when carousel is initialized in a hidden state', () => {
   //   const vm = new Vue({
   //     el: document.createElement('div'),

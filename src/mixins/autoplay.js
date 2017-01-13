@@ -1,11 +1,18 @@
 const autoplay = {
   props: {
     /**
+     * Flag to enable autoplay
+     */
+    autoplay: {
+      type: Boolean,
+      default: false,
+    },
+    /**
      * Time elapsed before advancing slide
      */
     autoplayTimeout: {
       type: Number,
-      default: 5000,
+      default: 2000,
     },
     /**
      * Flag to pause autoplay on hover
@@ -17,9 +24,7 @@ const autoplay = {
   },
   data() {
     return {
-      autoplay: {
-        interval: null,
-      }
+      autoplayInterval: null,
     }
   },
   destroyed() {
@@ -30,12 +35,14 @@ const autoplay = {
   },
   methods: {
     pauseAutoplay() {
-      if (this.autoplay.interval) {
-        clearInterval(this.autoplay.interval)
+      if (this.autoplayInterval) {
+        this.autoplayInterval = clearInterval(this.autoplayInterval)
       }
     },
     startAutoplay() {
-      this.autoplay.interval = setInterval(this.advancePage, this.autoplayTimeout)
+      if (this.autoplay) {
+        this.autoplayInterval = setInterval(this.advancePage, this.autoplayTimeout)
+      }
     },
   },
   mounted() {
