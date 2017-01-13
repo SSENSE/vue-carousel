@@ -40,12 +40,18 @@ const createContainer = (createElement, width, content) => {
 }
 
 play("Carousel", module)
-  .add("default, with images", h => createContainer(h, 500, 
+  .add("default", h => createContainer(h, 500, 
     h(Carousel, {}, generateSlideImages(h)))
   )
-  .add("scroll per page, with images", h => createContainer(h, 500, 
+  .add("scroll per page", h => createContainer(h, 500, 
     h(Carousel, { props: { scrollPerPage: true } }, generateSlideImages(h)))
   )
-  .add("responsive, with images", h => createContainer(h, 500, 
+  .add("responsive", h => createContainer(h, 500, 
     h(Carousel, { props: { perPageCustom: [[480, 3], [768, 4]], scrollPerPage: true } }, generateSlideImages(h)))
+  )
+  .add("autoplay", h => createContainer(h, 500, 
+    h(Carousel, { props: { autoplay: true } }, generateSlideImages(h)))
+  )
+  .add("autoplay, pause on hover", h => createContainer(h, 500, 
+    h(Carousel, { props: { autoplay: true, autoplayHoverPause: true } }, generateSlideImages(h)))
   )

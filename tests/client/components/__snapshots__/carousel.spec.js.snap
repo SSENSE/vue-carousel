@@ -41,6 +41,20 @@ exports[`Carousel should be unable to advance forward by default (no slides adde
 "
 `;
 
+exports[`Carousel should begin autoplaying when option specified 1`] = `
+".carousel-inner(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+  .slide(style=\'width: 0px;\')
+// 
+.pagination
+  .dot-container
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
+"
+`;
+
 exports[`Carousel should decrease current slide number by 1 when advance page backward is called 1`] = `
 ".carousel-inner(style=\'width: 0px;\')
   .slide(style=\'width: 0px;\')

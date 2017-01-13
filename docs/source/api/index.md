@@ -4,6 +4,27 @@ title: API
 
 ## Global config
 
+### autoplay
+
+Flag to enable autoplay
+
+* **Type**: `Boolean`
+* **Default**: `false`
+
+### autoplayTimeout
+
+Time elapsed before advancing slide
+
+* **Type**: `Number`
+* **Default**: `2000`
+
+### autoplayHoverPause
+
+Flag to pause autoplay on hover
+
+* **Type**: `Boolean`
+* **Default**: `false`
+
 ### easing
 
 Transition speed between slides. Any valid CSS transition easing is accepted.
