@@ -219,8 +219,6 @@
       advancePage(direction) {
         if (direction && direction === "backward" && this.canAdvanceBackward) {
           this.goToPage(this.currentPage - 1)
-        } else if (direction && direction === "backward" && !this.canAdvanceBackward) {
-          this.goToPage(this.pageCount - 1)
         } else if (
           (
             !direction
@@ -228,8 +226,6 @@
             && this.canAdvanceForward
           ) {
           this.goToPage(this.currentPage + 1)
-        } else {
-          this.goToPage(0)
         }
       },
       /**
@@ -362,7 +358,7 @@
               this.recomputeCarouselWidth()
               clearInterval(this.pollInterval)
             }
-          }, 100)
+          }, 50)
         }
       },
       /**

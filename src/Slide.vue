@@ -19,6 +19,5 @@
   .slide {
     float: left;
     user-select: none;
-    pointer-events: none;
   }
 </style>
