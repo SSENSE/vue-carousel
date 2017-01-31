@@ -229,6 +229,27 @@
         }
       },
       /**
+       * A mutation observer is used to detect changes to the containing node
+       * in order to keep the magnet container in sync with the height its reference node.
+       */
+      attachMutationObserver() {
+        const MutationObserver = window.MutationObserver
+         || window.WebKitMutationObserver
+         || window.MozMutationObserver
+
+        if (MutationObserver) {
+          const config = { attributes: true, data: true }
+          this.mutationObserver = new MutationObserver(() => {
+            this.$nextTick(() => {
+              this.computeCarouselWidth()
+            })
+          })
+          if (this.$parent.$el) {
+            this.mutationObserver.observe(this.$parent.$el, config)
+          }
+        }
+      },
+      /**
        * Calculate the width of each slide
        * @return {Number} Slide width
        */
@@ -240,6 +261,14 @@
         this.setChildSlideWidth(this.slideWidth)
 
         return this.slideWidth
+      },
+      /**
+       * Stop listening to mutation changes
+       */
+      detachMutationObserver() {
+        if (this.mutationObserver) {
+          this.mutationObserver.disconnect()
+        }
       },
       /**
        * Given a viewport width, find the number of slides to display
@@ -343,28 +372,14 @@
        * Trigger actions caused by window resizing
        */
       handleResize() {
-        this.getBrowserWidth()
-        this.recomputeCarouselWidth()
-      },
-      /**
-       * If the carousel is hidden on init, slide widths cannot be calculated.
-       * Dirty checking is applied in this case.
-       * Once a width is found, the polling is stopped and the carousel is recalculated.
-       */
-      pollForWidth() {
-        if (!this.pollInterval) {
-          this.pollInterval = setInterval(() => {
-            if (this.getCarouselWidth() > 0) {
-              this.recomputeCarouselWidth()
-              clearInterval(this.pollInterval)
-            }
-          }, 50)
-        }
+        this.computeCarouselWidth()
       },
       /**
        * Re-compute the width of the carousel and its slides
        */
-      recomputeCarouselWidth() {
+      computeCarouselWidth() {
+        this.slideCount = this.getSlideCount()
+        this.getBrowserWidth()
         this.getCarouselWidth()
         this.calculateSlideWidth()
         this.setCurrentPageInBounds()
@@ -395,8 +410,6 @@
     },
     mounted() {
       if (!this.$isServer) {
-        this.getBrowserWidth()
-
         window.addEventListener("resize", debounce(this.handleResize, 16))
 
         if ("ontouchstart" in window) {
@@ -410,15 +423,12 @@
         }
       }
 
-      this.slideCount = this.getSlideCount()
-      this.recomputeCarouselWidth()
-
-      if (this.isHidden) {
-        this.pollForWidth()
-      }
+      this.attachMutationObserver()
+      this.computeCarouselWidth()
     },
     destroyed() {
       if (!this.$isServer) {
+        this.detachMutationObserver()
         window.removeEventListener("resize", this.getBrowserWidth)
         if ("ontouchstart" in window) {
           this.$el.removeEventListener("touchmove", this.handleMousemove)
