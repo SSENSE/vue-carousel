@@ -1,5 +1,5 @@
 <template>
-  <div class="pagination">
+  <div v-show="parentContainer.pageCount > 1" class="pagination">
     <div class="dot-container">
       <div
         class="dot"

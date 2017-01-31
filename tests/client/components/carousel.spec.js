@@ -198,21 +198,4 @@ describe('Carousel', () => {
     expect(carouselInstance.autoplayInterval).toBe(undefined);
     return utils.expectToMatchSnapshot(vm);
   });
-
-  // it('should apply dirty checking when carousel is initialized in a hidden state', () => {
-  //   const vm = new Vue({
-  //     el: document.createElement('div'),
-  //     render: (h) => h(Carousel, {}, [h(Slide), h(Slide)]),
-  //   });
-
-  //   const carouselInstance = vm.$children[0];
-
-  //   expect(carouselInstance.pollInterval).toBeDefined();
-
-  //   return carouselInstance.$nextTick().then(() => {
-  //     expect(carouselInstance.getCarouselWidth()).toBe(200);
-
-  //     return utils.expectToMatchSnapshot(vm);
-  //   });
-  // });
 });

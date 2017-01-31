@@ -75,7 +75,7 @@ exports[`Carousel should fall back to default slides per page when no responsive
   .slide(style=\'width: 0px;\')
   .slide(style=\'width: 0px;\')
 // 
-.pagination
+.pagination(style=\'\')
   .dot-container
     .dot(style=\'margin-top: 20px; padding: 10px;\')
       .dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
