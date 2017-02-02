@@ -106,7 +106,7 @@ describe('Carousel', () => {
     const carouselInstance = vm.$children[0];
 
     carouselInstance.$el.clientWidth = 200;
-    carouselInstance.getCarouselWidth();
+    carouselInstance.computeCarouselWidth();
 
     expect(carouselInstance.carouselWidth).toBe(200);
 
