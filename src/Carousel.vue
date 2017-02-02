@@ -3,9 +3,8 @@
     <div
       class="carousel-inner"
       v-bind:style="`
-        width: ${carouselInnerWidth}px;
         transform: translateX(${currentOffset}px);
-        transition: ${!mousedown || isAnimating ? transitionStyle : 'none'};
+        transition: ${!mousedown ? transitionStyle : 'none'};
       `"
     >
       <slot></slot>
@@ -34,7 +33,6 @@
         currentPage: 0,
         dragOffset: 0,
         dragStartX: 0,
-        isAnimating: false,
         slideWidth: null,
         mousedown: false,
       }
@@ -152,26 +150,14 @@
         return (this.currentPage > 0)
       },
       /**
-       * Calculated width of the inner wrapper.
-       * This wrapper will animate horizontally while navigating.
-       * @return {Number} The width of the wrapper in pixels
-       */
-      carouselInnerWidth() {
-        const innerWidth = this.slideWidth * this.slideCount
-
-        return innerWidth
-      },
-      /**
        * Number of slides to display per page in the current context.
        * This is constant unless responsive perPage option is set.
        * @return {Number} The number of slides per page to display
        */
       currentPerPage() {
-        if (!this.perPageCustom || this.$isServer) {
-          return this.perPage // If no custom breakpoints specified, use the default perPage prop.
-        }
-
-        return this.getBreakpointSlidesPerPage(this.perPageCustom, this.browserWidth)
+        return (!this.perPageCustom || this.$isServer)
+        ? this.perPage
+        : this.getBreakpointSlidesPerPage(this.perPageCustom, this.browserWidth)
       },
       /**
        * The horizontal distance the inner wrapper is offset while navigating.
@@ -265,8 +251,6 @@
 
         this.slideWidth = width / perPage
         this.setChildSlideWidth(this.slideWidth)
-
-        return this.slideWidth
       },
       /**
        * Stop listening to mutation changes
@@ -362,12 +346,6 @@
         }
       },
       /**
-       * Trigger actions caused by window resizing
-       */
-      handleResize() {
-        this.computeCarouselWidth()
-      },
-      /**
        * Re-compute the width of the carousel and its slides
        */
       computeCarouselWidth() {
@@ -403,7 +381,7 @@
     },
     mounted() {
       if (!this.$isServer) {
-        window.addEventListener("resize", debounce(this.handleResize, 16))
+        window.addEventListener("resize", debounce(this.computeCarouselWidth, 16))
 
         if ("ontouchstart" in window) {
           this.$el.addEventListener("touchstart", this.handleMousedown)
@@ -441,6 +419,8 @@
 }
 
 .carousel-inner {
+  display: flex;
+  flex-direction: row;
   backface-visibility: hidden;
 }
 </style>

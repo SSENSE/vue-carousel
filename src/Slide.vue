@@ -1,5 +1,10 @@
 <template>
-  <div class="slide" v-bind:style="`width: ${width}px`">
+  <div class="slide"
+    v-bind:style="`
+      flex-basis: ${width}px;
+      visibility: ${width ? 'visible' : 'hidden'}
+    `"
+    >
     <slot></slot>
   </div>
 </template>
@@ -11,13 +16,14 @@
       return {
         width: null,
       }
-    },
+    }
   }
 </script>
 
 <style scoped>
   .slide {
-    float: left;
+    flex-grow: 0;
+    flex-shrink: 0;
     user-select: none;
   }
 </style>
