@@ -120,7 +120,7 @@ describe('Carousel', () => {
     });
     const carouselInstance = vm.$children[0];
 
-    expect(carouselInstance.getSlideCount()).toBe(0);
+    expect(carouselInstance.slideCount).toBe(0);
 
     return utils.expectToMatchSnapshot(vm);
   });
@@ -132,7 +132,7 @@ describe('Carousel', () => {
     });
     const carouselInstance = vm.$children[0];
 
-    expect(carouselInstance.getSlideCount()).toBe(3);
+    expect(carouselInstance.slideCount).toBe(3);
 
     return utils.expectToMatchSnapshot(vm);
   });

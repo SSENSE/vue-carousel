@@ -3,9 +3,8 @@
     <div
       class="carousel-inner"
       v-bind:style="`
-        width: ${carouselInnerWidth}px;
         transform: translateX(${currentOffset}px);
-        transition: ${!mousedown || isAnimating ? transitionStyle : 'none'};
+        transition: ${!mousedown ? transitionStyle : 'none'};
       `"
     >
       <slot></slot>
@@ -34,8 +33,6 @@
         currentPage: 0,
         dragOffset: 0,
         dragStartX: 0,
-        isAnimating: false,
-        slideCount: null,
         slideWidth: null,
         mousedown: false,
       }
@@ -153,26 +150,14 @@
         return (this.currentPage > 0)
       },
       /**
-       * Calculated width of the inner wrapper.
-       * This wrapper will animate horizontally while navigating.
-       * @return {Number} The width of the wrapper in pixels
-       */
-      carouselInnerWidth() {
-        const innerWidth = this.slideWidth * this.slideCount
-
-        return innerWidth
-      },
-      /**
        * Number of slides to display per page in the current context.
        * This is constant unless responsive perPage option is set.
        * @return {Number} The number of slides per page to display
        */
       currentPerPage() {
-        if (!this.perPageCustom || this.$isServer) {
-          return this.perPage // If no custom breakpoints specified, use the default perPage prop.
-        }
-
-        return this.getBreakpointSlidesPerPage(this.perPageCustom, this.browserWidth)
+        return (!this.perPageCustom || this.$isServer)
+        ? this.perPage
+        : this.getBreakpointSlidesPerPage(this.perPageCustom, this.browserWidth)
       },
       /**
        * The horizontal distance the inner wrapper is offset while navigating.
@@ -206,6 +191,13 @@
         }
 
         return (slideCount - (this.currentPerPage - 1))
+      },
+      /**
+       * Get the number of slides
+       * @return {Number} Number of slides
+       */
+      slideCount() {
+        return (this.$slots && this.$slots.default && this.$slots.default.length) || 0
       },
       transitionStyle() {
         return `${this.speed / 1000}s ${this.easing} transform`
@@ -259,8 +251,6 @@
 
         this.slideWidth = width / perPage
         this.setChildSlideWidth(this.slideWidth)
-
-        return this.slideWidth
       },
       /**
        * Stop listening to mutation changes
@@ -276,17 +266,11 @@
        * @return {Number}       Number of slides to display
        */
       getBreakpointSlidesPerPage(breakpointArray, width) {
-        const breakpoints = breakpointArray.sort((a, b) => {
-          const isMatching = (a[0] > b[0]) ? -1 : 1
-          return isMatching
-        })
+        const breakpoints = breakpointArray.sort((a, b) => ((a[0] > b[0]) ? -1 : 1))
 
         // Reduce the breakpoints to entries where the width is in range
         // The breakpoint arrays are formatted as [widthToMatch, numberOfSlides]
-        const matches = breakpoints.filter((breakpoint) => {
-          const isMatching = (width >= breakpoint[0])
-          return isMatching
-        })
+        const matches = breakpoints.filter(breakpoint => width >= breakpoint[0])
 
         // If there is a match, the result should return only
         // the slide count from the first matching breakpoint
@@ -309,13 +293,6 @@
       getCarouselWidth() {
         this.carouselWidth = (this.$el && this.$el.clientWidth) || 0 // Assign globally
         return this.carouselWidth
-      },
-      /**
-       * Get the number of slides
-       * @return {Number} Number of slides
-       */
-      getSlideCount() {
-        return (this.$slots && this.$slots.default && this.$slots.default.length) || 0
       },
       /**
        * Set the current page to a specific value
@@ -369,16 +346,9 @@
         }
       },
       /**
-       * Trigger actions caused by window resizing
-       */
-      handleResize() {
-        this.computeCarouselWidth()
-      },
-      /**
        * Re-compute the width of the carousel and its slides
        */
       computeCarouselWidth() {
-        this.slideCount = this.getSlideCount()
         this.getBrowserWidth()
         this.getCarouselWidth()
         this.calculateSlideWidth()
@@ -390,11 +360,12 @@
        */
       setChildSlideWidth(width) {
         if (this.$slots.default) {
-          this.$slots.default.forEach((child) => {
+          this.$slots.default.map((child) => {
             const slotChild = child
             if (slotChild && slotChild.child) {
               slotChild.child.width = width
             }
+            return slotChild
           })
         }
       },
@@ -410,7 +381,7 @@
     },
     mounted() {
       if (!this.$isServer) {
-        window.addEventListener("resize", debounce(this.handleResize, 16))
+        window.addEventListener("resize", debounce(this.computeCarouselWidth, 16))
 
         if ("ontouchstart" in window) {
           this.$el.addEventListener("touchstart", this.handleMousedown)
@@ -448,6 +419,8 @@
 }
 
 .carousel-inner {
+  display: flex;
+  flex-direction: row;
   backface-visibility: hidden;
 }
 </style>
