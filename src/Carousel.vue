@@ -7,8 +7,16 @@
         transition: ${!mousedown ? transitionStyle : 'none'};
       `"
     >
-      <slot></slot>
+      <div
+        class="slide"
+        v-bind:style="`
+          flex-basis: ${slideWidth}px;
+          visibility: ${slideWidth ? 'visible' : 'hidden'}
+        `"
+        v-for="child in $slots.default"
+        v-html="child && child.elm && child.elm.innerHTML"></div>
     </div>
+    <div v-show="false"><slot></slot></div>
     <navigation v-if="navigationEnabled"></navigation>
     <pagination v-if="paginationEnabled && pageCount > 0"></pagination>
   </div>
@@ -33,7 +41,6 @@
         currentPage: 0,
         dragOffset: 0,
         dragStartX: 0,
-        slideWidth: null,
         mousedown: false,
       }
     },
@@ -138,6 +145,27 @@
     },
     computed: {
       /**
+       * Given a viewport width, find the number of slides to display
+       * @param  {Number} width Current viewport width in pixels
+       * @return {Number}       Number of slides to display
+       */
+      breakpointSlidesPerPage() {
+        const breakpointArray = this.perPageCustom
+        const width = this.browserWidth
+
+        const breakpoints = breakpointArray.sort((a, b) => ((a[0] > b[0]) ? -1 : 1))
+
+        // Reduce the breakpoints to entries where the width is in range
+        // The breakpoint arrays are formatted as [widthToMatch, numberOfSlides]
+        const matches = breakpoints.filter(breakpoint => width >= breakpoint[0])
+
+        // If there is a match, the result should return only
+        // the slide count from the first matching breakpoint
+        const match = matches[0] && matches[0][1]
+
+        return match || this.perPage
+      },
+      /**
        * @return {Boolean} Can the slider move forward?
        */
       canAdvanceForward() {
@@ -157,7 +185,7 @@
       currentPerPage() {
         return (!this.perPageCustom || this.$isServer)
         ? this.perPage
-        : this.getBreakpointSlidesPerPage(this.perPageCustom, this.browserWidth)
+        : this.breakpointSlidesPerPage
       },
       /**
        * The horizontal distance the inner wrapper is offset while navigating.
@@ -198,6 +226,16 @@
        */
       slideCount() {
         return (this.$slots && this.$slots.default && this.$slots.default.length) || 0
+      },
+      /**
+       * Calculate the width of each slide
+       * @return {Number} Slide width
+       */
+      slideWidth() {
+        const width = this.carouselWidth
+        const perPage = this.currentPerPage
+
+        return width / perPage
       },
       transitionStyle() {
         return `${this.speed / 1000}s ${this.easing} transform`
@@ -242,41 +280,12 @@
         }
       },
       /**
-       * Calculate the width of each slide
-       * @return {Number} Slide width
-       */
-      calculateSlideWidth() {
-        const width = this.carouselWidth
-        const perPage = this.currentPerPage
-
-        this.slideWidth = width / perPage
-        this.setChildSlideWidth(this.slideWidth)
-      },
-      /**
        * Stop listening to mutation changes
        */
       detachMutationObserver() {
         if (this.mutationObserver) {
           this.mutationObserver.disconnect()
         }
-      },
-      /**
-       * Given a viewport width, find the number of slides to display
-       * @param  {Number} width Current viewport width in pixels
-       * @return {Number}       Number of slides to display
-       */
-      getBreakpointSlidesPerPage(breakpointArray, width) {
-        const breakpoints = breakpointArray.sort((a, b) => ((a[0] > b[0]) ? -1 : 1))
-
-        // Reduce the breakpoints to entries where the width is in range
-        // The breakpoint arrays are formatted as [widthToMatch, numberOfSlides]
-        const matches = breakpoints.filter(breakpoint => width >= breakpoint[0])
-
-        // If there is a match, the result should return only
-        // the slide count from the first matching breakpoint
-        const match = matches[0] && matches[0][1]
-
-        return match || this.perPage
       },
       /**
        * Get the current browser viewport width
@@ -351,23 +360,7 @@
       computeCarouselWidth() {
         this.getBrowserWidth()
         this.getCarouselWidth()
-        this.calculateSlideWidth()
         this.setCurrentPageInBounds()
-      },
-      /**
-       * Assign widths to child slides within slots
-       * @param {Number} width Width to set on slides
-       */
-      setChildSlideWidth(width) {
-        if (this.$slots.default) {
-          this.$slots.default.map((child) => {
-            const slotChild = child
-            if (slotChild && slotChild.child) {
-              slotChild.child.width = width
-            }
-            return slotChild
-          })
-        }
       },
       /**
        * When the current page exceeds the carousel bounds, reset it to the maximum allowed
@@ -422,5 +415,11 @@
   display: flex;
   flex-direction: row;
   backface-visibility: hidden;
+}
+
+.slide {
+  flex-grow: 0;
+  flex-shrink: 0;
+  user-select: none;
 }
 </style>
