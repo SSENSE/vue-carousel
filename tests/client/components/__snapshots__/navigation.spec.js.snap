@@ -1,7 +1,8 @@
 exports[`Navigation should mount successfully 1`] = `
-".carousel-inner
-  .slide(style=\'visibility: hidden;\')
-  .slide(style=\'visibility: hidden;\')
+".carousel-wrapper
+  .carousel-inner(style=\'width: 0px;\')
+    .slide(style=\'visibility: hidden;\')
+    .slide(style=\'visibility: hidden;\')
 |  
 .navigation
   a.next.disabled(href=\'#\') Prev
@@ -18,9 +19,10 @@ exports[`Navigation should mount successfully 1`] = `
 `;
 
 exports[`Navigation should render a next button 1`] = `
-".carousel-inner
-  .slide(style=\'visibility: hidden;\')
-  .slide(style=\'visibility: hidden;\')
+".carousel-wrapper
+  .carousel-inner(style=\'width: 0px;\')
+    .slide(style=\'visibility: hidden;\')
+    .slide(style=\'visibility: hidden;\')
 |  
 .navigation
   a.next.disabled(href=\'#\') Prev
@@ -37,9 +39,10 @@ exports[`Navigation should render a next button 1`] = `
 `;
 
 exports[`Navigation should render a prev button 1`] = `
-".carousel-inner
-  .slide(style=\'visibility: hidden;\')
-  .slide(style=\'visibility: hidden;\')
+".carousel-wrapper
+  .carousel-inner(style=\'width: 0px;\')
+    .slide(style=\'visibility: hidden;\')
+    .slide(style=\'visibility: hidden;\')
 |  
 .navigation
   a.next.disabled(href=\'#\') Prev
@@ -56,9 +59,10 @@ exports[`Navigation should render a prev button 1`] = `
 `;
 
 exports[`Navigation should trigger page advance backward when prev is clicked 1`] = `
-".carousel-inner
-  .slide(style=\'visibility: hidden;\')
-  .slide(style=\'visibility: hidden;\')
+".carousel-wrapper
+  .carousel-inner(style=\'width: 0px;\')
+    .slide(style=\'visibility: hidden;\')
+    .slide(style=\'visibility: hidden;\')
 |  
 .navigation
   a.next(href=\'#\') Prev
@@ -75,9 +79,10 @@ exports[`Navigation should trigger page advance backward when prev is clicked 1`
 `;
 
 exports[`Navigation should trigger page advance when next is clicked 1`] = `
-".carousel-inner
-  .slide(style=\'visibility: hidden;\')
-  .slide(style=\'visibility: hidden;\')
+".carousel-wrapper
+  .carousel-inner(style=\'width: 0px;\')
+    .slide(style=\'visibility: hidden;\')
+    .slide(style=\'visibility: hidden;\')
 |  
 .navigation
   a.next(href=\'#\') Prev

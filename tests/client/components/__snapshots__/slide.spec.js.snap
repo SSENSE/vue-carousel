@@ -1,6 +1,7 @@
 exports[`Slide should mount successfully 1`] = `
-".carousel-inner
-  .slide(style=\'visibility: hidden;\')
+".carousel-wrapper
+  .carousel-inner(style=\'width: 0px;\')
+    .slide(style=\'visibility: hidden;\')
 // 
 // 
 "
