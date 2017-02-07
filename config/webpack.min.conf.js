@@ -8,10 +8,10 @@ var config = Object.assign({}, base)
 config.output.filename = 'vue-carousel.min.js'
 
 config.plugins = (config.plugins || []).concat([
-  /*new webpack.optimize.UglifyJsPlugin({
+  new webpack.optimize.UglifyJsPlugin({
       compress: { warnings: false },
       sourceMap: false
-  }),*/
+  }),
   new webpack.DefinePlugin({
     'process.env': {
       NODE_ENV: '"production"'
