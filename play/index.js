@@ -1,9 +1,9 @@
 /* eslint-disable */
 
+import Vue from "vue"
 import { play } from "vue-play"
 import Carousel from "../src/Carousel.vue"
 import Slide from "../src/Slide.vue"
- 
 
 const containerWidth = 500;
 const images = [
@@ -15,7 +15,7 @@ const images = [
   "https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176001_1.jpg"
 ]
 
-const generateSlideImages = (createElement) => images.map((image) => 
+const generateSlideImages = (createElement) => images.map((image) =>
   createElement(Slide, {}, [
     createElement(
       "img",
@@ -29,7 +29,7 @@ const generateSlideImages = (createElement) => images.map((image) =>
 
 const createContainer = (createElement, width, content) => createElement(
   'div',
-  { 
+  {
     style: {
       width: `${width}px`
     }
@@ -58,41 +58,38 @@ play("Carousel", module)
       h, containerWidth, [h(Carousel, { props: { autoplay: true, autoplayHoverPause: true } }, generateSlideImages(h))]
     )
   )
-  .add("dynamic slide array", h => {
-      const slides = [];
-      const addImage = (arr) => {
-        arr.push(
-          h(Slide, {}, [
-            h('img', {
-              style: { width: "100%" },
-              attrs: { src: images[0] }
-            })
-          ])
-        )
-      }
+  .add("dynamic, add or remove slides", (h) => {
+    Vue.component('dynamic-slides', {
+      render: (h) => {
+        const demoSlides = []
 
-      addImage(slides)
-      addImage(slides)
-      addImage(slides)
-      setInterval(addImage(slides), 5000)
-      const carouselVm = h(Carousel, {}, slides)
-      return createContainer(
-        h, containerWidth, 
-        [
-          carouselVm,
-          h('button', {
-            on: {
-              click: () => {
-                addImage(slides)
-                carouselVm.componentOptions.children = slides;
-                carouselVm.context.$root.$forceUpdate()
-                console.log('carouselVm', carouselVm);
-                console.log('slides', slides);
-                console.log('clicked')
-              }
-            }
-          }, 'Add slide')
-        ]
-      )
-    }
-  )
+        for (var i = 0; i < 4; i++) {
+          demoSlides.push(
+            h(Slide, 'test')
+          )
+        }
+        return h('div', demoSlides)
+      },
+      props: {
+        slideCount: {
+          type: Number,
+          default: 4
+        }
+      }
+    })
+
+    return createContainer(
+      h,
+      containerWidth,
+      [
+        h(
+          Carousel,
+          {},
+          [
+            h('dynamic-slides', 'j')
+          ]
+        )
+      ]
+    )
+  })
+

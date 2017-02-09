@@ -1,22 +1,16 @@
 <template>
-  <div class="carousel">
+  <div class="VueCarousel">
     <div
-      class="carousel-inner"
+      class="VueCarousel-inner"
       v-bind:style="`
         transform: translateX(${currentOffset}px);
         transition: ${!mousedown ? transitionStyle : 'none'};
+        flex-basis: ${slideWidth}px;
+        visibility: ${slideWidth ? 'visible' : 'hidden'}
       `"
     >
-      <div
-        class="slide"
-        v-bind:style="`
-          flex-basis: ${slideWidth}px;
-          visibility: ${slideWidth ? 'visible' : 'hidden'}
-        `"
-        v-for="child in $slots.default"
-        v-html="child && child.elm && child.elm.innerHTML"></div>
+      <slot></slot>
     </div>
-    <div v-show="false"><slot></slot></div>
     <navigation v-if="navigationEnabled"></navigation>
     <pagination v-if="paginationEnabled && pageCount > 0"></pagination>
   </div>
@@ -27,12 +21,17 @@
   import debounce from "./utils/debounce"
   import Navigation from "./Navigation.vue"
   import Pagination from "./Pagination.vue"
+  import Slide from "./Slide.vue"
 
   export default {
     name: "carousel",
+    beforeUpdate() {
+      this.getSlideCount()
+    },
     components: {
       Navigation,
       Pagination,
+      Slide
     },
     data() {
       return {
@@ -42,6 +41,7 @@
         dragOffset: 0,
         dragStartX: 0,
         mousedown: false,
+        slideCount: 0
       }
     },
     mixins: [
@@ -150,6 +150,10 @@
        * @return {Number}       Number of slides to display
        */
       breakpointSlidesPerPage() {
+        if (!this.perPageCustom) {
+          return this.perPage
+        }
+
         const breakpointArray = this.perPageCustom
         const width = this.browserWidth
 
@@ -224,9 +228,9 @@
        * Get the number of slides
        * @return {Number} Number of slides
        */
-      slideCount() {
-        return (this.$slots && this.$slots.default && this.$slots.default.length) || 0
-      },
+      // slideCount() {
+      //   return (this.$slots && this.$slots.default && this.$slots.default.length) || 0
+      // },
       /**
        * Calculate the width of each slide
        * @return {Number} Slide width
@@ -272,6 +276,7 @@
           this.mutationObserver = new MutationObserver(() => {
             this.$nextTick(() => {
               this.computeCarouselWidth()
+              this.getSlideCount()
             })
           })
           if (this.$parent.$el) {
@@ -302,6 +307,9 @@
       getCarouselWidth() {
         this.carouselWidth = (this.$el && this.$el.clientWidth) || 0 // Assign globally
         return this.carouselWidth
+      },
+      getSlideCount() {
+        this.slideCount = (this.$slots && this.$slots.default && this.$slots.default.length) || 0
       },
       /**
        * Set the current page to a specific value
@@ -389,6 +397,7 @@
 
       this.attachMutationObserver()
       this.computeCarouselWidth()
+      this.getSlideCount()
     },
     destroyed() {
       if (!this.$isServer) {
@@ -404,22 +413,16 @@
   }
 </script>
 
-<style scoped>
-.carousel {
+<style>
+.VueCarousel {
   width: 100%;
   position: relative;
   overflow: hidden;
 }
 
-.carousel-inner {
+.VueCarousel-inner {
   display: flex;
   flex-direction: row;
   backface-visibility: hidden;
-}
-
-.slide {
-  flex-grow: 0;
-  flex-shrink: 0;
-  user-select: none;
 }
 </style>
