@@ -54,6 +54,14 @@
     ],
     props: {
       /**
+       * Flag to activate dragging with mouse
+       * False by default
+       */
+      mouseDrag: {
+        type: Boolean,
+        default: false
+      },
+      /**
        * Slide transition easing
        * Any valid CSS transition easing accepted
        */
@@ -446,9 +454,13 @@
     mounted() {
       if (!this.$isServer) {
         window.addEventListener("resize", debounce(this.onResize, this.refreshRate))
-        this.$refs["carousel-wrapper"].addEventListener(
-          this.isTouch ? "touchstart" : "mousedown",
-          this.onStart)
+
+        // setup the start event only if touch device or mousedrag activated
+        if (this.isTouch || this.mouseDrag) {
+          this.$refs["carousel-wrapper"].addEventListener(
+            this.isTouch ? "touchstart" : "mousedown",
+            this.onStart)
+        }
       }
 
       this.attachMutationObserver()
