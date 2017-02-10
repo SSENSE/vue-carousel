@@ -45,6 +45,7 @@
         dragging: false,
         endTime: 0,
         momemtum: 0,
+        refreshRate: 16,
         isTouch: typeof window !== "undefined" && ("ontouchstart" in window)
       }
     },
@@ -192,15 +193,7 @@
        * @return {Number} Number of pages
        */
       pageCount() {
-        const slideCount = this.slideCount
-        const perPage = this.currentPerPage
-
-        if (this.scrollPerPage) {
-          const pages = Math.ceil(slideCount / perPage)
-          return (pages < 1) ? 1 : pages // Be sure to not round down to zero pages
-        }
-
-        return (slideCount - (this.currentPerPage - 1))
+        return Math.ceil(this.slideCount / this.currentPerPage)
       },
       /**
        * Get the number of slides
@@ -327,11 +320,11 @@
       onStart(e) {
         document.addEventListener(
           this.isTouch ? "touchend" : "mouseup",
-          this.onEnd)
+          this.onEnd, true)
 
         document.addEventListener(
           this.isTouch ? "touchmove" : "mousemove",
-          this.onDrag)
+          this.onDrag, true)
 
         this.startTime = e.timeStamp
         this.dragging = true
@@ -350,27 +343,16 @@
         this.offset += this.dragOffset
         this.dragOffset = 0
         this.dragging = false
-  
-        // add extra slides depending on the momemtum speed
-        this.offset += Math.max(
-                -this.currentPerPage + 1,
-                Math.min(Math.round(this.momemtum), this.currentPerPage - 1)
-              ) * this.slideWidth
 
-        // & snap the new offset on a slide
-        this.offset = this.slideWidth * Math.round(this.offset / this.slideWidth)
-        this.offset = Math.max(0, Math.min(this.offset, this.maxOffset))
-
-        // update the current page
-        this.currentPage = Math.round((this.offset / this.slideWidth) / this.currentPerPage)
+        this.render()
 
         // clear events listeners
         document.removeEventListener(
           this.isTouch ? "touchend" : "mouseup",
-          this.onEnd)
+          this.onEnd, true)
         document.removeEventListener(
           this.isTouch ? "touchmove" : "mousemove",
-          this.onDrag)
+          this.onDrag, true)
       },
       /**
        * Trigger actions when mouse is pressed and then moved (mouse drag)
@@ -396,9 +378,36 @@
         const nextOffset = this.offset + this.dragOffset
         if (nextOffset < 0) {
           this.dragOffset = -Math.sqrt(-this.resistanceCoef * this.dragOffset)
-        } else if (nextOffset > (this.slideWidth * this.slideCount) - this.carouselWidth) {
+        } else if (nextOffset > this.maxOffset) {
           this.dragOffset = Math.sqrt(this.resistanceCoef * this.dragOffset)
         }
+      },
+      onResize() {
+        this.computeCarouselWidth()
+
+        this.dragging = true // force a dragging to disable animation
+        this.render()
+        // clear dragging after refresh rate
+        setTimeout(() => {
+          this.dragging = false
+        }, this.refreshRate)
+      },
+      render() {
+        // add extra slides depending on the momemtum speed
+        this.offset += Math.max(
+                -this.currentPerPage + 1,
+                Math.min(Math.round(this.momemtum), this.currentPerPage - 1)
+              ) * this.slideWidth
+
+        // & snap the new offset on a slide or page if scrollPerPage
+        const width = (this.scrollPerPage) ? this.slideWidth * this.currentPerPage : this.slideWidth
+        this.offset = width * Math.round(this.offset / width)
+  
+        // clamp the offset between 0 -> maxOffset
+        this.offset = Math.max(0, Math.min(this.offset, this.maxOffset))
+
+        // update the current page
+        this.currentPage = Math.round((this.offset / this.slideWidth) / this.currentPerPage)
       },
       /**
        * Re-compute the width of the carousel and its slides
@@ -436,7 +445,7 @@
     },
     mounted() {
       if (!this.$isServer) {
-        window.addEventListener("resize", debounce(this.computeCarouselWidth, 16))
+        window.addEventListener("resize", debounce(this.onResize, this.refreshRate))
         this.$refs["carousel-wrapper"].addEventListener(
           this.isTouch ? "touchstart" : "mousedown",
           this.onStart)
