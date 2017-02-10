@@ -2,6 +2,9 @@ exports[`Slide should mount successfully 1`] = `
 ".VueCarousel-inner(style=\'visibility: hidden;\')
   .VueCarousel-slide
 // 
-// 
+.pagination(style=\'display: none;\')
+  .dot-container
+    .dot(style=\'margin-top: 20px; padding: 10px;\')
+      .dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
 "
 `;
