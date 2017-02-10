@@ -11,6 +11,11 @@
       return {
         width: null,
       }
+    },
+    mounted() {
+      if (!this.$isServer) {
+        this.$el.addEventListener("dragstart", e => e.preventDefault())
+      }
     }
   }
 </script>
@@ -21,5 +26,7 @@
     flex-grow: 0;
     flex-shrink: 0;
     user-select: none;
+    backface-visibility: hidden;
+    -webkit-touch-callout: none;
   }
 </style>
