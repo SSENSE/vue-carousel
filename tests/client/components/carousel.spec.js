@@ -105,12 +105,15 @@ describe('Carousel', () => {
     });
     const carouselInstance = vm.$children[0];
 
-    carouselInstance.$el.clientWidth = 200;
-    carouselInstance.computeCarouselWidth();
+    carouselInstance.$el.style.width = "200px";
 
-    expect(carouselInstance.carouselWidth).toBe(200);
+    setTimeout(() => {
+      carouselInstance.computeCarouselWidth();
 
-    return utils.expectToMatchSnapshot(vm);
+      expect(carouselInstance.carouselWidth).toBe(200);
+
+      return utils.expectToMatchSnapshot(vm);
+    }, 2000)
   });
 
   it('should register 0 slides when 0 slides are added to the slots', () => {

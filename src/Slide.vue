@@ -1,8 +1,7 @@
 <template>
-  <div class="slide"
+  <div class="VueCarousel-slide"
     v-bind:style="`
-      flex-basis: ${width}px;
-      visibility: ${width ? 'visible' : 'hidden'}
+      flex-basis: inherit;
     `"
     >
     <slot></slot>
@@ -20,8 +19,8 @@
   }
 </script>
 
-<style scoped>
-  .slide {
+<style>
+  .VueCarousel-slide {
     flex-grow: 0;
     flex-shrink: 0;
     user-select: none;
