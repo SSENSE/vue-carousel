@@ -26,7 +26,7 @@
   export default {
     name: "carousel",
     beforeUpdate() {
-      this.getSlideCount()
+      this.computeCarouselWidth()
     },
     components: {
       Navigation,
@@ -276,7 +276,6 @@
           this.mutationObserver = new MutationObserver(() => {
             this.$nextTick(() => {
               this.computeCarouselWidth()
-              this.getSlideCount()
             })
           })
           if (this.$parent.$el) {
@@ -366,6 +365,7 @@
        * Re-compute the width of the carousel and its slides
        */
       computeCarouselWidth() {
+        this.getSlideCount()
         this.getBrowserWidth()
         this.getCarouselWidth()
         this.setCurrentPageInBounds()
@@ -397,7 +397,6 @@
 
       this.attachMutationObserver()
       this.computeCarouselWidth()
-      this.getSlideCount()
     },
     destroyed() {
       if (!this.$isServer) {

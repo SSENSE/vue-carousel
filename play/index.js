@@ -37,6 +37,24 @@ const createContainer = (createElement, width, content) => createElement(
   content
 )
 
+Vue.component('dynamic-slides', {
+  render: (h) => {
+    const demoSlides = []
+    for (var i = 0; i < 4; i++) {
+      demoSlides.push(
+        h(Slide, 'test')
+      )
+    }
+    return h('div', demoSlides)
+  },
+  props: {
+    slideCount: {
+      type: Number,
+      default: 4
+    }
+  }
+})
+
 play("Carousel", module)
   .add("default", h => createContainer(
       h, containerWidth, [h(Carousel, {}, generateSlideImages(h))]
@@ -58,38 +76,35 @@ play("Carousel", module)
       h, containerWidth, [h(Carousel, { props: { autoplay: true, autoplayHoverPause: true } }, generateSlideImages(h))]
     )
   )
-  .add("dynamic, add or remove slides", (h) => {
-    Vue.component('dynamic-slides', {
-      render: (h) => {
-        const demoSlides = []
-
-        for (var i = 0; i < 4; i++) {
-          demoSlides.push(
-            h(Slide, 'test')
-          )
-        }
-        return h('div', demoSlides)
+  .add("dynamic, add or remove slides", {
+    template:
+      `<div>
+        <carousel style="width: 500px;">
+          <slide v-for="slide in slideCount">
+            <img style="width: 100%;" src="https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176006_1.jpg" />
+          </slide>
+        </carousel>
+        <button v-on:click="addSlide">Add slide</button>
+        <button v-on:click="removeSlide">Remove slide</button>
+      </div>`,
+    components: {
+      Carousel,
+      Slide
+    },
+    data() {
+      return {
+        slideCount: 4
+      }
+    },
+    methods: {
+      addSlide() {
+        this.slideCount++
       },
-      props: {
-        slideCount: {
-          type: Number,
-          default: 4
+      removeSlide() {
+        if (this.slideCount > 1) {
+          this.slideCount--
         }
       }
-    })
-
-    return createContainer(
-      h,
-      containerWidth,
-      [
-        h(
-          Carousel,
-          {},
-          [
-            h('dynamic-slides', 'j')
-          ]
-        )
-      ]
-    )
+    }
   })
 
