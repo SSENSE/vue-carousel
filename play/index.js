@@ -37,24 +37,6 @@ const createContainer = (createElement, width, content) => createElement(
   content
 )
 
-Vue.component('dynamic-slides', {
-  render: (h) => {
-    const demoSlides = []
-    for (var i = 0; i < 4; i++) {
-      demoSlides.push(
-        h(Slide, 'test')
-      )
-    }
-    return h('div', demoSlides)
-  },
-  props: {
-    slideCount: {
-      type: Number,
-      default: 4
-    }
-  }
-})
-
 play("Carousel", module)
   .add("default", h => createContainer(
       h, containerWidth, [h(Carousel, {}, generateSlideImages(h))]
