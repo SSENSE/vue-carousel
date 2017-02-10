@@ -47,7 +47,7 @@ play("Carousel", module)
     )
   )
   .add("responsive", h => createContainer(
-      h, containerWidth, [h(Carousel, { props: { perPageCustom: [[480, 3], [768, 4]], scrollPerPage: true } }, generateSlideImages(h))]
+      h, containerWidth, [h(Carousel, { props: { perPageCustom: [[480, 3], [768, 4]] } }, generateSlideImages(h))]
     )
   )
   .add("autoplay", h => createContainer(
