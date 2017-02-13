@@ -1,16 +1,17 @@
 <template>
   <div class="VueCarousel">
-    <div
-      class="VueCarousel-inner"
-      ref="VueCarousel-inner"
-      v-bind:style="`
-        transform: translate3d(${currentOffset}px, 0, 0);
-        transition: ${!dragging ? transitionStyle : 'none'};
-        flex-basis: ${slideWidth}px;
-        visibility: ${slideWidth ? 'visible' : 'hidden'}
-      `"
-    >
-      <slot></slot>
+    <div ref="VueCarousel-wrapper">
+      <div
+        class="VueCarousel-inner"
+        v-bind:style="`
+          transform: translate3d(${currentOffset}px, 0, 0);
+          transition: ${!dragging ? transitionStyle : 'none'};
+          flex-basis: ${slideWidth}px;
+          visibility: ${slideWidth ? 'visible' : 'hidden'}
+        `"
+      >
+        <slot></slot>
+      </div>
     </div>
     <navigation v-if="navigationEnabled"></navigation>
     <pagination v-if="paginationEnabled && pageCount > 0"></pagination>
@@ -233,13 +234,6 @@
         return Math.ceil(this.slideCount / this.currentPerPage)
       },
       /**
-       * Get the number of slides
-       * @return {Number} Number of slides
-       */
-      // slideCount() {
-      //   return (this.$slots && this.$slots.default && this.$slots.default.length) || 0
-      // },
-      /**
        * Calculate the width of each slide
        * @return {Number} Slide width
        */
@@ -442,6 +436,7 @@
         if (!this.canAdvanceForward) {
           const setPage = (this.pageCount - 1)
           this.currentPage = (setPage >= 0) ? setPage : 0
+          this.offset = Math.max(0, Math.min(this.offset, this.maxOffset))
         }
       },
     },
@@ -451,7 +446,7 @@
 
         // setup the start event only if touch device or mousedrag activated
         if (this.isTouch || this.mouseDrag) {
-          this.$refs["VueCarousel-inner"].addEventListener(
+          this.$refs["VueCarousel-wrapper"].addEventListener(
             this.isTouch ? "touchstart" : "mousedown",
             this.onStart)
         }
@@ -464,7 +459,7 @@
       if (!this.$isServer) {
         this.detachMutationObserver()
         window.removeEventListener("resize", this.getBrowserWidth)
-        this.$refs["VueCarousel-inner"].removeEventListener(
+        this.$refs["VueCarousel-wrapper"].removeEventListener(
           this.isTouch ? "touchstart" : "mousedown",
           this.onStart)
       }
