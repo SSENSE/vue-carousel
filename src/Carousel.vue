@@ -1,18 +1,20 @@
 <template>
   <div class="VueCarousel">
-    <div
-      class="VueCarousel-inner"
-      v-bind:style="`
-        transform: translateX(${currentOffset}px);
-        transition: ${!mousedown ? transitionStyle : 'none'};
-        flex-basis: ${slideWidth}px;
-        visibility: ${slideWidth ? 'visible' : 'hidden'}
-      `"
-    >
-      <slot></slot>
+    <div class="VueCarousel-wrapper">
+      <div
+        class="VueCarousel-inner"
+        v-bind:style="`
+          transform: translateX(${currentOffset}px);
+          transition: ${!mousedown ? transitionStyle : 'none'};
+          flex-basis: ${slideWidth}px;
+          visibility: ${slideWidth ? 'visible' : 'hidden'}
+        `"
+      >
+        <slot></slot>
+      </div>
+      <pagination v-if="paginationEnabled && pageCount > 0"></pagination>
     </div>
     <navigation v-if="navigationEnabled"></navigation>
-    <pagination v-if="paginationEnabled && pageCount > 0"></pagination>
   </div>
 </template>
 
@@ -414,6 +416,10 @@
 
 <style>
 .VueCarousel {
+  position: relative;
+}
+
+.VueCarousel-wrapper {
   width: 100%;
   position: relative;
   overflow: hidden;

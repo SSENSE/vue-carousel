@@ -31,10 +31,23 @@ const createContainer = (createElement, width, content) => createElement(
   'div',
   {
     style: {
-      width: `${width}px`
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center',
+      marginTop: '40px'
     }
   },
-  content
+  [
+    createElement(
+      'div',
+      {
+        style: {
+          width: `${width}px`
+        }
+      },
+      content
+    )
+  ]
 )
 
 play("Carousel", module)
@@ -60,14 +73,16 @@ play("Carousel", module)
   )
   .add("dynamic, add or remove slides", {
     template:
-      `<div>
+      `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
         <carousel style="width: 500px;">
           <slide v-for="slide in slideCount">
             <img style="width: 100%;" src="https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176006_1.jpg" />
           </slide>
         </carousel>
-        <button v-on:click="addSlide">Add slide</button>
-        <button v-on:click="removeSlide">Remove slide</button>
+        <div style="float: left">
+          <button v-on:click="addSlide">Add slide</button>
+          <button v-on:click="removeSlide">Remove slide</button>
+        </div>
       </div>`,
     components: {
       Carousel,
