@@ -1,8 +1,8 @@
 exports[`Slide should mount successfully 1`] = `
-".VueCarousel-wrapper
+"div
   .VueCarousel-inner(style=\'visibility: hidden;\')
     .VueCarousel-slide
-// 
+//
 .pagination(style=\'display: none;\')
   .dot-container
     .dot(style=\'margin-top: 20px; padding: 10px;\')
