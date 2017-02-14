@@ -70,7 +70,6 @@
   .VueCarousel-navigation-button {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
     box-sizing: border-box;
     color: #000;
     text-decoration: none;
@@ -78,12 +77,12 @@
 
   .VueCarousel-navigation-next {
     right: 0;
-    transform: translateX(100%)
+    transform: translateY(-50%) translateX(100%)
   }
 
   .VueCarousel-navigation-prev {
     left: 0;
-    transform: translateX(-100%)
+    transform: translateY(-50%) translateX(-100%)
   }
 
   .VueCarousel-navigation--disabled {
