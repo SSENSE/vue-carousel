@@ -1,7 +1,8 @@
 exports[`Slide should mount successfully 1`] = `
-".VueCarousel-inner(style=\'visibility: hidden;\')
-  .VueCarousel-slide
-// 
+".VueCarousel-wrapper
+  .VueCarousel-inner(style=\'visibility: hidden;\')
+    .VueCarousel-slide
+  // 
 // 
 "
 `;
