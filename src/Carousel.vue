@@ -12,8 +12,10 @@
       >
         <slot></slot>
       </div>
-      <pagination v-if="paginationEnabled && pageCount > 0"></pagination>
     </div>
+    <pagination
+      v-if="paginationEnabled && pageCount > 0"
+    ></pagination>
     <navigation
       v-if="navigationEnabled"
       :clickTargetSize="navigationClickTargetSize"

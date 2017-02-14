@@ -3,13 +3,13 @@ exports[`Navigation should mount successfully 1`] = `
   .VueCarousel-inner(style=\'visibility: hidden;\')
     .VueCarousel-slide
     .VueCarousel-slide
-  |  
-  .VueCarousel-pagination
-    .VueCarousel-dot-container
-      .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
-        .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
-      .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
-        .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
+|  
+.VueCarousel-pagination
+  .VueCarousel-dot-container
+    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+      .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
+    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+      .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
 |  
 .VueCarousel-navigation
   a.VueCarousel-navigation-button.VueCarousel-navigation-prev.VueCarousel-navigation--disabled(href=\'#\', style=\'padding: 8px; margin-top: -8px; margin-right: -8px;\') &#x25C0;
@@ -23,13 +23,13 @@ exports[`Navigation should render a next button 1`] = `
   .VueCarousel-inner(style=\'visibility: hidden;\')
     .VueCarousel-slide
     .VueCarousel-slide
-  |  
-  .VueCarousel-pagination
-    .VueCarousel-dot-container
-      .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
-        .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
-      .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
-        .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
+|  
+.VueCarousel-pagination
+  .VueCarousel-dot-container
+    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+      .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
+    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+      .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
 |  
 .VueCarousel-navigation
   a.VueCarousel-navigation-button.VueCarousel-navigation-prev.VueCarousel-navigation--disabled(href=\'#\', style=\'padding: 8px; margin-top: -8px; margin-right: -8px;\') &#x25C0;
@@ -43,13 +43,13 @@ exports[`Navigation should render a prev button 1`] = `
   .VueCarousel-inner(style=\'visibility: hidden;\')
     .VueCarousel-slide
     .VueCarousel-slide
-  |  
-  .VueCarousel-pagination
-    .VueCarousel-dot-container
-      .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
-        .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
-      .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
-        .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
+|  
+.VueCarousel-pagination
+  .VueCarousel-dot-container
+    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+      .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
+    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+      .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
 |  
 .VueCarousel-navigation
   a.VueCarousel-navigation-button.VueCarousel-navigation-prev.VueCarousel-navigation--disabled(href=\'#\', style=\'padding: 8px; margin-top: -8px; margin-right: -8px;\') &#x25C0;
@@ -63,13 +63,13 @@ exports[`Navigation should trigger page advance backward when prev is clicked 1`
   .VueCarousel-inner(style=\'visibility: hidden;\')
     .VueCarousel-slide
     .VueCarousel-slide
-  |  
-  .VueCarousel-pagination
-    .VueCarousel-dot-container
-      .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
-        .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
-      .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
-        .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
+|  
+.VueCarousel-pagination
+  .VueCarousel-dot-container
+    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+      .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
+    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+      .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
 |  
 .VueCarousel-navigation
   a.VueCarousel-navigation-button.VueCarousel-navigation-prev(href=\'#\', style=\'padding: 8px; margin-top: -8px; margin-right: -8px;\') &#x25C0;
@@ -83,13 +83,13 @@ exports[`Navigation should trigger page advance when next is clicked 1`] = `
   .VueCarousel-inner(style=\'visibility: hidden;\')
     .VueCarousel-slide
     .VueCarousel-slide
-  |  
-  .VueCarousel-pagination
-    .VueCarousel-dot-container
-      .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
-        .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
-      .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
-        .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
+|  
+.VueCarousel-pagination
+  .VueCarousel-dot-container
+    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+      .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
+    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+      .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
 |  
 .VueCarousel-navigation
   a.VueCarousel-navigation-button.VueCarousel-navigation-prev(href=\'#\', style=\'padding: 8px; margin-top: -8px; margin-right: -8px;\') &#x25C0;

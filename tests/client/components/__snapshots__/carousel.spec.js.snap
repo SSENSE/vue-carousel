@@ -1,7 +1,7 @@
 exports[`Carousel should apply custom slides per page when responsive param provided 1`] = `
 ".VueCarousel-wrapper
   .VueCarousel-inner(style=\'visibility: hidden;\')
-  // 
+// 
 // 
 "
 `;
@@ -9,7 +9,7 @@ exports[`Carousel should apply custom slides per page when responsive param prov
 exports[`Carousel should apply default carousel width when element has 0 width 1`] = `
 ".VueCarousel-wrapper
   .VueCarousel-inner(style=\'visibility: hidden;\')
-  // 
+// 
 // 
 "
 `;
@@ -17,7 +17,7 @@ exports[`Carousel should apply default carousel width when element has 0 width 1
 exports[`Carousel should be unable to advance backward by default 1`] = `
 ".VueCarousel-wrapper
   .VueCarousel-inner(style=\'visibility: hidden;\')
-  // 
+// 
 // 
 "
 `;
@@ -25,7 +25,7 @@ exports[`Carousel should be unable to advance backward by default 1`] = `
 exports[`Carousel should be unable to advance forward by default (no slides added) 1`] = `
 ".VueCarousel-wrapper
   .VueCarousel-inner(style=\'visibility: hidden;\')
-  // 
+// 
 // 
 "
 `;
@@ -35,13 +35,13 @@ exports[`Carousel should begin autoplaying when option specified 1`] = `
   .VueCarousel-inner(style=\'visibility: hidden;\')
     .VueCarousel-slide
     .VueCarousel-slide
-  |  
-  .VueCarousel-pagination
-    .VueCarousel-dot-container
-      .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
-        .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
-      .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
-        .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
+|  
+.VueCarousel-pagination
+  .VueCarousel-dot-container
+    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+      .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
+    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+      .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
 // 
 "
 `;
@@ -51,13 +51,13 @@ exports[`Carousel should decrease current slide number by 1 when advance page ba
   .VueCarousel-inner(style=\'visibility: hidden;\')
     .VueCarousel-slide
     .VueCarousel-slide
-  |  
-  .VueCarousel-pagination
-    .VueCarousel-dot-container
-      .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
-        .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
-      .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
-        .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
+|  
+.VueCarousel-pagination
+  .VueCarousel-dot-container
+    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+      .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
+    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+      .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
 // 
 "
 `;
@@ -68,13 +68,13 @@ exports[`Carousel should fall back to default slides per page when no responsive
     .VueCarousel-slide
     .VueCarousel-slide
     .VueCarousel-slide
-  |  
-  .VueCarousel-pagination(style=\'\')
-    .VueCarousel-dot-container
-      .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
-        .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
-      .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
-        .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
+|  
+.VueCarousel-pagination(style=\'\')
+  .VueCarousel-dot-container
+    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+      .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
+    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+      .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
 // 
 "
 `;
@@ -84,13 +84,13 @@ exports[`Carousel should increase current slide number by 1 when advance page is
   .VueCarousel-inner(style=\'visibility: hidden;\')
     .VueCarousel-slide
     .VueCarousel-slide
-  |  
-  .VueCarousel-pagination
-    .VueCarousel-dot-container
-      .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
-        .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
-      .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
-        .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
+|  
+.VueCarousel-pagination
+  .VueCarousel-dot-container
+    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+      .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
+    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+      .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
 // 
 "
 `;
@@ -100,13 +100,13 @@ exports[`Carousel should increase current slide number by 1 when advance page is
   .VueCarousel-inner(style=\'visibility: hidden;\')
     .VueCarousel-slide
     .VueCarousel-slide
-  |  
-  .VueCarousel-pagination
-    .VueCarousel-dot-container
-      .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
-        .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
-      .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
-        .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
+|  
+.VueCarousel-pagination
+  .VueCarousel-dot-container
+    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+      .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
+    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+      .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
 // 
 "
 `;
@@ -114,7 +114,7 @@ exports[`Carousel should increase current slide number by 1 when advance page is
 exports[`Carousel should mount successfully 1`] = `
 ".VueCarousel-wrapper
   .VueCarousel-inner(style=\'visibility: hidden;\')
-  // 
+// 
 // 
 "
 `;
@@ -122,7 +122,7 @@ exports[`Carousel should mount successfully 1`] = `
 exports[`Carousel should register 0 slides when 0 slides are added to the slots 1`] = `
 ".VueCarousel-wrapper
   .VueCarousel-inner(style=\'visibility: hidden;\')
-  // 
+// 
 // 
 "
 `;
@@ -133,13 +133,13 @@ exports[`Carousel should register 3 slides when 3 slides are added to the slots 
     .VueCarousel-slide
     .VueCarousel-slide
     .VueCarousel-slide
-  |  
-  .VueCarousel-pagination
-    .VueCarousel-dot-container
-      .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
-        .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
-      .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
-        .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
+|  
+.VueCarousel-pagination
+  .VueCarousel-dot-container
+    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+      .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
+    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+      .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
 // 
 "
 `;
@@ -147,7 +147,7 @@ exports[`Carousel should register 3 slides when 3 slides are added to the slots 
 exports[`Carousel should unmount successfully 1`] = `
 ".VueCarousel-wrapper
   .VueCarousel-inner(style=\'visibility: hidden;\')
-  // 
+// 
 // 
 "
 `;
