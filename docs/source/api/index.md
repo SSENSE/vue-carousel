@@ -79,10 +79,31 @@ Size of each pagination dot. Pixel values are accepted.
 
 Configure the navigation component (next/prev buttons)
 
+### navigationClickTargetSize
+
+Amount of padding to apply around the label in pixels
+
+* **Type**: `Number`
+* **Default**: `8`
+
 ### navigationEnabled
 
 * **Type**: `Boolean`
 * **Default**: `false`
+
+### navigationNextLabel
+
+Text content of the navigation next button
+
+* **Type**: `String`
+* **Default**: `▶`
+
+### navigationPrevLabel
+
+Text content of the navigation prev button
+
+* **Type**: `String`
+* **Default**: `◀`
 
 ## Pagination
 

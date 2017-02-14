@@ -14,7 +14,12 @@
       </div>
       <pagination v-if="paginationEnabled && pageCount > 0"></pagination>
     </div>
-    <navigation v-if="navigationEnabled"></navigation>
+    <navigation
+      v-if="navigationEnabled"
+      :clickTargetSize="navigationClickTargetSize"
+      :nextLabel="navigationNextLabel"
+      :prevLabel="navigationPrevLabel"
+    ></navigation>
   </div>
 </template>
 
@@ -67,12 +72,33 @@
         default: 8,
       },
       /**
+       * Amount of padding to apply around the label in pixels
+       */
+      navigationClickTargetSize: {
+        type: Number,
+        default: 8,
+      },
+      /**
        * Flag to render the navigation component
        * (next/prev buttons)
        */
       navigationEnabled: {
         type: Boolean,
         default: false,
+      },
+      /**
+       * Text content of the navigation next button
+       */
+      navigationNextLabel: {
+        type: String,
+        default: "▶"
+      },
+      /**
+       * Text content of the navigation prev button
+       */
+      navigationPrevLabel: {
+        type: String,
+        default: "◀"
       },
       /**
        * The fill color of the active pagination dot

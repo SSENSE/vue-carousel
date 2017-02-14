@@ -24,18 +24,27 @@
       }
     },
     props: {
+      /**
+       * Amount of padding to apply around the label in pixels
+       */
       clickTargetSize: {
         type: Number,
         default: 8
       },
+      /**
+       * Text content of the navigation next button
+       */
       nextLabel: {
         type: String,
         default: "▶"
       },
+      /**
+       * Text content of the navigation prev button
+       */
       prevLabel: {
         type: String,
         default: "◀"
-      }
+      },
     },
     computed: {
       canAdvanceForward() {

@@ -108,4 +108,8 @@ play("Carousel", module)
       h, containerWidth, [h(Carousel, { props: { navigationEnabled: true } }, generateSlideImages(h))]
     )
   )
+  .add("with customized navigation buttons", h => createContainer(
+      h, containerWidth, [h('style', '.VueCarousel-navigation-button { font-size: 36px; }'), h(Carousel, { props: { paginationColor: '#fac232', paginationActiveColor: '#c9750c', navigationEnabled: true, navigationNextLabel: '👉', navigationPrevLabel: '👈' } }, generateSlideImages(h))]
+    )
+  )
 
