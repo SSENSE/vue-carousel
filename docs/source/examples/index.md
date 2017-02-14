@@ -21,10 +21,22 @@ Instead of scrolling on a per item basis, the carousel will scroll the configure
 
 <script async src="//jsfiddle.net/toddlawton/6ckc1pqv/embed/result,js/"></script>
 
+## Autoplay
+
+The carousel will auto-advance slides unless the carousel is hovered upon.
+
+<script async src="//jsfiddle.net/toddlawton/n1argwgg/embed/result,js/"></script>
+
+## Navigation
+
+Buttons added to advance the carousel in either direction.
+
+<script async src="//jsfiddle.net/toddlawton/46wegz8a/embed/result,js/"></script>
+
 ## Customized
 
 Customized pagination dot colors and sizes. Customized speed and easing.
 
 <script async src="//jsfiddle.net/toddlawton/ycp9bwhp/embed/result,js/"></script>
 
-<style type="text/css">iframe { min-height: 230px; }</style>
+<style type="text/css">iframe { max-height: 230px; }</style>
