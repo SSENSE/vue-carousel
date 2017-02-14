@@ -104,4 +104,8 @@ play("Carousel", module)
       }
     }
   })
+  .add("with navigation buttons", h => createContainer(
+      h, containerWidth, [h(Carousel, { props: { navigationEnabled: true } }, generateSlideImages(h))]
+    )
+  )
 

@@ -5,7 +5,7 @@
         class="VueCarousel-inner"
         v-bind:style="`
           transform: translateX(${currentOffset}px);
-          transition: ${!mousedown ? transitionStyle : 'none'};
+          transition: ${transitionStyle};
           flex-basis: ${slideWidth}px;
           visibility: ${slideWidth ? 'visible' : 'hidden'}
         `"
@@ -256,11 +256,9 @@
         if (direction && direction === "backward" && this.canAdvanceBackward) {
           this.goToPage(this.currentPage - 1)
         } else if (
-          (
-            !direction
-            || (direction && direction !== "backward"))
-            && this.canAdvanceForward
-          ) {
+          (!direction || (direction && direction !== "backward"))
+          && this.canAdvanceForward
+        ) {
           this.goToPage(this.currentPage + 1)
         }
       },
