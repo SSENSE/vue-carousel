@@ -415,10 +415,10 @@
         const eventPosX = this.isTouch ? e.changedTouches[0].clientX : e.clientX
         const deltaX = this.dragStartX - eventPosX
         this.dragMomentum = deltaX / (e.timeStamp - this.startTime)
-        
+
         // take care of the minSwipteDistance prop, if not 0 and delta is bigger than delta
         if (this.minSwipeDistance !== 0 && Math.abs(deltaX) >= this.minSwipeDistance) {
-          this.dragOffset = this.dragOffset + Math.sign(deltaX) * this.slideWidth / 2
+          this.dragOffset = (this.dragOffset + Math.sign(deltaX)) * (this.slideWidth / 2)
         }
 
         this.offset += this.dragOffset
