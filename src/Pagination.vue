@@ -1,8 +1,8 @@
 <template>
-  <div v-show="parentContainer.pageCount > 1" class="pagination">
-    <div class="dot-container">
+  <div v-show="parentContainer.pageCount > 1" class="VueCarousel-pagination">
+    <div class="VueCarousel-dot-container">
       <div
-        class="dot"
+        class="VueCarousel-dot"
         v-for="(page, index) in parentContainer.pageCount"
         v-on:click="parentContainer.goToPage(index)"
         :style="`
@@ -11,7 +11,7 @@
         `"
       >
         <div
-          class="dot-inner"
+          class="VueCarousel-dot-inner"
           :style="`
             width: ${parentContainer.paginationSize}px;
             height: ${parentContainer.paginationSize}px;
@@ -35,23 +35,23 @@
 </script>
 
 <style scoped>
-  .pagination {
+  .VueCarousel-pagination {
     width: 100%;
     float: left;
     text-align: center;
   }
 
-  .dot-container {
+  .VueCarousel-dot-container {
     display: inline-block;
     margin: 0 auto;
   }
 
-  .dot {
+  .VueCarousel-dot {
     float: left;
     cursor: pointer;
   }
 
-  .dot-inner {
+  .VueCarousel-dot-inner {
     border-radius: 100%;
   }
 </style>

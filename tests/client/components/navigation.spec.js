@@ -25,19 +25,19 @@ describe('Navigation', () => {
   });
 
   it('should render a next button', () => {
-    expect(vm.$el.querySelector('.next')).toBeDefined();
+    expect(vm.$el.querySelector('.VueCarousel-navigation-next')).toBeDefined();
 
     return utils.expectToMatchSnapshot(vm);
   });
 
   it('should render a prev button', () => {
-    expect(vm.$el.querySelector('.prev')).toBeDefined();
+    expect(vm.$el.querySelector('.VueCarousel-navigation-prev')).toBeDefined();
 
     return utils.expectToMatchSnapshot(vm);
   });
 
   it('should trigger page advance when next is clicked', () => {
-    vm.$el.querySelector('.next').click();
+    vm.$el.querySelector('.VueCarousel-navigation-next').click();
 
     return carouselInstance.$nextTick().then(() => {
       expect(carouselInstance.currentPage).toBe(1);
@@ -48,7 +48,7 @@ describe('Navigation', () => {
 
   it('should trigger page advance backward when prev is clicked', () => {
     carouselInstance.goToPage(2);
-    vm.$el.querySelector('.prev').click();
+    vm.$el.querySelector('.VueCarousel-navigation-prev').click();
 
     return carouselInstance.$nextTick().then(() => {
       expect(carouselInstance.currentPage).toBe(1);

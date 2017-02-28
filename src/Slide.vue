@@ -1,9 +1,5 @@
 <template>
-  <div class="VueCarousel-slide"
-    v-bind:style="`
-      flex-basis: inherit;
-    `"
-    >
+  <div class="VueCarousel-slide">
     <slot></slot>
   </div>
 </template>
@@ -26,6 +22,7 @@
 
 <style>
   .VueCarousel-slide {
+    flex-basis: inherit;
     flex-grow: 0;
     flex-shrink: 0;
     user-select: none;

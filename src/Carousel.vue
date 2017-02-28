@@ -1,6 +1,6 @@
 <template>
   <div class="VueCarousel">
-    <div ref="VueCarousel-wrapper">
+    <div class="VueCarousel-wrapper" ref="VueCarousel-wrapper">
       <div
         class="VueCarousel-inner"
         v-bind:style="`
@@ -13,8 +13,15 @@
         <slot></slot>
       </div>
     </div>
-    <navigation v-if="navigationEnabled"></navigation>
-    <pagination v-if="paginationEnabled && pageCount > 0"></pagination>
+    <pagination
+      v-if="paginationEnabled && pageCount > 0"
+    ></pagination>
+    <navigation
+      v-if="navigationEnabled"
+      :clickTargetSize="navigationClickTargetSize"
+      :nextLabel="navigationNextLabel"
+      :prevLabel="navigationPrevLabel"
+    ></navigation>
   </div>
 </template>
 
@@ -72,6 +79,13 @@
         default: 8,
       },
       /**
+       * Amount of padding to apply around the label in pixels
+       */
+      navigationClickTargetSize: {
+        type: Number,
+        default: 8,
+      },
+      /**
        * Flag to toggle mouse dragging
        */
       mouseDrag: {
@@ -85,6 +99,20 @@
       navigationEnabled: {
         type: Boolean,
         default: false,
+      },
+      /**
+       * Text content of the navigation next button
+       */
+      navigationNextLabel: {
+        type: String,
+        default: "▶"
+      },
+      /**
+       * Text content of the navigation prev button
+       */
+      navigationPrevLabel: {
+        type: String,
+        default: "◀"
       },
       /**
        * The fill color of the active pagination dot
@@ -256,11 +284,9 @@
         if (direction && direction === "backward" && this.canAdvanceBackward) {
           this.goToPage(this.currentPage - 1)
         } else if (
-          (
-            !direction
-            || (direction && direction !== "backward"))
-            && this.canAdvanceForward
-          ) {
+          (!direction || (direction && direction !== "backward"))
+          && this.canAdvanceForward
+        ) {
           this.goToPage(this.currentPage + 1)
         }
       },
@@ -469,6 +495,10 @@
 
 <style>
 .VueCarousel {
+  position: relative;
+}
+
+.VueCarousel-wrapper {
   width: 100%;
   position: relative;
   overflow: hidden;
