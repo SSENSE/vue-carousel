@@ -380,7 +380,8 @@
 
         // take care of the minSwipteDistance prop, if not 0 and delta is bigger than delta
         if (this.minSwipeDistance !== 0 && Math.abs(deltaX) >= this.minSwipeDistance) {
-          this.dragOffset = (this.dragOffset + Math.sign(deltaX)) * (this.slideWidth / 2)
+          const width = (this.scrollPerPage) ? this.slideWidth * this.currentPerPage : this.slideWidth
+          this.dragOffset = this.dragOffset + (Math.sign(deltaX) * (width / 2))
         }
 
         this.offset += this.dragOffset
