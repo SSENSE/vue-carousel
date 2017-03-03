@@ -346,6 +346,7 @@
       goToPage(page) {
         if ((page >= 0) && (page <= this.pageCount)) {
           this.currentPage = page
+          this.$root.$emit('VueCarousel/pageChange', this.currentPage)
         }
       },
       /**
