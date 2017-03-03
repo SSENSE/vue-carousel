@@ -69,7 +69,7 @@ exports[`Carousel should fall back to default slides per page when no responsive
     .VueCarousel-slide
     .VueCarousel-slide
 |  
-.VueCarousel-pagination(style=\'\')
+.VueCarousel-pagination
   .VueCarousel-dot-container
     .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
       .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
