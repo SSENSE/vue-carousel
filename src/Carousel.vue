@@ -335,8 +335,20 @@
         this.carouselWidth = (this.$el && this.$el.clientWidth) || 0 // Assign globally
         return this.carouselWidth
       },
+      /**
+       * Filter slot contents to slide instances and return length
+       * @return {Number} The number of slides
+       */
       getSlideCount() {
-        this.slideCount = (this.$slots && this.$slots.default && this.$slots.default.length) || 0
+        this.slideCount = (
+             this.$slots
+          && this.$slots.default
+          && this.$slots.default.filter(
+            slot =>
+                 slot.tag
+              && slot.tag.indexOf("slide") > -1
+          ).length
+        ) || 0
       },
       /**
        * Set the current page to a specific value
