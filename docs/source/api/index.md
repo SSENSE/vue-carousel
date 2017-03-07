@@ -112,7 +112,7 @@ Configure the pagination component (clickable page dots)
 ### paginationEnabled
 
 * **Type**: `Boolean`
-* **Default**: `false`
+* **Default**: `true`
 
 ### paginationActiveColor
 
