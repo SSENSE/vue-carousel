@@ -6,7 +6,7 @@ exports[`Navigation should mount successfully 1`] = `
 |  
 .VueCarousel-pagination
   .VueCarousel-dot-container
-    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+    .VueCarousel-dot.VueCarousel-dot--active(style=\'margin-top: 20px; padding: 10px;\')
       .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
     .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
       .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
@@ -26,7 +26,7 @@ exports[`Navigation should render a next button 1`] = `
 |  
 .VueCarousel-pagination
   .VueCarousel-dot-container
-    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+    .VueCarousel-dot.VueCarousel-dot--active(style=\'margin-top: 20px; padding: 10px;\')
       .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
     .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
       .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
@@ -46,7 +46,7 @@ exports[`Navigation should render a prev button 1`] = `
 |  
 .VueCarousel-pagination
   .VueCarousel-dot-container
-    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+    .VueCarousel-dot.VueCarousel-dot--active(style=\'margin-top: 20px; padding: 10px;\')
       .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
     .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
       .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
@@ -68,7 +68,7 @@ exports[`Navigation should trigger page advance backward when prev is clicked 1`
   .VueCarousel-dot-container
     .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
       .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
-    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+    .VueCarousel-dot.VueCarousel-dot--active(style=\'margin-top: 20px; padding: 10px;\')
       .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
 |  
 .VueCarousel-navigation
@@ -88,7 +88,7 @@ exports[`Navigation should trigger page advance when next is clicked 1`] = `
   .VueCarousel-dot-container
     .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
       .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
-    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+    .VueCarousel-dot.VueCarousel-dot--active(style=\'margin-top: 20px; padding: 10px;\')
       .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
 |  
 .VueCarousel-navigation
