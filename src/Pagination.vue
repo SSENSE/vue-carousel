@@ -3,6 +3,7 @@
     <div class="VueCarousel-dot-container">
       <div
         class="VueCarousel-dot"
+        v-bind:class="{ 'VueCarousel-dot--active': (index === parentContainer.currentPage) }"
         v-for="(page, index) in parentContainer.pageCount"
         v-on:click="parentContainer.goToPage(index)"
         :style="`
