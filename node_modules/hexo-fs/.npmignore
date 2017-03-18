@@ -1,0 +1,8 @@
+test/
+tmp/
+coverage/
+*.log
+.jshintrc
+.travis.yml
+.idea/
+appveyor.yml
