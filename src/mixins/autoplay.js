@@ -21,6 +21,13 @@ const autoplay = {
       type: Boolean,
       default: true,
     },
+    /**
+     * Restart the carousel when it reaches the end
+     */
+    autoplayLoop: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -41,9 +48,16 @@ const autoplay = {
     },
     startAutoplay() {
       if (this.autoplay) {
-        this.autoplayInterval = setInterval(this.advancePage, this.autoplayTimeout)
+        this.autoplayInterval = setInterval(this.handleAutoplay, this.autoplayTimeout)
       }
     },
+    handleAutoplay() {
+      if ((this.currentPage >= this.pageCount - 1) && this.autoplayLoop) {
+        this.goToPage(0)
+      } else {
+        this.advancePage()
+      }
+    }
   },
   mounted() {
     if (!this.$isServer && this.autoplayHoverPause) {
@@ -54,5 +68,6 @@ const autoplay = {
     this.startAutoplay()
   },
 }
+
 
 export default autoplay
