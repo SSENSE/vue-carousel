@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Carousel2 = _interopRequireDefault(_Carousel);
 
-	var _Slide = __webpack_require__(27);
+	var _Slide = __webpack_require__(22);
 
 	var _Slide2 = _interopRequireDefault(_Slide);
 
@@ -93,13 +93,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	
 	/* styles */
-	__webpack_require__(33)
+	__webpack_require__(2)
 
-	var Component = __webpack_require__(7)(
+	var Component = __webpack_require__(6)(
 	  /* script */
-	  __webpack_require__(8),
+	  __webpack_require__(7),
 	  /* template */
-	  __webpack_require__(32),
+	  __webpack_require__(27),
 	  /* scopeId */
 	  null,
 	  /* cssModules */
@@ -126,8 +126,46 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ }),
-/* 2 */,
-/* 3 */,
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(3);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(5)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-74f55575!../node_modules/sass-loader/lib/loader.js!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Carousel.vue", function() {
+				var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-74f55575!../node_modules/sass-loader/lib/loader.js!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Carousel.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(4)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "\n.VueCarousel {\n  position: relative;\n  overflow: hidden;\n}\n.VueCarousel-wrapper {\n  width: 100%;\n  position: relative;\n  overflow: hidden;\n}\n.VueCarousel-inner {\n  display: flex;\n  flex-direction: row;\n  backface-visibility: hidden;\n}\n.VueCarousel-close {\n  display: none;\n  position: absolute;\n  top: 0;\n  right: 0;\n  z-index: 10000000000000000000000;\n}\nbody.modal-active {\n  overflow: hidden;\n}\nbody.modal-active .VueCarousel,\n  body.modal-active .VueCarousel-wrapper {\n    height: 100vh;\n    width: 100vw;\n    z-index: 10000000000000000000000;\n}\nbody.modal-active .VueCarousel-wrapper {\n    width: 80vw;\n    margin: auto;\n}\nbody.modal-active .VueCarousel-close {\n    display: block;\n}\nbody.modal-active .VueCarousel-pagination {\n    position: absolute;\n    z-index: 10000000000000000000000;\n}\nbody.modal-active .VueCarousel-slide {\n    position: relative;\n    z-index: 10000000000000000000000;\n    top: 0;\n    overflow-y: scroll;\n    width: 100vw;\n    height: 100vh;\n}\nbody.modal-active::before {\n    content: \"\";\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    background: rgba(0, 0, 0, 0.9);\n    z-index: 10000000000000000000000;\n}\n", ""]);
+
+	// exports
+
+
+/***/ }),
 /* 4 */
 /***/ (function(module, exports) {
 
@@ -188,257 +226,255 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	/*
-	  MIT License http://www.opensource.org/licenses/mit-license.php
-	  Author Tobias Koppers @sokra
-	  Modified by Evan You @yyx990803
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
 	*/
+	var stylesInDom = {},
+		memoize = function(fn) {
+			var memo;
+			return function () {
+				if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+				return memo;
+			};
+		},
+		isOldIE = memoize(function() {
+			return /msie [6-9]\b/.test(self.navigator.userAgent.toLowerCase());
+		}),
+		getHeadElement = memoize(function () {
+			return document.head || document.getElementsByTagName("head")[0];
+		}),
+		singletonElement = null,
+		singletonCounter = 0,
+		styleElementsInsertedAtTop = [];
 
-	var hasDocument = typeof document !== 'undefined'
+	module.exports = function(list, options) {
+		if(false) {
+			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+		}
 
-	if (false) {
-	  if (!hasDocument) {
-	    throw new Error(
-	    'vue-style-loader cannot be used in a non-browser environment. ' +
-	    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
-	  ) }
+		options = options || {};
+		// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+		// tags it will allow on a page
+		if (typeof options.singleton === "undefined") options.singleton = isOldIE();
+
+		// By default, add <style> tags to the bottom of <head>.
+		if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
+
+		var styles = listToStyles(list);
+		addStylesToDom(styles, options);
+
+		return function update(newList) {
+			var mayRemove = [];
+			for(var i = 0; i < styles.length; i++) {
+				var item = styles[i];
+				var domStyle = stylesInDom[item.id];
+				domStyle.refs--;
+				mayRemove.push(domStyle);
+			}
+			if(newList) {
+				var newStyles = listToStyles(newList);
+				addStylesToDom(newStyles, options);
+			}
+			for(var i = 0; i < mayRemove.length; i++) {
+				var domStyle = mayRemove[i];
+				if(domStyle.refs === 0) {
+					for(var j = 0; j < domStyle.parts.length; j++)
+						domStyle.parts[j]();
+					delete stylesInDom[domStyle.id];
+				}
+			}
+		};
 	}
 
-	var listToStyles = __webpack_require__(6)
-
-	/*
-	type StyleObject = {
-	  id: number;
-	  parts: Array<StyleObjectPart>
+	function addStylesToDom(styles, options) {
+		for(var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+			if(domStyle) {
+				domStyle.refs++;
+				for(var j = 0; j < domStyle.parts.length; j++) {
+					domStyle.parts[j](item.parts[j]);
+				}
+				for(; j < item.parts.length; j++) {
+					domStyle.parts.push(addStyle(item.parts[j], options));
+				}
+			} else {
+				var parts = [];
+				for(var j = 0; j < item.parts.length; j++) {
+					parts.push(addStyle(item.parts[j], options));
+				}
+				stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+			}
+		}
 	}
 
-	type StyleObjectPart = {
-	  css: string;
-	  media: string;
-	  sourceMap: ?string
-	}
-	*/
-
-	var stylesInDom = {/*
-	  [id: number]: {
-	    id: number,
-	    refs: number,
-	    parts: Array<(obj?: StyleObjectPart) => void>
-	  }
-	*/}
-
-	var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
-	var singletonElement = null
-	var singletonCounter = 0
-	var isProduction = false
-	var noop = function () {}
-
-	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-	// tags it will allow on a page
-	var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
-
-	module.exports = function (parentId, list, _isProduction) {
-	  isProduction = _isProduction
-
-	  var styles = listToStyles(parentId, list)
-	  addStylesToDom(styles)
-
-	  return function update (newList) {
-	    var mayRemove = []
-	    for (var i = 0; i < styles.length; i++) {
-	      var item = styles[i]
-	      var domStyle = stylesInDom[item.id]
-	      domStyle.refs--
-	      mayRemove.push(domStyle)
-	    }
-	    if (newList) {
-	      styles = listToStyles(parentId, newList)
-	      addStylesToDom(styles)
-	    } else {
-	      styles = []
-	    }
-	    for (var i = 0; i < mayRemove.length; i++) {
-	      var domStyle = mayRemove[i]
-	      if (domStyle.refs === 0) {
-	        for (var j = 0; j < domStyle.parts.length; j++) {
-	          domStyle.parts[j]()
-	        }
-	        delete stylesInDom[domStyle.id]
-	      }
-	    }
-	  }
+	function listToStyles(list) {
+		var styles = [];
+		var newStyles = {};
+		for(var i = 0; i < list.length; i++) {
+			var item = list[i];
+			var id = item[0];
+			var css = item[1];
+			var media = item[2];
+			var sourceMap = item[3];
+			var part = {css: css, media: media, sourceMap: sourceMap};
+			if(!newStyles[id])
+				styles.push(newStyles[id] = {id: id, parts: [part]});
+			else
+				newStyles[id].parts.push(part);
+		}
+		return styles;
 	}
 
-	function addStylesToDom (styles /* Array<StyleObject> */) {
-	  for (var i = 0; i < styles.length; i++) {
-	    var item = styles[i]
-	    var domStyle = stylesInDom[item.id]
-	    if (domStyle) {
-	      domStyle.refs++
-	      for (var j = 0; j < domStyle.parts.length; j++) {
-	        domStyle.parts[j](item.parts[j])
-	      }
-	      for (; j < item.parts.length; j++) {
-	        domStyle.parts.push(addStyle(item.parts[j]))
-	      }
-	      if (domStyle.parts.length > item.parts.length) {
-	        domStyle.parts.length = item.parts.length
-	      }
-	    } else {
-	      var parts = []
-	      for (var j = 0; j < item.parts.length; j++) {
-	        parts.push(addStyle(item.parts[j]))
-	      }
-	      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
-	    }
-	  }
+	function insertStyleElement(options, styleElement) {
+		var head = getHeadElement();
+		var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
+		if (options.insertAt === "top") {
+			if(!lastStyleElementInsertedAtTop) {
+				head.insertBefore(styleElement, head.firstChild);
+			} else if(lastStyleElementInsertedAtTop.nextSibling) {
+				head.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling);
+			} else {
+				head.appendChild(styleElement);
+			}
+			styleElementsInsertedAtTop.push(styleElement);
+		} else if (options.insertAt === "bottom") {
+			head.appendChild(styleElement);
+		} else {
+			throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
+		}
 	}
 
-	function createStyleElement () {
-	  var styleElement = document.createElement('style')
-	  styleElement.type = 'text/css'
-	  head.appendChild(styleElement)
-	  return styleElement
+	function removeStyleElement(styleElement) {
+		styleElement.parentNode.removeChild(styleElement);
+		var idx = styleElementsInsertedAtTop.indexOf(styleElement);
+		if(idx >= 0) {
+			styleElementsInsertedAtTop.splice(idx, 1);
+		}
 	}
 
-	function addStyle (obj /* StyleObjectPart */) {
-	  var update, remove
-	  var styleElement = document.querySelector('style[data-vue-ssr-id~="' + obj.id + '"]')
+	function createStyleElement(options) {
+		var styleElement = document.createElement("style");
+		styleElement.type = "text/css";
+		insertStyleElement(options, styleElement);
+		return styleElement;
+	}
 
-	  if (styleElement) {
-	    if (isProduction) {
-	      // has SSR styles and in production mode.
-	      // simply do nothing.
-	      return noop
-	    } else {
-	      // has SSR styles but in dev mode.
-	      // for some reason Chrome can't handle source map in server-rendered
-	      // style tags - source maps in <style> only works if the style tag is
-	      // created and inserted dynamically. So we remove the server rendered
-	      // styles and inject new ones.
-	      styleElement.parentNode.removeChild(styleElement)
-	    }
-	  }
+	function createLinkElement(options) {
+		var linkElement = document.createElement("link");
+		linkElement.rel = "stylesheet";
+		insertStyleElement(options, linkElement);
+		return linkElement;
+	}
 
-	  if (isOldIE) {
-	    // use singleton mode for IE9.
-	    var styleIndex = singletonCounter++
-	    styleElement = singletonElement || (singletonElement = createStyleElement())
-	    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
-	    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
-	  } else {
-	    // use multi-style-tag mode in all other cases
-	    styleElement = createStyleElement()
-	    update = applyToTag.bind(null, styleElement)
-	    remove = function () {
-	      styleElement.parentNode.removeChild(styleElement)
-	    }
-	  }
+	function addStyle(obj, options) {
+		var styleElement, update, remove;
 
-	  update(obj)
+		if (options.singleton) {
+			var styleIndex = singletonCounter++;
+			styleElement = singletonElement || (singletonElement = createStyleElement(options));
+			update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
+			remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
+		} else if(obj.sourceMap &&
+			typeof URL === "function" &&
+			typeof URL.createObjectURL === "function" &&
+			typeof URL.revokeObjectURL === "function" &&
+			typeof Blob === "function" &&
+			typeof btoa === "function") {
+			styleElement = createLinkElement(options);
+			update = updateLink.bind(null, styleElement);
+			remove = function() {
+				removeStyleElement(styleElement);
+				if(styleElement.href)
+					URL.revokeObjectURL(styleElement.href);
+			};
+		} else {
+			styleElement = createStyleElement(options);
+			update = applyToTag.bind(null, styleElement);
+			remove = function() {
+				removeStyleElement(styleElement);
+			};
+		}
 
-	  return function updateStyle (newObj /* StyleObjectPart */) {
-	    if (newObj) {
-	      if (newObj.css === obj.css &&
-	          newObj.media === obj.media &&
-	          newObj.sourceMap === obj.sourceMap) {
-	        return
-	      }
-	      update(obj = newObj)
-	    } else {
-	      remove()
-	    }
-	  }
+		update(obj);
+
+		return function updateStyle(newObj) {
+			if(newObj) {
+				if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
+					return;
+				update(obj = newObj);
+			} else {
+				remove();
+			}
+		};
 	}
 
 	var replaceText = (function () {
-	  var textStore = []
+		var textStore = [];
 
-	  return function (index, replacement) {
-	    textStore[index] = replacement
-	    return textStore.filter(Boolean).join('\n')
-	  }
-	})()
+		return function (index, replacement) {
+			textStore[index] = replacement;
+			return textStore.filter(Boolean).join('\n');
+		};
+	})();
 
-	function applyToSingletonTag (styleElement, index, remove, obj) {
-	  var css = remove ? '' : obj.css
+	function applyToSingletonTag(styleElement, index, remove, obj) {
+		var css = remove ? "" : obj.css;
 
-	  if (styleElement.styleSheet) {
-	    styleElement.styleSheet.cssText = replaceText(index, css)
-	  } else {
-	    var cssNode = document.createTextNode(css)
-	    var childNodes = styleElement.childNodes
-	    if (childNodes[index]) styleElement.removeChild(childNodes[index])
-	    if (childNodes.length) {
-	      styleElement.insertBefore(cssNode, childNodes[index])
-	    } else {
-	      styleElement.appendChild(cssNode)
-	    }
-	  }
+		if (styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = replaceText(index, css);
+		} else {
+			var cssNode = document.createTextNode(css);
+			var childNodes = styleElement.childNodes;
+			if (childNodes[index]) styleElement.removeChild(childNodes[index]);
+			if (childNodes.length) {
+				styleElement.insertBefore(cssNode, childNodes[index]);
+			} else {
+				styleElement.appendChild(cssNode);
+			}
+		}
 	}
 
-	function applyToTag (styleElement, obj) {
-	  var css = obj.css
-	  var media = obj.media
-	  var sourceMap = obj.sourceMap
+	function applyToTag(styleElement, obj) {
+		var css = obj.css;
+		var media = obj.media;
 
-	  if (media) {
-	    styleElement.setAttribute('media', media)
-	  }
+		if(media) {
+			styleElement.setAttribute("media", media)
+		}
 
-	  if (sourceMap) {
-	    // https://developer.chrome.com/devtools/docs/javascript-debugging
-	    // this makes source maps inside style tags work properly in Chrome
-	    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
-	    // http://stackoverflow.com/a/26603875
-	    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
-	  }
+		if(styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = css;
+		} else {
+			while(styleElement.firstChild) {
+				styleElement.removeChild(styleElement.firstChild);
+			}
+			styleElement.appendChild(document.createTextNode(css));
+		}
+	}
 
-	  if (styleElement.styleSheet) {
-	    styleElement.styleSheet.cssText = css
-	  } else {
-	    while (styleElement.firstChild) {
-	      styleElement.removeChild(styleElement.firstChild)
-	    }
-	    styleElement.appendChild(document.createTextNode(css))
-	  }
+	function updateLink(linkElement, obj) {
+		var css = obj.css;
+		var sourceMap = obj.sourceMap;
+
+		if(sourceMap) {
+			// http://stackoverflow.com/a/26603875
+			css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+		}
+
+		var blob = new Blob([css], { type: "text/css" });
+
+		var oldSrc = linkElement.href;
+
+		linkElement.href = URL.createObjectURL(blob);
+
+		if(oldSrc)
+			URL.revokeObjectURL(oldSrc);
 	}
 
 
 /***/ }),
 /* 6 */
-/***/ (function(module, exports) {
-
-	/**
-	 * Translates the list format produced by css-loader into something
-	 * easier to manipulate.
-	 */
-	module.exports = function listToStyles (parentId, list) {
-	  var styles = []
-	  var newStyles = {}
-	  for (var i = 0; i < list.length; i++) {
-	    var item = list[i]
-	    var id = item[0]
-	    var css = item[1]
-	    var media = item[2]
-	    var sourceMap = item[3]
-	    var part = {
-	      id: parentId + ':' + i,
-	      css: css,
-	      media: media,
-	      sourceMap: sourceMap
-	    }
-	    if (!newStyles[id]) {
-	      styles.push(newStyles[id] = { id: id, parts: [part] })
-	    } else {
-	      newStyles[id].parts.push(part)
-	    }
-	  }
-	  return styles
-	}
-
-
-/***/ }),
-/* 7 */
 /***/ (function(module, exports) {
 
 	module.exports = function normalizeComponent (
@@ -491,7 +527,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -500,23 +536,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
-	var _autoplay = __webpack_require__(9);
+	var _autoplay = __webpack_require__(8);
 
 	var _autoplay2 = _interopRequireDefault(_autoplay);
 
-	var _debounce = __webpack_require__(10);
+	var _debounce = __webpack_require__(9);
 
 	var _debounce2 = _interopRequireDefault(_debounce);
 
-	var _Navigation = __webpack_require__(11);
+	var _Navigation = __webpack_require__(10);
 
 	var _Navigation2 = _interopRequireDefault(_Navigation);
 
-	var _Pagination = __webpack_require__(16);
+	var _Pagination = __webpack_require__(15);
 
 	var _Pagination2 = _interopRequireDefault(_Pagination);
 
-	var _Slide = __webpack_require__(27);
+	var _Slide = __webpack_require__(22);
 
 	var _Slide2 = _interopRequireDefault(_Slide);
 
@@ -780,10 +816,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.currentPage = setPage >= 0 ? setPage : 0;
 	      }
 	    },
-	    modalToggle: function modalToggle(vm) {
-	      console.log(vm);
+	    modalToggle: function modalToggle() {
 	      var bodyClass = document.body.classList;
-	      if (bodyClass.contains('modal-active')) {
+	      if (bodyClass.contains("modal-active")) {
 	        return bodyClass.remove("modal-active");
 	      }
 	      return bodyClass.add("modal-active");
@@ -791,9 +826,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    addHotKeys: function addHotKeys() {
 	      var vm = this;
 	      window.addEventListener("keyup", function (e) {
-	        if (e.key == "Escape") {
+	        if (e.key === "Escape") {
 	          return vm.modalToggle();
 	        }
+	        return false;
 	      });
 	    }
 	  },
@@ -829,7 +865,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -891,7 +927,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = autoplay;
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -922,18 +958,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = debounce;
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	
 	/* styles */
-	__webpack_require__(37)
+	__webpack_require__(11)
 
-	var Component = __webpack_require__(7)(
+	var Component = __webpack_require__(6)(
 	  /* script */
-	  __webpack_require__(14),
+	  __webpack_require__(13),
 	  /* template */
-	  __webpack_require__(15),
+	  __webpack_require__(14),
 	  /* scopeId */
 	  "data-v-7fed18e9",
 	  /* cssModules */
@@ -960,9 +996,47 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ }),
-/* 12 */,
-/* 13 */,
-/* 14 */
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(12);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(5)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-7fed18e9&scoped=true!../node_modules/sass-loader/lib/loader.js!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Navigation.vue", function() {
+				var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-7fed18e9&scoped=true!../node_modules/sass-loader/lib/loader.js!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Navigation.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(4)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "\n.VueCarousel-navigation[data-v-7fed18e9] {\n  position: absolute;\n  z-index: 10000000000000000000000;\n  width: 100%;\n  top: 50%;\n}\n.VueCarousel-navigation-button[data-v-7fed18e9] {\n  position: absolute;\n  top: 50%;\n  box-sizing: border-box;\n  color: #000;\n  text-decoration: none;\n}\n.VueCarousel-navigation-next[data-v-7fed18e9] {\n  right: 3rem;\n  transform: translateY(-50%) translateX(100%);\n}\n.VueCarousel-navigation-prev[data-v-7fed18e9] {\n  left: 3rem;\n  transform: translateY(-50%) translateX(-100%);\n}\n.VueCarousel-navigation--disabled[data-v-7fed18e9] {\n  opacity: 0;\n  cursor: default;\n}\n", ""]);
+
+	// exports
+
+
+/***/ }),
+/* 13 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -1014,7 +1088,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1067,18 +1141,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	
 	/* styles */
-	__webpack_require__(17)
+	__webpack_require__(16)
 
-	var Component = __webpack_require__(7)(
+	var Component = __webpack_require__(6)(
 	  /* script */
-	  __webpack_require__(19),
-	  /* template */
 	  __webpack_require__(20),
+	  /* template */
+	  __webpack_require__(21),
 	  /* scopeId */
 	  "data-v-7e42136f",
 	  /* cssModules */
@@ -1105,17 +1179,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(18);
+	var content = __webpack_require__(17);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	if(content.locals) module.exports = content.locals;
 	// add the styles to the DOM
-	var update = __webpack_require__(5)("372e9a51", content, false);
+	var update = __webpack_require__(18)("372e9a51", content, false);
 	// Hot Module Replacement
 	if(false) {
 	 // When the styles change, update the <style> tags
@@ -1131,7 +1205,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -1145,7 +1219,261 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/*
+	  MIT License http://www.opensource.org/licenses/mit-license.php
+	  Author Tobias Koppers @sokra
+	  Modified by Evan You @yyx990803
+	*/
+
+	var hasDocument = typeof document !== 'undefined'
+
+	if (false) {
+	  if (!hasDocument) {
+	    throw new Error(
+	    'vue-style-loader cannot be used in a non-browser environment. ' +
+	    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
+	  ) }
+	}
+
+	var listToStyles = __webpack_require__(19)
+
+	/*
+	type StyleObject = {
+	  id: number;
+	  parts: Array<StyleObjectPart>
+	}
+
+	type StyleObjectPart = {
+	  css: string;
+	  media: string;
+	  sourceMap: ?string
+	}
+	*/
+
+	var stylesInDom = {/*
+	  [id: number]: {
+	    id: number,
+	    refs: number,
+	    parts: Array<(obj?: StyleObjectPart) => void>
+	  }
+	*/}
+
+	var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
+	var singletonElement = null
+	var singletonCounter = 0
+	var isProduction = false
+	var noop = function () {}
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
+
+	module.exports = function (parentId, list, _isProduction) {
+	  isProduction = _isProduction
+
+	  var styles = listToStyles(parentId, list)
+	  addStylesToDom(styles)
+
+	  return function update (newList) {
+	    var mayRemove = []
+	    for (var i = 0; i < styles.length; i++) {
+	      var item = styles[i]
+	      var domStyle = stylesInDom[item.id]
+	      domStyle.refs--
+	      mayRemove.push(domStyle)
+	    }
+	    if (newList) {
+	      styles = listToStyles(parentId, newList)
+	      addStylesToDom(styles)
+	    } else {
+	      styles = []
+	    }
+	    for (var i = 0; i < mayRemove.length; i++) {
+	      var domStyle = mayRemove[i]
+	      if (domStyle.refs === 0) {
+	        for (var j = 0; j < domStyle.parts.length; j++) {
+	          domStyle.parts[j]()
+	        }
+	        delete stylesInDom[domStyle.id]
+	      }
+	    }
+	  }
+	}
+
+	function addStylesToDom (styles /* Array<StyleObject> */) {
+	  for (var i = 0; i < styles.length; i++) {
+	    var item = styles[i]
+	    var domStyle = stylesInDom[item.id]
+	    if (domStyle) {
+	      domStyle.refs++
+	      for (var j = 0; j < domStyle.parts.length; j++) {
+	        domStyle.parts[j](item.parts[j])
+	      }
+	      for (; j < item.parts.length; j++) {
+	        domStyle.parts.push(addStyle(item.parts[j]))
+	      }
+	      if (domStyle.parts.length > item.parts.length) {
+	        domStyle.parts.length = item.parts.length
+	      }
+	    } else {
+	      var parts = []
+	      for (var j = 0; j < item.parts.length; j++) {
+	        parts.push(addStyle(item.parts[j]))
+	      }
+	      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
+	    }
+	  }
+	}
+
+	function createStyleElement () {
+	  var styleElement = document.createElement('style')
+	  styleElement.type = 'text/css'
+	  head.appendChild(styleElement)
+	  return styleElement
+	}
+
+	function addStyle (obj /* StyleObjectPart */) {
+	  var update, remove
+	  var styleElement = document.querySelector('style[data-vue-ssr-id~="' + obj.id + '"]')
+
+	  if (styleElement) {
+	    if (isProduction) {
+	      // has SSR styles and in production mode.
+	      // simply do nothing.
+	      return noop
+	    } else {
+	      // has SSR styles but in dev mode.
+	      // for some reason Chrome can't handle source map in server-rendered
+	      // style tags - source maps in <style> only works if the style tag is
+	      // created and inserted dynamically. So we remove the server rendered
+	      // styles and inject new ones.
+	      styleElement.parentNode.removeChild(styleElement)
+	    }
+	  }
+
+	  if (isOldIE) {
+	    // use singleton mode for IE9.
+	    var styleIndex = singletonCounter++
+	    styleElement = singletonElement || (singletonElement = createStyleElement())
+	    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
+	    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
+	  } else {
+	    // use multi-style-tag mode in all other cases
+	    styleElement = createStyleElement()
+	    update = applyToTag.bind(null, styleElement)
+	    remove = function () {
+	      styleElement.parentNode.removeChild(styleElement)
+	    }
+	  }
+
+	  update(obj)
+
+	  return function updateStyle (newObj /* StyleObjectPart */) {
+	    if (newObj) {
+	      if (newObj.css === obj.css &&
+	          newObj.media === obj.media &&
+	          newObj.sourceMap === obj.sourceMap) {
+	        return
+	      }
+	      update(obj = newObj)
+	    } else {
+	      remove()
+	    }
+	  }
+	}
+
+	var replaceText = (function () {
+	  var textStore = []
+
+	  return function (index, replacement) {
+	    textStore[index] = replacement
+	    return textStore.filter(Boolean).join('\n')
+	  }
+	})()
+
+	function applyToSingletonTag (styleElement, index, remove, obj) {
+	  var css = remove ? '' : obj.css
+
+	  if (styleElement.styleSheet) {
+	    styleElement.styleSheet.cssText = replaceText(index, css)
+	  } else {
+	    var cssNode = document.createTextNode(css)
+	    var childNodes = styleElement.childNodes
+	    if (childNodes[index]) styleElement.removeChild(childNodes[index])
+	    if (childNodes.length) {
+	      styleElement.insertBefore(cssNode, childNodes[index])
+	    } else {
+	      styleElement.appendChild(cssNode)
+	    }
+	  }
+	}
+
+	function applyToTag (styleElement, obj) {
+	  var css = obj.css
+	  var media = obj.media
+	  var sourceMap = obj.sourceMap
+
+	  if (media) {
+	    styleElement.setAttribute('media', media)
+	  }
+
+	  if (sourceMap) {
+	    // https://developer.chrome.com/devtools/docs/javascript-debugging
+	    // this makes source maps inside style tags work properly in Chrome
+	    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
+	    // http://stackoverflow.com/a/26603875
+	    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
+	  }
+
+	  if (styleElement.styleSheet) {
+	    styleElement.styleSheet.cssText = css
+	  } else {
+	    while (styleElement.firstChild) {
+	      styleElement.removeChild(styleElement.firstChild)
+	    }
+	    styleElement.appendChild(document.createTextNode(css))
+	  }
+	}
+
+
+/***/ }),
 /* 19 */
+/***/ (function(module, exports) {
+
+	/**
+	 * Translates the list format produced by css-loader into something
+	 * easier to manipulate.
+	 */
+	module.exports = function listToStyles (parentId, list) {
+	  var styles = []
+	  var newStyles = {}
+	  for (var i = 0; i < list.length; i++) {
+	    var item = list[i]
+	    var id = item[0]
+	    var css = item[1]
+	    var media = item[2]
+	    var sourceMap = item[3]
+	    var part = {
+	      id: parentId + ':' + i,
+	      css: css,
+	      media: media,
+	      sourceMap: sourceMap
+	    }
+	    if (!newStyles[id]) {
+	      styles.push(newStyles[id] = { id: id, parts: [part] })
+	    } else {
+	      newStyles[id].parts.push(part)
+	    }
+	  }
+	  return styles
+	}
+
+
+/***/ }),
+/* 20 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -1163,7 +1491,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1204,275 +1532,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ }),
-/* 21 */,
-/* 22 */,
-/* 23 */,
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	/*
-		MIT License http://www.opensource.org/licenses/mit-license.php
-		Author Tobias Koppers @sokra
-	*/
-	var stylesInDom = {},
-		memoize = function(fn) {
-			var memo;
-			return function () {
-				if (typeof memo === "undefined") memo = fn.apply(this, arguments);
-				return memo;
-			};
-		},
-		isOldIE = memoize(function() {
-			return /msie [6-9]\b/.test(self.navigator.userAgent.toLowerCase());
-		}),
-		getHeadElement = memoize(function () {
-			return document.head || document.getElementsByTagName("head")[0];
-		}),
-		singletonElement = null,
-		singletonCounter = 0,
-		styleElementsInsertedAtTop = [];
-
-	module.exports = function(list, options) {
-		if(false) {
-			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
-		}
-
-		options = options || {};
-		// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-		// tags it will allow on a page
-		if (typeof options.singleton === "undefined") options.singleton = isOldIE();
-
-		// By default, add <style> tags to the bottom of <head>.
-		if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
-
-		var styles = listToStyles(list);
-		addStylesToDom(styles, options);
-
-		return function update(newList) {
-			var mayRemove = [];
-			for(var i = 0; i < styles.length; i++) {
-				var item = styles[i];
-				var domStyle = stylesInDom[item.id];
-				domStyle.refs--;
-				mayRemove.push(domStyle);
-			}
-			if(newList) {
-				var newStyles = listToStyles(newList);
-				addStylesToDom(newStyles, options);
-			}
-			for(var i = 0; i < mayRemove.length; i++) {
-				var domStyle = mayRemove[i];
-				if(domStyle.refs === 0) {
-					for(var j = 0; j < domStyle.parts.length; j++)
-						domStyle.parts[j]();
-					delete stylesInDom[domStyle.id];
-				}
-			}
-		};
-	}
-
-	function addStylesToDom(styles, options) {
-		for(var i = 0; i < styles.length; i++) {
-			var item = styles[i];
-			var domStyle = stylesInDom[item.id];
-			if(domStyle) {
-				domStyle.refs++;
-				for(var j = 0; j < domStyle.parts.length; j++) {
-					domStyle.parts[j](item.parts[j]);
-				}
-				for(; j < item.parts.length; j++) {
-					domStyle.parts.push(addStyle(item.parts[j], options));
-				}
-			} else {
-				var parts = [];
-				for(var j = 0; j < item.parts.length; j++) {
-					parts.push(addStyle(item.parts[j], options));
-				}
-				stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
-			}
-		}
-	}
-
-	function listToStyles(list) {
-		var styles = [];
-		var newStyles = {};
-		for(var i = 0; i < list.length; i++) {
-			var item = list[i];
-			var id = item[0];
-			var css = item[1];
-			var media = item[2];
-			var sourceMap = item[3];
-			var part = {css: css, media: media, sourceMap: sourceMap};
-			if(!newStyles[id])
-				styles.push(newStyles[id] = {id: id, parts: [part]});
-			else
-				newStyles[id].parts.push(part);
-		}
-		return styles;
-	}
-
-	function insertStyleElement(options, styleElement) {
-		var head = getHeadElement();
-		var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
-		if (options.insertAt === "top") {
-			if(!lastStyleElementInsertedAtTop) {
-				head.insertBefore(styleElement, head.firstChild);
-			} else if(lastStyleElementInsertedAtTop.nextSibling) {
-				head.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling);
-			} else {
-				head.appendChild(styleElement);
-			}
-			styleElementsInsertedAtTop.push(styleElement);
-		} else if (options.insertAt === "bottom") {
-			head.appendChild(styleElement);
-		} else {
-			throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
-		}
-	}
-
-	function removeStyleElement(styleElement) {
-		styleElement.parentNode.removeChild(styleElement);
-		var idx = styleElementsInsertedAtTop.indexOf(styleElement);
-		if(idx >= 0) {
-			styleElementsInsertedAtTop.splice(idx, 1);
-		}
-	}
-
-	function createStyleElement(options) {
-		var styleElement = document.createElement("style");
-		styleElement.type = "text/css";
-		insertStyleElement(options, styleElement);
-		return styleElement;
-	}
-
-	function createLinkElement(options) {
-		var linkElement = document.createElement("link");
-		linkElement.rel = "stylesheet";
-		insertStyleElement(options, linkElement);
-		return linkElement;
-	}
-
-	function addStyle(obj, options) {
-		var styleElement, update, remove;
-
-		if (options.singleton) {
-			var styleIndex = singletonCounter++;
-			styleElement = singletonElement || (singletonElement = createStyleElement(options));
-			update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
-			remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
-		} else if(obj.sourceMap &&
-			typeof URL === "function" &&
-			typeof URL.createObjectURL === "function" &&
-			typeof URL.revokeObjectURL === "function" &&
-			typeof Blob === "function" &&
-			typeof btoa === "function") {
-			styleElement = createLinkElement(options);
-			update = updateLink.bind(null, styleElement);
-			remove = function() {
-				removeStyleElement(styleElement);
-				if(styleElement.href)
-					URL.revokeObjectURL(styleElement.href);
-			};
-		} else {
-			styleElement = createStyleElement(options);
-			update = applyToTag.bind(null, styleElement);
-			remove = function() {
-				removeStyleElement(styleElement);
-			};
-		}
-
-		update(obj);
-
-		return function updateStyle(newObj) {
-			if(newObj) {
-				if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
-					return;
-				update(obj = newObj);
-			} else {
-				remove();
-			}
-		};
-	}
-
-	var replaceText = (function () {
-		var textStore = [];
-
-		return function (index, replacement) {
-			textStore[index] = replacement;
-			return textStore.filter(Boolean).join('\n');
-		};
-	})();
-
-	function applyToSingletonTag(styleElement, index, remove, obj) {
-		var css = remove ? "" : obj.css;
-
-		if (styleElement.styleSheet) {
-			styleElement.styleSheet.cssText = replaceText(index, css);
-		} else {
-			var cssNode = document.createTextNode(css);
-			var childNodes = styleElement.childNodes;
-			if (childNodes[index]) styleElement.removeChild(childNodes[index]);
-			if (childNodes.length) {
-				styleElement.insertBefore(cssNode, childNodes[index]);
-			} else {
-				styleElement.appendChild(cssNode);
-			}
-		}
-	}
-
-	function applyToTag(styleElement, obj) {
-		var css = obj.css;
-		var media = obj.media;
-
-		if(media) {
-			styleElement.setAttribute("media", media)
-		}
-
-		if(styleElement.styleSheet) {
-			styleElement.styleSheet.cssText = css;
-		} else {
-			while(styleElement.firstChild) {
-				styleElement.removeChild(styleElement.firstChild);
-			}
-			styleElement.appendChild(document.createTextNode(css));
-		}
-	}
-
-	function updateLink(linkElement, obj) {
-		var css = obj.css;
-		var sourceMap = obj.sourceMap;
-
-		if(sourceMap) {
-			// http://stackoverflow.com/a/26603875
-			css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
-		}
-
-		var blob = new Blob([css], { type: "text/css" });
-
-		var oldSrc = linkElement.href;
-
-		linkElement.href = URL.createObjectURL(blob);
-
-		if(oldSrc)
-			URL.revokeObjectURL(oldSrc);
-	}
-
-
-/***/ }),
-/* 25 */,
-/* 26 */,
-/* 27 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	
 	/* styles */
-	__webpack_require__(35)
+	__webpack_require__(23)
 
-	var Component = __webpack_require__(7)(
+	var Component = __webpack_require__(6)(
 	  /* script */
-	  __webpack_require__(30),
+	  __webpack_require__(25),
 	  /* template */
-	  __webpack_require__(31),
+	  __webpack_require__(26),
 	  /* scopeId */
 	  null,
 	  /* cssModules */
@@ -1499,9 +1570,47 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ }),
-/* 28 */,
-/* 29 */,
-/* 30 */
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(24);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(5)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-f8171128!../node_modules/sass-loader/lib/loader.js!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Slide.vue", function() {
+				var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-f8171128!../node_modules/sass-loader/lib/loader.js!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Slide.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(4)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "\n.VueCarousel-slide {\n  flex-basis: inherit;\n  flex-grow: 0;\n  flex-shrink: 0;\n  user-select: none;\n  position: relative;\n  transition: .3s ease all;\n}\n.VueCarousel-expand {\n  position: absolute;\n  right: 0;\n  bottom: 0;\n  z-index: 10000000000000000000000;\n}\n", ""]);
+
+	// exports
+
+
+/***/ }),
+/* 25 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -1526,7 +1635,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ }),
-/* 31 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1548,7 +1657,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ }),
-/* 32 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1565,7 +1674,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "nextLabel": _vm.navigationNextLabel,
 	      "prevLabel": _vm.navigationPrevLabel
 	    }
-	  }) : _vm._e()], 1)
+	  }) : _vm._e(), _vm._v(" "), _c('div', {
+	    staticClass: "VueCarousel-close"
+	  }, [_c('button', {
+	    on: {
+	      "click": function($event) {
+	        _vm.modalToggle()
+	      }
+	    }
+	  }, [_vm._v("CLOSE")])])], 1)
 	},staticRenderFns: []}
 	module.exports.render._withStripped = true
 	if (false) {
@@ -1574,126 +1691,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	     require("vue-hot-reload-api").rerender("data-v-74f55575", module.exports)
 	  }
 	}
-
-/***/ }),
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(34);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(24)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-74f55575!../node_modules/sass-loader/lib/loader.js!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Carousel.vue", function() {
-				var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-74f55575!../node_modules/sass-loader/lib/loader.js!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Carousel.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ }),
-/* 34 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "\n.VueCarousel {\n  position: relative;\n  overflow: hidden;\n}\n.VueCarousel-wrapper {\n  width: 100%;\n  position: relative;\n  overflow: hidden;\n}\n.VueCarousel-inner {\n  display: flex;\n  flex-direction: row;\n  backface-visibility: hidden;\n}\nbody.modal-active {\n  overflow: hidden;\n}\nbody.modal-active .VueCarousel,\n  body.modal-active .VueCarousel-wrapper {\n    height: 100vh;\n    width: 100vw;\n    z-index: 10000000000000000000000;\n}\nbody.modal-active .VueCarousel-wrapper {\n    width: 80vw;\n    margin: auto;\n}\nbody.modal-active .VueCarousel-pagination {\n    position: absolute;\n    z-index: 10000000000000000000000;\n}\nbody.modal-active .VueCarousel-slide {\n    position: relative;\n    z-index: 10000000000000000000000;\n    top: 0;\n    overflow-y: scroll;\n    width: 100vw;\n    height: 100vh;\n}\nbody.modal-active::before {\n    content: \"\";\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    background: rgba(0, 0, 0, 0.9);\n    z-index: 10000000000000000000000;\n}\n", ""]);
-
-	// exports
-
-
-/***/ }),
-/* 35 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(36);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(24)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-f8171128!../node_modules/sass-loader/lib/loader.js!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Slide.vue", function() {
-				var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-f8171128!../node_modules/sass-loader/lib/loader.js!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Slide.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "\n.VueCarousel-slide {\n  flex-basis: inherit;\n  flex-grow: 0;\n  flex-shrink: 0;\n  user-select: none;\n  position: relative;\n  transition: .3s ease all;\n}\n.VueCarousel-expand {\n  position: absolute;\n  right: 0;\n  bottom: 0;\n  z-index: 10000000000000000000000;\n}\n", ""]);
-
-	// exports
-
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(38);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(24)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-7fed18e9&scoped=true!../node_modules/sass-loader/lib/loader.js!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Navigation.vue", function() {
-				var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-7fed18e9&scoped=true!../node_modules/sass-loader/lib/loader.js!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Navigation.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "\n.VueCarousel-navigation[data-v-7fed18e9] {\n  position: absolute;\n  z-index: 10000000000000000000000;\n  width: 100%;\n  top: 50%;\n}\n.VueCarousel-navigation-button[data-v-7fed18e9] {\n  position: absolute;\n  top: 50%;\n  box-sizing: border-box;\n  color: #000;\n  text-decoration: none;\n}\n.VueCarousel-navigation-next[data-v-7fed18e9] {\n  right: 3rem;\n  transform: translateY(-50%) translateX(100%);\n}\n.VueCarousel-navigation-prev[data-v-7fed18e9] {\n  left: 3rem;\n  transform: translateY(-50%) translateX(-100%);\n}\n.VueCarousel-navigation--disabled[data-v-7fed18e9] {\n  opacity: 0;\n  cursor: default;\n}\n", ""]);
-
-	// exports
-
 
 /***/ })
 /******/ ])

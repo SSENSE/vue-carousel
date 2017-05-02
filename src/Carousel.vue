@@ -22,6 +22,9 @@
       :nextLabel="navigationNextLabel"
       :prevLabel="navigationPrevLabel"
     ></navigation>
+    <div class="VueCarousel-close">
+      <button @click="modalToggle()">CLOSE</button>
+    </div>
   </div>
 </template>
 
@@ -495,6 +498,14 @@
     flex-direction: row;
     backface-visibility: hidden;
   }
+  
+  .VueCarousel-close {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: $z-index + 3;
+  }
     
   body.modal-active {
     overflow: hidden;
@@ -509,6 +520,10 @@
     .VueCarousel-wrapper {
       width: 80vw;
       margin: auto;
+    }
+    
+    .VueCarousel-close {
+      display: block;
     }
     
     .VueCarousel-pagination {
