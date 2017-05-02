@@ -427,20 +427,20 @@
           this.currentPage = (setPage >= 0) ? setPage : 0
         }
       },
-      modalToggle(vm) {
-        console.log(vm)
-        let bodyClass = document.body.classList
-        if (bodyClass.contains('modal-active')) {
+      modalToggle() {
+        const bodyClass = document.body.classList
+        if (bodyClass.contains("modal-active")) {
           return bodyClass.remove("modal-active")
         }
         return bodyClass.add("modal-active")
       },
       addHotKeys() {
-        let vm = this
-        window.addEventListener("keyup", function(e) {
-          if (e.key == "Escape") {
+        const vm = this
+        window.addEventListener("keyup", (e) => {
+          if (e.key === "Escape") {
             return vm.modalToggle()
           }
+          return false
         })
       }
     },
