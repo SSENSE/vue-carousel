@@ -89,6 +89,13 @@
         default: false,
       },
       /**
+       * Flag to render the an expand icon
+       */
+      expandEnabled: {
+        type: Boolean,
+        default: false,
+      },
+      /**
        * Text content of the navigation next button
        */
       navigationNextLabel: {
@@ -420,6 +427,22 @@
           this.currentPage = (setPage >= 0) ? setPage : 0
         }
       },
+      modalToggle(vm) {
+        console.log(vm)
+        let bodyClass = document.body.classList
+        if (bodyClass.contains('modal-active')) {
+          return bodyClass.remove("modal-active")
+        }
+        return bodyClass.add("modal-active")
+      },
+      addHotKeys() {
+        let vm = this
+        window.addEventListener("keyup", function(e) {
+          if (e.key == "Escape") {
+            return vm.modalToggle()
+          }
+        })
+      }
     },
     mounted() {
       if (!this.$isServer) {
@@ -435,7 +458,7 @@
           this.$el.addEventListener("mousemove", this.handleMousemove)
         }
       }
-
+      this.addHotKeys()
       this.attachMutationObserver()
       this.computeCarouselWidth()
     },
@@ -453,20 +476,66 @@
   }
 </script>
 
-<style>
-.VueCarousel {
-  position: relative;
-}
+<style lang="scss">
+  @import './scss/var';
 
-.VueCarousel-wrapper {
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-}
+  .VueCarousel {
+    position: relative;
+    overflow: hidden;
+  }
 
-.VueCarousel-inner {
-  display: flex;
-  flex-direction: row;
-  backface-visibility: hidden;
-}
+  .VueCarousel-wrapper {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .VueCarousel-inner {
+    display: flex;
+    flex-direction: row;
+    backface-visibility: hidden;
+  }
+    
+  body.modal-active {
+    overflow: hidden;
+    
+    .VueCarousel,
+    .VueCarousel-wrapper {
+      height: 100vh;
+      width: 100vw;
+      z-index: $z-index + 1;
+    }
+
+    .VueCarousel-wrapper {
+      width: 80vw;
+      margin: auto;
+    }
+    
+    .VueCarousel-pagination {
+      position: absolute;
+      z-index: $z-index + 3;
+    }
+
+    .VueCarousel-slide {
+      position: relative;
+      z-index: $z-index + 2;
+      top: 0;
+      overflow-y: scroll;
+      width: 100vw;
+      height: 100vh;
+    }
+    
+    &::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: rgba(black, 0.9);
+      z-index: $z-index;
+    }
+  }
+  
+
 </style>
