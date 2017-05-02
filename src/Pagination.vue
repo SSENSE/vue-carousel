@@ -37,7 +37,6 @@
 
 <style scoped>
   .VueCarousel-pagination {
-    width: 100%;
     float: left;
     text-align: center;
   }
