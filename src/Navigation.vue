@@ -29,7 +29,7 @@
        */
       clickTargetSize: {
         type: Number,
-        default: 8
+        default: 20
       },
       /**
        * Text content of the navigation next button
@@ -66,7 +66,16 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import './scss/var';
+
+  .VueCarousel-navigation {
+    position: absolute;
+    z-index: $z-index;
+    width: 100%;
+    top: 50%;
+  }
+
   .VueCarousel-navigation-button {
     position: absolute;
     top: 50%;
@@ -76,17 +85,15 @@
   }
 
   .VueCarousel-navigation-next {
-    right: 0;
     transform: translateY(-50%) translateX(100%)
   }
 
   .VueCarousel-navigation-prev {
-    left: 0;
     transform: translateY(-50%) translateX(-100%)
   }
 
   .VueCarousel-navigation--disabled {
-    opacity: 0.5;
+    opacity: 0;
     cursor: default;
   }
 </style>
