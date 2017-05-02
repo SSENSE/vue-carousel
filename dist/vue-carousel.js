@@ -660,6 +660,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    speed: {
 	      type: Number,
 	      default: 500
+	    },
+
+	    forceModal: {
+	      type: Boolean,
+	      default: false
 	    }
 	  },
 	  computed: {
@@ -772,6 +777,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if (page >= 0 && page <= this.pageCount) {
 	        this.currentPage = page;
 	        this.$emit("pageChange", this.currentPage);
+	        if (this.forceModal) {
+	          return this.openModal();
+	        }
 	      }
 	    },
 	    handleMousedown: function handleMousedown(e) {
@@ -814,6 +822,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if (!this.canAdvanceForward) {
 	        var setPage = this.pageCount - 1;
 	        this.currentPage = setPage >= 0 ? setPage : 0;
+	      }
+	    },
+	    openModal: function openModal() {
+	      var bodyClass = document.body.classList;
+	      if (!bodyClass.contains('modal-active')) {
+	        return bodyClass.add("modal-active");
 	      }
 	    },
 	    modalToggle: function modalToggle() {

@@ -182,6 +182,14 @@
         type: Number,
         default: 500,
       },
+      /**
+       * Force modal
+       * when selecting navigation
+       */
+      forceModal: {
+        type: Boolean,
+        default: false,
+      }
     },
     computed: {
       /**
@@ -369,6 +377,9 @@
         if ((page >= 0) && (page <= this.pageCount)) {
           this.currentPage = page
           this.$emit("pageChange", this.currentPage)
+          if (this.forceModal) {
+            return this.openModal()
+          }
         }
       },
       /**
@@ -428,6 +439,12 @@
         if (!this.canAdvanceForward) {
           const setPage = (this.pageCount - 1)
           this.currentPage = (setPage >= 0) ? setPage : 0
+        }
+      },
+      openModal() {
+        const bodyClass = document.body.classList
+        if (!bodyClass.contains('modal-active')) {
+          return bodyClass.add("modal-active")
         }
       },
       modalToggle() {
