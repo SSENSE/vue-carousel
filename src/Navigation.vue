@@ -85,12 +85,10 @@
   }
 
   .VueCarousel-navigation-next {
-    right: 3rem;
     transform: translateY(-50%) translateX(100%)
   }
 
   .VueCarousel-navigation-prev {
-    left: 3rem;
     transform: translateY(-50%) translateX(-100%)
   }
 

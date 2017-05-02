@@ -160,7 +160,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	// module
-	exports.push([module.id, "\n.VueCarousel {\n  position: relative;\n  overflow: hidden;\n}\n.VueCarousel-wrapper {\n  width: 100%;\n  position: relative;\n  overflow: hidden;\n}\n.VueCarousel-inner {\n  display: flex;\n  flex-direction: row;\n  backface-visibility: hidden;\n}\n.VueCarousel-close {\n  display: none;\n  position: absolute;\n  top: 0;\n  right: 0;\n  z-index: 10000000000000000000000;\n}\nbody.modal-active {\n  overflow: hidden;\n}\nbody.modal-active .VueCarousel,\n  body.modal-active .VueCarousel-wrapper {\n    height: 100vh;\n    width: 100vw;\n    z-index: 10000000000000000000000;\n}\nbody.modal-active .VueCarousel-wrapper {\n    width: 80vw;\n    margin: auto;\n}\nbody.modal-active .VueCarousel-close {\n    display: block;\n}\nbody.modal-active .VueCarousel-pagination {\n    position: absolute;\n    z-index: 10000000000000000000000;\n}\nbody.modal-active .VueCarousel-slide {\n    position: relative;\n    z-index: 10000000000000000000000;\n    top: 0;\n    overflow-y: scroll;\n    width: 100vw;\n    height: 100vh;\n}\nbody.modal-active::before {\n    content: \"\";\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    background: rgba(0, 0, 0, 0.9);\n    z-index: 10000000000000000000000;\n}\n", ""]);
+	exports.push([module.id, "\n.VueCarousel {\n  position: relative;\n  overflow: hidden;\n}\n.VueCarousel-wrapper {\n  width: 100%;\n  position: relative;\n  overflow: hidden;\n}\n.VueCarousel-inner {\n  display: flex;\n  flex-direction: row;\n  backface-visibility: hidden;\n}\n.VueCarousel-close {\n  display: none;\n  position: absolute;\n  top: 0;\n  right: 0;\n  z-index: 10000000000000000000000;\n}\nbody.modal-active {\n  overflow: hidden;\n}\nbody.modal-active .VueCarousel,\n  body.modal-active .VueCarousel-wrapper {\n    height: 100vh;\n    width: 100vw;\n    z-index: 10000000000000000000000;\n}\nbody.modal-active .VueCarousel-close {\n    display: block;\n}\nbody.modal-active .VueCarousel-pagination {\n    position: absolute;\n    z-index: 10000000000000000000000;\n}\nbody.modal-active .VueCarousel-slide {\n    position: relative;\n    z-index: 10000000000000000000000;\n    top: 0;\n    overflow-y: scroll;\n    width: 100vw;\n    height: 100vh;\n}\nbody.modal-active .VueCarousel-expand {\n    display: none;\n}\nbody.modal-active::before {\n    content: \"\";\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    background: rgba(0, 0, 0, 0.9);\n    z-index: 10000000000000000000000;\n}\n", ""]);
 
 	// exports
 
@@ -833,6 +833,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    modalToggle: function modalToggle() {
 	      var bodyClass = document.body.classList;
 	      if (bodyClass.contains("modal-active")) {
+	        if (this.forceModal) {
+	          this.currentPage = 0;
+	        }
 	        return bodyClass.remove("modal-active");
 	      }
 	      return bodyClass.add("modal-active");
@@ -1044,7 +1047,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	// module
-	exports.push([module.id, "\n.VueCarousel-navigation[data-v-7fed18e9] {\n  position: absolute;\n  z-index: 10000000000000000000000;\n  width: 100%;\n  top: 50%;\n}\n.VueCarousel-navigation-button[data-v-7fed18e9] {\n  position: absolute;\n  top: 50%;\n  box-sizing: border-box;\n  color: #000;\n  text-decoration: none;\n}\n.VueCarousel-navigation-next[data-v-7fed18e9] {\n  right: 3rem;\n  transform: translateY(-50%) translateX(100%);\n}\n.VueCarousel-navigation-prev[data-v-7fed18e9] {\n  left: 3rem;\n  transform: translateY(-50%) translateX(-100%);\n}\n.VueCarousel-navigation--disabled[data-v-7fed18e9] {\n  opacity: 0;\n  cursor: default;\n}\n", ""]);
+	exports.push([module.id, "\n.VueCarousel-navigation[data-v-7fed18e9] {\n  position: absolute;\n  z-index: 10000000000000000000000;\n  width: 100%;\n  top: 50%;\n}\n.VueCarousel-navigation-button[data-v-7fed18e9] {\n  position: absolute;\n  top: 50%;\n  box-sizing: border-box;\n  color: #000;\n  text-decoration: none;\n}\n.VueCarousel-navigation-next[data-v-7fed18e9] {\n  transform: translateY(-50%) translateX(100%);\n}\n.VueCarousel-navigation-prev[data-v-7fed18e9] {\n  transform: translateY(-50%) translateX(-100%);\n}\n.VueCarousel-navigation--disabled[data-v-7fed18e9] {\n  opacity: 0;\n  cursor: default;\n}\n", ""]);
 
 	// exports
 

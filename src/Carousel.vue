@@ -450,6 +450,9 @@
       modalToggle() {
         const bodyClass = document.body.classList
         if (bodyClass.contains("modal-active")) {
+          if (this.forceModal) {
+            this.currentPage = 0
+          }
           return bodyClass.remove("modal-active")
         }
         return bodyClass.add("modal-active")
@@ -534,10 +537,10 @@
       z-index: $z-index + 1;
     }
 
-    .VueCarousel-wrapper {
-      width: 80vw;
-      margin: auto;
-    }
+    // .VueCarousel-wrapper {
+    //   width: 80vw;
+    //   margin: auto;
+    // }
     
     .VueCarousel-close {
       display: block;
@@ -555,6 +558,10 @@
       overflow-y: scroll;
       width: 100vw;
       height: 100vh;
+    }
+    
+    .VueCarousel-expand {
+      display: none;
     }
     
     &::before {
