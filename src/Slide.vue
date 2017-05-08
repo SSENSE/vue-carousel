@@ -1,7 +1,7 @@
 <template>
   <div class="VueCarousel-slide">
     <slot></slot>
-    <button class="VueCarousel-expand" @click="handleClick">EXPAND</button>
+    <button class="VueCarousel-expand slide-nomodal" @click="handleClick">EXPAND</button>
   </div>
 </template>
 
@@ -22,7 +22,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @import './scss/var';
 
   .VueCarousel-slide {

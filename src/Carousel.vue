@@ -1,5 +1,10 @@
 <template>
-  <div class="VueCarousel">
+  <div  class="VueCarousel" 
+        v-bind:id="id" 
+        v-bind:class="{
+          'is-active': modalEnabled,
+          'is-not-active': !modalEnabled
+        }">
     <div class="VueCarousel-wrapper">
       <div
         class="VueCarousel-inner"
@@ -8,8 +13,7 @@
           transition: ${transitionStyle};
           flex-basis: ${slideWidth}px;
           visibility: ${slideWidth ? 'visible' : 'hidden'}
-        `"
-      >
+        `">
         <slot></slot>
       </div>
     </div>
@@ -22,6 +26,7 @@
       :nextLabel="navigationNextLabel"
       :prevLabel="navigationPrevLabel"
     ></navigation>
+    <modal v-if="modalEnabled"></modal>
     <div class="VueCarousel-close">
       <button @click="modalToggle()">CLOSE</button>
     </div>
@@ -34,6 +39,7 @@
   import Navigation from "./Navigation.vue"
   import Pagination from "./Pagination.vue"
   import Slide from "./Slide.vue"
+  import Modal from "./Modal.vue"
 
   export default {
     name: "carousel",
@@ -43,7 +49,8 @@
     components: {
       Navigation,
       Pagination,
-      Slide
+      Slide,
+      Modal
     },
     data() {
       return {
@@ -53,7 +60,9 @@
         dragOffset: 0,
         dragStartX: 0,
         mousedown: false,
-        slideCount: 0
+        slideCount: 0,
+        modalEnabled: false,
+        id: `carousel-${this._uid}`
       }
     },
     mixins: [
@@ -444,6 +453,7 @@
       openModal() {
         const bodyClass = document.body.classList
         if (!bodyClass.contains('modal-active')) {
+          this.modalEnabled = true
           return bodyClass.add("modal-active")
         }
       },
@@ -453,8 +463,10 @@
           if (this.forceModal) {
             this.currentPage = 0
           }
+          this.modalEnabled = false
           return bodyClass.remove("modal-active")
         }
+        this.modalEnabled = true
         return bodyClass.add("modal-active")
       },
       addHotKeys() {
@@ -499,7 +511,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @import './scss/var';
 
   .VueCarousel {
@@ -530,50 +542,49 @@
   body.modal-active {
     overflow: hidden;
     
-    .VueCarousel,
-    .VueCarousel-wrapper {
-      height: 100vh;
-      width: 100vw;
-      z-index: $z-index + 1;
-    }
-
-    // .VueCarousel-wrapper {
-    //   width: 80vw;
-    //   margin: auto;
-    // }
-    
-    .VueCarousel-close {
-      display: block;
-    }
-    
-    .VueCarousel-pagination {
-      position: absolute;
-      z-index: $z-index + 3;
-    }
-
-    .VueCarousel-slide {
-      position: relative;
-      z-index: $z-index + 2;
-      top: 0;
-      overflow-y: scroll;
-      width: 100vw;
-      height: 100vh;
-    }
-    
     .VueCarousel-expand {
       display: none;
     }
     
-    &::before {
-      content: "";
+    .VueCarousel.is-not-active {
+      display: none;
+    }
+    
+    .VueCarousel.is-active {
+      height: 100vh;
+      width: 100vw;
+      z-index: $z-index + 1;
       position: fixed;
       top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background: rgba(black, 0.9);
-      z-index: $z-index;
+    
+      .VueCarousel-wrapper {
+        height: 100vh;
+        width: 100vw;
+        z-index: $z-index + 1;
+        position: fixed;
+        top: 0;
+      }
+
+      .VueCarousel-close {
+        display: block;
+      }
+      
+      .VueCarousel-pagination {
+        position: absolute;
+        z-index: $z-index + 3;
+      }
+
+      .VueCarousel-slide {
+        position: relative;
+        z-index: $z-index + 2;
+        top: 0;
+        overflow-y: scroll;
+        width: 100vw;
+        height: 100vh;
+      }
+      
     }
+    
   }
   
 

@@ -93,15 +93,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	
 	/* styles */
-	__webpack_require__(2)
+	__webpack_require__(33)
 
 	var Component = __webpack_require__(6)(
 	  /* script */
 	  __webpack_require__(7),
 	  /* template */
-	  __webpack_require__(27),
+	  __webpack_require__(32),
 	  /* scopeId */
-	  null,
+	  "data-v-74f55575",
 	  /* cssModules */
 	  null
 	)
@@ -126,46 +126,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(3);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-74f55575!../node_modules/sass-loader/lib/loader.js!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Carousel.vue", function() {
-				var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-74f55575!../node_modules/sass-loader/lib/loader.js!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Carousel.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "\n.VueCarousel {\n  position: relative;\n  overflow: hidden;\n}\n.VueCarousel-wrapper {\n  width: 100%;\n  position: relative;\n  overflow: hidden;\n}\n.VueCarousel-inner {\n  display: flex;\n  flex-direction: row;\n  backface-visibility: hidden;\n}\n.VueCarousel-close {\n  display: none;\n  position: absolute;\n  top: 0;\n  right: 0;\n  z-index: 10000000000000000000000;\n}\nbody.modal-active {\n  overflow: hidden;\n}\nbody.modal-active .VueCarousel,\n  body.modal-active .VueCarousel-wrapper {\n    height: 100vh;\n    width: 100vw;\n    z-index: 10000000000000000000000;\n}\nbody.modal-active .VueCarousel-close {\n    display: block;\n}\nbody.modal-active .VueCarousel-pagination {\n    position: absolute;\n    z-index: 10000000000000000000000;\n}\nbody.modal-active .VueCarousel-slide {\n    position: relative;\n    z-index: 10000000000000000000000;\n    top: 0;\n    overflow-y: scroll;\n    width: 100vw;\n    height: 100vh;\n}\nbody.modal-active .VueCarousel-expand {\n    display: none;\n}\nbody.modal-active::before {\n    content: \"\";\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    background: rgba(0, 0, 0, 0.9);\n    z-index: 10000000000000000000000;\n}\n", ""]);
-
-	// exports
-
-
-/***/ }),
+/* 2 */,
+/* 3 */,
 /* 4 */
 /***/ (function(module, exports) {
 
@@ -556,6 +518,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Slide2 = _interopRequireDefault(_Slide);
 
+	var _Modal = __webpack_require__(27);
+
+	var _Modal2 = _interopRequireDefault(_Modal);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = {
@@ -567,7 +533,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  components: {
 	    Navigation: _Navigation2.default,
 	    Pagination: _Pagination2.default,
-	    Slide: _Slide2.default
+	    Slide: _Slide2.default,
+	    Modal: _Modal2.default
 	  },
 	  data: function data() {
 	    return {
@@ -577,7 +544,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      dragOffset: 0,
 	      dragStartX: 0,
 	      mousedown: false,
-	      slideCount: 0
+	      slideCount: 0,
+	      modalEnabled: false,
+	      id: "carousel-" + this._uid
 	    };
 	  },
 
@@ -827,6 +796,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    openModal: function openModal() {
 	      var bodyClass = document.body.classList;
 	      if (!bodyClass.contains('modal-active')) {
+	        this.modalEnabled = true;
 	        return bodyClass.add("modal-active");
 	      }
 	    },
@@ -836,8 +806,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (this.forceModal) {
 	          this.currentPage = 0;
 	        }
+	        this.modalEnabled = false;
 	        return bodyClass.remove("modal-active");
 	      }
+	      this.modalEnabled = true;
 	      return bodyClass.add("modal-active");
 	    },
 	    addHotKeys: function addHotKeys() {
@@ -1554,7 +1526,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	
 	/* styles */
-	__webpack_require__(23)
+	__webpack_require__(35)
 
 	var Component = __webpack_require__(6)(
 	  /* script */
@@ -1562,7 +1534,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  /* template */
 	  __webpack_require__(26),
 	  /* scopeId */
-	  null,
+	  "data-v-f8171128",
 	  /* cssModules */
 	  null
 	)
@@ -1587,46 +1559,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(24);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-f8171128!../node_modules/sass-loader/lib/loader.js!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Slide.vue", function() {
-				var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-f8171128!../node_modules/sass-loader/lib/loader.js!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Slide.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "\n.VueCarousel-slide {\n  flex-basis: inherit;\n  flex-grow: 0;\n  flex-shrink: 0;\n  user-select: none;\n  position: relative;\n  transition: .3s ease all;\n}\n.VueCarousel-expand {\n  position: absolute;\n  right: 0;\n  bottom: 0;\n  z-index: 10000000000000000000000;\n}\n", ""]);
-
-	// exports
-
-
-/***/ }),
+/* 23 */,
+/* 24 */,
 /* 25 */
 /***/ (function(module, exports) {
 
@@ -1659,7 +1593,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return _c('div', {
 	    staticClass: "VueCarousel-slide"
 	  }, [_vm._t("default"), _vm._v(" "), _c('button', {
-	    staticClass: "VueCarousel-expand",
+	    staticClass: "VueCarousel-expand slide-nomodal",
 	    on: {
 	      "click": _vm.handleClick
 	    }
@@ -1677,9 +1611,124 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	
+	/* styles */
+	__webpack_require__(28)
+
+	var Component = __webpack_require__(6)(
+	  /* script */
+	  __webpack_require__(30),
+	  /* template */
+	  __webpack_require__(31),
+	  /* scopeId */
+	  null,
+	  /* cssModules */
+	  null
+	)
+	Component.options.__file = "/Users/thomasdrach/Documents/Code/vue-carousel/src/Modal.vue"
+	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+	if (Component.options.functional) {console.error("[vue-loader] Modal.vue: functional components are not supported with templates, they should use render functions.")}
+
+	/* hot reload */
+	if (false) {(function () {
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  module.hot.accept()
+	  if (!module.hot.data) {
+	    hotAPI.createRecord("data-v-34c25668", Component.options)
+	  } else {
+	    hotAPI.reload("data-v-34c25668", Component.options)
+	  }
+	})()}
+
+	module.exports = Component.exports
+
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(29);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(5)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-34c25668!../node_modules/sass-loader/lib/loader.js!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Modal.vue", function() {
+				var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-34c25668!../node_modules/sass-loader/lib/loader.js!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Modal.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(4)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "\n.VueCarousel-modal {\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  background: rgba(0, 0, 0, 0.9);\n  z-index: 9;\n}\n", ""]);
+
+	// exports
+
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	  name: "modal"
+	};
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('div', {
-	    staticClass: "VueCarousel"
+	    staticClass: "VueCarousel-modal"
+	  })
+	},staticRenderFns: []}
+	module.exports.render._withStripped = true
+	if (false) {
+	  module.hot.accept()
+	  if (module.hot.data) {
+	     require("vue-hot-reload-api").rerender("data-v-34c25668", module.exports)
+	  }
+	}
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    staticClass: "VueCarousel",
+	    class: {
+	      'is-active': _vm.modalEnabled,
+	      'is-not-active': !_vm.modalEnabled
+	    },
+	    attrs: {
+	      "id": _vm.id
+	    }
 	  }, [_c('div', {
 	    staticClass: "VueCarousel-wrapper"
 	  }, [_c('div', {
@@ -1691,7 +1740,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "nextLabel": _vm.navigationNextLabel,
 	      "prevLabel": _vm.navigationPrevLabel
 	    }
-	  }) : _vm._e(), _vm._v(" "), _c('div', {
+	  }) : _vm._e(), _vm._v(" "), (_vm.modalEnabled) ? _c('modal') : _vm._e(), _vm._v(" "), _c('div', {
 	    staticClass: "VueCarousel-close"
 	  }, [_c('button', {
 	    on: {
@@ -1708,6 +1757,86 @@ return /******/ (function(modules) { // webpackBootstrap
 	     require("vue-hot-reload-api").rerender("data-v-74f55575", module.exports)
 	  }
 	}
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(34);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(5)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-74f55575&scoped=true!../node_modules/sass-loader/lib/loader.js!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Carousel.vue", function() {
+				var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-74f55575&scoped=true!../node_modules/sass-loader/lib/loader.js!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Carousel.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(4)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "\n.VueCarousel[data-v-74f55575] {\n  position: relative;\n  overflow: hidden;\n}\n.VueCarousel-wrapper[data-v-74f55575] {\n  width: 100%;\n  position: relative;\n  overflow: hidden;\n}\n.VueCarousel-inner[data-v-74f55575] {\n  display: flex;\n  flex-direction: row;\n  backface-visibility: hidden;\n}\n.VueCarousel-close[data-v-74f55575] {\n  display: none;\n  position: absolute;\n  top: 0;\n  right: 0;\n  z-index: 10000000000000000000000;\n}\nbody.modal-active[data-v-74f55575] {\n  overflow: hidden;\n}\nbody.modal-active .VueCarousel-expand[data-v-74f55575] {\n    display: none;\n}\nbody.modal-active .VueCarousel.is-not-active[data-v-74f55575] {\n    display: none;\n}\nbody.modal-active .VueCarousel.is-active[data-v-74f55575] {\n    height: 100vh;\n    width: 100vw;\n    z-index: 10000000000000000000000;\n    position: fixed;\n    top: 0;\n}\nbody.modal-active .VueCarousel.is-active .VueCarousel-wrapper[data-v-74f55575] {\n      height: 100vh;\n      width: 100vw;\n      z-index: 10000000000000000000000;\n      position: fixed;\n      top: 0;\n}\nbody.modal-active .VueCarousel.is-active .VueCarousel-close[data-v-74f55575] {\n      display: block;\n}\nbody.modal-active .VueCarousel.is-active .VueCarousel-pagination[data-v-74f55575] {\n      position: absolute;\n      z-index: 10000000000000000000000;\n}\nbody.modal-active .VueCarousel.is-active .VueCarousel-slide[data-v-74f55575] {\n      position: relative;\n      z-index: 10000000000000000000000;\n      top: 0;\n      overflow-y: scroll;\n      width: 100vw;\n      height: 100vh;\n}\n", ""]);
+
+	// exports
+
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(36);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(5)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-f8171128&scoped=true!../node_modules/sass-loader/lib/loader.js!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Slide.vue", function() {
+				var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-f8171128&scoped=true!../node_modules/sass-loader/lib/loader.js!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Slide.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(4)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "\n.VueCarousel-slide[data-v-f8171128] {\n  flex-basis: inherit;\n  flex-grow: 0;\n  flex-shrink: 0;\n  user-select: none;\n  position: relative;\n  transition: .3s ease all;\n}\n.VueCarousel-expand[data-v-f8171128] {\n  position: absolute;\n  right: 0;\n  bottom: 0;\n  z-index: 10000000000000000000000;\n}\n", ""]);
+
+	// exports
+
 
 /***/ })
 /******/ ])
