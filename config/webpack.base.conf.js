@@ -40,12 +40,17 @@ module.exports = {
         loader: 'babel',
         include: projectRoot,
         exclude: /node_modules/,
+      },
+      {
+        test: /\.s[a|c]ss$/,
+        loader: 'style!css!sass'
       }
     ]
   },
   vue: {
     loaders: {
-      js: 'babel'
+      js: 'babel',
+      scss: 'style!css!sass'
     }
   },
   plugins: [

@@ -1,5 +1,10 @@
 <template>
-  <div class="VueCarousel">
+  <div  class="VueCarousel" 
+        v-bind:id="id" 
+        v-bind:class="{
+          'is-active': modalEnabled,
+          'is-not-active': !modalEnabled
+        }">
     <div class="VueCarousel-wrapper">
       <div
         class="VueCarousel-inner"
@@ -8,8 +13,7 @@
           transition: ${transitionStyle};
           flex-basis: ${slideWidth}px;
           visibility: ${slideWidth ? 'visible' : 'hidden'}
-        `"
-      >
+        `">
         <slot></slot>
       </div>
     </div>
@@ -22,6 +26,10 @@
       :nextLabel="navigationNextLabel"
       :prevLabel="navigationPrevLabel"
     ></navigation>
+    <modal v-if="modalEnabled"></modal>
+    <div class="VueCarousel-close">
+      <button @click="modalToggle()">CLOSE</button>
+    </div>
   </div>
 </template>
 
@@ -31,6 +39,7 @@
   import Navigation from "./Navigation.vue"
   import Pagination from "./Pagination.vue"
   import Slide from "./Slide.vue"
+  import Modal from "./Modal.vue"
 
   export default {
     name: "carousel",
@@ -40,7 +49,8 @@
     components: {
       Navigation,
       Pagination,
-      Slide
+      Slide,
+      Modal
     },
     data() {
       return {
@@ -50,7 +60,9 @@
         dragOffset: 0,
         dragStartX: 0,
         mousedown: false,
-        slideCount: 0
+        slideCount: 0,
+        modalEnabled: false,
+        id: `carousel-${this._uid}`
       }
     },
     mixins: [
@@ -85,6 +97,13 @@
        * (next/prev buttons)
        */
       navigationEnabled: {
+        type: Boolean,
+        default: false,
+      },
+      /**
+       * Flag to render the an expand icon
+       */
+      expandEnabled: {
         type: Boolean,
         default: false,
       },
@@ -172,6 +191,14 @@
         type: Number,
         default: 500,
       },
+      /**
+       * Force modal
+       * when selecting navigation
+       */
+      forceModal: {
+        type: Boolean,
+        default: false,
+      }
     },
     computed: {
       /**
@@ -359,6 +386,9 @@
         if ((page >= 0) && (page <= this.pageCount)) {
           this.currentPage = page
           this.$emit("pageChange", this.currentPage)
+          if (this.forceModal) {
+            return this.openModal()
+          }
         }
       },
       /**
@@ -420,6 +450,34 @@
           this.currentPage = (setPage >= 0) ? setPage : 0
         }
       },
+      openModal() {
+        const bodyClass = document.body.classList
+        if (!bodyClass.contains('modal-active')) {
+          this.modalEnabled = true
+          return bodyClass.add("modal-active")
+        }
+      },
+      modalToggle() {
+        const bodyClass = document.body.classList
+        if (bodyClass.contains("modal-active")) {
+          if (this.forceModal) {
+            this.currentPage = 0
+          }
+          this.modalEnabled = false
+          return bodyClass.remove("modal-active")
+        }
+        this.modalEnabled = true
+        return bodyClass.add("modal-active")
+      },
+      addHotKeys() {
+        const vm = this
+        window.addEventListener("keyup", (e) => {
+          if (e.key === "Escape") {
+            return vm.modalToggle()
+          }
+          return false
+        })
+      }
     },
     mounted() {
       if (!this.$isServer) {
@@ -435,7 +493,7 @@
           this.$el.addEventListener("mousemove", this.handleMousemove)
         }
       }
-
+      this.addHotKeys()
       this.attachMutationObserver()
       this.computeCarouselWidth()
     },
@@ -453,20 +511,81 @@
   }
 </script>
 
-<style>
-.VueCarousel {
-  position: relative;
-}
+<style lang="scss" scoped>
+  @import './scss/var';
 
-.VueCarousel-wrapper {
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-}
+  .VueCarousel {
+    position: relative;
+    overflow: hidden;
+  }
 
-.VueCarousel-inner {
-  display: flex;
-  flex-direction: row;
-  backface-visibility: hidden;
-}
+  .VueCarousel-wrapper {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .VueCarousel-inner {
+    display: flex;
+    flex-direction: row;
+    backface-visibility: hidden;
+  }
+  
+  .VueCarousel-close {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: $z-index + 3;
+  }
+    
+  body.modal-active {
+    overflow: hidden;
+    
+    .VueCarousel-expand {
+      display: none;
+    }
+    
+    .VueCarousel.is-not-active {
+      display: none;
+    }
+    
+    .VueCarousel.is-active {
+      height: 100vh;
+      width: 100vw;
+      z-index: $z-index + 1;
+      position: fixed;
+      top: 0;
+    
+      .VueCarousel-wrapper {
+        height: 100vh;
+        width: 100vw;
+        z-index: $z-index + 1;
+        position: fixed;
+        top: 0;
+      }
+
+      .VueCarousel-close {
+        display: block;
+      }
+      
+      .VueCarousel-pagination {
+        position: absolute;
+        z-index: $z-index + 3;
+      }
+
+      .VueCarousel-slide {
+        position: relative;
+        z-index: $z-index + 2;
+        top: 0;
+        overflow-y: scroll;
+        width: 100vw;
+        height: 100vh;
+      }
+      
+    }
+    
+  }
+  
+
 </style>
