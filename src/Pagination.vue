@@ -13,11 +13,6 @@
       >
         <div
           class="VueCarousel-dot-inner"
-          :style="`
-            width: ${parentContainer.paginationSize}px;
-            height: ${parentContainer.paginationSize}px;
-            background: ${(index === parentContainer.currentPage) ? parentContainer.paginationActiveColor : parentContainer.paginationColor};
-          `"
         ></div>
       </div>
     </div>
@@ -54,5 +49,11 @@
 
   .VueCarousel-dot-inner {
     border-radius: 100%;
+    width: 10px;
+    height: 10px;
+    background: #efefef;
+  }
+  .VueCarousel-dot--active .VueCarousel-dot-inner {
+    background: #000000;
   }
 </style>
