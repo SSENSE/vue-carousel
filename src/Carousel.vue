@@ -50,7 +50,8 @@
         dragOffset: 0,
         dragStartX: 0,
         mousedown: false,
-        slideCount: 0
+        slideCount: 0,
+        forward: true
       }
     },
     mixins: [
@@ -280,14 +281,37 @@
        * Increase/decrease the current page value
        * @param  {String} direction (Optional) The direction to advance
        */
+      // advancePage(direction) {
+      //   if (direction && direction === "backward" && this.canAdvanceBackward) {
+      //     this.goToPage(this.currentPage - 1)
+      //   } else if (
+      //     (!direction || (direction && direction !== "backward"))
+      //     && this.canAdvanceForward
+      //   ) {
+      //     this.goToPage(this.currentPage + 1)
+      //   }
+      // },
       advancePage(direction) {
-        if (direction && direction === "backward" && this.canAdvanceBackward) {
+        if (direction === "backward" && this.canAdvanceBackward) {
           this.goToPage(this.currentPage - 1)
         } else if (
-          (!direction || (direction && direction !== "backward"))
-          && this.canAdvanceForward
-        ) {
+          (direction && direction !== "backward") && this.canAdvanceForward) {
           this.goToPage(this.currentPage + 1)
+        } else if (!direction) {
+          if (this.forward) {
+            if (this.currentPage === (this.pageCount - 2)) {
+              this.forward = !this.forward
+              this.goToPage(this.currentPage + 1)
+            } else {
+              this.goToPage(this.currentPage + 1)
+            }
+          } else if (!this.forward) {
+            if (this.currentPage === 1) {
+              this.forward = !this.forward
+              this.goToPage(this.currentPage - 1)
+            }
+            this.goToPage(this.currentPage - 1)
+          }
         }
       },
       /**
