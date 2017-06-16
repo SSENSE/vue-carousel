@@ -1,6 +1,6 @@
 {
   "name": "vue-carousel",
-  "version": "0.6.4",
+  "version": "0.6.5",
   "description": "A flexible, responsive, touch-friendly carousel for Vue.js",
   "main": "dist/vue-carousel.min.js",
   "scripts": {
@@ -65,7 +65,7 @@
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0",
     "vue": "^2.1.8",
-    "vue-loader": "^10.0.2",
+    "vue-loader": "^12.2.1",
     "vue-play": "2.2.0",
     "vue-play-cli": "1.0.4",
     "vue-style-loader": "toddlawton/vue-style-loader",
