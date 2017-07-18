@@ -27,6 +27,12 @@ The carousel will auto-advance slides unless the carousel is hovered upon.
 
 <script async src="//jsfiddle.net/toddlawton/n1argwgg/embed/result,js/"></script>
 
+## Autoplay infinite loop
+
+The carousel will auto-play and loop when reaching the end.
+
+<script async src="//jsfiddle.net/kpkrmx2k/3/embed/result,js/"></script>
+
 ## Navigation
 
 Buttons added to advance the carousel in either direction.
