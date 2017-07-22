@@ -75,7 +75,7 @@ Scroll per page, not per item.
 * **Type**: `Boolean`
 * **Default**: `false`
 
-### speed
+### size
 
 Size of each pagination dot. Pixel values are accepted.
 
