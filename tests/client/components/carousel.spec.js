@@ -189,6 +189,39 @@ describe('Carousel', () => {
     });
   });
 
+  it('should loop back to the start when loop is true and advance page non "backward" is called from the last page', () => {
+    const vm = new Vue({
+      el: document.createElement('div'),
+      render: (h) => h(Carousel, { props: { perPage: 1, loop: true } }, [h(Slide), h(Slide)]),
+    });
+
+    const carouselInstance = vm.$children[0];
+
+    return carouselInstance.$nextTick().then(() => {
+      carouselInstance.goToPage(1);
+      carouselInstance.advancePage();
+      expect(carouselInstance.currentPage).toBe(0);
+
+      return utils.expectToMatchSnapshot(vm);
+    });
+  });
+
+  it('should loop to the end when loop is true and advance page "backward" is called from the first page', () => {
+    const vm = new Vue({
+      el: document.createElement('div'),
+      render: (h) => h(Carousel, { props: { perPage: 1, loop: true } }, [h(Slide), h(Slide)]),
+    });
+
+    const carouselInstance = vm.$children[0];
+
+    return carouselInstance.$nextTick().then(() => {
+      carouselInstance.advancePage('backward');
+      expect(carouselInstance.currentPage).toBe(1);
+
+      return utils.expectToMatchSnapshot(vm);
+    });
+  });
+
   it('should begin autoplaying when option specified', () => {
     const vm = new Vue({
       el: document.createElement('div'),

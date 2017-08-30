@@ -25,6 +25,13 @@ Flag to pause autoplay on hover
 * **Type**: `Boolean`
 * **Default**: `false`
 
+### loop
+
+Flag to make the carousel loop (wrap) when it reaches either end.
+
+* **Type**: `Boolean`
+* **Default**: `false`
+
 ### easing
 
 Transition speed between slides. Any valid CSS transition easing is accepted.

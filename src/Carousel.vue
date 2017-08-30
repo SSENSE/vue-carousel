@@ -172,6 +172,13 @@
         type: Number,
         default: 500,
       },
+      /**
+       * Flag to make the carousel loop around when it reaches the end
+       */
+      loop: {
+        type: Boolean,
+        default: false,
+      },
     },
     computed: {
       /**
@@ -203,13 +210,13 @@
        * @return {Boolean} Can the slider move forward?
        */
       canAdvanceForward() {
-        return (this.currentPage < (this.pageCount - 1))
+        return this.loop || (this.currentPage < (this.pageCount - 1))
       },
       /**
        * @return {Boolean} Can the slider move backward?
        */
       canAdvanceBackward() {
-        return (this.currentPage > 0)
+        return this.loop || (this.currentPage > 0)
       },
       /**
        * Number of slides to display per page in the current context.
@@ -276,18 +283,36 @@
       },
     },
     methods: {
+       /**
+       * @return {Number} The index of the next page
+       * */
+      getNextPage() {
+        if (this.currentPage < (this.pageCount - 1)) {
+          return this.currentPage + 1
+        }
+        return this.loop ? 0 : this.currentPage
+      },
+      /**
+       * @return {Number} The index of the previous page
+       * */
+      getPreviousPage() {
+        if (this.currentPage > 0) {
+          return this.currentPage - 1
+        }
+        return this.loop ? this.pageCount - 1 : this.currentPage
+      },
       /**
        * Increase/decrease the current page value
        * @param  {String} direction (Optional) The direction to advance
        */
       advancePage(direction) {
         if (direction && direction === "backward" && this.canAdvanceBackward) {
-          this.goToPage(this.currentPage - 1)
+          this.goToPage(this.getPreviousPage())
         } else if (
           (!direction || (direction && direction !== "backward"))
           && this.canAdvanceForward
         ) {
-          this.goToPage(this.currentPage + 1)
+          this.goToPage(this.getNextPage())
         }
       },
       /**
