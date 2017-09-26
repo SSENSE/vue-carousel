@@ -383,7 +383,7 @@
       goToPage(page) {
         if ((page >= 0) && (page <= this.pageCount)) {
           this.currentPage = page
-          this.$emit("pageChange", this.currentPage)
+          this.$emit("pagechange", this.currentPage)
         }
       },
       /**
