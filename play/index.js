@@ -115,7 +115,7 @@ play("Carousel", module)
   .add("with local event on pageChange", {
     template:
       `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
-        <carousel style="width: 500px;" @pageChange="onPageChange">
+        <carousel style="width: 500px;" @pagechange="onPageChange">
           <slide v-for="slide in slides">
             <img style="width: 100%;" :src="slide" />
           </slide>

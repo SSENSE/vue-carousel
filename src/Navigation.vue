@@ -56,6 +56,7 @@
     },
     methods: {
       triggerPageAdvance(direction) {
+        this.$emit("navigationclick", direction ? "backward" : "forward")
         if (direction) {
           this.$parent.advancePage(direction)
         } else {

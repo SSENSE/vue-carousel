@@ -15,12 +15,14 @@
     </div>
     <pagination
       v-if="paginationEnabled && pageCount > 0"
+      @paginationclick="goToPage"
     ></pagination>
     <navigation
       v-if="navigationEnabled"
       :clickTargetSize="navigationClickTargetSize"
       :nextLabel="navigationNextLabel"
       :prevLabel="navigationPrevLabel"
+      @navigationclick="handleNavigation"
     ></navigation>
   </div>
 </template>
@@ -385,6 +387,9 @@
           this.currentPage = page
           this.$emit("pagechange", this.currentPage)
         }
+      },
+      handleNavigation(direction) {
+        this.$emit("navigationclick", direction)
       },
       /**
        * Trigger actions when mouse is pressed
