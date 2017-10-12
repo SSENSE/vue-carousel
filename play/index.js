@@ -136,4 +136,22 @@ play("Carousel", module)
       },
     }
   })
-
+  .add("with swipe disabled", {
+    template:
+      `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+        <carousel style="width: 500px;" :swipeEnabled='false' :navigationEnabled='true' >
+          <slide v-for="slide in slides">
+            <img style="width: 100%;" :src="slide" />
+          </slide>
+        </carousel>
+      </div>`,
+    components: {
+      Carousel,
+      Slide
+    },
+    data() {
+      return {
+        slides: images
+      }
+    }
+  })

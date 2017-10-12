@@ -39,6 +39,13 @@ Transition speed between slides. Any valid CSS transition easing is accepted.
 * **Type**: `String`
 * **Default**: `ease`
 
+### swipeEnabled
+
+Flag to disable swipe
+
+* **Type**: `Boolean`
+* **Default**: `true`
+
 ### minSwipeDistance
 
 Minimum distance in pixels to swipe before a slide advance is triggered
