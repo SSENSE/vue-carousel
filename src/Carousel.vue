@@ -58,6 +58,13 @@
     ],
     props: {
       /**
+       * Flag to disable swipe
+       */
+      swipeEnabled: {
+        type: Boolean,
+        default: true,
+      },
+      /**
        * Slide transition easing
        * Any valid CSS transition easing accepted
        */
@@ -449,15 +456,16 @@
     mounted() {
       if (!this.$isServer) {
         window.addEventListener("resize", debounce(this.computeCarouselWidth, 16))
-
-        if ("ontouchstart" in window) {
-          this.$el.addEventListener("touchstart", this.handleMousedown)
-          this.$el.addEventListener("touchend", this.handleMouseup)
-          this.$el.addEventListener("touchmove", this.handleMousemove)
-        } else {
-          this.$el.addEventListener("mousedown", this.handleMousedown)
-          this.$el.addEventListener("mouseup", this.handleMouseup)
-          this.$el.addEventListener("mousemove", this.handleMousemove)
+        if (this.swipeEnabled) {
+          if ("ontouchstart" in window) {
+            this.$el.addEventListener("touchstart", this.handleMousedown)
+            this.$el.addEventListener("touchend", this.handleMouseup)
+            this.$el.addEventListener("touchmove", this.handleMousemove)
+          } else {
+            this.$el.addEventListener("mousedown", this.handleMousedown)
+            this.$el.addEventListener("mouseup", this.handleMouseup)
+            this.$el.addEventListener("mousemove", this.handleMousemove)
+          }
         }
       }
 
