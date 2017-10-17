@@ -25,6 +25,13 @@ Flag to pause autoplay on hover
 * **Type**: `Boolean`
 * **Default**: `false`
 
+### loop
+
+Flag to loop carousel and jump to the first / last slide
+
+* **Type**: `Boolean`
+* **Default**: `false`
+
 ### easing
 
 Transition speed between slides. Any valid CSS transition easing is accepted.
