@@ -58,6 +58,13 @@
     ],
     props: {
       /**
+       * Flag to disable swipe
+       */
+      swipe: {
+        type: [Boolean, Array],
+        default: true,
+      },
+      /**
        * Slide transition easing
        * Any valid CSS transition easing accepted
        */
@@ -181,6 +188,31 @@
       },
     },
     computed: {
+      /**
+       * Given a viewport width, enable or disable swipe
+       * @param  {Number}        Current viewport width in pixels
+       * @return {Boolean}       is swipe enabled or not
+       */
+      breakpointSwipeEnabled() {
+        if (!Array.isArray(this.swipe)) {
+          return this.swipe
+        }
+
+        const breakpointArray = this.swipe
+        const width = this.browserWidth
+
+        const breakpoints = breakpointArray.sort((a, b) => ((a[0] > b[0]) ? -1 : 1))
+
+        // Reduce the breakpoints to entries where the width is in range
+        // The breakpoint arrays are formatted as [widthToMatch, boolean]
+        const matches = breakpoints.filter(breakpoint => width >= breakpoint[0])
+
+        // If there is a match, the result should return only
+        // the boolean from the first matching breakpoint
+        const match = matches[0] && matches[0][1]
+
+        return (match === undefined) ? true : matches[0][1]
+      },
       /**
        * Given a viewport width, find the number of slides to display
        * @param  {Number} width Current viewport width in pixels
@@ -428,6 +460,44 @@
         }
       },
       /**
+       * Toogle Swipe
+       */
+      toogleSwipe() {
+        if (this.breakpointSwipeEnabled) {
+          this.addSwipe()
+        } else {
+          this.removeSwipe()
+        }
+      },
+      /**
+       * Enable swipe
+       */
+      addSwipe() {
+        if ("ontouchstart" in window) {
+          this.$el.addEventListener("touchstart", this.handleMousedown)
+          this.$el.addEventListener("touchend", this.handleMouseup)
+          this.$el.addEventListener("touchmove", this.handleMousemove)
+        } else {
+          this.$el.addEventListener("mousedown", this.handleMousedown)
+          this.$el.addEventListener("mouseup", this.handleMouseup)
+          this.$el.addEventListener("mousemove", this.handleMousemove)
+        }
+      },
+      /**
+       * Disable Swipe
+       */
+      removeSwipe() {
+        if ("ontouchstart" in window) {
+          this.$el.removeEventListener("touchstart", this.handleMousedown)
+          this.$el.removeEventListener("touchend", this.handleMouseup)
+          this.$el.removeEventListener("touchmove", this.handleMousemove)
+        } else {
+          this.$el.removeEventListener("mousedown", this.handleMousedown)
+          this.$el.removeEventListener("mouseup", this.handleMouseup)
+          this.$el.removeEventListener("mousemove", this.handleMousemove)
+        }
+      },
+      /**
        * Re-compute the width of the carousel and its slides
        */
       computeCarouselWidth() {
@@ -435,6 +505,7 @@
         this.getBrowserWidth()
         this.getCarouselWidth()
         this.setCurrentPageInBounds()
+        this.toogleSwipe()
       },
       /**
        * When the current page exceeds the carousel bounds, reset it to the maximum allowed
@@ -449,16 +520,6 @@
     mounted() {
       if (!this.$isServer) {
         window.addEventListener("resize", debounce(this.computeCarouselWidth, 16))
-
-        if ("ontouchstart" in window) {
-          this.$el.addEventListener("touchstart", this.handleMousedown)
-          this.$el.addEventListener("touchend", this.handleMouseup)
-          this.$el.addEventListener("touchmove", this.handleMousemove)
-        } else {
-          this.$el.addEventListener("mousedown", this.handleMousedown)
-          this.$el.addEventListener("mouseup", this.handleMouseup)
-          this.$el.addEventListener("mousemove", this.handleMousemove)
-        }
       }
 
       this.attachMutationObserver()
@@ -469,8 +530,12 @@
         this.detachMutationObserver()
         window.removeEventListener("resize", this.getBrowserWidth)
         if ("ontouchstart" in window) {
+          this.$el.removeEventListener("touchstart", this.handleMousedown)
+          this.$el.removeEventListener("touchend", this.handleMouseup)
           this.$el.removeEventListener("touchmove", this.handleMousemove)
         } else {
+          this.$el.removeEventListener("mousedown", this.handleMousedown)
+          this.$el.removeEventListener("mouseup", this.handleMouseup)
           this.$el.removeEventListener("mousemove", this.handleMousemove)
         }
       }
