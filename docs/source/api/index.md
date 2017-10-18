@@ -39,6 +39,24 @@ Transition speed between slides. Any valid CSS transition easing is accepted.
 * **Type**: `String`
 * **Default**: `ease`
 
+### swipe
+
+Flag to disable swipe.
+
+This can be true, false or an array of arrays. Each array is formatted as [x, y] where x is the browser width, and y is true or false.
+
+* **Type**: `Boolean | Array`
+* **Default**: `true`
+* **Usage**:
+
+``` html
+<carousel :swipe="true">
+<carousel :swipe="false">
+<carousel :swipe="[[768, false], [1024, true]]">
+```
+
+A mobile-first strategy is used to determine the matching breakpoint. If the window size is greater than or equal to 768px, then swipe is disabled. If the width is greater than or equal to 1024, then swipe is enabled.
+
 ### minSwipeDistance
 
 Minimum distance in pixels to swipe before a slide advance is triggered
