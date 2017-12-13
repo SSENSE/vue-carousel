@@ -290,7 +290,6 @@
       transitionStyle() {
         return `${this.speed / 1000}s ${this.easing} transform`
       },
-
       padding() {
         const padding = this.spacePadding
         return (padding > 0) ? padding : false
