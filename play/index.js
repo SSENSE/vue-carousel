@@ -2,8 +2,8 @@
 
 import Vue from "vue"
 import { play } from "vue-play"
-import Carousel from "../src/Carousel.vue"
-import Slide from "../src/Slide.vue"
+import Carousel from "../../../Desktop/vue-carousel/src/Carousel.vue"
+import Slide from "../../../Desktop/vue-carousel/src/Slide.vue"
 
 const containerWidth = 500;
 const images = [
@@ -136,4 +136,8 @@ play("Carousel", module)
       },
     }
   })
+    .add("with spacePadding 100px", h => createContainer(
+        h, containerWidth, [h(Carousel, { props: { spacePadding: 100, perPage: 1} }, generateSlideImages(h))]
+        )
+    )
 
