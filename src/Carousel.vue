@@ -142,6 +142,24 @@
         default: 10,
       },
       /**
+       * Pagination in side or out side of carousel
+       */
+      paginationInSide: {
+        type: Boolean,
+        default: false
+      },
+      /**
+       * Set pagination Direction
+       * Accept "top","right","left","bottom"
+       */
+      paginationInSideDirection: {
+        type: String,
+        default: "bottom",
+        validator(direction) {
+          return ["top", "right", "left", "bottom"].includes(direction)
+        }
+      },
+      /**
        * Maximum number of slides displayed on each page
        */
       perPage: {
