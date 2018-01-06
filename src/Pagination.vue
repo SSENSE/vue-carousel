@@ -1,5 +1,7 @@
 <template>
-  <div v-show="parentContainer.pageCount > 1" class="VueCarousel-pagination">
+  <div v-show="parentContainer.pageCount > 1"
+       :class="{'VueCarousel-pagination':true,'in-side':parentContainer.paginationInSide}"
+       :style="paginationPosition">
     <div class="VueCarousel-dot-container">
       <div
         class="VueCarousel-dot"
@@ -7,7 +9,7 @@
         v-for="(page, index) in parentContainer.pageCount"
         v-on:click="parentContainer.goToPage(index)"
         :style="`
-          margin-top: ${parentContainer.paginationPadding * 2}px;
+          margin: ${parentContainer.paginationPadding * 2}px 0;
           padding: ${parentContainer.paginationPadding}px;
         `"
       >
@@ -30,6 +32,46 @@
     data() {
       return {
         parentContainer: this.$parent,
+        transformOrigin: "",
+      }
+    },
+    computed: {
+      paginationPosition () {
+        if (this.parentContainer.paginationInSide) {
+          const dotSize = ((2 * this.parentContainer.paginationPadding) +
+            this.parentContainer.paginationSize)
+          const dotContainerHeight = ((6 * this.parentContainer.paginationPadding) +
+            this.parentContainer.paginationSize)
+          const dotContainerWidth = dotSize * this.parentContainer.pageCount
+          if (this.parentContainer.pageCount % 2 === 1) {
+            this.transformOrigin = `calc(50% + ${((this.parentContainer.pageCount - 1) / 2) * dotSize}px) center 0`
+          } else {
+            this.transformOrigin = `calc(50% + ${(((this.parentContainer.pageCount / 2) - 1) * dotSize) + (dotSize / 2)}px) center 0`
+          }
+          switch (this.parentContainer.paginationInSideDirection) {
+            case "bottom":
+              return {bottom: `-${this.parentContainer.paginationPadding * 2}px`}
+            case "left":
+              return {
+                "transform-origin": this.transformOrigin,
+                transform: "rotate(90deg)",
+                left: `calc(-50% + ${dotContainerHeight / 2}px - ${dotContainerWidth / 2}px + ${this.parentContainer.paginationPadding + this.parentContainer.paginationSize}px)`,
+                top: `calc(50% - ${dotContainerHeight / 2}px + ${dotContainerWidth / 2}px - ${this.parentContainer.paginationPadding + this.parentContainer.paginationSize}px)`
+              }
+            case "right":
+              return {
+                "transform-origin": this.transformOrigin,
+                transform: "rotate(90deg)",
+                right: `calc(-50% - ${dotContainerHeight / 2}px + ${dotContainerWidth / 2}px - ${this.parentContainer.paginationPadding + this.parentContainer.paginationSize}px + ${dotContainerHeight}px)`,
+                top: `calc(50% - ${dotContainerHeight / 2}px + ${dotContainerWidth / 2}px - ${this.parentContainer.paginationPadding + this.parentContainer.paginationSize}px)`
+              }
+            case "top":
+              return {top: `-${this.parentContainer.paginationPadding * 2}px`}
+            default:
+              break
+          }
+        }
+        return {}
       }
     },
   }
@@ -54,5 +96,9 @@
 
   .VueCarousel-dot-inner {
     border-radius: 100%;
+  }
+
+  .VueCarousel-pagination.in-side {
+    position: absolute;
   }
 </style>

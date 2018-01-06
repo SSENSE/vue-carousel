@@ -136,4 +136,45 @@ play("Carousel", module)
       },
     }
   })
-
+  .add("pagination position",{
+    template:
+      `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+        <carousel style="width: 500px;" :paginationInSide="true" :paginationInSideDirection="direction">
+          <slide>
+            <img style="width: 100%;" src="https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176006_1.jpg" />
+          </slide>
+          <slide>
+            <img style="width: 100%;" src="https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176006_1.jpg" />
+          </slide>
+          <slide>
+            <img style="width: 100%;" src="https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176006_1.jpg" />
+          </slide>
+          <slide>
+            <img style="width: 100%;" src="https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176006_1.jpg" />
+          </slide>
+          <slide>
+            <img style="width: 100%;" src="https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176006_1.jpg" />
+          </slide>
+          <slide>
+            <img style="width: 100%;" src="https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176006_1.jpg" />
+          </slide>
+        </carousel>
+        <div style="float: left">
+            <select v-model="direction">
+                <option value="top">top</option>
+                <option value="left">left</option>
+                <option value="right">right</option>
+                <option value="bottom">bottom</option>
+            </select>
+        </div>
+      </div>`,
+    components: {
+      Carousel,
+      Slide
+    },
+    data() {
+      return {
+        direction: 'right'
+      }
+    }
+  })
