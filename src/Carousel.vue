@@ -382,7 +382,7 @@
        */
       goToPage(page) {
         if ((page >= 0) && (page <= this.pageCount)) {
-          this.currentPage = page
+          this.currentPage = Math.ceil(page)
           this.$emit("pageChange", this.currentPage)
         }
       },
