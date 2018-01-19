@@ -136,4 +136,8 @@ play("Carousel", module)
       },
     }
   })
+    .add("with spacePadding 100px", h => createContainer(
+        h, containerWidth, [h(Carousel, { props: { spacePadding: 100, perPage: 1} }, generateSlideImages(h))]
+        )
+    )
 
