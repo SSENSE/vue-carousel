@@ -7,7 +7,9 @@
           transform: translateX(${currentOffset}px);
           transition: ${transitionStyle};
           flex-basis: ${slideWidth}px;
-          visibility: ${slideWidth ? 'visible' : 'hidden'}
+          visibility: ${slideWidth ? 'visible' : 'hidden'};
+          padding-left: ${padding}px;
+          padding-right: ${padding}px;
         `"
       >
         <slot></slot>
@@ -50,7 +52,7 @@
         dragOffset: 0,
         dragStartX: 0,
         mousedown: false,
-        slideCount: 0
+        slideCount: 0,
       }
     },
     mixins: [
@@ -186,6 +188,13 @@
         type: Number,
         default: 0,
       },
+       /*
+       *  Stage padding option adds left and right padding style (in pixels) onto VueCarousel-inner.
+       */
+      spacePadding: {
+        type: Number,
+        default: 0,
+      }
     },
 
     watch: {
@@ -287,13 +296,17 @@
        * @return {Number} Slide width
        */
       slideWidth() {
-        const width = this.carouselWidth
+        const width = this.carouselWidth - (this.spacePadding * 2)
         const perPage = this.currentPerPage
 
         return width / perPage
       },
       transitionStyle() {
         return `${this.speed / 1000}s ${this.easing} transform`
+      },
+      padding() {
+        const padding = this.spacePadding
+        return (padding > 0) ? padding : false
       },
     },
     methods: {
