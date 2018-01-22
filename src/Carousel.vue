@@ -182,6 +182,13 @@
         default: false,
       },
       /**
+       * Listen for an external navigation request using this prop.
+       */
+      navigateTo: {
+        type: Number,
+        default: 0,
+      },
+       /*
        *  Stage padding option adds left and right padding style (in pixels) onto VueCarousel-inner.
        */
       spacePadding: {
@@ -189,6 +196,13 @@
         default: 0,
       }
     },
+
+    watch: {
+      navigateTo: function(val) {
+        if(val != this.currentPage) this.goToPage(val);
+      }
+    },
+
     computed: {
       /**
        * Given a viewport width, find the number of slides to display

@@ -112,6 +112,13 @@ Text content of the navigation prev button
 * **Type**: `String`
 * **Default**: `◀`
 
+### navigateTo
+
+Allow carousel parent to programatically navigate to a specific slide (zero based index). Recommend using parent data attribute pageNo and carousel pageChange event to keep pageNo in sync with carousel.currentPage to handle subsequent navigation.
+
+* **Type**: `Number`
+* **Default**: 0
+
 ## Pagination
 
 Configure the pagination component (clickable page dots)
