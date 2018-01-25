@@ -55,6 +55,10 @@ play("Carousel", module)
       h, containerWidth, [h(Carousel, {}, generateSlideImages(h))]
     )
   )
+  .add("3 per page", h => createContainer(
+      h, containerWidth, [h(Carousel, { props: { perPage: 3 } }, generateSlideImages(h))]
+    )
+  )
   .add("scroll per page", h => createContainer(
       h, containerWidth, [h(Carousel, { props: { scrollPerPage: true } }, generateSlideImages(h))]
     )
