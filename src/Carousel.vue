@@ -7,7 +7,9 @@
           transform: translate3d(${currentOffset}px, 0, 0);
           transition: ${!dragging ? transitionStyle : 'none'};
           flex-basis: ${slideWidth}px;
-          visibility: ${slideWidth ? 'visible' : 'hidden'}
+          visibility: ${slideWidth ? 'visible' : 'hidden'};
+          padding-left: ${padding}px;
+          padding-right: ${padding}px;
         `"
       >
         <slot></slot>
@@ -199,7 +201,28 @@
         type: Boolean,
         default: false,
       },
+      /**
+       * Listen for an external navigation request using this prop.
+       */
+      navigateTo: {
+        type: Number,
+        default: 0,
+      },
+       /*
+       *  Stage padding option adds left and right padding style (in pixels) onto VueCarousel-inner.
+       */
+      spacePadding: {
+        type: Number,
+        default: 0,
+      }
     },
+
+    watch: {
+      navigateTo: function(val) {
+        if(val != this.currentPage) this.goToPage(val);
+      }
+    },
+
     computed: {
       /**
        * Given a viewport width, find the number of slides to display
@@ -273,13 +296,17 @@
        * @return {Number} Slide width
        */
       slideWidth() {
-        const width = this.carouselWidth
+        const width = this.carouselWidth - (this.spacePadding * 2)
         const perPage = this.currentPerPage
 
         return width / perPage
       },
       transitionStyle() {
         return `${this.speed / 1000}s ${this.easing} transform`
+      },
+      padding() {
+        const padding = this.spacePadding
+        return (padding > 0) ? padding : false
       },
     },
     methods: {
