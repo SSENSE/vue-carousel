@@ -5,7 +5,7 @@
         class="VueCarousel-dot"
         v-bind:class="{ 'VueCarousel-dot--active': (index === parentContainer.currentPage) }"
         v-for="(page, index) in parentContainer.pageCount"
-        v-on:click="parentContainer.goToPage(index)"
+        v-on:click="goToPage(index)"
         :style="`
           margin-top: ${parentContainer.paginationPadding * 2}px;
           padding: ${parentContainer.paginationPadding}px;
@@ -32,6 +32,11 @@
         parentContainer: this.$parent,
       }
     },
+    methods: {
+      goToPage(index) {
+        this.$emit("paginationclick", index)
+      }
+    }
   }
 </script>
 

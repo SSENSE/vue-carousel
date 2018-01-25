@@ -17,12 +17,14 @@
     </div>
     <pagination
       v-if="paginationEnabled && pageCount > 0"
+      @paginationclick="goToPage($event, 'pagination')"
     ></pagination>
     <navigation
       v-if="navigationEnabled"
       :clickTargetSize="navigationClickTargetSize"
       :nextLabel="navigationNextLabel"
       :prevLabel="navigationPrevLabel"
+      @navigationclick="handleNavigation"
     ></navigation>
   </div>
 </template>
@@ -334,12 +336,12 @@
        */
       advancePage(direction) {
         if (direction && direction === "backward" && this.canAdvanceBackward) {
-          this.goToPage(this.getPreviousPage())
+          this.goToPage(this.getPreviousPage(), 'navigation')
         } else if (
           (!direction || (direction && direction !== "backward"))
           && this.canAdvanceForward
         ) {
-          this.goToPage(this.getNextPage())
+          this.goToPage(this.getNextPage(), 'navigation')
         }
       },
       /**
@@ -406,13 +408,17 @@
        * Set the current page to a specific value
        * This function will only apply the change if the value is within the carousel bounds
        * @param  {Number} page The value of the new page number
+       * @param {String} componentName Either navigation or pagination
        */
-      goToPage(page) {
+      goToPage(page, componentName) {
         if ((page >= 0) && (page <= this.pageCount)) {
           this.offset = Math.min(this.slideWidth * this.currentPerPage * page, this.maxOffset)
           this.currentPage = page
-          this.$emit("pageChange", this.currentPage)
+          this.$emit("pagechange", { page: this.currentPage, componentName })
         }
+      },
+      handleNavigation(direction) {
+        this.$emit("navigationclick", direction)
       },
       /**
        * Trigger actions when mouse is pressed
