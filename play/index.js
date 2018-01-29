@@ -148,9 +148,10 @@ play("Carousel", module)
             <img style="width: 100%;" src="https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176006_1.jpg" />
           </slide>
         </carousel>
-        <div style="float: left">
-          <button v-on:click="gotoSlide(1)">Goto page 1</button>
-          <button v-on:click="gotoSlide(2)">Goto page 2</button>
+        <div style="float: left; z-index: 1000">
+          <button style="position: absolute; bottom: 20px; right: 250px" v-on:click="gotoSlide(0)">Goto page 1</button>
+          <button style="position: absolute; bottom: 20px; right: 150px" v-on:click="gotoSlide(1)">Goto page 2</button>
+          <button style="position: absolute; bottom: 20px; right: 50px" v-on:click="gotoSlide(2)">Goto page 3</button>
         </div>
       </div>`,
     components: {
