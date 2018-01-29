@@ -4,6 +4,7 @@ import Vue from "vue"
 import { play } from "vue-play"
 import Carousel from "../src/Carousel.vue"
 import Slide from "../src/Slide.vue"
+import Thumb from "../src/Thumb.vue"
 
 const containerWidth = 500;
 const images = [
@@ -135,5 +136,30 @@ play("Carousel", module)
         this.$log(`page changed to ${currentPage}`)
       },
     }
+  })
+  .add("with thumbnails", {
+    template:
+      `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+        <carousel style="width: 500px;" :thumbnailsEnabled="true">
+          <slide v-for="slide in slides">
+            <img style="width: 100%;" :src="slide" />
+          </slide>
+          <div slot="thumbnails">
+            <thumb v-for="slide in slides">
+              <img style="width: 100%;" :src="slide" />
+            </thumb>
+          </div>
+        </carousel>
+      </div>`,
+    components: {
+      Carousel,
+      Slide,
+      Thumb,
+    },
+    data() {
+      return {
+        slides: images
+      }
+    },
   })
 
