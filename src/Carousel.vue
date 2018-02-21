@@ -12,6 +12,9 @@
       >
         <slot></slot>
       </div>
+      <div v-if="thumbnailsEnabled" class="VueCarousel-thumbs">
+        <slot name="thumbnails"></slot>
+      </div>
     </div>
     <pagination
       v-if="paginationEnabled && pageCount > 0"
@@ -176,6 +179,13 @@
        * Flag to make the carousel loop around when it reaches the end
        */
       loop: {
+        type: Boolean,
+        default: false,
+      },
+      /**
+       * Flag to render the thumbnails slot
+       */
+      thumbnailsEnabled: {
         type: Boolean,
         default: false,
       },
@@ -493,5 +503,9 @@
   display: flex;
   flex-direction: row;
   backface-visibility: hidden;
+}
+.VueCarousel-thumbs div{
+  display: flex;
+  flex-wrap:wrap;
 }
 </style>
