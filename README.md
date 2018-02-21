@@ -19,7 +19,13 @@
 ## Installation
 
 ``` bash
-npm install -S vue-carousel
+npm install vue-carousel
+```
+
+or if you prefer yarn
+
+``` bash
+yarn add vue-carousel
 ```
 
 ## Usage
@@ -75,8 +81,15 @@ A sandboxed dev environment is provided by [vue-play](https://github.com/vue-pla
 To begin development, run:
 
 ``` bash
-npm install
+npm install 
 npm run dev
+```
+
+or, if you prefer yarn
+
+``` bash
+yarn install 
+yarn dev
 ```
 
 then navigate to `http://localhost:5000`
