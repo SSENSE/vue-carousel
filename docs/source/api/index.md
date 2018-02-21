@@ -39,6 +39,13 @@ Transition speed between slides. Any valid CSS transition easing is accepted.
 * **Type**: `String`
 * **Default**: `ease`
 
+### loop
+
+Flag to make the carousel loop around and return to the first page when it reaches the end.
+
+* **Type**: `Boolean`
+* **Default**: `false`
+
 ### minSwipeDistance
 
 Minimum distance in pixels to swipe before a slide advance is triggered
@@ -155,3 +162,11 @@ The size of each pagination dot. Pixel values are accepted.
 
 * **Type**: `Number`
 * **Default**: `10`
+
+### spacePadding
+
+Stage padding option adds left and right padding style (in pixels) onto VueCarousel-inner.
+
+* **Type**: `Number`
+* **Default**: `0`
+
