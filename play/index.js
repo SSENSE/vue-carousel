@@ -147,7 +147,7 @@ play("Carousel", module)
           <slide v-for="slide in slides" :key="slide.src">
             <img style="width: 100%;" src="https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176006_1.jpg" />
           </slide>
-        </carousel>
+                    </carousel>
         <div style="float: left; z-index: 1000">
           <button style="position: absolute; bottom: 20px; right: 250px" v-on:click="gotoSlide(0)">Goto page 1</button>
           <button style="position: absolute; bottom: 20px; right: 150px" v-on:click="gotoSlide(1)">Goto page 2</button>
