@@ -301,134 +301,138 @@ export default {
       const width = this.carouselWidth - this.spacePadding * 2;
       const perPage = this.currentPerPage;
 
-        return width / perPage
-      },
-      transitionStyle() {
-        return `${this.speed / 1000}s ${this.easing} transform`
-      },
-      padding() {
-        const padding = this.spacePadding
-        return (padding > 0) ? padding : false
-      },
+      return width / perPage;
     },
-    methods: {
-       /**
-       * @return {Number} The index of the next page
-       * */
-      getNextPage() {
-        if (this.currentPage < (this.pageCount - 1)) {
-          return this.currentPage + 1
-        }
-        return this.loop ? 0 : this.currentPage
-      },
-      /**
-       * @return {Number} The index of the previous page
-       * */
-      getPreviousPage() {
-        if (this.currentPage > 0) {
-          return this.currentPage - 1
-        }
-        return this.loop ? this.pageCount - 1 : this.currentPage
-      },
-      /**
-       * Increase/decrease the current page value
-       * @param  {String} direction (Optional) The direction to advance
-       */
-      advancePage(direction) {
-        if (direction && direction === "backward" && this.canAdvanceBackward) {
-          this.goToPage(this.getPreviousPage(), 'navigation')
-        } else if (
-          (!direction || (direction && direction !== "backward"))
-          && this.canAdvanceForward
-        ) {
-          this.goToPage(this.getNextPage(), 'navigation')
-        }
-      },
-      /**
-       * A mutation observer is used to detect changes to the containing node
-       * in order to keep the magnet container in sync with the height its reference node.
-       */
-      attachMutationObserver() {
-        const MutationObserver = window.MutationObserver
-         || window.WebKitMutationObserver
-         || window.MozMutationObserver
+    transitionStyle() {
+      return `${this.speed / 1000}s ${this.easing} transform`;
+    },
+    padding() {
+      const padding = this.spacePadding;
+      return padding > 0 ? padding : false;
+    }
+  },
+  methods: {
+    /**
+     * @return {Number} The index of the next page
+     * */
+    getNextPage() {
+      if (this.currentPage < this.pageCount - 1) {
+        return this.currentPage + 1;
+      }
+      return this.loop ? 0 : this.currentPage;
+    },
+    /**
+     * @return {Number} The index of the previous page
+     * */
+    getPreviousPage() {
+      if (this.currentPage > 0) {
+        return this.currentPage - 1;
+      }
+      return this.loop ? this.pageCount - 1 : this.currentPage;
+    },
+    /**
+     * Increase/decrease the current page value
+     * @param  {String} direction (Optional) The direction to advance
+     */
+    advancePage(direction) {
+      if (direction && direction === "backward" && this.canAdvanceBackward) {
+        this.goToPage(this.getPreviousPage(), "navigation");
+      } else if (
+        (!direction || (direction && direction !== "backward")) &&
+        this.canAdvanceForward
+      ) {
+        this.goToPage(this.getNextPage(), "navigation");
+      }
+    },
+    /**
+     * A mutation observer is used to detect changes to the containing node
+     * in order to keep the magnet container in sync with the height its reference node.
+     */
+    attachMutationObserver() {
+      const MutationObserver =
+        window.MutationObserver ||
+        window.WebKitMutationObserver ||
+        window.MozMutationObserver;
 
-        if (MutationObserver) {
-          const config = { attributes: true, data: true }
-          this.mutationObserver = new MutationObserver(() => {
-            this.$nextTick(() => {
-              this.computeCarouselWidth()
-            })
-          })
-          if (this.$parent.$el) {
-            this.mutationObserver.observe(this.$parent.$el, config)
-          }
+      if (MutationObserver) {
+        const config = { attributes: true, data: true };
+        this.mutationObserver = new MutationObserver(() => {
+          this.$nextTick(() => {
+            this.computeCarouselWidth();
+          });
+        });
+        if (this.$parent.$el) {
+          this.mutationObserver.observe(this.$parent.$el, config);
         }
-      },
-      /**
-       * Stop listening to mutation changes
-       */
-      detachMutationObserver() {
-        if (this.mutationObserver) {
-          this.mutationObserver.disconnect()
-        }
-      },
-      /**
-       * Get the current browser viewport width
-       * @return {Number} Browser"s width in pixels
-       */
-      getBrowserWidth() {
-        this.browserWidth = window.innerWidth
-        return this.browserWidth
-      },
-      /**
-       * Get the width of the carousel DOM element
-       * @return {Number} Width of the carousel in pixels
-       */
-      getCarouselWidth() {
-        this.carouselWidth = (this.$el && this.$el.clientWidth) || 0 // Assign globally
-        return this.carouselWidth
-      },
-      /**
-       * Filter slot contents to slide instances and return length
-       * @return {Number} The number of slides
-       */
-      getSlideCount() {
-        this.slideCount = (
-             this.$slots
-          && this.$slots.default
-          && this.$slots.default.filter(
-            slot =>
-                 slot.tag
-              && slot.tag.indexOf("slide") > -1
-          ).length
-        ) || 0
-      },
-      /**
-       * Set the current page to a specific value
-       * This function will only apply the change if the value is within the carousel bounds
-       * @param  {Number} page The value of the new page number
-       * @param {String} componentName Either navigation or pagination
-       */
-      goToPage(page, componentName) {
-        if ((page >= 0) && (page <= this.pageCount)) {
-          this.offset = Math.min(this.slideWidth * this.currentPerPage * page, this.maxOffset)
-          this.currentPage = page
-          this.$emit("pagechange", { page: this.currentPage, componentName })
-        }
-      },
-      handleNavigation(direction) {
-        this.$emit("navigationclick", direction)
-      },
-      /**
-       * Trigger actions when mouse is pressed
-       * @param  {Object} e The event object
-       */
-      /* istanbul ignore next */
-      onStart(e) {
-        document.addEventListener(
-          this.isTouch ? "touchend" : "mouseup",
-          this.onEnd, true)
+      }
+    },
+    /**
+     * Stop listening to mutation changes
+     */
+    detachMutationObserver() {
+      if (this.mutationObserver) {
+        this.mutationObserver.disconnect();
+      }
+    },
+    /**
+     * Get the current browser viewport width
+     * @return {Number} Browser"s width in pixels
+     */
+    getBrowserWidth() {
+      this.browserWidth = window.innerWidth;
+      return this.browserWidth;
+    },
+    /**
+     * Get the width of the carousel DOM element
+     * @return {Number} Width of the carousel in pixels
+     */
+    getCarouselWidth() {
+      this.carouselWidth = (this.$el && this.$el.clientWidth) || 0; // Assign globally
+      return this.carouselWidth;
+    },
+    /**
+     * Filter slot contents to slide instances and return length
+     * @return {Number} The number of slides
+     */
+    getSlideCount() {
+      this.slideCount =
+        (this.$slots &&
+          this.$slots.default &&
+          this.$slots.default.filter(
+            slot => slot.tag && slot.tag.indexOf("slide") > -1
+          ).length) ||
+        0;
+    },
+    /**
+     * Set the current page to a specific value
+     * This function will only apply the change if the value is within the carousel bounds
+     * @param  {Number} page The value of the new page number
+     * @param {String} componentName Either navigation or pagination
+     */
+    goToPage(page, componentName) {
+      if (page >= 0 && page <= this.pageCount) {
+        this.offset = Math.min(
+          this.slideWidth * this.currentPerPage * page,
+          this.maxOffset
+        );
+        this.currentPage = page;
+        this.$emit("pagechange", { page: this.currentPage, componentName });
+      }
+    },
+    handleNavigation(direction) {
+      this.$emit("navigationclick", direction);
+    },
+    /**
+     * Trigger actions when mouse is pressed
+     * @param  {Object} e The event object
+     */
+    /* istanbul ignore next */
+    onStart(e) {
+      document.addEventListener(
+        this.isTouch ? "touchend" : "mouseup",
+        this.onEnd,
+        true
+      );
       if (MutationObserver) {
         const config = { attributes: true, data: true };
         this.mutationObserver = new MutationObserver(() => {

@@ -28,22 +28,14 @@
 export default {
   name: "pagination",
   data() {
-      return {
-          parentContainer: this.$parent
-      };
-      export default {
-          name: "pagination",
-          data() {
-              return {
-                  parentContainer: this.$parent,
-              }
-          },
-          methods: {
-              goToPage(index) {
-                  this.$emit("paginationclick", index)
-              }
-          }
-      }
+    return {
+      parentContainer: this.$parent
+    };
+  },
+  methods: {
+    goToPage(index) {
+      this.$emit("paginationclick", index);
+    }
   }
 };
 </script>
