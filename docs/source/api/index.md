@@ -23,7 +23,7 @@ Time elapsed before advancing slide
 Flag to pause autoplay on hover
 
 * **Type**: `Boolean`
-* **Default**: `false`
+* **Default**: `true`
 
 ### loop
 
