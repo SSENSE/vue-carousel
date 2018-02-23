@@ -1,6 +1,6 @@
 <template>
   <div class="VueCarousel">
-    <div ref="VueCarousel-wrapper">
+    <div class="VueCarousel-wrapper" ref="VueCarousel-wrapper">
       <div
         class="VueCarousel-inner"
         v-bind:style="`
