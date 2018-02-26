@@ -1,5 +1,5 @@
 exports[`Navigation should mount successfully 1`] = `
-"div
+".VueCarousel-wrapper
   .VueCarousel-inner(style=\'visibility: hidden;\')
     .VueCarousel-slide
     .VueCarousel-slide
@@ -19,7 +19,7 @@ exports[`Navigation should mount successfully 1`] = `
 `;
 
 exports[`Navigation should render a next button 1`] = `
-"div
+".VueCarousel-wrapper
   .VueCarousel-inner(style=\'visibility: hidden;\')
     .VueCarousel-slide
     .VueCarousel-slide
@@ -39,7 +39,7 @@ exports[`Navigation should render a next button 1`] = `
 `;
 
 exports[`Navigation should render a prev button 1`] = `
-"div
+".VueCarousel-wrapper
   .VueCarousel-inner(style=\'visibility: hidden;\')
     .VueCarousel-slide
     .VueCarousel-slide
@@ -59,7 +59,7 @@ exports[`Navigation should render a prev button 1`] = `
 `;
 
 exports[`Navigation should trigger page advance backward when prev is clicked 1`] = `
-"div
+".VueCarousel-wrapper
   .VueCarousel-inner(style=\'visibility: hidden;\')
     .VueCarousel-slide
     .VueCarousel-slide
@@ -79,7 +79,7 @@ exports[`Navigation should trigger page advance backward when prev is clicked 1`
 `;
 
 exports[`Navigation should trigger page advance when next is clicked 1`] = `
-"div
+".VueCarousel-wrapper
   .VueCarousel-inner(style=\'visibility: hidden;\')
     .VueCarousel-slide
     .VueCarousel-slide

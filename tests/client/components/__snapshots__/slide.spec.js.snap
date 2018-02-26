@@ -1,5 +1,5 @@
 exports[`Slide should mount successfully 1`] = `
-"div
+".VueCarousel-wrapper
   .VueCarousel-inner(style=\'visibility: hidden;\')
     .VueCarousel-slide
 |  
