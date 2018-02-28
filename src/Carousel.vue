@@ -659,7 +659,7 @@ export default {
     this.attachMutationObserver();
     this.computeCarouselWidth();
   },
-  destroyed() {
+  beforeDestroy() {
     if (!this.$isServer) {
       this.detachMutationObserver();
       window.removeEventListener("resize", this.getBrowserWidth);
