@@ -419,6 +419,11 @@ export default {
         this.$emit("pagechange", { page: this.currentPage, componentName });
       }
     },
+    /**
+     * Listen events from Navigation
+     * @param {"backward"} [direction]
+     * @return {void}
+     */
     handleNavigation(direction) {
       this.advancePage(direction);
     },
