@@ -1,26 +1,33 @@
 <template>
   <div v-show="parentContainer.pageCount > 1" class="VueCarousel-pagination">
-    <div class="VueCarousel-dot-container">
-      <div
+    <ul class="VueCarousel-dot-container" role="tablist">
+      <li
         class="VueCarousel-dot"
-        v-bind:class="{ 'VueCarousel-dot--active': (index === parentContainer.currentPage) }"
+        aria-hidden="false"
+        role="presentation"
+        :aria-selected="isCurrentDot(index) ? 'true' : 'false'"
+        v-bind:class="{ 'VueCarousel-dot--active': isCurrentDot(index) }"
         v-for="(page, index) in parentContainer.pageCount"
+        :key="index"
         v-on:click="goToPage(index)"
         :style="`
           margin-top: ${parentContainer.paginationPadding * 2}px;
           padding: ${parentContainer.paginationPadding}px;
         `"
       >
-        <div
-          class="VueCarousel-dot-inner"
+        <button
+          type="button"
+          role="button"
+          class="VueCarousel-dot-button"
+          :tabindex="index"
           :style="`
             width: ${parentContainer.paginationSize}px;
             height: ${parentContainer.paginationSize}px;
-            background: ${(index === parentContainer.currentPage) ? parentContainer.paginationActiveColor : parentContainer.paginationColor};
+            background: ${isCurrentDot(index) ? parentContainer.paginationActiveColor : parentContainer.paginationColor};
           `"
-        ></div>
-      </div>
-    </div>
+        ></button>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -29,12 +36,33 @@ export default {
   name: "pagination",
   data() {
     return {
+      /**
+       * link on Carousel
+       */
       parentContainer: this.$parent
     };
   },
   methods: {
+    /**
+     * Change page by index
+     * @param {number} index
+     * return {void}
+     */
     goToPage(index) {
+      /**
+       * @event paginationclick
+       * @type {number}
+       */
       this.$emit("paginationclick", index);
+    },
+
+    /**
+     * Check on current dot
+     * @param {number} index - dot index
+     * @return {boolean}
+     */
+    isCurrentDot(index) {
+      return index === this.parentContainer.currentPage;
     }
   }
 };
@@ -43,21 +71,31 @@ export default {
 <style scoped>
 .VueCarousel-pagination {
   width: 100%;
-  float: left;
   text-align: center;
 }
 
 .VueCarousel-dot-container {
   display: inline-block;
   margin: 0 auto;
+  padding: 0;
 }
 
 .VueCarousel-dot {
-  float: left;
+  display: inline-block;
   cursor: pointer;
 }
 
-.VueCarousel-dot-inner {
+.VueCarousel-dot-button {
+  appearance: none;
+  border: none;
+  background-color: transparent;
+  padding: 0;
   border-radius: 100%;
+  outline: none;
+  cursor: pointer;
+}
+
+.VueCarousel-dot-button:focus {
+  outline: 1px solid lightblue;
 }
 </style>
