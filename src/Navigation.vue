@@ -20,6 +20,9 @@ export default {
   name: "navigation",
   data() {
     return {
+      /**
+       * link on Carousel
+       */
       parentContainer: this.$parent
     };
   },
@@ -47,14 +50,26 @@ export default {
     }
   },
   computed: {
+    /**
+     * @return {Boolean} Can the slider move forward?
+     */
     canAdvanceForward() {
       return this.parentContainer.canAdvanceForward || false;
     },
+    /**
+     * @return {Boolean} Can the slider move backward?
+     */
     canAdvanceBackward() {
       return this.parentContainer.canAdvanceBackward || false;
     }
   },
   methods: {
+    /**
+     * Trigger page change on +/- 1 depending on the direction
+     * @param {"backward"} [direction]
+     * @emits {navigationclick}
+     * @return {void}
+     */
     triggerPageAdvance(direction) {
       this.$emit("navigationclick", direction);
     }
