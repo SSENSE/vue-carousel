@@ -68,7 +68,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .VueCarousel-pagination {
   width: 100%;
   text-align: center;
