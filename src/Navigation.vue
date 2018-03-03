@@ -56,11 +56,7 @@ export default {
   },
   methods: {
     triggerPageAdvance(direction) {
-      if (direction) {
-        this.$parent.advancePage(direction);
-      } else {
-        this.$parent.advancePage();
-      }
+      this.$emit("navigationclick", direction);
     }
   }
 };
