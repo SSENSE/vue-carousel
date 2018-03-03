@@ -420,7 +420,7 @@ export default {
       }
     },
     handleNavigation(direction) {
-      this.$emit("navigationclick", direction);
+      this.advancePage(direction);
     },
     /**
      * Trigger actions when mouse is pressed
