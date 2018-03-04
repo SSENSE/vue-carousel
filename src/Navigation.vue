@@ -86,7 +86,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .VueCarousel-navigation-button {
   position: absolute;
   top: 50%;
