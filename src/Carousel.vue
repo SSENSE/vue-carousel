@@ -7,6 +7,8 @@
         v-bind:style="`
           transform: translate3d(${currentOffset}px, 0, 0);
           transition: ${!dragging ? transitionStyle : 'none'};
+          ms-flex-preferred-size: ${slideWidth}px;
+          webkit-flex-basis: ${slideWidth}px;
           flex-basis: ${slideWidth}px;
           visibility: ${slideWidth ? 'visible' : 'hidden'};
           padding-left: ${padding}px;
