@@ -370,10 +370,6 @@ export default {
       this.$emit("navigationclick", direction);
     },
     /**
-     * Trigger actions when mouse is pressed
-     * @param  {Object} e The event object
-     */
-    /**
      * Stop listening to mutation changes
      */
     detachMutationObserver() {
