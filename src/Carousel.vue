@@ -1,8 +1,9 @@
 <template>
-  <div class="VueCarousel">
+  <section class="VueCarousel" >
     <div class="VueCarousel-wrapper" ref="VueCarousel-wrapper">
       <div
         class="VueCarousel-inner"
+        role="listbox"
         v-bind:style="`
           transform: translate3d(${currentOffset}px, 0, 0);
           transition: ${!dragging ? transitionStyle : 'none'};
@@ -26,7 +27,7 @@
       :prevLabel="navigationPrevLabel"
       @navigationclick="handleNavigation"
     ></navigation>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -422,8 +423,13 @@ export default {
         this.$emit("pagechange", { page: this.currentPage, componentName });
       }
     },
+    /**
+     * Listen events from Navigation
+     * @param {"backward"} [direction]
+     * @return {void}
+     */
     handleNavigation(direction) {
-      this.$emit("navigationclick", direction);
+      this.advancePage(direction);
     },
     /**
      * Trigger actions when mouse is pressed
