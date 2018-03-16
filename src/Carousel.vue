@@ -223,6 +223,9 @@ export default {
   watch: {
     navigateTo(val) {
       if (val !== this.currentPage) this.goToPage(val);
+    },
+    currentPage(val) {
+      this.$emit("pageChange", val);
     }
   },
 
@@ -502,7 +505,6 @@ export default {
           this.maxOffset
         );
         this.currentPage = page;
-        this.$emit("pageChange", this.currentPage);
       }
     },
     /**
