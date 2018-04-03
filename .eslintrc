@@ -1,3 +1,3 @@
 {
-  "extends": "ssense/client",
+  "extends": ["ssense/client", "plugin:vue/base", "plugin:prettier/recommended"]
 }

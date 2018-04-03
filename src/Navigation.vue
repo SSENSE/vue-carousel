@@ -16,77 +16,77 @@
 </template>
 
 <script>
-  export default {
-    name: "navigation",
-    data() {
-      return {
-        parentContainer: this.$parent,
+export default {
+  name: "navigation",
+  data() {
+    return {
+      parentContainer: this.$parent
+    };
+  },
+  props: {
+    /**
+     * Amount of padding to apply around the label in pixels
+     */
+    clickTargetSize: {
+      type: Number,
+      default: 8
+    },
+    /**
+     * Text content of the navigation next button
+     */
+    nextLabel: {
+      type: String,
+      default: "▶"
+    },
+    /**
+     * Text content of the navigation prev button
+     */
+    prevLabel: {
+      type: String,
+      default: "◀"
+    }
+  },
+  computed: {
+    canAdvanceForward() {
+      return this.parentContainer.canAdvanceForward || false;
+    },
+    canAdvanceBackward() {
+      return this.parentContainer.canAdvanceBackward || false;
+    }
+  },
+  methods: {
+    triggerPageAdvance(direction) {
+      if (direction) {
+        this.$parent.advancePage(direction);
+      } else {
+        this.$parent.advancePage();
       }
-    },
-    props: {
-      /**
-       * Amount of padding to apply around the label in pixels
-       */
-      clickTargetSize: {
-        type: Number,
-        default: 8
-      },
-      /**
-       * Text content of the navigation next button
-       */
-      nextLabel: {
-        type: String,
-        default: "▶"
-      },
-      /**
-       * Text content of the navigation prev button
-       */
-      prevLabel: {
-        type: String,
-        default: "◀"
-      },
-    },
-    computed: {
-      canAdvanceForward() {
-        return this.parentContainer.canAdvanceForward || false
-      },
-      canAdvanceBackward() {
-        return this.parentContainer.canAdvanceBackward || false
-      },
-    },
-    methods: {
-      triggerPageAdvance(direction) {
-        if (direction) {
-          this.$parent.advancePage(direction)
-        } else {
-          this.$parent.advancePage()
-        }
-      },
-    },
+    }
   }
+};
 </script>
 
 <style scoped>
-  .VueCarousel-navigation-button {
-    position: absolute;
-    top: 50%;
-    box-sizing: border-box;
-    color: #000;
-    text-decoration: none;
-  }
+.VueCarousel-navigation-button {
+  position: absolute;
+  top: 50%;
+  box-sizing: border-box;
+  color: #000;
+  text-decoration: none;
+}
 
-  .VueCarousel-navigation-next {
-    right: 0;
-    transform: translateY(-50%) translateX(100%)
-  }
+.VueCarousel-navigation-next {
+  right: 0;
+  transform: translateY(-50%) translateX(100%);
+}
 
-  .VueCarousel-navigation-prev {
-    left: 0;
-    transform: translateY(-50%) translateX(-100%)
-  }
+.VueCarousel-navigation-prev {
+  left: 0;
+  transform: translateY(-50%) translateX(-100%);
+}
 
-  .VueCarousel-navigation--disabled {
-    opacity: 0.5;
-    cursor: default;
-  }
+.VueCarousel-navigation--disabled {
+  opacity: 0.5;
+  cursor: default;
+}
 </style>

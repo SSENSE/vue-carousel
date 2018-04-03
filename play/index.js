@@ -55,6 +55,10 @@ play("Carousel", module)
       h, containerWidth, [h(Carousel, {}, generateSlideImages(h))]
     )
   )
+  .add("3 per page", h => createContainer(
+      h, containerWidth, [h(Carousel, { props: { perPage: 3 } }, generateSlideImages(h))]
+    )
+  )
   .add("scroll per page", h => createContainer(
       h, containerWidth, [h(Carousel, { props: { scrollPerPage: true } }, generateSlideImages(h))]
     )
@@ -115,7 +119,7 @@ play("Carousel", module)
   .add("with local event on pageChange", {
     template:
       `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
-        <carousel style="width: 500px;" @pageChange="onPageChange">
+        <carousel style="width: 500px;" @pagechange="onPageChange">
           <slide v-for="slide in slides">
             <img style="width: 100%;" :src="slide" />
           </slide>
@@ -136,4 +140,38 @@ play("Carousel", module)
       },
     }
   })
+  .add("navigateTo page 2", {
+    template:
+      `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+        <carousel style="width: 500px;" :navigateTo="newPage">
+          <slide v-for="slide in slides" :key="slide.src">
+            <img style="width: 100%;" src="https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176006_1.jpg" />
+          </slide>
+                    </carousel>
+        <div style="float: left; z-index: 1000">
+          <button style="position: absolute; bottom: 20px; right: 250px" v-on:click="gotoSlide(0)">Goto page 1</button>
+          <button style="position: absolute; bottom: 20px; right: 150px" v-on:click="gotoSlide(1)">Goto page 2</button>
+          <button style="position: absolute; bottom: 20px; right: 50px" v-on:click="gotoSlide(2)">Goto page 3</button>
+        </div>
+      </div>`,
+    components: {
+      Carousel,
+      Slide
+    },
+    data(){
+      return {
+        newPage:0,
+        slides: images
+      }
+    },
+    methods: {
+      gotoSlide(val) {
+        this.newPage = val;
+      },
+    }
+  })
+  .add("with spacePadding 100px", h => createContainer(
+      h, containerWidth, [h(Carousel, { props: { spacePadding: 100, perPage: 1} }, generateSlideImages(h))]
+      )
+  )
 

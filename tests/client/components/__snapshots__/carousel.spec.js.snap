@@ -48,16 +48,16 @@ exports[`Carousel should begin autoplaying when option specified 1`] = `
 
 exports[`Carousel should decrease current slide number by 1 when advance page backward is called 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(style='visibility: hidden;')
+  .VueCarousel-inner(style=\'visibility: hidden;\')
     .VueCarousel-slide
     .VueCarousel-slide
 |  
 .VueCarousel-pagination
   .VueCarousel-dot-container
-    .VueCarousel-dot(style='margin-top: 20px; padding: 10px;')
-      .VueCarousel-dot-inner(style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
-    .VueCarousel-dot.VueCarousel-dot--active(style='margin-top: 20px; padding: 10px;')
-      .VueCarousel-dot-inner(style='width: 10px; height: 10px; background: rgb(0, 0, 0);')
+    .VueCarousel-dot(style=\'margin-top: 20px; padding: 10px;\')
+      .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
+    .VueCarousel-dot.VueCarousel-dot--active(style=\'margin-top: 20px; padding: 10px;\')
+      .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
 // 
 "
 `;
@@ -69,7 +69,7 @@ exports[`Carousel should fall back to default slides per page when no responsive
     .VueCarousel-slide
     .VueCarousel-slide
 |  
-.VueCarousel-pagination(style=\'\')
+.VueCarousel-pagination
   .VueCarousel-dot-container
     .VueCarousel-dot.VueCarousel-dot--active(style=\'margin-top: 20px; padding: 10px;\')
       .VueCarousel-dot-inner(style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')

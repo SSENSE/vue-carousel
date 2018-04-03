@@ -19,7 +19,13 @@
 ## Installation
 
 ``` bash
-npm install -S vue-carousel
+npm install vue-carousel
+```
+
+or if you prefer yarn
+
+``` bash
+yarn add vue-carousel
 ```
 
 ## Usage
@@ -53,12 +59,36 @@ export default {
 };
 ```
 
+### Configuration
+| Property                  | Type    | Default | Description                                                                                                                                                                                                                                                                           |
+|:--------------------------|:--------|:--------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| easing                    | String  | ease    | Slide transition easing. Any valid CSS transition easing accepted.                                                                                                                                                                                                                    |
+| minSwipeDistance          | Number  | 8       | Minimum distance for the swipe to trigger a slide advance.                                                                                                                                                                                                                            |
+| navigationClickTargetSize | Number  | 8       | Amount of padding to apply around the label in pixels.                                                                                                                                                                                                                                |
+| mouseDrag                 | Boolean | true    | Flag to toggle mouse dragging.                                                                                                                                                                                                                                                        |
+| navigationEnabled         | Boolean | false   | Flag to render the navigation component (next/prev buttons).                                                                                                                                                                                                                          |
+| navigationNextLabel       | String  | ▶       | Text content of the navigation next button.                                                                                                                                                                                                                                           |
+| navigationPrevLabel       | String  | ◀       | Text content of the navigation prev button.                                                                                                                                                                                                                                           |
+| paginationActiveColor     | String  | #000000 | The fill color of the active pagination dot. Any valid CSS color is accepted.                                                                                                                                                                                                         |
+| paginationColor           | String  | #efefef | The fill color of pagination dots. Any valid CSS color is accepted.                                                                                                                                                                                                                   |
+| paginationEnabled         | Boolean | true    | Flag to render pagination component.                                                                                                                                                                                                                                                  |
+| paginationPadding         | Number  | 10      | The padding inside each pagination dot. Pixel values are accepted.                                                                                                                                                                                                                    |
+| paginationSize            | Number  | 10      | The size of each pagination dot. Pixel values are accepted.                                                                                                                                                                                                                           |
+| perPage                   | Number  | 2       | Maximum number of slides displayed on each page.                                                                                                                                                                                                                                      |
+| perPageCustom             | Array   |         | Configure the number of visible slides with a particular browser width. This will be an array of arrays, ex. [[320, 2], [1199, 4]]. Formatted as [x, y] where x=browser width, and y=number of slides displayed. Ex. [1199, 4] means if (window <= 1199) then show 4 slides per page. |
+| resistanceCoef            | Number  | 20      | Resistance coefficient to dragging on the edge of the carousel. This dictates the effect of the pull as you move towards the boundaries.                                                                                                                                              |
+| scrollPerPage             | Boolean | false   | Scroll per page, not per item.                                                                                                                                                                                                                                                        |
+| speed                     | Number  |         | Slide transition speed. Number of milliseconds accepted.                                                                                                                                                                                                                              |
+| loop                      | Boolean | false   | Flag to make the carousel loop around when it reaches the end.                                                                                                                                                                                                                        |
+| navigateTo                | Number  | 0       | Listen for an external navigation request using this prop.                                                                                                                                                                                                                            |
+| spacePadding              | Number  | 0       | Stage padding option adds left and right padding style (in pixels) onto VueCarousel-inner.                                                                                                                                                                                            |
+
 ### HTML Structure
 
 Once the **Carousel** and **Slide** components are installed globally or imported, they can be used in templates in the following manner:
 
 ``` html
-  <carousel>
+  <carousel :per-page="1" :navigate-to="someLocalProperty" mouse-drag="false">
     <slide>
       Slide 1 Content
     </slide>
@@ -75,8 +105,15 @@ A sandboxed dev environment is provided by [vue-play](https://github.com/vue-pla
 To begin development, run:
 
 ``` bash
-npm install
+npm install 
 npm run dev
+```
+
+or, if you prefer yarn
+
+``` bash
+yarn install 
+yarn dev
 ```
 
 then navigate to `http://localhost:5000`
