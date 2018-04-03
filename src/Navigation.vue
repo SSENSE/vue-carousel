@@ -1,17 +1,23 @@
 <template>
   <div class="VueCarousel-navigation">
-    <a href="#"
+    <button
+      type="button"
+      aria-label="Previous page"
+      role="button"
       class="VueCarousel-navigation-button VueCarousel-navigation-prev"
       v-on:click.prevent="triggerPageAdvance('backward')"
       v-bind:class="{ 'VueCarousel-navigation--disabled': !canAdvanceBackward }"
       v-bind:style="`padding: ${clickTargetSize}px; margin-right: -${clickTargetSize}px;`"
-      v-html="prevLabel"></a>
-    <a href="#"
+      v-html="prevLabel"></button>
+    <button
+      type="button"
+      aria-label="Next page"
+      role="button"
       class="VueCarousel-navigation-button VueCarousel-navigation-next"
       v-on:click.prevent="triggerPageAdvance()"
       v-bind:class="{ 'VueCarousel-navigation--disabled': !canAdvanceForward }"
       v-bind:style="`padding: ${clickTargetSize}px; margin-left: -${clickTargetSize}px;`"
-      v-html="nextLabel"></a>
+      v-html="nextLabel"></button>
   </div>
 </template>
 
@@ -20,6 +26,9 @@ export default {
   name: "navigation",
   data() {
     return {
+      /**
+       * link on Carousel
+       */
       parentContainer: this.$parent
     };
   },
@@ -47,20 +56,31 @@ export default {
     }
   },
   computed: {
+    /**
+     * @return {Boolean} Can the slider move forward?
+     */
     canAdvanceForward() {
       return this.parentContainer.canAdvanceForward || false;
     },
+    /**
+     * @return {Boolean} Can the slider move backward?
+     */
     canAdvanceBackward() {
       return this.parentContainer.canAdvanceBackward || false;
     }
   },
   methods: {
+    /**
+     * Trigger page change on +/- 1 depending on the direction
+     * @param {"backward"} [direction]
+     * @return {void}
+     */
     triggerPageAdvance(direction) {
-      if (direction) {
-        this.$parent.advancePage(direction);
-      } else {
-        this.$parent.advancePage();
-      }
+      /**
+       * @event paginationclick
+       * @type {string}
+       */
+      this.$emit("navigationclick", direction);
     }
   }
 };
@@ -73,6 +93,12 @@ export default {
   box-sizing: border-box;
   color: #000;
   text-decoration: none;
+  appearance: none;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
 }
 
 .VueCarousel-navigation-next {
