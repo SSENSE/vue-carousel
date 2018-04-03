@@ -1,5 +1,5 @@
 <template>
-  <div class="VueCarousel-slide">
+  <div class="VueCarousel-slide" tabindex="-1">
     <slot></slot>
   </div>
 </template>
@@ -28,5 +28,6 @@ export default {
   user-select: none;
   backface-visibility: hidden;
   -webkit-touch-callout: none;
+  outline: none;
 }
 </style>

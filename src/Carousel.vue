@@ -1,11 +1,14 @@
 <template>
-  <div class="VueCarousel">
+  <section class="VueCarousel" >
     <div class="VueCarousel-wrapper" ref="VueCarousel-wrapper">
       <div
         class="VueCarousel-inner"
+        role="listbox"
         v-bind:style="`
           transform: translate3d(${currentOffset}px, 0, 0);
           transition: ${!dragging ? transitionStyle : 'none'};
+          ms-flex-preferred-size: ${slideWidth}px;
+          webkit-flex-basis: ${slideWidth}px;
           flex-basis: ${slideWidth}px;
           visibility: ${slideWidth ? 'visible' : 'hidden'};
           padding-left: ${padding}px;
@@ -26,7 +29,7 @@
       :prevLabel="navigationPrevLabel"
       @navigationclick="handleNavigation"
     ></navigation>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -220,6 +223,9 @@ export default {
   watch: {
     navigateTo(val) {
       if (val !== this.currentPage) this.goToPage(val);
+    },
+    currentPage(val) {
+      this.$emit("pageChange", val);
     }
   },
 
@@ -367,7 +373,7 @@ export default {
       }
     },
     handleNavigation(direction) {
-      this.$emit("navigationclick", direction);
+      this.advancePage(direction);
     },
     /**
      * Stop listening to mutation changes
@@ -418,7 +424,6 @@ export default {
           this.maxOffset
         );
         this.currentPage = page;
-        this.$emit("pageChange", this.currentPage);
       }
     },
     /**
@@ -448,7 +453,7 @@ export default {
      * Trigger actions when mouse is released
      * @param  {Object} e The event object
      */
-
+     
     onEnd(e) {
       // compute the momemtum speed
       const eventPosX = this.isTouch ? e.changedTouches[0].clientX : e.clientX;
