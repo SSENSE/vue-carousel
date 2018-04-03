@@ -453,7 +453,7 @@ export default {
      * Trigger actions when mouse is released
      * @param  {Object} e The event object
      */
-     
+
     onEnd(e) {
       // compute the momemtum speed
       const eventPosX = this.isTouch ? e.changedTouches[0].clientX : e.clientX;
