@@ -372,89 +372,8 @@ export default {
         }
       }
     },
-    /**
-     * Stop listening to mutation changes
-     */
-    detachMutationObserver() {
-      if (this.mutationObserver) {
-        this.mutationObserver.disconnect();
-      }
-    },
-    /**
-     * Get the current browser viewport width
-     * @return {Number} Browser"s width in pixels
-     */
-    getBrowserWidth() {
-      this.browserWidth = window.innerWidth;
-      return this.browserWidth;
-    },
-    /**
-     * Get the width of the carousel DOM element
-     * @return {Number} Width of the carousel in pixels
-     */
-    getCarouselWidth() {
-      this.carouselWidth = (this.$el && this.$el.clientWidth) || 0; // Assign globally
-      return this.carouselWidth;
-    },
-    /**
-     * Filter slot contents to slide instances and return length
-     * @return {Number} The number of slides
-     */
-    getSlideCount() {
-      this.slideCount =
-        (this.$slots &&
-          this.$slots.default &&
-          this.$slots.default.filter(
-            slot => slot.tag && slot.tag.indexOf("slide") > -1
-          ).length) ||
-        0;
-    },
-    /**
-     * Set the current page to a specific value
-     * This function will only apply the change if the value is within the carousel bounds
-     * @param  {Number} page The value of the new page number
-     * @param {String} componentName Either navigation or pagination
-     */
-    goToPage(page, componentName) {
-      if (page >= 0 && page <= this.pageCount) {
-        this.offset = Math.min(
-          this.slideWidth * this.currentPerPage * page,
-          this.maxOffset
-        );
-        this.currentPage = page;
-        this.$emit("pagechange", { page: this.currentPage, componentName });
-      }
-    },
-    /**
-     * Listen events from Navigation
-     * @param {"backward"} [direction]
-     * @return {void}
-     */
     handleNavigation(direction) {
       this.advancePage(direction);
-    },
-    /**
-     * Trigger actions when mouse is pressed
-     * @param  {Object} e The event object
-     */
-    /* istanbul ignore next */
-    onStart(e) {
-      document.addEventListener(
-        this.isTouch ? "touchend" : "mouseup",
-        this.onEnd,
-        true
-      );
-      if (MutationObserver) {
-        const config = { attributes: true, data: true };
-        this.mutationObserver = new MutationObserver(() => {
-          this.$nextTick(() => {
-            this.computeCarouselWidth();
-          });
-        });
-        if (this.$parent.$el) {
-          this.mutationObserver.observe(this.$parent.$el, config);
-        }
-      }
     },
     /**
      * Stop listening to mutation changes
@@ -534,7 +453,7 @@ export default {
      * Trigger actions when mouse is released
      * @param  {Object} e The event object
      */
-
+     
     onEnd(e) {
       // compute the momemtum speed
       const eventPosX = this.isTouch ? e.changedTouches[0].clientX : e.clientX;
