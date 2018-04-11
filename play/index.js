@@ -151,7 +151,7 @@ play("Carousel", module)
   .add("NavigateTo pages", {
     template:
       `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
-        <carousel style="width: 500px;" :navigateTo="newPage">
+        <carousel style="width: 500px;" :navigateTo="newPage" v-on:pageChange="pageChanged">
           <slide v-for="slide in slides" :key="slide">
             <img style="width: 100%;" :src= slide />
           </slide>
@@ -176,12 +176,15 @@ play("Carousel", module)
       gotoPage(val) {
         this.newPage = val;
       },
+      pageChanged(val) {
+        this.newSlide = val;
+      }
     }
   })
   .add("NavigateTo slides", {
     template:
       `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
-        <carousel style="width: 500px;" :navigateTo="newSlide" :scrollPerPage=false>
+        <carousel style="width: 500px;" :navigateTo="newSlide" :scrollPerPage=false v-on:pageChange="pageChanged">
           <slide v-for="slide in slides" :key="slide.src">
             <img style="width: 100%;" :src= slide />
           </slide>
@@ -206,6 +209,9 @@ play("Carousel", module)
       gotoSlide(val) {
         this.newSlide = val;
       },
+      pageChanged(val) {
+        this.newSlide = val;
+      }
     }
   })
   .add("With spacePadding 100px", h => createContainer(
