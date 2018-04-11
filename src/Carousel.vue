@@ -567,7 +567,7 @@ export default {
      * When the current page exceeds the carousel bounds, reset it to the maximum allowed
      */
     setCurrentPageInBounds() {
-      if (!this.canAdvanceForward) {
+      if (!this.canAdvanceForward && this.scrollPerPage) {
         const setPage = this.pageCount - 1;
         this.currentPage = setPage >= 0 ? setPage : 0;
         this.offset = Math.max(0, Math.min(this.offset, this.maxOffset));
