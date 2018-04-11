@@ -140,7 +140,7 @@ describe('Carousel', () => {
     return utils.expectToMatchSnapshot(vm);
   });
 
-  it('should decrease current slide number by 1 when advance page backward is called', () => {
+  it('should decrease current page number by 1 when advance page backward is called', () => {
     const vm = new Vue({
       el: document.createElement('div'),
       render: (h) => h(Carousel, { props: { perPage: 1 } }, [h(Slide), h(Slide)]),
@@ -157,7 +157,7 @@ describe('Carousel', () => {
     });
   });
 
-  it('should increase current slide number by 1 when advance page is called', () => {
+  it('should increase current page number by 1 when advance page is called', () => {
     const vm = new Vue({
       el: document.createElement('div'),
       render: (h) => h(Carousel, { props: { perPage: 1 } }, [h(Slide), h(Slide)]),
@@ -173,7 +173,7 @@ describe('Carousel', () => {
     });
   });
 
-  it('should increase current slide number by 1 when advance page is called with a non "backward" argument', () => {
+  it('should increase current page number by 1 when advance page is called with a non "backward" argument', () => {
     const vm = new Vue({
       el: document.createElement('div'),
       render: (h) => h(Carousel, { props: { perPage: 1 } }, [h(Slide), h(Slide)]),
@@ -188,7 +188,22 @@ describe('Carousel', () => {
       return utils.expectToMatchSnapshot(vm);
     });
   });
+  it('should decrease current slide number by 1 when advance slide backward is called', () => {
+    const vm = new Vue({
+      el: document.createElement('div'),
+      render: (h) => h(Carousel, { props: { perPage: 1, scrollPerPage: false } }, [h(Slide), h(Slide)]),
+    });
 
+    const carouselInstance = vm.$children[0];
+
+    return carouselInstance.$nextTick().then(() => {
+      carouselInstance.goToPage(2);
+      carouselInstance.advancePage('backward');
+      expect(carouselInstance.currentPage).toBe(1);
+
+      return utils.expectToMatchSnapshot(vm);
+    });
+  });
   it('should loop back to the start when loop is true and advance page non "backward" is called from the last page', () => {
     const vm = new Vue({
       el: document.createElement('div'),

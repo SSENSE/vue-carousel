@@ -187,7 +187,7 @@ export default {
      */
     scrollPerPage: {
       type: Boolean,
-      default: false
+      default: true
     },
     /**
      * Slide transition speed
@@ -261,7 +261,7 @@ export default {
      * @return {Boolean} Can the slider move forward?
      */
     canAdvanceForward() {
-      return this.loop || this.currentPage < this.pageCount - 1;
+      return this.loop || this.offset < this.maxOffset;
     },
     /**
      * @return {Boolean} Can the slider move backward?
@@ -297,7 +297,9 @@ export default {
      * @return {Number} Number of pages
      */
     pageCount() {
-      return Math.ceil(this.slideCount / this.currentPerPage);
+      return this.scrollPerPage
+        ? Math.ceil(this.slideCount / this.currentPerPage)
+        : this.slideCount;
     },
     /**
      * Calculate the width of each slide
@@ -419,10 +421,13 @@ export default {
      */
     goToPage(page) {
       if (page >= 0 && page <= this.pageCount) {
-        this.offset = Math.min(
-          this.slideWidth * this.currentPerPage * page,
-          this.maxOffset
-        );
+        this.offset = this.scrollPerPage
+          ? Math.min(
+              this.slideWidth * this.currentPerPage * page,
+              this.maxOffset
+            )
+          : Math.min(this.slideWidth * page, this.maxOffset);
+        // update the current page
         this.currentPage = page;
       }
     },
@@ -545,9 +550,9 @@ export default {
       this.offset = Math.max(0, Math.min(this.offset, this.maxOffset));
 
       // update the current page
-      this.currentPage = Math.round(
-        this.offset / this.slideWidth / this.currentPerPage
-      );
+      this.currentPage = this.scrollPerPage
+        ? Math.round(this.offset / this.slideWidth / this.currentPerPage)
+        : Math.round(this.offset / this.slideWidth);
     },
     /**
      * Re-compute the width of the carousel and its slides
@@ -562,7 +567,7 @@ export default {
      * When the current page exceeds the carousel bounds, reset it to the maximum allowed
      */
     setCurrentPageInBounds() {
-      if (!this.canAdvanceForward) {
+      if (!this.canAdvanceForward && this.scrollPerPage) {
         const setPage = this.pageCount - 1;
         this.currentPage = setPage >= 0 ? setPage : 0;
         this.offset = Math.max(0, Math.min(this.offset, this.maxOffset));
