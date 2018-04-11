@@ -8,11 +8,11 @@ import Slide from "../src/Slide.vue"
 const containerWidth = 500;
 const images = [
   "https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176006_1.jpg",
-  "https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176005_1.jpg",
-  "https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176003_1.jpg",
-  "https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176004_1.jpg",
-  "https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176002_1.jpg",
-  "https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176001_1.jpg"
+  "https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176005_2.jpg",
+  "https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176003_3.jpg",
+  "https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176004_4.jpg",
+  "https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176002_5.jpg",
+  "https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176001_2.jpg"
 ]
 
 const generateSlideImages = (createElement) => images.map((image) =>
@@ -152,8 +152,8 @@ play("Carousel", module)
     template:
       `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
         <carousel style="width: 500px;" :navigateTo="newPage">
-          <slide v-for="slide in slides" :key="slide.src">
-            <img style="width: 100%;" src="https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176006_1.jpg" />
+          <slide v-for="slide in slides" :key="slide">
+            <img style="width: 100%;" :src= slide />
           </slide>
                     </carousel>
         <div style="float: left; z-index: 1000">
@@ -183,7 +183,7 @@ play("Carousel", module)
       `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
         <carousel style="width: 500px;" :navigateTo="newSlide" :scrollPerPage=false>
           <slide v-for="slide in slides" :key="slide.src">
-            <img style="width: 100%;" src="https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176006_1.jpg" />
+            <img style="width: 100%;" :src= slide />
           </slide>
                     </carousel>
         <div style="float: left; z-index: 1000">
@@ -198,7 +198,7 @@ play("Carousel", module)
     },
     data(){
       return {
-        newSlide:0,
+        newSlide: 0,
         slides: images
       }
     },
@@ -212,4 +212,3 @@ play("Carousel", module)
       h, containerWidth, [h(Carousel, { props: { spacePadding: 100, perPage: 1} }, generateSlideImages(h))]
       )
   )
-
