@@ -2,6 +2,7 @@
   <section class="VueCarousel" >
     <div class="VueCarousel-wrapper" ref="VueCarousel-wrapper">
       <div
+        ref="VueCarousel-inner"
         class="VueCarousel-inner"
         role="listbox"
         v-bind:style="`
@@ -398,7 +399,8 @@ export default {
      * @return {Number} Width of the carousel in pixels
      */
     getCarouselWidth() {
-      this.carouselWidth = (this.$el && this.$el.clientWidth) || 0; // Assign globally
+      const inner = this.$refs["VueCarousel-inner"];
+      this.carouselWidth = (inner && inner.clientWidth) || 0; // Assign globally
       return this.carouselWidth;
     },
     /**
