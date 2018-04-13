@@ -218,3 +218,36 @@ play("Carousel", module)
       h, containerWidth, [h(Carousel, { props: { spacePadding: 100, perPage: 1} }, generateSlideImages(h))]
       )
   )
+  .add("Custom width", {
+    components: { Carousel, Slide },
+    mounted() {
+      const wrapper = this.$refs["customWidth"].$refs["VueCarousel-wrapper"]
+      wrapper.style.padding = "0 30px"
+      wrapper.style.boxSizing = "border-box"
+    },
+    render: h => {
+      return createContainer(
+        h, containerWidth, [h(Carousel, {
+          ref: "customWidth",
+        }, [new Array(8).fill(0).map((item, index) => {
+          return h(Slide, {
+            style: {
+              padding: "0 10px",
+              boxSizing: "border-box"
+            }
+          }, [h("div", {
+            style: {
+              width: "100%",
+              height: "400px",
+              lineHeight: "400px",
+              color: "#fff",
+              textAlign: "center",
+              fontSize: "30px",
+              backgroundColor: (index % 2 === 0) ? "#42b983" : "#ff3c3c"
+            }
+          }, [index])])
+        })])]
+      )
+    }
+  })
+
