@@ -220,22 +220,15 @@ play("Carousel", module)
   )
   .add("Custom width", {
     components: { Carousel, Slide },
-    mounted() {
-      const wrapper = this.$refs["customWidth"].$refs["VueCarousel-wrapper"]
-      wrapper.style.padding = "0 30px"
-      wrapper.style.boxSizing = "border-box"
-    },
     render: h => {
       return createContainer(
         h, containerWidth, [h(Carousel, {
-          ref: "customWidth",
+          props: {
+            perPage: 1,
+            spacePadding: 30
+          }
         }, [new Array(8).fill(0).map((item, index) => {
-          return h(Slide, {
-            style: {
-              padding: "0 10px",
-              boxSizing: "border-box"
-            }
-          }, [h("div", {
+          return h(Slide, {}, [h("div", {
             style: {
               width: "100%",
               height: "400px",
