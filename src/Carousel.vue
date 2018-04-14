@@ -290,8 +290,17 @@ export default {
     isHidden() {
       return this.carouselWidth <= 0;
     },
+    /**
+     * Maximum offset the carousel can slide
+     * Considering the spacePadding
+     * @return {Number}
+     */
     maxOffset() {
-      return this.slideWidth * this.slideCount - this.carouselWidth;
+      return (
+        this.slideWidth * this.slideCount -
+        this.carouselWidth +
+        this.spacePadding * 2
+      );
     },
     /**
      * Calculate the number of pages of slides
