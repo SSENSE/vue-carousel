@@ -2,7 +2,7 @@ exports[`Navigation should mount successfully 1`] = `
 ".VueCarousel-wrapper
   .VueCarousel-inner(role=\'listbox\', style=\'visibility: hidden;\')
     .VueCarousel-slide(tabindex=\'-1\')
-    .VueCarousel-slide.VueCarousel-slide-active(tabindex=\'-1\')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex=\'-1\')
 |  
 .VueCarousel-pagination
   ul.VueCarousel-dot-container(role=\'tablist\')
@@ -22,7 +22,7 @@ exports[`Navigation should render a next button 1`] = `
 ".VueCarousel-wrapper
   .VueCarousel-inner(role=\'listbox\', style=\'visibility: hidden;\')
     .VueCarousel-slide(tabindex=\'-1\')
-    .VueCarousel-slide.VueCarousel-slide-active(tabindex=\'-1\')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex=\'-1\')
 |  
 .VueCarousel-pagination
   ul.VueCarousel-dot-container(role=\'tablist\')
@@ -42,7 +42,7 @@ exports[`Navigation should render a prev button 1`] = `
 ".VueCarousel-wrapper
   .VueCarousel-inner(role=\'listbox\', style=\'visibility: hidden;\')
     .VueCarousel-slide(tabindex=\'-1\')
-    .VueCarousel-slide.VueCarousel-slide-active(tabindex=\'-1\')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex=\'-1\')
 |  
 .VueCarousel-pagination
   ul.VueCarousel-dot-container(role=\'tablist\')
@@ -62,7 +62,7 @@ exports[`Navigation should trigger page advance backward when prev is clicked 1`
 ".VueCarousel-wrapper
   .VueCarousel-inner(role=\'listbox\', style=\'visibility: hidden;\')
     .VueCarousel-slide(tabindex=\'-1\')
-    .VueCarousel-slide.VueCarousel-slide-active(tabindex=\'-1\')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex=\'-1\')
 |  
 .VueCarousel-pagination
   ul.VueCarousel-dot-container(role=\'tablist\')
@@ -82,7 +82,7 @@ exports[`Navigation should trigger page advance when next is clicked 1`] = `
 ".VueCarousel-wrapper
   .VueCarousel-inner(role=\'listbox\', style=\'visibility: hidden;\')
     .VueCarousel-slide(tabindex=\'-1\')
-    .VueCarousel-slide.VueCarousel-slide-active(tabindex=\'-1\')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex=\'-1\')
 |  
 .VueCarousel-pagination
   ul.VueCarousel-dot-container(role=\'tablist\')
