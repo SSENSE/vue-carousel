@@ -66,6 +66,7 @@ export default {
     };
   },
   mixins: [autoplay],
+  // use `provide` to avoid `Slide` being nested with other components
   provide() {
     return {
       carousel: this
