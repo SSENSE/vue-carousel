@@ -66,6 +66,11 @@ export default {
     };
   },
   mixins: [autoplay],
+  provide() {
+    return {
+      carousel: this
+    };
+  },
   props: {
     /**
      * Slide transition easing
