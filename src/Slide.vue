@@ -1,5 +1,12 @@
 <template>
-  <div class="VueCarousel-slide" :class="{'VueCarousel-slide-active': isActive}" tabindex="-1">
+  <div
+    class="VueCarousel-slide"
+    tabindex="-1"
+    :class="{
+      'VueCarousel-slide-active': isActive,
+      'VueCarousel-slide-center': isCenter
+    }"
+  >
     <slot></slot>
   </div>
 </template>
@@ -38,8 +45,25 @@ export default {
 
       return activeSlides;
     },
+    /**
+     * `isActive` describes whether a slide is visible
+     * @return {Boolean} [description]
+     */
     isActive() {
       return this.activeSlides.includes(this._uid);
+    },
+    /**
+     * `isCenter` describes whether a slide is in the center of all visible slides
+     * if perPage is an even number, we quit
+     * @return {Boolean}
+     */
+    isCenter() {
+      const { perPage } = this.carousel;
+      if (perPage % 2 === 0 || !this.isActive) return false;
+      return (
+        this.activeSlides.indexOf(this._uid) ===
+        Math.floor(this.carousel.perPage / 2)
+      );
     }
   }
 };
