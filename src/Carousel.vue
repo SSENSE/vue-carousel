@@ -317,7 +317,7 @@ export default {
      */
     slideWidth() {
       const width = this.carouselWidth - this.spacePadding * 2;
-      const perPage = this.currentPerPage;
+      const perPage = Math.min(this.currentPerPage, this.slideCount);
 
       return width / perPage;
     },
