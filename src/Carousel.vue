@@ -592,44 +592,40 @@ export default {
     }
   },
   mounted() {
-    if (!this.$isServer) {
-      window.addEventListener(
-        "resize",
-        debounce(this.onResize, this.refreshRate)
-      );
+    window.addEventListener(
+      "resize",
+      debounce(this.onResize, this.refreshRate)
+    );
 
-      // setup the start event only if touch device or mousedrag activated
-      if (this.isTouch || this.mouseDrag) {
-        this.$refs["VueCarousel-wrapper"].addEventListener(
-          this.isTouch ? "touchstart" : "mousedown",
-          this.onStart
-        );
-      }
+    // setup the start event only if touch device or mousedrag activated
+    if (this.isTouch || this.mouseDrag) {
+      this.$refs["VueCarousel-wrapper"].addEventListener(
+        this.isTouch ? "touchstart" : "mousedown",
+        this.onStart
+      );
     }
-    this.transitionend = getTransitionEnd();
 
     this.attachMutationObserver();
     this.computeCarouselWidth();
 
+    this.transitionend = getTransitionEnd();
     this.$refs["VueCarousel-inner"].addEventListener(
       this.transitionend,
       this.handleTransitionEnd
     );
   },
   beforeDestroy() {
-    if (!this.$isServer) {
-      this.detachMutationObserver();
-      window.removeEventListener("resize", this.getBrowserWidth);
-      this.$refs["VueCarousel-inner"].removeEventListener(
-        this.transitionend,
-        this.handleTransitionEnd
-      );
+    this.detachMutationObserver();
+    window.removeEventListener("resize", this.getBrowserWidth);
+    this.$refs["VueCarousel-inner"].removeEventListener(
+      this.transitionend,
+      this.handleTransitionEnd
+    );
 
-      this.$refs["VueCarousel-wrapper"].removeEventListener(
-        this.isTouch ? "touchstart" : "mousedown",
-        this.onStart
-      );
-    }
+    this.$refs["VueCarousel-wrapper"].removeEventListener(
+      this.isTouch ? "touchstart" : "mousedown",
+      this.onStart
+    );
   }
 };
 </script>
