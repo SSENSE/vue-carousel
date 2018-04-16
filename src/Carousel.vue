@@ -2,6 +2,7 @@
   <section class="VueCarousel" >
     <div class="VueCarousel-wrapper" ref="VueCarousel-wrapper">
       <div
+        ref="VueCarousel-inner"
         class="VueCarousel-inner"
         role="listbox"
         v-bind:style="`
@@ -289,8 +290,17 @@ export default {
     isHidden() {
       return this.carouselWidth <= 0;
     },
+    /**
+     * Maximum offset the carousel can slide
+     * Considering the spacePadding
+     * @return {Number}
+     */
     maxOffset() {
-      return this.slideWidth * this.slideCount - this.carouselWidth;
+      return (
+        this.slideWidth * this.slideCount -
+        this.carouselWidth +
+        this.spacePadding * 2
+      );
     },
     /**
      * Calculate the number of pages of slides
@@ -398,7 +408,8 @@ export default {
      * @return {Number} Width of the carousel in pixels
      */
     getCarouselWidth() {
-      this.carouselWidth = (this.$el && this.$el.clientWidth) || 0; // Assign globally
+      const inner = this.$refs["VueCarousel-inner"];
+      this.carouselWidth = (inner && inner.clientWidth) || 0; // Assign globally
       return this.carouselWidth;
     },
     /**
