@@ -303,8 +303,17 @@ export default {
     isHidden() {
       return this.carouselWidth <= 0;
     },
+    /**
+     * Maximum offset the carousel can slide
+     * Considering the spacePadding
+     * @return {Number}
+     */
     maxOffset() {
-      return this.slideWidth * this.slideCount - this.carouselWidth;
+      return (
+        this.slideWidth * this.slideCount -
+        this.carouselWidth +
+        this.spacePadding * 2
+      );
     },
     /**
      * Calculate the number of pages of slides
@@ -321,7 +330,7 @@ export default {
      */
     slideWidth() {
       const width = this.carouselWidth - this.spacePadding * 2;
-      const perPage = this.currentPerPage;
+      const perPage = Math.min(this.currentPerPage, this.slideCount);
 
       return width / perPage;
     },
@@ -412,7 +421,8 @@ export default {
      * @return {Number} Width of the carousel in pixels
      */
     getCarouselWidth() {
-      this.carouselWidth = (this.$el && this.$el.clientWidth) || 0; // Assign globally
+      const inner = this.$refs["VueCarousel-inner"];
+      this.carouselWidth = (inner && inner.clientWidth) || 0; // Assign globally
       return this.carouselWidth;
     },
     /**
