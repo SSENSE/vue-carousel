@@ -218,6 +218,32 @@ play("Carousel", module)
       h, containerWidth, [h(Carousel, { props: { spacePadding: 100, perPage: 1} }, generateSlideImages(h))]
       )
   )
+  .add("Transition end", {
+    template: `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+        <carousel
+          style="width: 500px;"
+          @transitionEnd="handleTransitionEnd"
+        >
+          <slide v-for="slide in slides" :key="slide.src">
+            <img style="width: 100%;" :src= slide />
+          </slide>
+        </carousel>
+      </div>`,
+    data() {
+      return {
+        slides: images
+      }
+    },
+    components: {
+      Carousel,
+      Slide
+    },
+    methods: {
+      handleTransitionEnd() {
+        alert('transition end!')
+      }
+    }
+  })
   .add("Custom width", {
     components: { Carousel, Slide },
     render: h => {
@@ -243,4 +269,3 @@ play("Carousel", module)
       )
     }
   })
-
