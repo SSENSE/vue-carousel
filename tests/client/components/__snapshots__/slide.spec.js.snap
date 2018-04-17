@@ -1,7 +1,7 @@
 exports[`Slide should mount successfully 1`] = `
 ".VueCarousel-wrapper
   .VueCarousel-inner(role=\'listbox\', style=\'visibility: hidden;\')
-    .VueCarousel-slide(tabindex=\'-1\')
+    .VueCarousel-slide.VueCarousel-slide-active(tabindex=\'-1\')
 |  
 .VueCarousel-pagination(style=\'display: none;\')
   ul.VueCarousel-dot-container(role=\'tablist\')

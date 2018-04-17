@@ -67,6 +67,12 @@ export default {
     };
   },
   mixins: [autoplay],
+  // use `provide` to avoid `Slide` being nested with other components
+  provide() {
+    return {
+      carousel: this
+    };
+  },
   props: {
     /**
      * Slide transition easing
@@ -92,8 +98,8 @@ export default {
       default: 8
     },
     /*
-       * Flag to toggle mouse dragging
-       */
+     * Flag to toggle mouse dragging
+     */
     mouseDrag: {
       type: Boolean,
       default: true
@@ -213,8 +219,8 @@ export default {
       default: 0
     },
     /*
-       *  Stage padding option adds left and right padding style (in pixels) onto VueCarousel-inner.
-       */
+     * Stage padding option adds left and right padding style (in pixels) onto VueCarousel-inner.
+     */
     spacePadding: {
       type: Number,
       default: 0

@@ -1,5 +1,5 @@
 <template>
-  <div v-show="parentContainer.pageCount > 1" class="VueCarousel-pagination">
+  <div v-show="carousel.pageCount > 1" class="VueCarousel-pagination">
     <ul class="VueCarousel-dot-container" role="tablist">
       <li
         class="VueCarousel-dot"
@@ -7,12 +7,12 @@
         role="presentation"
         :aria-selected="isCurrentDot(index) ? 'true' : 'false'"
         v-bind:class="{ 'VueCarousel-dot--active': isCurrentDot(index) }"
-        v-for="(page, index) in parentContainer.pageCount"
+        v-for="(page, index) in carousel.pageCount"
         :key="index"
         v-on:click="goToPage(index)"
         :style="`
-          margin-top: ${parentContainer.paginationPadding * 2}px;
-          padding: ${parentContainer.paginationPadding}px;
+          margin-top: ${carousel.paginationPadding * 2}px;
+          padding: ${carousel.paginationPadding}px;
         `"
       >
         <button
@@ -21,9 +21,9 @@
           class="VueCarousel-dot-button"
           :tabindex="index"
           :style="`
-            width: ${parentContainer.paginationSize}px;
-            height: ${parentContainer.paginationSize}px;
-            background: ${isCurrentDot(index) ? parentContainer.paginationActiveColor : parentContainer.paginationColor};
+            width: ${carousel.paginationSize}px;
+            height: ${carousel.paginationSize}px;
+            background: ${isCurrentDot(index) ? carousel.paginationActiveColor : carousel.paginationColor};
           `"
         ></button>
       </li>
@@ -34,14 +34,7 @@
 <script>
 export default {
   name: "pagination",
-  data() {
-    return {
-      /**
-       * link on Carousel
-       */
-      parentContainer: this.$parent
-    };
-  },
+  inject: ["carousel"],
   methods: {
     /**
      * Change page by index
@@ -62,7 +55,7 @@ export default {
      * @return {boolean}
      */
     isCurrentDot(index) {
-      return index === this.parentContainer.currentPage;
+      return index === this.carousel.currentPage;
     }
   }
 };
