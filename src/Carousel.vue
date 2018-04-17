@@ -80,6 +80,12 @@ export default {
     };
   },
   mixins: [autoplay],
+  // use `provide` to avoid `Slide` being nested with other components
+  provide() {
+    return {
+      carousel: this
+    };
+  },
   props: {
     /**
      * Slide transition easing
@@ -225,8 +231,8 @@ export default {
       type: Number,
       default: 0
     },
-    /*
-     *  Stage padding option adds left and right padding style (in pixels) onto VueCarousel-inner.
+    /**
+     *  Space padding option adds left and right padding style (in pixels) onto VueCarousel-inner.
      */
     spacePadding: {
       type: Number,

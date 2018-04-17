@@ -24,14 +24,7 @@
 <script>
 export default {
   name: "navigation",
-  data() {
-    return {
-      /**
-       * link on Carousel
-       */
-      parentContainer: this.$parent
-    };
-  },
+  inject: ["carousel"],
   props: {
     /**
      * Amount of padding to apply around the label in pixels
@@ -60,13 +53,13 @@ export default {
      * @return {Boolean} Can the slider move forward?
      */
     canAdvanceForward() {
-      return this.parentContainer.canAdvanceForward || false;
+      return this.carousel.canAdvanceForward || false;
     },
     /**
      * @return {Boolean} Can the slider move backward?
      */
     canAdvanceBackward() {
-      return this.parentContainer.canAdvanceBackward || false;
+      return this.carousel.canAdvanceBackward || false;
     }
   },
   methods: {

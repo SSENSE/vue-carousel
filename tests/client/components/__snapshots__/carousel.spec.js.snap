@@ -34,7 +34,7 @@ exports[`Carousel should begin autoplaying when option specified 1`] = `
 ".VueCarousel-wrapper
   .VueCarousel-inner(role=\'listbox\', style=\'visibility: hidden;\')
     .VueCarousel-slide(tabindex=\'-1\')
-    .VueCarousel-slide(tabindex=\'-1\')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex=\'-1\')
 |  
 .VueCarousel-pagination
   ul.VueCarousel-dot-container(role=\'tablist\')
@@ -50,7 +50,7 @@ exports[`Carousel should decrease current page number by 1 when advance page bac
 ".VueCarousel-wrapper
   .VueCarousel-inner(role=\'listbox\', style=\'visibility: hidden;\')
     .VueCarousel-slide(tabindex=\'-1\')
-    .VueCarousel-slide(tabindex=\'-1\')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex=\'-1\')
 |  
 .VueCarousel-pagination
   ul.VueCarousel-dot-container(role=\'tablist\')
@@ -66,7 +66,7 @@ exports[`Carousel should decrease current slide number by 1 when advance slide b
 ".VueCarousel-wrapper
   .VueCarousel-inner(role=\'listbox\', style=\'visibility: hidden;\')
     .VueCarousel-slide(tabindex=\'-1\')
-    .VueCarousel-slide(tabindex=\'-1\')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex=\'-1\')
 |  
 .VueCarousel-pagination
   ul.VueCarousel-dot-container(role=\'tablist\')
@@ -83,7 +83,7 @@ exports[`Carousel should fall back to default slides per page when no responsive
   .VueCarousel-inner(role=\'listbox\', style=\'visibility: hidden;\')
     .VueCarousel-slide(tabindex=\'-1\')
     .VueCarousel-slide(tabindex=\'-1\')
-    .VueCarousel-slide(tabindex=\'-1\')
+    .VueCarousel-slide.VueCarousel-slide-active(tabindex=\'-1\')
 |  
 .VueCarousel-pagination
   ul.VueCarousel-dot-container(role=\'tablist\')
@@ -99,7 +99,7 @@ exports[`Carousel should increase current page number by 1 when advance page is 
 ".VueCarousel-wrapper
   .VueCarousel-inner(role=\'listbox\', style=\'visibility: hidden;\')
     .VueCarousel-slide(tabindex=\'-1\')
-    .VueCarousel-slide(tabindex=\'-1\')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex=\'-1\')
 |  
 .VueCarousel-pagination
   ul.VueCarousel-dot-container(role=\'tablist\')
@@ -115,7 +115,7 @@ exports[`Carousel should increase current page number by 1 when advance page is 
 ".VueCarousel-wrapper
   .VueCarousel-inner(role=\'listbox\', style=\'visibility: hidden;\')
     .VueCarousel-slide(tabindex=\'-1\')
-    .VueCarousel-slide(tabindex=\'-1\')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex=\'-1\')
 |  
 .VueCarousel-pagination
   ul.VueCarousel-dot-container(role=\'tablist\')
@@ -130,7 +130,7 @@ exports[`Carousel should increase current page number by 1 when advance page is 
 exports[`Carousel should loop back to the start when loop is true and advance page non "backward" is called from the last page 1`] = `
 ".VueCarousel-wrapper
   .VueCarousel-inner(role=\'listbox\', style=\'visibility: hidden;\')
-    .VueCarousel-slide(tabindex=\'-1\')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex=\'-1\')
     .VueCarousel-slide(tabindex=\'-1\')
 |  
 .VueCarousel-pagination
@@ -147,7 +147,7 @@ exports[`Carousel should loop to the end when loop is true and advance page "bac
 ".VueCarousel-wrapper
   .VueCarousel-inner(role=\'listbox\', style=\'visibility: hidden;\')
     .VueCarousel-slide(tabindex=\'-1\')
-    .VueCarousel-slide(tabindex=\'-1\')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex=\'-1\')
 |  
 .VueCarousel-pagination
   ul.VueCarousel-dot-container(role=\'tablist\')
@@ -180,7 +180,7 @@ exports[`Carousel should register 3 slides when 3 slides are added to the slots 
   .VueCarousel-inner(role=\'listbox\', style=\'visibility: hidden;\')
     .VueCarousel-slide(tabindex=\'-1\')
     .VueCarousel-slide(tabindex=\'-1\')
-    .VueCarousel-slide(tabindex=\'-1\')
+    .VueCarousel-slide.VueCarousel-slide-active(tabindex=\'-1\')
 |  
 .VueCarousel-pagination
   ul.VueCarousel-dot-container(role=\'tablist\')
