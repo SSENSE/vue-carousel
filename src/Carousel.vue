@@ -1,8 +1,8 @@
 <template>
   <section class="VueCarousel">
-    <div class="VueCarousel-wrapper" ref="VueCarousel-wrapper">
-      <div
-        ref="VueCarousel-inner"
+    <div class="VueCarousel-wrapper"
+      ref="VueCarousel-wrapper">
+      <div ref="VueCarousel-inner"
         class="VueCarousel-inner"
         role="listbox"
         :style="{
@@ -18,17 +18,13 @@
         <slot></slot>
       </div>
     </div>
-    <pagination
-      v-if="paginationEnabled && pageCount > 0"
-      @paginationclick="goToPage($event, 'pagination')"
-    ></pagination>
-    <navigation
-      v-if="navigationEnabled"
+    <pagination v-if="paginationEnabled && pageCount > 0"
+      @paginationclick="goToPage($event, 'pagination')"></pagination>
+    <navigation v-if="navigationEnabled"
       :clickTargetSize="navigationClickTargetSize"
       :nextLabel="navigationNextLabel"
       :prevLabel="navigationPrevLabel"
-      @navigationclick="handleNavigation"
-    ></navigation>
+      @navigationclick="handleNavigation"></navigation>
   </section>
 </template>
 <script>
@@ -470,13 +466,19 @@ export default {
       document.addEventListener(
         this.isTouch ? "touchend" : "mouseup",
         this.onEnd,
-        true
+        {
+          passive: false,
+          capture: true
+        }
       );
 
       document.addEventListener(
         this.isTouch ? "touchmove" : "mousemove",
         this.onDrag,
-        true
+        {
+          passive: false,
+          capture: true
+        }
       );
 
       this.startTime = e.timeStamp;
@@ -516,12 +518,18 @@ export default {
       document.removeEventListener(
         this.isTouch ? "touchend" : "mouseup",
         this.onEnd,
-        true
+        {
+          passive: false,
+          capture: true
+        }
       );
       document.removeEventListener(
         this.isTouch ? "touchmove" : "mousemove",
         this.onDrag,
-        true
+        {
+          passive: false,
+          capture: true
+        }
       );
     },
     /**
