@@ -47,7 +47,7 @@ export default {
     },
     /**
      * `isActive` describes whether a slide is visible
-     * @return {Boolean} [description]
+     * @return {Boolean}
      */
     isActive() {
       return this.activeSlides.includes(this._uid);
@@ -60,10 +60,7 @@ export default {
     isCenter() {
       const { perPage } = this.carousel;
       if (perPage % 2 === 0 || !this.isActive) return false;
-      return (
-        this.activeSlides.indexOf(this._uid) ===
-        Math.floor(this.carousel.perPage / 2)
-      );
+      return this.activeSlides.indexOf(this._uid) === Math.floor(perPage / 2);
     }
   }
 };
