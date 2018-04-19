@@ -466,19 +466,13 @@ export default {
       document.addEventListener(
         this.isTouch ? "touchend" : "mouseup",
         this.onEnd,
-        {
-          passive: false,
-          capture: true
-        }
+        true
       );
 
       document.addEventListener(
         this.isTouch ? "touchmove" : "mousemove",
         this.onDrag,
-        {
-          passive: false,
-          capture: true
-        }
+        true
       );
 
       this.startTime = e.timeStamp;
@@ -518,18 +512,12 @@ export default {
       document.removeEventListener(
         this.isTouch ? "touchend" : "mouseup",
         this.onEnd,
-        {
-          passive: false,
-          capture: true
-        }
+        true
       );
       document.removeEventListener(
         this.isTouch ? "touchmove" : "mousemove",
         this.onDrag,
-        {
-          passive: false,
-          capture: true
-        }
+        true
       );
     },
     /**
@@ -548,8 +536,6 @@ export default {
         return;
       }
 
-      // we are good to prevent the move and handle the translation
-      e.preventDefault();
       e.stopImmediatePropagation();
 
       this.dragOffset = newOffsetX;
