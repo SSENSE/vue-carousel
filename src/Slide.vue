@@ -24,6 +24,11 @@ export default {
     if (!this.$isServer) {
       this.$el.addEventListener("dragstart", e => e.preventDefault());
     }
+
+    this.$el.addEventListener(
+      this.isTouch ? "touchend" : "mouseup",
+      this.onTouchEnd
+    );
   },
   computed: {
     activeSlides() {
@@ -61,6 +66,19 @@ export default {
       const { perPage } = this.carousel;
       if (perPage % 2 === 0 || !this.isActive) return false;
       return this.activeSlides.indexOf(this._uid) === Math.floor(perPage / 2);
+    }
+  },
+  methods: {
+    onTouchEnd(e) {
+      const eventPosX = this.carousel.isTouch ? e.changedTouches[0].clientX : e.clientX;
+      const deltaX = this.carousel.dragStartX - eventPosX;
+
+      if (
+        this.carousel.minSwipeDistance === 0 ||
+        Math.abs(deltaX) < this.carousel.minSwipeDistance
+      ) {
+        this.$emit("slideClick", Object.assign({}, e.currentTarget.dataset));
+      }
     }
   }
 };
