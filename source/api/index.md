@@ -23,11 +23,11 @@ Time elapsed before advancing slide
 Flag to pause autoplay on hover
 
 * **Type**: `Boolean`
-* **Default**: `false`
+* **Default**: `true`
 
 ### loop
 
-Flag to loop carousel and jump to the first / last slide
+Flag to make the carousel loop (wrap) when it reaches either end.
 
 * **Type**: `Boolean`
 * **Default**: `false`
@@ -38,6 +38,13 @@ Transition speed between slides. Any valid CSS transition easing is accepted.
 
 * **Type**: `String`
 * **Default**: `ease`
+
+### loop
+
+Flag to make the carousel loop around and return to the first page when it reaches the end.
+
+* **Type**: `Boolean`
+* **Default**: `false`
 
 ### minSwipeDistance
 
@@ -75,7 +82,7 @@ Scroll per page, not per item.
 * **Type**: `Boolean`
 * **Default**: `false`
 
-### speed
+### size
 
 Size of each pagination dot. Pixel values are accepted.
 
@@ -111,6 +118,13 @@ Text content of the navigation prev button
 
 * **Type**: `String`
 * **Default**: `◀`
+
+### navigateTo
+
+Allow carousel parent to programatically navigate to a specific slide (zero based index). Recommend using parent data attribute pageNo and carousel pageChange event to keep pageNo in sync with carousel.currentPage to handle subsequent navigation.
+
+* **Type**: `Number`
+* **Default**: 0
 
 ## Pagination
 
@@ -148,3 +162,10 @@ The size of each pagination dot. Pixel values are accepted.
 
 * **Type**: `Number`
 * **Default**: `10`
+
+### spacePadding
+
+Stage padding option adds left and right padding style (in pixels) onto VueCarousel-inner.
+
+* **Type**: `Number`
+* **Default**: `0`
