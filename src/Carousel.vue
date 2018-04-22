@@ -324,7 +324,7 @@ export default {
     pageCount() {
       return this.scrollPerPage
         ? Math.ceil(this.slideCount / this.currentPerPage)
-        : this.slideCount;
+        : this.slideCount - this.currentPerPage + 1;
     },
     /**
      * Calculate the width of each slide
