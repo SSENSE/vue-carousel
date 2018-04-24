@@ -103,6 +103,24 @@ Once the **Carousel** and **Slide** components are installed globally or importe
   </carousel>
 ```
 
+To listen for the 'slideClick' event you can do the following:
+
+``` html
+  <carousel>
+    <slide
+        data-index="0"
+        data-name="MySlideName"
+        @slideClick="handleSlideClick">
+      Slide 1 Content
+    </slide>
+    ...
+  </carousel>
+```
+```
+  handleSlideClick (dataset) => {
+    console.log(dataset.index, dataset.name)
+  }
+```
 ## Development
 
 A sandboxed dev environment is provided by [vue-play](https://github.com/vue-play/vue-play). Changes made to the component files will appear in real time in the sandbox. 
