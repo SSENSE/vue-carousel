@@ -70,7 +70,7 @@ export default {
   },
   methods: {
     onTouchEnd(e) {
-      const eventPosX = this.carousel.isTouch
+      const eventPosX = this.carousel.isTouch && e.changedTouches && e.changedTouches.length > 0
         ? e.changedTouches[0].clientX
         : e.clientX;
       const deltaX = this.carousel.dragStartX - eventPosX;
