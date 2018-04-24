@@ -83,6 +83,11 @@ export default {
 | navigateTo                | Number  | 0       | Listen for an external navigation request using this prop.                                                                                                                                                                                                                            |
 | spacePadding              | Number  | 0       | Stage padding option adds left and right padding style (in pixels) onto VueCarousel-inner.                                                                                                                                                                                            |
 
+### Events
+| Event                     | Type    | Emitter  | Description                                                                                                                                                                                                                                                                           |
+|:--------------------------|:--------|:---------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| slideClick                | Object  | Slide    | "slideClick" event throws the *dataset* object of the selected element                                                                                                                                                                                                          |
+
 ### HTML Structure
 
 Once the **Carousel** and **Slide** components are installed globally or imported, they can be used in templates in the following manner:
