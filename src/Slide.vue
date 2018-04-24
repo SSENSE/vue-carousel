@@ -26,7 +26,7 @@ export default {
     }
 
     this.$el.addEventListener(
-      this.isTouch ? "touchend" : "mouseup",
+      this.carousel.isTouch ? "touchend" : "mouseup",
       this.onTouchEnd
     );
   },
