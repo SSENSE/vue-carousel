@@ -55,7 +55,10 @@ export default {
      * @return {boolean}
      */
     isCurrentDot(index) {
-      return index === this.carousel.currentPage;
+      const { currentPage, scrollPerPage, perPage } = this.carousel;
+      return scrollPerPage
+        ? index <= currentPage && index > currentPage - 1
+        : index < currentPage + perPage && index >= currentPage;
     }
   }
 };
