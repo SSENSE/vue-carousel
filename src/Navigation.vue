@@ -23,89 +23,89 @@
 
 <script>
 export default {
-  name: "navigation",
-  inject: ["carousel"],
-  props: {
-    /**
-     * Amount of padding to apply around the label in pixels
-     */
-    clickTargetSize: {
-      type: Number,
-      default: 8
-    },
-    /**
-     * Text content of the navigation next button
-     */
-    nextLabel: {
-      type: String,
-      default: "▶"
-    },
-    /**
-     * Text content of the navigation prev button
-     */
-    prevLabel: {
-      type: String,
-      default: "◀"
-    }
-  },
-  computed: {
-    /**
-     * @return {Boolean} Can the slider move forward?
-     */
-    canAdvanceForward() {
-      return this.carousel.canAdvanceForward || false;
-    },
-    /**
-     * @return {Boolean} Can the slider move backward?
-     */
-    canAdvanceBackward() {
-      return this.carousel.canAdvanceBackward || false;
-    }
-  },
-  methods: {
-    /**
-     * Trigger page change on +/- 1 depending on the direction
-     * @param {"backward"} [direction]
-     * @return {void}
-     */
-    triggerPageAdvance(direction) {
-      /**
-       * @event paginationclick
-       * @type {string}
-       */
-      this.$emit("navigationclick", direction);
-    }
-  }
+	name: 'navigation',
+	inject: ['carousel'],
+	props: {
+		/**
+		 * Amount of padding to apply around the label in pixels
+		 */
+		clickTargetSize: {
+			type: Number,
+			default: 8
+		},
+		/**
+		 * Text content of the navigation next button
+		 */
+		nextLabel: {
+			type: String,
+			default: '▶'
+		},
+		/**
+		 * Text content of the navigation prev button
+		 */
+		prevLabel: {
+			type: String,
+			default: '◀'
+		}
+	},
+	computed: {
+		/**
+		 * @return {Boolean} Can the slider move forward?
+		 */
+		canAdvanceForward() {
+			return this.carousel.canAdvanceForward || false;
+		},
+		/**
+		 * @return {Boolean} Can the slider move backward?
+		 */
+		canAdvanceBackward() {
+			return this.carousel.canAdvanceBackward || false;
+		}
+	},
+	methods: {
+		/**
+		 * Trigger page change on +/- 1 depending on the direction
+		 * @param {"backward"} [direction]
+		 * @return {void}
+		 */
+		triggerPageAdvance(direction) {
+			/**
+			 * @event paginationclick
+			 * @type {string}
+			 */
+			this.$emit('navigationclick', direction);
+		}
+	}
 };
 </script>
 
 <style scoped>
 .VueCarousel-navigation-button {
-  position: absolute;
-  top: 50%;
-  box-sizing: border-box;
-  color: #000;
-  text-decoration: none;
-  appearance: none;
-  border: none;
-  background-color: transparent;
-  padding: 0;
-  cursor: pointer;
-  outline: none;
+	position: absolute;
+	top: 50%;
+	box-sizing: border-box;
+	color: #000;
+	text-decoration: none;
+	appearance: none;
+	border: none;
+	background-color: transparent;
+	padding: 0;
+	cursor: pointer;
+	outline: none;
 }
 
 .VueCarousel-navigation-next {
-  right: 0;
-  transform: translateY(-50%) translateX(100%);
+	right: 0;
+	transform: translateY(-50%) translateX(100%);
 }
 
 .VueCarousel-navigation-prev {
-  left: 0;
-  transform: translateY(-50%) translateX(-100%);
+	left: 0;
+	transform: translateY(-50%) translateX(-100%);
 }
 
 .VueCarousel-navigation--disabled {
-  opacity: 0.5;
-  cursor: default;
+	opacity: 0.5;
+	cursor: default;
 }
 </style>

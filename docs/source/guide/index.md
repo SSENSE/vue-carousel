@@ -4,7 +4,7 @@ title: Guide
 
 ## Installation
 
-``` bash
+```bash
 npm install -S vue-carousel
 ```
 
@@ -12,19 +12,20 @@ npm install -S vue-carousel
 
 You may install Vue Carousel globally:
 
-``` js
+```js
 import Vue from 'vue';
 import VueCarousel from 'vue-carousel';
 
 Vue.use(VueCarousel);
 ```
+
 This will make **&lt;carousel&gt;** and **&lt;slide&gt;** available to all components within your Vue app.
 
 ## Usage (Local)
 
 Include the carousel directly into your component using import:
 
-``` js
+```js
 import { Carousel, Slide } from 'vue-carousel';
 
 export default {
@@ -41,7 +42,7 @@ export default {
 
 Once the **Carousel** and **Slide** components are installed globally or imported, they can be used in templates in the following manner:
 
-``` html
+```html
   <carousel>
     <slide>
       Slide 1 Content

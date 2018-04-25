@@ -11,20 +11,21 @@
 **[Full documentation and examples](https://ssense.github.io/vue-carousel)**
 
 ## Table of Contents
-- [Installation](#installation)
-- [Usage](#usage)
-- [Development](#development)
-- [License](#license)
+
+* [Installation](#installation)
+* [Usage](#usage)
+* [Development](#development)
+* [License](#license)
 
 ## Installation
 
-``` bash
+```bash
 npm install vue-carousel
 ```
 
 or if you prefer yarn
 
-``` bash
+```bash
 yarn add vue-carousel
 ```
 
@@ -34,19 +35,20 @@ yarn add vue-carousel
 
 You may install Vue Carousel globally:
 
-``` js
+```js
 import Vue from 'vue';
 import VueCarousel from 'vue-carousel';
 
 Vue.use(VueCarousel);
 ```
+
 This will make **&lt;carousel&gt;** and **&lt;slide&gt;** available to all components within your Vue app.
 
 ### Local
 
 Include the carousel directly into your component using import:
 
-``` js
+```js
 import { Carousel, Slide } from 'vue-carousel';
 
 export default {
@@ -60,8 +62,9 @@ export default {
 ```
 
 ### Configuration
+
 | Property                  | Type    | Default | Description                                                                                                                                                                                                                                                                           |
-|:--------------------------|:--------|:--------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :------------------------ | :------ | :------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | easing                    | String  | ease    | Slide transition easing. Any valid CSS transition easing accepted.                                                                                                                                                                                                                    |
 | minSwipeDistance          | Number  | 8       | Minimum distance for the swipe to trigger a slide advance.                                                                                                                                                                                                                            |
 | navigationClickTargetSize | Number  | 8       | Amount of padding to apply around the label in pixels.                                                                                                                                                                                                                                |
@@ -77,22 +80,23 @@ export default {
 | perPage                   | Number  | 2       | Maximum number of slides displayed on each page.                                                                                                                                                                                                                                      |
 | perPageCustom             | Array   |         | Configure the number of visible slides with a particular browser width. This will be an array of arrays, ex. [[320, 2], [1199, 4]]. Formatted as [x, y] where x=browser width, and y=number of slides displayed. Ex. [1199, 4] means if (window <= 1199) then show 4 slides per page. |
 | resistanceCoef            | Number  | 20      | Resistance coefficient to dragging on the edge of the carousel. This dictates the effect of the pull as you move towards the boundaries.                                                                                                                                              |
-| scrollPerPage             | Boolean | true   | Scroll per page, not per item.                                                                                                                                                                                                                                                        |
+| scrollPerPage             | Boolean | true    | Scroll per page, not per item.                                                                                                                                                                                                                                                        |
 | speed                     | Number  |         | Slide transition speed. Number of milliseconds accepted.                                                                                                                                                                                                                              |
 | loop                      | Boolean | false   | Flag to make the carousel loop around when it reaches the end.                                                                                                                                                                                                                        |
 | navigateTo                | Number  | 0       | Listen for an external navigation request using this prop.                                                                                                                                                                                                                            |
 | spacePadding              | Number  | 0       | Stage padding option adds left and right padding style (in pixels) onto VueCarousel-inner.                                                                                                                                                                                            |
 
 ### Events
-| Event                     | Type    | Emitter  | Description                                                                                                                                                                                                                                                                           |
-|:--------------------------|:--------|:---------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| slideClick                | Object  | Slide    | "slideClick" event throws the *dataset* object of the selected element                                                                                                                                                                                                          |
+
+| Event      | Type   | Emitter | Description                                                            |
+| :--------- | :----- | :------ | :--------------------------------------------------------------------- |
+| slideClick | Object | Slide   | "slideClick" event throws the _dataset_ object of the selected element |
 
 ### HTML Structure
 
 Once the **Carousel** and **Slide** components are installed globally or imported, they can be used in templates in the following manner:
 
-``` html
+```html
   <carousel :per-page="1" :navigate-to="someLocalProperty" mouse-drag="false">
     <slide>
       Slide 1 Content
@@ -105,7 +109,7 @@ Once the **Carousel** and **Slide** components are installed globally or importe
 
 To listen for the 'slideClick' event you can do the following:
 
-``` html
+```html
   <carousel>
     <slide
         data-index="0"
@@ -116,26 +120,28 @@ To listen for the 'slideClick' event you can do the following:
     ...
   </carousel>
 ```
+
 ```
   handleSlideClick (dataset) => {
     console.log(dataset.index, dataset.name)
   }
 ```
+
 ## Development
 
-A sandboxed dev environment is provided by [vue-play](https://github.com/vue-play/vue-play). Changes made to the component files will appear in real time in the sandbox. 
+A sandboxed dev environment is provided by [vue-play](https://github.com/vue-play/vue-play). Changes made to the component files will appear in real time in the sandbox.
 
 To begin development, run:
 
-``` bash
-npm install 
+```bash
+npm install
 npm run dev
 ```
 
 or, if you prefer yarn
 
-``` bash
-yarn install 
+```bash
+yarn install
 yarn dev
 ```
 
