@@ -1,4 +1,4 @@
-# Vue Carousel
+# Vue Carousel :
 
 [![Build Status](https://travis-ci.org/SSENSE/vue-carousel.svg?branch=master)](https://travis-ci.org/SSENSE/vue-carousel)
 [![Coverage Status](https://coveralls.io/repos/github/SSENSE/vue-carousel/badge.svg?branch=master)](https://coveralls.io/github/SSENSE/vue-carousel?branch=master)
@@ -52,12 +52,10 @@ Include the carousel directly into your component using import:
 import { Carousel, Slide } from 'vue-carousel';
 
 export default {
-  ...
-  components: {
-    Carousel,
-    Slide
-  }
-  ...
+	components: {
+		Carousel,
+		Slide
+	}
 };
 ```
 
