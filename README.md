@@ -20,13 +20,7 @@
 ## Installation
 
 ```bash
-npm install vue-carousel
-```
-
-or if you prefer yarn
-
-```bash
-yarn add vue-carousel
+yarn add vue-carousel   // or npm install vue-carousel
 ```
 
 ## Usage
@@ -105,26 +99,6 @@ Once the **Carousel** and **Slide** components are installed globally or importe
   </carousel>
 ```
 
-To listen for the 'slideClick' event you can do the following:
-
-```html
-  <carousel>
-    <slide
-        data-index="0"
-        data-name="MySlideName"
-        @slideClick="handleSlideClick">
-      Slide 1 Content
-    </slide>
-    ...
-  </carousel>
-```
-
-```
-  handleSlideClick (dataset) => {
-    console.log(dataset.index, dataset.name)
-  }
-```
-
 ## Development
 
 A sandboxed dev environment is provided by [vue-play](https://github.com/vue-play/vue-play). Changes made to the component files will appear in real time in the sandbox.
@@ -132,15 +106,8 @@ A sandboxed dev environment is provided by [vue-play](https://github.com/vue-pla
 To begin development, run:
 
 ```bash
-npm install
-npm run dev
-```
-
-or, if you prefer yarn
-
-```bash
-yarn install
-yarn dev
+yarn install   // or npm install
+yarn dev   // or npm run dev
 ```
 
 then navigate to `http://localhost:5000`
