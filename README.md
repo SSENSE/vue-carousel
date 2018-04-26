@@ -1,4 +1,4 @@
-# Vue Carousel :
+# Vue Carousel
 
 [![Build Status](https://travis-ci.org/SSENSE/vue-carousel.svg?branch=master)](https://travis-ci.org/SSENSE/vue-carousel)
 [![Coverage Status](https://coveralls.io/repos/github/SSENSE/vue-carousel/badge.svg?branch=master)](https://coveralls.io/github/SSENSE/vue-carousel?branch=master)
@@ -9,6 +9,16 @@
 **Feel free to submit issues and feature requests [here](https://github.com/SSENSE/vue-carousel/issues)**.
 
 **[Full documentation and examples](https://ssense.github.io/vue-carousel)**
+
+### Interested in contributing?
+
+We have new open feature requests and bug reports added daily, and can use your help!
+
+Looking to own a feature?
+Here's a link to our **[core roadmap issues](https://github.com/SSENSE/vue-carousel/issues?q=is%3Aissue+is%3Aopen+label%3Aroadmap)**
+
+First time working with open source?
+Here's a link to our **[good first time issues](https://github.com/SSENSE/vue-carousel/labels/good%20first%20issue)**
 
 ## Table of Contents
 
