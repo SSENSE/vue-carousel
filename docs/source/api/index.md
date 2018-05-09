@@ -69,7 +69,7 @@ This will be an array of arrays. Each array is formatted as [x, y] where x is th
 * **Type**: `Array`
 * **Usage**:
 
-``` html
+```html
 <carousel :perPageCustom="[[768, 3], [1024, 4]]">
 ```
 
@@ -169,4 +169,3 @@ Stage padding option adds left and right padding style (in pixels) onto VueCarou
 
 * **Type**: `Number`
 * **Default**: `0`
-

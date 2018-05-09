@@ -33,62 +33,62 @@
 
 <script>
 export default {
-  name: "pagination",
-  inject: ["carousel"],
-  methods: {
-    /**
-     * Change page by index
-     * @param {number} index
-     * return {void}
-     */
-    goToPage(index) {
-      /**
-       * @event paginationclick
-       * @type {number}
-       */
-      this.$emit("paginationclick", index);
-    },
+	name: 'pagination',
+	inject: ['carousel'],
+	methods: {
+		/**
+		 * Change page by index
+		 * @param {number} index
+		 * return {void}
+		 */
+		goToPage(index) {
+			/**
+			 * @event paginationclick
+			 * @type {number}
+			 */
+			this.$emit('paginationclick', index);
+		},
 
-    /**
-     * Check on current dot
-     * @param {number} index - dot index
-     * @return {boolean}
-     */
-    isCurrentDot(index) {
-      return index === this.carousel.currentPage;
-    }
-  }
+		/**
+		 * Check on current dot
+		 * @param {number} index - dot index
+		 * @return {boolean}
+		 */
+		isCurrentDot(index) {
+			return index === this.carousel.currentPage;
+		}
+	}
 };
 </script>
 
 <style scoped>
 .VueCarousel-pagination {
-  width: 100%;
-  text-align: center;
+	width: 100%;
+	text-align: center;
 }
 
 .VueCarousel-dot-container {
-  display: inline-block;
-  margin: 0 auto;
-  padding: 0;
+	display: inline-block;
+	margin: 0 auto;
+	padding: 0;
 }
 
 .VueCarousel-dot {
-  display: inline-block;
-  cursor: pointer;
+	display: inline-block;
+	cursor: pointer;
 }
 
 .VueCarousel-dot-button {
-  appearance: none;
-  border: none;
-  background-color: transparent;
-  padding: 0;
-  border-radius: 100%;
-  outline: none;
-  cursor: pointer;
+	appearance: none;
+	border: none;
+	background-color: transparent;
+	padding: 0;
+	border-radius: 100%;
+	outline: none;
+	cursor: pointer;
 }
 
 .VueCarousel-dot-button:focus {
-  outline: 1px solid lightblue;
+	outline: 1px solid lightblue;
 }
 </style>

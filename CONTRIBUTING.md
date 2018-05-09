@@ -7,7 +7,8 @@ Some basic conventions for contributing to this project.
 Please make sure that there aren't existing pull requests attempting to address the issue mentioned. Likewise, please check for issues related to update, as someone else may be working on the issue in a branch or fork.
 
 * Non-trivial changes should be discussed in an issue first
-* Develop in a topic branch, not master
+* New features should ideally be accompanied by tests and documentation
+* Develop in a topic branch or fork, not master
 * Squash your commits
 
 ### Branching
@@ -23,16 +24,24 @@ Please make sure that there aren't existing pull requests attempting to address 
 **Short well-defined tokens**
 
 Choose short tokens so they do not add too much noise to every one of your branch names.
+
 ```
 wip       Works in progress; stuff we know won't be finished soon
 feat      Feature I'm adding or expanding
+refactor  Rewriting or improving an existing section of the codebase
 bug       Bug fix or experiment
 junk      Throwaway branch created to experiment
+chore     Upgrade to documentation, formatting, etc
 ```
 
 ### Linting
 
-Please be watchful of linting errors before committing code.
+We have a pre-commit hook that will run our linter, as well as format your code. The code formatting is opinionated,
+but allows us to keep the codebase uniform and has the added benefit of allowing any dev to write however they prefer,
+and for the codebase to stay standardized.
+
+However, while the linter stays updated with our rulings it is not all powerful, so please be watchful of linting errors
+before committing code.
 
 ### Commit Message Format
 
@@ -46,10 +55,10 @@ Lines should not exceed 100 characters. This allows the message to be easier to 
 
 ```
  #271 feat(standard): add style config and refactor to match
- #270 fix(config): only override publicPath when served by webpack 
- #269 feat(eslint-config-defaults): replace eslint-config-airbnb 
- #268 feat(config): allow user to configure webpack stats output 
-``` 
+ #270 fix(config): only override publicPath when served by webpack
+ #269 feat(eslint-config-defaults): replace eslint-config-airbnb
+ #268 feat(config): allow user to configure webpack stats output
+```
 
 #### Type
 
@@ -68,7 +77,7 @@ Must be one of the following:
 #### Scope
 
 The scope could be anything specifying place of the commit change. For example `webpack`,
-`babel`, `redux` etc...
+`babel`, `loop`, `slide` etc...
 
 #### Subject
 
