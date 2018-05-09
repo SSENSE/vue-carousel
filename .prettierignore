@@ -4,5 +4,5 @@
 /tests/coverage
 
 package-lock.json
-/docs/package-lock.json
-/docs/**/**/*.min.js
+docs/package-lock.json
+docs/**/**/*.min.js
