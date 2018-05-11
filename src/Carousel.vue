@@ -34,11 +34,24 @@ import Navigation from "./Navigation.vue";
 import Pagination from "./Pagination.vue";
 import Slide from "./Slide.vue";
 
+const transitionStartNames = {
+  onwebkittransitionstart: "webkitTransitionStart",
+  onmoztransitionstart: "transitionstart",
+  onotransitionstart: "oTransitionStart otransitionstart",
+  ontransitionstart: "transitionstart"
+};
 const transitionEndNames = {
   onwebkittransitionend: "webkitTransitionEnd",
   onmoztransitionend: "transitionend",
   onotransitionend: "oTransitionEnd otransitionend",
   ontransitionend: "transitionend"
+};
+const getTransitionStart = () => {
+  for (let name in transitionStartNames) {
+    if (name in window) {
+      return transitionStartNames[name];
+    }
+  }
 };
 const getTransitionEnd = () => {
   for (let name in transitionEndNames) {
@@ -72,6 +85,7 @@ export default {
       offset: 0,
       refreshRate: 16,
       slideCount: 0,
+      transitionstart: "transitionstart",
       transitionend: "transitionend"
     };
   },
@@ -597,6 +611,9 @@ export default {
         this.offset = Math.max(0, Math.min(this.offset, this.maxOffset));
       }
     },
+    handleTransitionStart() {
+      this.$emit("transitionStart");
+    },
     handleTransitionEnd() {
       this.$emit("transitionEnd");
     }
@@ -618,6 +635,11 @@ export default {
     this.attachMutationObserver();
     this.computeCarouselWidth();
 
+    this.transitionstart = getTransitionEnd();
+    this.$refs["VueCarousel-inner"].addEventListener(
+      this.transitionstart,
+      this.handleTransitionStart
+    );
     this.transitionend = getTransitionEnd();
     this.$refs["VueCarousel-inner"].addEventListener(
       this.transitionend,
@@ -627,6 +649,10 @@ export default {
   beforeDestroy() {
     this.detachMutationObserver();
     window.removeEventListener("resize", this.getBrowserWidth);
+    this.$refs["VueCarousel-inner"].removeEventListener(
+      this.transitionstart,
+      this.handleTransitionStart
+    );
     this.$refs["VueCarousel-inner"].removeEventListener(
       this.transitionend,
       this.handleTransitionEnd
