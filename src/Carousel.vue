@@ -302,9 +302,6 @@ export default {
     currentOffset() {
       return (this.offset + this.dragOffset) * -1;
     },
-    isHidden() {
-      return this.carouselWidth;
-    },
     /**
      * Maximum offset the carousel can slide
      * Considering the spacePadding
