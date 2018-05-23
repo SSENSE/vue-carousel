@@ -429,7 +429,7 @@ export default {
       let carouselInnerElements = document.getElementsByClassName('VueCarousel-inner');
       for (let i=0; i < carouselInnerElements.length; i++){
         if (carouselInnerElements[i].clientWidth > 0 ){
-          this.carouselWidth = carouselInnerElements[i].clientWidth;
+          this.carouselWidth = carouselInnerElements[i].clientWidth || 0;
         }
       }
       return this.carouselWidth;
