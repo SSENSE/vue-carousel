@@ -61,7 +61,7 @@ export default {
   data() {
     return {
       browserWidth: null,
-      carouselWidth: null,
+      carouselWidth: 0,
       currentPage: 0,
       dragging: false,
       dragMomentum: 0,
