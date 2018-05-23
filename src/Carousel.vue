@@ -11,7 +11,7 @@
           'ms-flex-preferred-size': `${slideWidth}px`,
           'webkit-flex-basis': `${slideWidth}px`,
           'flex-basis': `${slideWidth}px`,
-          'visibility': 'visible',
+          'visibility': 'hidden',
           'padding-left': `${padding}px`,
           'padding-right': `${padding}px`
         }">
