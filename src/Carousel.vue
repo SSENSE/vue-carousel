@@ -11,7 +11,7 @@
           'ms-flex-preferred-size': `${slideWidth}px`,
           'webkit-flex-basis': `${slideWidth}px`,
           'flex-basis': `${slideWidth}px`,
-          'visibility': 'hidden',
+          'visibility': slideWidth ? 'visible' : 'hidden',
           'padding-left': `${padding}px`,
           'padding-right': `${padding}px`
         }">
@@ -301,6 +301,9 @@ export default {
      */
     currentOffset() {
       return (this.offset + this.dragOffset) * -1;
+    },
+    isHidden() {
+      return this.carouselWidth <= 0;
     },
     /**
      * Maximum offset the carousel can slide
