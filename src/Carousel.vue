@@ -126,14 +126,14 @@ export default {
      */
     navigationNextLabel: {
       type: String,
-      default: "▶"
+      default: "&#9654"
     },
     /**
      * Text content of the navigation prev button
      */
     navigationPrevLabel: {
       type: String,
-      default: "◀"
+      default: "&#9664"
     },
     /**
      * The fill color of the active pagination dot

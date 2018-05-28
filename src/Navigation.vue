@@ -38,14 +38,14 @@ export default {
      */
     nextLabel: {
       type: String,
-      default: "▶"
+      default: "&#9654"
     },
     /**
      * Text content of the navigation prev button
      */
     prevLabel: {
       type: String,
-      default: "◀"
+      default: "&#9664"
     }
   },
   computed: {
@@ -97,11 +97,13 @@ export default {
 .VueCarousel-navigation-next {
   right: 0;
   transform: translateY(-50%) translateX(100%);
+  font-family: "Segoe UI Symbol";
 }
 
 .VueCarousel-navigation-prev {
   left: 0;
   transform: translateY(-50%) translateX(-100%);
+  font-family: "Segoe UI Symbol";
 }
 
 .VueCarousel-navigation--disabled {
