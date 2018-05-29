@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Vue Carousel</title>
+        <meta charset="utf-8">
+        <meta name="description" content="Vue Carousel - A flexible, responsive, touch-friendly carousel for Vue.js">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+        <meta property="og:type" content="article">
+        <meta property="og:title" content="Vue Carousel">
+        <meta property="og:description" content="Vue Carousel - A flexible, responsive, touch-friendly carousel for Vue.js">
+        <meta property="og:image" content="https:///images/logo.png">
+
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="Vue Carousel">
+        <meta name="twitter:description" content="Vue Carousel - A flexible, responsive, touch-friendly carousel for Vue.js">
+        <meta name="twitter:image" content="https:///images/logo.png">
+
+        <link rel="icon" href="/vue-carousel/images/logo.png" type="image/x-icon">
+
+        <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Dosis:500&text=Vue.js' rel='stylesheet' type='text/css'>
+
+        <!-- main page styles -->
+        <link rel="stylesheet" href="/vue-carousel/css/index.css">
+
+        <!-- this needs to be loaded before guide's inline scripts -->
+        <script src="/vue-carousel/js/vue.js"></script>
+        <script src="/vue-carousel/js/vue-carousel.min.js"></script>
+        <script>window.PAGE_TYPE = ""</script>
+    </head>
+    <body class="">        <div id="mobile-bar" class="top">
+            <a class="menu-button"></a>
+            <a class="logo" href="/vue-carousel/"></a>
+        </div>
+        <div id="header">
+  <a id="logo" href="/vue-carousel/">
+    <img src="/vue-carousel/images/logo.png" alt="Vue Carousel">
+    <span>Vue Carousel</span>
+  </a>
+  <ul id="nav">
+    <li><a href="/vue-carousel/guide" class="nav-link">Guide</a></li>
+<li><a href="/vue-carousel/api" class="nav-link">API</a></li>
+<li><a href="/vue-carousel/examples" class="nav-link">Examples</a></li>
+
+  </ul>
+</div>
+
+        
+            <div class="sidebar">
+  <ul class="main-menu">
+    <li><a href="/vue-carousel/guide" class="nav-link">Guide</a></li>
+<li><a href="/vue-carousel/api" class="nav-link">API</a></li>
+<li><a href="/vue-carousel/examples" class="nav-link">Examples</a></li>
+
+  </ul>
+</div>
+
+<div id="hero">
+  <div class="inner">
+    <h1>
+      A flexible, responsive, touch-friendly<br/> carousel for Vue.js
+    </h1>
+    <p>
+      <a class="button" href="/vue-carousel/guide">GET STARTED</a>
+      <a class="button white" href="https://github.com/SSENSE/vue-carousel" target="_blank">GITHUB</a>
+    </p>
+  </div>
+</div>
+
+<div id="hero">
+  <div class="inner">
+    <div id="index-example"></div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  var images = [
+    'https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176006_1.jpg',
+    'https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176005_1.jpg',
+    'https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176003_1.jpg',
+    'https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176004_1.jpg',
+    'https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176002_1.jpg',
+    'https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176001_1.jpg'
+  ];
+  var slideTpl = '';
+
+  images.forEach(function(img) {
+    slideTpl += '<slide><img style="width: 100%" src="' + img + '" /></slide>';
+  });
+
+  new Vue({
+    el: '#index-example',
+    components: {
+      'carousel': VueCarousel.Carousel,
+      'slide': VueCarousel.Slide
+    },
+    template: '<carousel paginationColor="#d5cfc6" paginationActiveColor="#913938" :perPageCustom="[[480, 3], [900, 4]]">' + slideTpl + '</carousel>'
+  });
+</script>
+
+<div id="highlights">
+  <div class="inner">
+    <div class="point">
+      <h2>Flexible</h2>
+      <p>Slides use Vue's built-in slot system, allowing you to display any type of content in slides (including other Vue components!)</p>
+    </div>
+
+    <div class="point">
+      <h2>Responsive</h2>
+      <p>Breakpoints in Vue Carousel can be configured to have different slide counts depending on the device's display resolution.</p>
+    </div>
+
+    <div class="point">
+      <h2>Touch-friendly</h2>
+      <p>
+        Touch and drag supported on both desktop and mobile devices.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div id="sponsors">
+  <div class="inner">
+    <h3>SPONSORED BY</h3>
+    <a href="https://www.ssense.com/" target="_blank">
+  <img src="//res.cloudinary.com/ssenseweb/image/upload/v1471963917/web/ssense_logo.svg">
+</a>
+    <br>
+    <a class="become-sponsor button white" href="https://www.ssense.com/careers">We're Hiring!</a>
+    <a class="become-sponsor button white" href="https://github.com/SSENSE/vue-carousel/issues">Contribute</a>
+  </div>
+</div>
+
+<div id="footer">
+  Released under the <a href="https://opensource.org/licenses/MIT" href="_blank">MIT License</a><br>
+  Copyright &copy; 2018 SSENSE
+</div>
+
+<script>
+var topScrolled = false
+window.addEventListener('scroll', function () {
+  if (window.pageYOffset > 165 && !topScrolled) {
+    topScrolled = true
+    document.getElementById('mobile-bar').classList.remove('top')
+  } else if (window.pageYOffset <= 165 && topScrolled) {
+    topScrolled = false
+    document.getElementById('mobile-bar').classList.add('top')
+  }
+})
+</script>
+
+        
+
+        <!-- main custom script for sidebars, version selects etc. -->
+        <script src="/vue-carousel/js/common.js"></script>
+
+        <!-- ga -->
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', '', '');
+          ga('send', 'pageview');
+        </script>
+
+        <!-- search -->
+        <link href="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="/vue-carousel/css/search.css">
+        <script src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+        <script>
+        [
+          '#search-query-nav',
+          '#search-query-sidebar'
+        ].forEach(function (selector) {
+          if (!document.querySelector(selector)) return
+          // search index defaults to v2
+          var match = window.location.pathname.match(/^\/(v\d+)/)
+          var version = match ? match[1] : 'v2'
+          docsearch({
+            appId: 'BH4D9OD16A',
+            apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
+            indexName: 'vuejs',
+            inputSelector: selector,
+            algoliaOptions: { facetFilters: ["version:" + version] }
+          })
+        })
+        </script>
+
+        <!-- fastclick -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          FastClick.attach(document.body)
+        }, false)
+        </script>
+    </body>
+</html>

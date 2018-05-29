@@ -409,9 +409,11 @@ export default {
           });
         });
         if (this.$parent.$el) {
-          let carouselInnerElements = document.getElementsByClassName('VueCarousel-inner');
-          for (let i=0; i< carouselInnerElements.length; i++){
-            this.mutationObserver.observe(carouselInnerElements[i] ,config);
+          let carouselInnerElements = document.getElementsByClassName(
+            "VueCarousel-inner"
+          );
+          for (let i = 0; i < carouselInnerElements.length; i++) {
+            this.mutationObserver.observe(carouselInnerElements[i], config);
           }
         }
       }
@@ -440,9 +442,11 @@ export default {
      * @return {Number} Width of the carousel in pixels
      */
     getCarouselWidth() {
-      let carouselInnerElements = document.getElementsByClassName('VueCarousel-inner');
-      for (let i=0; i < carouselInnerElements.length; i++){
-        if (carouselInnerElements[i].clientWidth > 0 ){
+      let carouselInnerElements = document.getElementsByClassName(
+        "VueCarousel-inner"
+      );
+      for (let i = 0; i < carouselInnerElements.length; i++) {
+        if (carouselInnerElements[i].clientWidth > 0) {
           this.carouselWidth = carouselInnerElements[i].clientWidth || 0;
         }
       }
