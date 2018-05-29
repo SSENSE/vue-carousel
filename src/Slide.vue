@@ -24,6 +24,11 @@ export default {
     if (!this.$isServer) {
       this.$el.addEventListener("dragstart", e => e.preventDefault());
     }
+
+    this.$el.addEventListener(
+      this.carousel.isTouch ? "touchend" : "mouseup",
+      this.onTouchEnd
+    );
   },
   computed: {
     activeSlides() {
@@ -47,7 +52,7 @@ export default {
     },
     /**
      * `isActive` describes whether a slide is visible
-     * @return {Boolean} [description]
+     * @return {Boolean}
      */
     isActive() {
       return this.activeSlides.includes(this._uid);
@@ -60,10 +65,23 @@ export default {
     isCenter() {
       const { perPage } = this.carousel;
       if (perPage % 2 === 0 || !this.isActive) return false;
-      return (
-        this.activeSlides.indexOf(this._uid) ===
-        Math.floor(this.carousel.perPage / 2)
-      );
+      return this.activeSlides.indexOf(this._uid) === Math.floor(perPage / 2);
+    }
+  },
+  methods: {
+    onTouchEnd(e) {
+      const eventPosX =
+        this.carousel.isTouch && e.changedTouches && e.changedTouches.length > 0
+          ? e.changedTouches[0].clientX
+          : e.clientX;
+      const deltaX = this.carousel.dragStartX - eventPosX;
+
+      if (
+        this.carousel.minSwipeDistance === 0 ||
+        Math.abs(deltaX) < this.carousel.minSwipeDistance
+      ) {
+        this.$emit("slideClick", Object.assign({}, e.currentTarget.dataset));
+      }
     }
   }
 };

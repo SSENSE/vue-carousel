@@ -1,13 +1,13 @@
 <template>
   <section class="VueCarousel">
-    <div class="VueCarousel-wrapper" ref="VueCarousel-wrapper">
-      <div
-        ref="VueCarousel-inner"
+    <div class="VueCarousel-wrapper"
+      ref="VueCarousel-wrapper">
+      <div ref="VueCarousel-inner"
         class="VueCarousel-inner"
         role="listbox"
         :style="{
           'transform': `translate3d(${currentOffset}px, 0, 0)`,
-          'transition': !dragging ? transitionStyle : 'none',
+          'transition': dragging ? 'none' : transitionStyle,
           'ms-flex-preferred-size': `${slideWidth}px`,
           'webkit-flex-basis': `${slideWidth}px`,
           'flex-basis': `${slideWidth}px`,
@@ -18,17 +18,13 @@
         <slot></slot>
       </div>
     </div>
-    <pagination
-      v-if="paginationEnabled && pageCount > 0"
-      @paginationclick="goToPage($event, 'pagination')"
-    ></pagination>
-    <navigation
-      v-if="navigationEnabled"
+    <pagination v-if="paginationEnabled && pageCount > 0"
+      @paginationclick="goToPage($event, 'pagination')"></pagination>
+    <navigation v-if="navigationEnabled"
       :clickTargetSize="navigationClickTargetSize"
       :nextLabel="navigationNextLabel"
       :prevLabel="navigationPrevLabel"
-      @navigationclick="handleNavigation"
-    ></navigation>
+      @navigationclick="handleNavigation"></navigation>
   </section>
 </template>
 <script>
@@ -38,11 +34,24 @@ import Navigation from "./Navigation.vue";
 import Pagination from "./Pagination.vue";
 import Slide from "./Slide.vue";
 
+const transitionStartNames = {
+  onwebkittransitionstart: "webkitTransitionStart",
+  onmoztransitionstart: "transitionstart",
+  onotransitionstart: "oTransitionStart otransitionstart",
+  ontransitionstart: "transitionstart"
+};
 const transitionEndNames = {
   onwebkittransitionend: "webkitTransitionEnd",
   onmoztransitionend: "transitionend",
   onotransitionend: "oTransitionEnd otransitionend",
   ontransitionend: "transitionend"
+};
+const getTransitionStart = () => {
+  for (let name in transitionStartNames) {
+    if (name in window) {
+      return transitionStartNames[name];
+    }
+  }
 };
 const getTransitionEnd = () => {
   for (let name in transitionEndNames) {
@@ -65,7 +74,7 @@ export default {
   data() {
     return {
       browserWidth: null,
-      carouselWidth: null,
+      carouselWidth: 0,
       currentPage: 0,
       dragging: false,
       dragMomentum: 0,
@@ -76,6 +85,7 @@ export default {
       offset: 0,
       refreshRate: 16,
       slideCount: 0,
+      transitionstart: "transitionstart",
       transitionend: "transitionend"
     };
   },
@@ -130,14 +140,14 @@ export default {
      */
     navigationNextLabel: {
       type: String,
-      default: "▶"
+      default: "&#9654"
     },
     /**
      * Text content of the navigation prev button
      */
     navigationPrevLabel: {
       type: String,
-      default: "◀"
+      default: "&#9664"
     },
     /**
      * The fill color of the active pagination dot
@@ -399,7 +409,10 @@ export default {
           });
         });
         if (this.$parent.$el) {
-          this.mutationObserver.observe(this.$parent.$el, config);
+          let carouselInnerElements = document.getElementsByClassName('VueCarousel-inner');
+          for (let i=0; i< carouselInnerElements.length; i++){
+            this.mutationObserver.observe(carouselInnerElements[i] ,config);
+          }
         }
       }
     },
@@ -427,8 +440,12 @@ export default {
      * @return {Number} Width of the carousel in pixels
      */
     getCarouselWidth() {
-      const inner = this.$refs["VueCarousel-inner"];
-      this.carouselWidth = (inner && inner.clientWidth) || 0; // Assign globally
+      let carouselInnerElements = document.getElementsByClassName('VueCarousel-inner');
+      for (let i=0; i < carouselInnerElements.length; i++){
+        if (carouselInnerElements[i].clientWidth > 0 ){
+          this.carouselWidth = carouselInnerElements[i].clientWidth || 0;
+        }
+      }
       return this.carouselWidth;
     },
     /**
@@ -540,8 +557,6 @@ export default {
         return;
       }
 
-      // we are good to prevent the move and handle the translation
-      e.preventDefault();
       e.stopImmediatePropagation();
 
       this.dragOffset = newOffsetX;
@@ -603,6 +618,9 @@ export default {
         this.offset = Math.max(0, Math.min(this.offset, this.maxOffset));
       }
     },
+    handleTransitionStart() {
+      this.$emit("transitionStart");
+    },
     handleTransitionEnd() {
       this.$emit("transitionEnd");
     }
@@ -624,6 +642,11 @@ export default {
     this.attachMutationObserver();
     this.computeCarouselWidth();
 
+    this.transitionstart = getTransitionEnd();
+    this.$refs["VueCarousel-inner"].addEventListener(
+      this.transitionstart,
+      this.handleTransitionStart
+    );
     this.transitionend = getTransitionEnd();
     this.$refs["VueCarousel-inner"].addEventListener(
       this.transitionend,
@@ -633,6 +656,10 @@ export default {
   beforeDestroy() {
     this.detachMutationObserver();
     window.removeEventListener("resize", this.getBrowserWidth);
+    this.$refs["VueCarousel-inner"].removeEventListener(
+      this.transitionstart,
+      this.handleTransitionStart
+    );
     this.$refs["VueCarousel-inner"].removeEventListener(
       this.transitionend,
       this.handleTransitionEnd
