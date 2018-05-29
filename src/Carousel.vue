@@ -61,7 +61,7 @@ export default {
   data() {
     return {
       browserWidth: null,
-      carouselWidth: null,
+      carouselWidth: 0,
       currentPage: 0,
       dragging: false,
       dragMomentum: 0,
@@ -395,7 +395,10 @@ export default {
           });
         });
         if (this.$parent.$el) {
-          this.mutationObserver.observe(this.$parent.$el, config);
+          let carouselInnerElements = document.getElementsByClassName('VueCarousel-inner');
+          for (let i=0; i< carouselInnerElements.length; i++){
+            this.mutationObserver.observe(carouselInnerElements[i] ,config);
+          }
         }
       }
     },
@@ -423,8 +426,12 @@ export default {
      * @return {Number} Width of the carousel in pixels
      */
     getCarouselWidth() {
-      const inner = this.$refs["VueCarousel-inner"];
-      this.carouselWidth = (inner && inner.clientWidth) || 0; // Assign globally
+      let carouselInnerElements = document.getElementsByClassName('VueCarousel-inner');
+      for (let i=0; i < carouselInnerElements.length; i++){
+        if (carouselInnerElements[i].clientWidth > 0 ){
+          this.carouselWidth = carouselInnerElements[i].clientWidth || 0;
+        }
+      }
       return this.carouselWidth;
     },
     /**
