@@ -37,7 +37,7 @@ export default {
       const children = $children
         .filter(
           child =>
-            child.$el && child.$el.className.includes("VueCarousel-slide")
+            child.$el && child.$el.className.indexOf("VueCarousel-slide") >= 0
         )
         .map(child => child._uid);
 
@@ -55,7 +55,7 @@ export default {
      * @return {Boolean}
      */
     isActive() {
-      return this.activeSlides.includes(this._uid);
+      return this.activeSlides.indexOf(this._uid) >= 0;
     },
     /**
      * `isCenter` describes whether a slide is in the center of all visible slides
