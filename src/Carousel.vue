@@ -6,7 +6,7 @@
         class="VueCarousel-inner"
         role="listbox"
         :style="{
-          'transform': `translate3d(${currentOffset}px, 0, 0)`,
+          'transform': `translate(${currentOffset}px, 0)`,
           'transition': dragging ? 'none' : transitionStyle,
           'ms-flex-preferred-size': `${slideWidth}px`,
           'webkit-flex-basis': `${slideWidth}px`,
