@@ -409,7 +409,7 @@ export default {
           });
         });
         if (this.$parent.$el) {
-          let carouselInnerElements = document.getElementsByClassName(
+          let carouselInnerElements = this.$el.getElementsByClassName(
             "VueCarousel-inner"
           );
           for (let i = 0; i < carouselInnerElements.length; i++) {
@@ -442,7 +442,7 @@ export default {
      * @return {Number} Width of the carousel in pixels
      */
     getCarouselWidth() {
-      let carouselInnerElements = document.getElementsByClassName(
+      let carouselInnerElements = this.$el.getElementsByClassName(
         "VueCarousel-inner"
       );
       for (let i = 0; i < carouselInnerElements.length; i++) {
