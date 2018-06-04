@@ -7,8 +7,8 @@
         role="presentation"
         :aria-selected="isCurrentDot(index) ? 'true' : 'false'"
         v-bind:class="{ 'VueCarousel-dot--active': isCurrentDot(index) }"
-        v-for="(page, index) in carousel.pageCount"
-        :key="index"
+        v-for="(page, index) in pagniationCount"
+        :key="`${page}_${index}`"
         v-on:click="goToPage(index)"
         :style="`
           margin-top: ${carousel.paginationPadding * 2}px;
@@ -35,6 +35,12 @@
 export default {
   name: "pagination",
   inject: ["carousel"],
+    computed: {
+      pagniationCount() {
+          console.log(this.carousel.scrollPerPage)
+          return this.carousel.scrollPerPage ? this.carousel.pageCount : (this.carousel.slideCount - 2)
+      }
+    },
   methods: {
     /**
      * Change page by index

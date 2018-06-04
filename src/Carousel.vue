@@ -19,12 +19,12 @@
       </div>
     </div>
     <pagination v-if="paginationEnabled && pageCount > 0"
-      @paginationclick="goToPage($event, 'pagination')"></pagination>
+      @paginationclick="goToPage($event, 'pagination')"/>
     <navigation v-if="navigationEnabled"
       :clickTargetSize="navigationClickTargetSize"
       :nextLabel="navigationNextLabel"
       :prevLabel="navigationPrevLabel"
-      @navigationclick="handleNavigation"></navigation>
+      @navigationclick="handleNavigation"/>
   </section>
 </template>
 <script>
@@ -291,7 +291,7 @@ export default {
      * @return {Boolean} Can the slider move forward?
      */
     canAdvanceForward() {
-      return this.loop || this.offset < this.maxOffset;
+      return this.loop || this.offset < (this.maxOffset);
     },
     /**
      * @return {Boolean} Can the slider move backward?
@@ -326,7 +326,7 @@ export default {
      */
     maxOffset() {
       return (
-        this.slideWidth * this.slideCount -
+        this.slideWidth * ( this.slideCount - 1 ) -
         this.carouselWidth +
         this.spacePadding * 2
       );
@@ -338,7 +338,7 @@ export default {
     pageCount() {
       return this.scrollPerPage
         ? Math.ceil(this.slideCount / this.currentPerPage)
-        : this.slideCount;
+        : this.slideCount - 2;
     },
     /**
      * Calculate the width of each slide
@@ -458,7 +458,7 @@ export default {
      */
     getSlideCount() {
       this.slideCount =
-        (this.$slots &&
+        ( this.$slots &&
           this.$slots.default &&
           this.$slots.default.filter(
             slot => slot.tag && slot.tag.indexOf("slide") > -1
