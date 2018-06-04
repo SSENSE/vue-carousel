@@ -35,12 +35,14 @@
 export default {
   name: "pagination",
   inject: ["carousel"],
-    computed: {
-      pagniationCount() {
-          console.log(this.carousel.scrollPerPage)
-          return this.carousel.scrollPerPage ? this.carousel.pageCount : (this.carousel.slideCount - 2)
-      }
-    },
+  computed: {
+    pagniationCount() {
+      console.log(this.carousel.scrollPerPage);
+      return this.carousel.scrollPerPage
+        ? this.carousel.pageCount
+        : this.carousel.slideCount - 2;
+    }
+  },
   methods: {
     /**
      * Change page by index

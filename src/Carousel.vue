@@ -291,7 +291,7 @@ export default {
      * @return {Boolean} Can the slider move forward?
      */
     canAdvanceForward() {
-      return this.loop || this.offset < (this.maxOffset);
+      return this.loop || this.offset < this.maxOffset;
     },
     /**
      * @return {Boolean} Can the slider move backward?
@@ -326,7 +326,7 @@ export default {
      */
     maxOffset() {
       return (
-        this.slideWidth * ( this.slideCount - 1 ) -
+        this.slideWidth * (this.slideCount - 1) -
         this.carouselWidth +
         this.spacePadding * 2
       );
@@ -458,7 +458,7 @@ export default {
      */
     getSlideCount() {
       this.slideCount =
-        ( this.$slots &&
+        (this.$slots &&
           this.$slots.default &&
           this.$slots.default.filter(
             slot => slot.tag && slot.tag.indexOf("slide") > -1
