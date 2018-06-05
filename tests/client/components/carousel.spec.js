@@ -191,7 +191,7 @@ describe('Carousel', () => {
   it('should decrease current slide number by 1 when advance slide backward is called', () => {
     const vm = new Vue({
       el: document.createElement('div'),
-      render: (h) => h(Carousel, { props: { perPage: 1, scrollPerPage: false } }, [h(Slide), h(Slide)]),
+      render: (h) => h(Carousel, { props: { perPage: 1, scrollPerPage: false } }, [h(Slide), h(Slide), h(Slide), h(Slide)]),
     });
 
     const carouselInstance = vm.$children[0];

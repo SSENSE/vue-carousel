@@ -1,6 +1,6 @@
 {
   "name": "vue-carousel",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "A flexible, responsive, touch-friendly carousel for Vue.js",
   "main": "dist/vue-carousel.min.js",
   "scripts": {
@@ -46,7 +46,7 @@
     "babel-register": "^6.18.0",
     "chai": "^3.5.0",
     "copy-webpack-plugin": "^4.0.1",
-    "coveralls": "^2.11.15",
+    "coveralls": "^3.0.1",
     "css-loader": "^0.26.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "^11.0.1",
@@ -63,7 +63,7 @@
     "isparta": "^4.0.0",
     "isparta-loader": "^2.0.0",
     "jest": "^18.1.0",
-    "mocha": "^3.2.0",
+    "mocha": "^5.2.0",
     "prettier": "^1.10.2",
     "prettier-eslint": "^8.8.1",
     "prettier-eslint-cli": "^4.7.0",
@@ -74,8 +74,8 @@
     "vue-loader": "^12.2.1",
     "vue-play": "2.2.0",
     "vue-play-cli": "1.0.4",
-    "vue-style-loader": "toddlawton/vue-style-loader",
     "vue-template-compiler": "^2.1.8",
+    "vue-style-loader": "toddlawton/vue-style-loader",
     "webpack": "^1.14.0",
     "webpack-merge": "^1.1.2"
   },

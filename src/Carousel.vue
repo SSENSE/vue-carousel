@@ -6,7 +6,7 @@
         class="VueCarousel-inner"
         role="listbox"
         :style="{
-          'transform': `translate3d(${currentOffset}px, 0, 0)`,
+          'transform': `translate(${currentOffset}px, 0)`,
           'transition': dragging ? 'none' : transitionStyle,
           'ms-flex-preferred-size': `${slideWidth}px`,
           'webkit-flex-basis': `${slideWidth}px`,
@@ -19,12 +19,12 @@
       </div>
     </div>
     <pagination v-if="paginationEnabled && pageCount > 0"
-      @paginationclick="goToPage($event, 'pagination')"></pagination>
+      @paginationclick="goToPage($event, 'pagination')"/>
     <navigation v-if="navigationEnabled"
       :clickTargetSize="navigationClickTargetSize"
       :nextLabel="navigationNextLabel"
       :prevLabel="navigationPrevLabel"
-      @navigationclick="handleNavigation"></navigation>
+      @navigationclick="handleNavigation"/>
   </section>
 </template>
 <script>
@@ -327,7 +327,7 @@ export default {
      */
     maxOffset() {
       return (
-        this.slideWidth * this.slideCount -
+        this.slideWidth * (this.slideCount - 1) -
         this.carouselWidth +
         this.spacePadding * 2
       );
@@ -339,7 +339,7 @@ export default {
     pageCount() {
       return this.scrollPerPage
         ? Math.ceil(this.slideCount / this.currentPerPage)
-        : this.slideCount;
+        : this.slideCount - 2;
     },
     /**
      * Calculate the width of each slide
@@ -410,7 +410,7 @@ export default {
           });
         });
         if (this.$parent.$el) {
-          let carouselInnerElements = document.getElementsByClassName(
+          let carouselInnerElements = this.$el.getElementsByClassName(
             "VueCarousel-inner"
           );
           for (let i = 0; i < carouselInnerElements.length; i++) {
@@ -443,7 +443,7 @@ export default {
      * @return {Number} Width of the carousel in pixels
      */
     getCarouselWidth() {
-      let carouselInnerElements = document.getElementsByClassName(
+      let carouselInnerElements = this.$el.getElementsByClassName(
         "VueCarousel-inner"
       );
       for (let i = 0; i < carouselInnerElements.length; i++) {
