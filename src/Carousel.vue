@@ -478,6 +478,12 @@ export default {
               this.maxOffset
             )
           : Math.min(this.slideWidth * page, this.maxOffset);
+
+        // restart autoplay if specified
+        if (this.autoplay && !this.autoplayHoverPause) {
+          this.restartAutoplay();
+        }
+
         // update the current page
         this.currentPage = page;
       }
