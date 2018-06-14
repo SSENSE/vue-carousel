@@ -37,7 +37,6 @@ export default {
   inject: ["carousel"],
   computed: {
     pagniationCount() {
-      console.log(this.carousel.scrollPerPage);
       return this.carousel.scrollPerPage
         ? this.carousel.pageCount
         : this.carousel.slideCount - 2;

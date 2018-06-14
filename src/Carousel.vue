@@ -251,8 +251,15 @@ export default {
   },
 
   watch: {
-    navigateTo(val) {
-      if (val !== this.currentPage) this.goToPage(val);
+    navigateTo: {
+      immediate: true,
+      handler(val) {
+        if (val !== this.currentPage) {
+          this.$nextTick(() => {
+            this.goToPage(val);
+          });
+        }
+      }
     },
     currentPage(val) {
       this.$emit("pageChange", val);
