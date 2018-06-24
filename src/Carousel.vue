@@ -97,6 +97,9 @@ export default {
     };
   },
   props: {
+    value: {
+      type: Number
+    },
     /**
      * Slide transition easing
      * Any valid CSS transition easing accepted
@@ -251,11 +254,15 @@ export default {
   },
 
   watch: {
+    value(val) {
+      if (val !== this.currentPage) this.goToPage(val);
+    },
     navigateTo(val) {
       if (val !== this.currentPage) this.goToPage(val);
     },
     currentPage(val) {
       this.$emit("pageChange", val);
+      this.$emit("input", val);
     }
   },
 
