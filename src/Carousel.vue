@@ -257,8 +257,15 @@ export default {
     value(val) {
       if (val !== this.currentPage) this.goToPage(val);
     },
-    navigateTo(val) {
-      if (val !== this.currentPage) this.goToPage(val);
+    navigateTo: {
+      immediate: true,
+      handler(val) {
+        if (val !== this.currentPage) {
+          this.$nextTick(() => {
+            this.goToPage(val);
+          });
+        }
+      }
     },
     currentPage(val) {
       this.$emit("pageChange", val);
@@ -332,11 +339,7 @@ export default {
      * @return {Number}
      */
     maxOffset() {
-      return (
-        this.slideWidth * (this.slideCount - 1) -
-        this.carouselWidth +
-        this.spacePadding * 2
-      );
+      return this.slideWidth * (this.slideCount - 1) - this.spacePadding * 2;
     },
     /**
      * Calculate the number of pages of slides
@@ -485,6 +488,12 @@ export default {
               this.maxOffset
             )
           : Math.min(this.slideWidth * page, this.maxOffset);
+
+        // restart autoplay if specified
+        if (this.autoplay && !this.autoplayHoverPause) {
+          this.restartAutoplay();
+        }
+
         // update the current page
         this.currentPage = page;
       }
