@@ -249,4 +249,31 @@ describe('Carousel', () => {
     expect(carouselInstance.autoplayInterval).toBe(undefined);
     return utils.expectToMatchSnapshot(vm);
   });
+
+  it('should reset autoplay when switching slide without autoplayHoverPause', () => {
+    const vm = new Vue({
+      el: document.createElement('div'),
+      render: (h) => h(Carousel, { props: { perPage: 1, autoplay: true, autoplayHoverPause: false } }, [h(Slide), h(Slide)]),
+    });
+
+    const carouselInstance = vm.$children[0];
+    const spy = spyOn(carouselInstance, 'restartAutoplay');
+    carouselInstance.goToPage(2);
+    expect(carouselInstance.restartAutoplay).toHaveBeenCalled();
+    return utils.expectToMatchSnapshot(vm);
+  });
+
+  it('should not reset autoplay when switching slide with autoplayHoverPause', () => {
+    const vm = new Vue({
+      el: document.createElement('div'),
+      render: (h) => h(Carousel, { props: { perPage: 1, autoplay: true, autoplayHoverPause: true } }, [h(Slide), h(Slide)]),
+    });
+
+    const carouselInstance = vm.$children[0];
+    const spy = spyOn(carouselInstance, 'restartAutoplay');
+    carouselInstance.goToPage(2);
+    expect(carouselInstance.restartAutoplay).not.toHaveBeenCalled();
+    return utils.expectToMatchSnapshot(vm);
+  });
+
 });
