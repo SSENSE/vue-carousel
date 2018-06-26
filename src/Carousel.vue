@@ -332,11 +332,7 @@ export default {
      * @return {Number}
      */
     maxOffset() {
-      return (
-        this.slideWidth * (this.slideCount - 1) -
-        this.carouselWidth +
-        this.spacePadding * 2
-      );
+      return this.slideWidth * (this.slideCount - 1) - this.spacePadding * 2;
     },
     /**
      * Calculate the number of pages of slides

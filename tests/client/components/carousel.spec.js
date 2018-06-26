@@ -116,6 +116,26 @@ describe('Carousel', () => {
     }, 2000)
   });
 
+  it('should go to second slide when we have odd number of slides and recompute carousel width', () => {
+    const vm = new Vue({
+      el: document.createElement('div'),
+      render: (h) => h(Carousel, {props: { scrollPerPage: true, perPage: 2}},
+        [h(Slide), h(Slide), h(Slide), h(Slide), h(Slide)]
+      ),
+    });
+    const carouselInstance = vm.$children[0];
+    carouselInstance.carouselWidth = 500;
+
+    return carouselInstance.$nextTick().then(() => {
+      carouselInstance.goToPage(1);
+      carouselInstance.computeCarouselWidth();
+
+      expect(carouselInstance.currentPage).toBe(1);
+
+      return Promise.resolve();
+    });
+  });
+
   it('should register 0 slides when 0 slides are added to the slots', () => {
     const vm = new Vue({
       el: document.createElement('div'),
