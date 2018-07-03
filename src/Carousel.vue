@@ -97,6 +97,9 @@ export default {
     };
   },
   props: {
+    /**
+     * Support for v-model functionality
+     */
     value: {
       type: Number
     },
@@ -255,7 +258,10 @@ export default {
 
   watch: {
     value(val) {
-      if (val !== this.currentPage) this.goToPage(val);
+      if (val !== this.currentPage) {
+        this.goToPage(val);
+        this.render();
+      }
     },
     navigateTo: {
       immediate: true,
@@ -504,6 +510,7 @@ export default {
      */
     /* istanbul ignore next */
     onStart(e) {
+      // alert("start");
       document.addEventListener(
         this.isTouch ? "touchend" : "mouseup",
         this.onEnd,
