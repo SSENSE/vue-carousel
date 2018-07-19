@@ -254,11 +254,9 @@ export default {
     navigateTo: {
       immediate: true,
       handler(val) {
-        if (val !== this.currentPage) {
-          this.$nextTick(() => {
-            this.goToPage(val);
-          });
-        }
+        this.$nextTick(() => {
+          this.goToPage(val);
+        });
       }
     },
     currentPage(val) {
@@ -332,7 +330,10 @@ export default {
      * @return {Number}
      */
     maxOffset() {
-      return this.slideWidth * (this.slideCount - 1) - this.spacePadding * 2;
+      return (
+        this.slideWidth * (this.slideCount - this.currentPerPage) -
+        this.spacePadding * 2
+      );
     },
     /**
      * Calculate the number of pages of slides
