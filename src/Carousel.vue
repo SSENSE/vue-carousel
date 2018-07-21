@@ -28,6 +28,7 @@
   </section>
 </template>
 <script>
+import "babel-polyfill";
 import autoplay from "./mixins/autoplay";
 import debounce from "./utils/debounce";
 import Navigation from "./Navigation.vue";
