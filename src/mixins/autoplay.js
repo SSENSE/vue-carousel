@@ -46,6 +46,10 @@ const autoplay = {
           this.autoplayTimeout
         );
       }
+    },
+    restartAutoplay() {
+      this.pauseAutoplay();
+      this.startAutoplay();
     }
   },
   mounted() {
