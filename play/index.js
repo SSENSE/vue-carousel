@@ -294,3 +294,35 @@ play("Carousel", module)
       }
     }
   })
+  .add("Get and set current Page with v-model", {
+    template: `
+<div>
+<div style="text-align: center;">
+    <input type="number" v-model="currentPage" style="text-align: center; font-size: 3em; width: 100px;">
+</div>
+<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+        <carousel
+          style="width: 300px;"
+          v-model="currentPage"
+          :perPage="1"
+        >
+          <slide v-for="slide in slides" :key="slide.src">
+            <img style="width: 100%;" :src= slide />
+          </slide>
+        </carousel>
+      </div>
+</div>`,
+    data() {
+      return {
+        currentPage: 0,
+        slides: images
+      }
+    },
+    components: {
+      Carousel,
+      Slide
+    },
+    methods: {
+
+    }
+  })
