@@ -99,6 +99,12 @@ export default {
   },
   props: {
     /**
+     * Support for v-model functionality
+     */
+    value: {
+      type: Number
+    },
+    /**
      * Slide transition easing
      * Any valid CSS transition easing accepted
      */
@@ -252,6 +258,12 @@ export default {
   },
 
   watch: {
+    value(val) {
+      if (val !== this.currentPage) {
+        this.goToPage(val);
+        this.render();
+      }
+    },
     navigateTo: {
       immediate: true,
       handler(val) {
@@ -264,6 +276,7 @@ export default {
     },
     currentPage(val) {
       this.$emit("pageChange", val);
+      this.$emit("input", val);
     }
   },
 
@@ -498,6 +511,7 @@ export default {
      */
     /* istanbul ignore next */
     onStart(e) {
+      // alert("start");
       document.addEventListener(
         this.isTouch ? "touchend" : "mouseup",
         this.onEnd,
