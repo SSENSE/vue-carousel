@@ -254,6 +254,13 @@ export default {
     spacePadding: {
       type: Number,
       default: 0
+    },
+    /**
+     *  Disable event listeners registered in Slide.mount
+     */
+    disableSlideEvents: {
+      type: Boolean,
+      default: false
     }
   },
 

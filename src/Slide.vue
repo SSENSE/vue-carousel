@@ -21,14 +21,9 @@ export default {
   },
   inject: ["carousel"],
   mounted() {
-    if (!this.$isServer) {
-      this.$el.addEventListener("dragstart", e => e.preventDefault());
+    if (!this.carousel.disableSlideEvents) {
+      this.registerEventListeners();
     }
-
-    this.$el.addEventListener(
-      this.carousel.isTouch ? "touchend" : "mouseup",
-      this.onTouchEnd
-    );
   },
   computed: {
     activeSlides() {
@@ -82,6 +77,16 @@ export default {
       ) {
         this.$emit("slideClick", Object.assign({}, e.currentTarget.dataset));
       }
+    },
+    registerEventListeners() {
+      if (!this.$isServer) {
+        this.$el.addEventListener("dragstart", e => e.preventDefault());
+      }
+
+      this.$el.addEventListener(
+        this.carousel.isTouch ? "touchend" : "mouseup",
+        this.onTouchEnd
+      );
     }
   }
 };
