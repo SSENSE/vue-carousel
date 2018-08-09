@@ -5,4 +5,4 @@ coverage/
 /node_modules
 /.idea
 .env
-.yarn-error.log
+yarn-error.log
