@@ -1,8 +1,8 @@
 .DS_Store
-node_modules/
+node_modules
 npm-debug.log
-coverage/
-/node_modules
+coverage
 /.idea
 .env
 yarn-error.log
+dist-play
