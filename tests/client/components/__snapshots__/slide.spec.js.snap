@@ -6,7 +6,7 @@ exports[`Slide should mount successfully 1`] = `
 .VueCarousel-pagination(style=\'display: none;\')
   ul.VueCarousel-dot-container(role=\'tablist\')
     li.VueCarousel-dot.VueCarousel-dot--active(aria-hidden=\'false\', role=\'presentation\', aria-selected=\'true\', style=\'margin-top: 20px; padding: 10px;\')
-      button.VueCarousel-dot-button(type=\'button\', role=\'button\', tabindex=\'0\', style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
+      button.VueCarousel-dot-button(type=\'button\', role=\'button\', aria-label=\'\`Item \${index}\`\', title=\'Item 0\', tabindex=\'0\', style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
 // 
 "
 `;
