@@ -21,7 +21,7 @@
           aria-label="`Item ${index}`"
           :title="`Item ${index}`"
           class="VueCarousel-dot-button"
-          :tabindex="index"
+          :tabindex="0"
           :style="`
             width: ${carousel.paginationSize}px;
             height: ${carousel.paginationSize}px;
