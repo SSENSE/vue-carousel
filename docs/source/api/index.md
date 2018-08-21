@@ -13,7 +13,7 @@ Flag to enable autoplay
 
 ### autoplayTimeout
 
-Time elapsed before advancing slide
+Time elapsed before advancing slide in autoplay
 
 * **Type**: `Number`
 * **Default**: `2000`
