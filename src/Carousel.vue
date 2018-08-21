@@ -253,6 +253,13 @@ export default {
     spacePadding: {
       type: Number,
       default: 0
+    },
+    /**
+     *  Specify by how much should the space padding value be multiplied of, to re-arange the final slide padding.
+     */
+    spacePaddingMaxOffsetFactor: {
+      type: Number,
+      default: 0
     }
   },
 
@@ -345,7 +352,7 @@ export default {
     maxOffset() {
       return (
         this.slideWidth * (this.slideCount - this.currentPerPage) -
-        this.spacePadding * 2
+        this.spacePadding * this.spacePaddingMaxOffsetFactor
       );
     },
     /**
@@ -363,7 +370,7 @@ export default {
      */
     slideWidth() {
       const width = this.carouselWidth - this.spacePadding * 2;
-      const perPage = Math.min(this.currentPerPage, this.slideCount);
+      const perPage = this.currentPerPage;
 
       return width / perPage;
     },
