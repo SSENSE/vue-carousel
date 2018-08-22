@@ -193,3 +193,28 @@ Your components can access the `carousel` provider by adding the following to yo
 	name: "numbered-pagination",
 	inject: ["carousel"]
 ```
+
+## Events
+
+Events emitted from components
+
+### pageChange
+
+"pageChange" event emits the value of the current page
+
+* **Type**: `Number`
+* **Emitter**: `Carousel`
+
+### slideClick
+
+"slideClick" event throws the *dataset* object of the selected element
+
+* **Type**: `Object`
+* **Emitter**: `Slide`
+
+### transitionEnd
+
+"transitionEnd" event is thrown when the transition end is reached
+
+* **Type**: `none`
+* **Emitter**: `Carousel`
