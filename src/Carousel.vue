@@ -3,7 +3,11 @@
     <div class="VueCarousel-wrapper"
       ref="VueCarousel-wrapper">
       <div ref="VueCarousel-inner"
-        class="VueCarousel-inner"
+    >
+        :class="[
+          'VueCarousel-inner',
+          { 'VueCarousel-inner--center': isCenterModeEnabled }
+        ]"
         role="listbox"
         :style="{
           'transform': `translate(${currentOffset}px, 0)`,
@@ -20,7 +24,8 @@
     </div>
     <pagination v-if="paginationEnabled && pageCount > 0"
       @paginationclick="goToPage($event, 'pagination')"/>
-    <navigation v-if="navigationEnabled"
+      v-if="paginationEnabled"
+      v-if="navigationEnabled && isNavigationRequired"
       :clickTargetSize="navigationClickTargetSize"
       :nextLabel="navigationNextLabel"
       :prevLabel="navigationPrevLabel"
@@ -261,6 +266,13 @@ export default {
     spacePaddingMaxOffsetFactor: {
       type: Number,
       default: 0
+    },
+    /**
+     *  Center images when have less than container width
+     */
+    centerMode: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -340,7 +352,12 @@ export default {
      * @return {Number} Pixel value of offset to apply
      */
     currentOffset() {
-      return (this.offset + this.dragOffset) * -1;
+      if (this.isCenterModeEnabled) {
+        return 0;
+      }
+      else {
+        return (this.offset + this.dragOffset) * -1;
+      }
     },
     isHidden() {
       return this.carouselWidth <= 0;
@@ -374,6 +391,18 @@ export default {
       const perPage = this.currentPerPage;
 
       return width / perPage;
+    },
+    /**
+     * @return {Boolean} Is navigation required?
+     */
+    isNavigationRequired() {
+      return this.slideCount <= this.currentPerPage ? false : true;
+    },
+    /**
+     * @return {Boolean} Center images when have less than min currentPerPage value
+     */
+    isCenterModeEnabled() {
+      return this.centerMode && !this.isNavigationRequired ? true : false;
     },
     transitionStyle() {
       return `${this.speed / 1000}s ${this.easing} transform`;
@@ -723,5 +752,9 @@ export default {
   display: flex;
   flex-direction: row;
   backface-visibility: hidden;
+}
+
+.VueCarousel-inner--center {
+  justify-content: center;
 }
 </style>
