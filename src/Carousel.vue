@@ -1,9 +1,11 @@
 <template>
   <section class="VueCarousel">
-    <div class="VueCarousel-wrapper"
-      ref="VueCarousel-wrapper">
-      <div ref="VueCarousel-inner"
+    <div 
+      class="VueCarousel-wrapper"
+      ref="VueCarousel-wrapper"
     >
+      <div 
+        ref="VueCarousel-inner"
         :class="[
           'VueCarousel-inner',
           { 'VueCarousel-inner--center': isCenterModeEnabled }
@@ -18,18 +20,24 @@
           'visibility': slideWidth ? 'visible' : 'hidden',
           'padding-left': `${padding}px`,
           'padding-right': `${padding}px`
-        }">
+        }"
+      >
         <slot></slot>
       </div>
     </div>
-    <pagination v-if="paginationEnabled && pageCount > 0"
-      @paginationclick="goToPage($event, 'pagination')"/>
+
+    <pagination 
       v-if="paginationEnabled"
+      @paginationclick="goToPage($event, 'pagination')"
+    />
+
+    <navigation 
       v-if="navigationEnabled && isNavigationRequired"
       :clickTargetSize="navigationClickTargetSize"
       :nextLabel="navigationNextLabel"
       :prevLabel="navigationPrevLabel"
-      @navigationclick="handleNavigation"/>
+      @navigationclick="handleNavigation"
+    />
   </section>
 </template>
 <script>
@@ -354,8 +362,7 @@ export default {
     currentOffset() {
       if (this.isCenterModeEnabled) {
         return 0;
-      }
-      else {
+      } else {
         return (this.offset + this.dragOffset) * -1;
       }
     },
