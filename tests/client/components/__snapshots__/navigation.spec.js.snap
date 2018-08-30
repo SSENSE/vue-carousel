@@ -4,7 +4,7 @@ exports[`Navigation should mount successfully 1`] = `
     .VueCarousel-slide(tabindex=\'-1\')
     .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex=\'-1\')
 |  
-.VueCarousel-pagination
+.VueCarousel-pagination(style=\'\')
   ul.VueCarousel-dot-container(role=\'tablist\')
     li.VueCarousel-dot(aria-hidden=\'false\', role=\'presentation\', aria-selected=\'false\', style=\'margin-top: 20px; padding: 10px;\')
       button.VueCarousel-dot-button(type=\'button\', role=\'button\', aria-label=\'\`Item \${index}\`\', title=\'Item 0\', tabindex=\'0\', style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
@@ -24,7 +24,7 @@ exports[`Navigation should render a next button 1`] = `
     .VueCarousel-slide(tabindex=\'-1\')
     .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex=\'-1\')
 |  
-.VueCarousel-pagination
+.VueCarousel-pagination(style=\'\')
   ul.VueCarousel-dot-container(role=\'tablist\')
     li.VueCarousel-dot(aria-hidden=\'false\', role=\'presentation\', aria-selected=\'false\', style=\'margin-top: 20px; padding: 10px;\')
       button.VueCarousel-dot-button(type=\'button\', role=\'button\', aria-label=\'\`Item \${index}\`\', title=\'Item 0\', tabindex=\'0\', style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
@@ -44,7 +44,7 @@ exports[`Navigation should render a prev button 1`] = `
     .VueCarousel-slide(tabindex=\'-1\')
     .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex=\'-1\')
 |  
-.VueCarousel-pagination
+.VueCarousel-pagination(style=\'\')
   ul.VueCarousel-dot-container(role=\'tablist\')
     li.VueCarousel-dot(aria-hidden=\'false\', role=\'presentation\', aria-selected=\'false\', style=\'margin-top: 20px; padding: 10px;\')
       button.VueCarousel-dot-button(type=\'button\', role=\'button\', aria-label=\'\`Item \${index}\`\', title=\'Item 0\', tabindex=\'0\', style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
@@ -64,7 +64,7 @@ exports[`Navigation should trigger page advance backward when prev is clicked 1`
     .VueCarousel-slide(tabindex=\'-1\')
     .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex=\'-1\')
 |  
-.VueCarousel-pagination
+.VueCarousel-pagination(style=\'\')
   ul.VueCarousel-dot-container(role=\'tablist\')
     li.VueCarousel-dot(aria-hidden=\'false\', role=\'presentation\', aria-selected=\'false\', style=\'margin-top: 20px; padding: 10px;\')
       button.VueCarousel-dot-button(type=\'button\', role=\'button\', aria-label=\'\`Item \${index}\`\', title=\'Item 0\', tabindex=\'0\', style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
@@ -84,7 +84,7 @@ exports[`Navigation should trigger page advance when next is clicked 1`] = `
     .VueCarousel-slide(tabindex=\'-1\')
     .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex=\'-1\')
 |  
-.VueCarousel-pagination
+.VueCarousel-pagination(style=\'\')
   ul.VueCarousel-dot-container(role=\'tablist\')
     li.VueCarousel-dot(aria-hidden=\'false\', role=\'presentation\', aria-selected=\'false\', style=\'margin-top: 20px; padding: 10px;\')
       button.VueCarousel-dot-button(type=\'button\', role=\'button\', aria-label=\'\`Item \${index}\`\', title=\'Item 0\', tabindex=\'0\', style=\'width: 10px; height: 10px; background: rgb(239, 239, 239);\')
