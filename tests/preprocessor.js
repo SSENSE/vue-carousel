@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs');
-const babelc = require('babel-core');
+const babelc = require('@babel/core');
 const babelOptions = JSON.parse(fs.readFileSync(`${__dirname}/../.babelrc`));
 
 const vueCompiler = require('vue-template-compiler');
