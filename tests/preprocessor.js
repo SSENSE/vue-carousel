@@ -1,14 +1,6 @@
 const path = require('path');
-const fs = require('fs');
-const babelc = require('@babel/core');
-const babelOptions = JSON.parse(fs.readFileSync(`${__dirname}/../.babelrc`));
-
 const vueCompiler = require('vue-template-compiler');
 const transpile = require('vue-template-es2015-compiler');
-
-function babelify(src) {
-  return babelc.transform(src, babelOptions).code;
-}
 
 // this is heavily based on vueify (Copyright (c) 2014-2016 Evan You)
 function vueify(src, filePath) {
@@ -19,7 +11,7 @@ function vueify(src, filePath) {
   const parts = vueCompiler.parseComponent(src, { pad: true });
   let script = '';
   if (!parts.script.lang) {
-    script = babelify(parts.script.content);
+    script = parts.script.content;
   } else {
     throw new Error(`${filePath} : unknown <script lang="${parts.script.lang}">`);
   }
@@ -51,7 +43,7 @@ module.exports = {
     let output;
     switch (extension) {
       case '.js':
-        output = babelify(src);
+        output = src;
         break;
       case '.vue':
         output = vueify(src, filePath);
