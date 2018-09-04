@@ -244,7 +244,7 @@ export default {
      * Listen for an external navigation request using this prop.
      */
     navigateTo: {
-      type: Number,
+      type: [Number, Array],
       default: 0
     },
     /**
@@ -273,9 +273,27 @@ export default {
     navigateTo: {
       immediate: true,
       handler(val) {
-        this.$nextTick(() => {
-          this.goToPage(val);
-        });
+        if (val.constructor === Array) {  
+            
+          if (val[1] == false) {
+            // following code is to disable animation
+            this.dragging = true;
+    
+            // clear dragging after refresh rate
+            setTimeout(() => {
+              this.dragging = false;
+            }, this.refreshRate);
+          }
+            
+          this.$nextTick(() => {
+              this.goToPage(val[0]);
+          });
+        } 
+        else {
+          this.$nextTick(() => {
+              this.goToPage(val);
+          });
+        }
       }
     },
     currentPage(val) {
