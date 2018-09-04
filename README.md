@@ -92,7 +92,7 @@ export default {
 
 Once the **Carousel** and **Slide** components are installed globally or imported, they can be used in templates in the following manner:
 
-``` html
+``` vue
   <carousel :per-page="1" :navigate-to="someLocalProperty" mouse-drag="false">
     <slide>
       Slide 1 Content
@@ -105,7 +105,7 @@ Once the **Carousel** and **Slide** components are installed globally or importe
 
 To listen for the 'slideClick' event you can do the following:
 
-``` html
+``` vue
   <carousel>
     <slide
         data-index="0"
@@ -116,7 +116,8 @@ To listen for the 'slideClick' event you can do the following:
     ...
   </carousel>
 ```
-```
+
+``` js
   handleSlideClick (dataset) => {
     console.log(dataset.index, dataset.name)
   }
