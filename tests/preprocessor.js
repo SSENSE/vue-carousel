@@ -1,13 +1,13 @@
 const path = require('path');
 const fs = require('fs');
-const babelc = require('babel-core');
-const babelOptions = JSON.parse(fs.readFileSync(`${__dirname}/../.babelrc`));
+const babelCore = require('@babel/core');
+const babelOptions = JSON.parse(fs.readFileSync(`${__dirname}/../jest.babelrc`));
 
 const vueCompiler = require('vue-template-compiler');
 const transpile = require('vue-template-es2015-compiler');
 
 function babelify(src) {
-  return babelc.transform(src, babelOptions).code;
+  return babelCore.transform(src, babelOptions).code;
 }
 
 // this is heavily based on vueify (Copyright (c) 2014-2016 Evan You)

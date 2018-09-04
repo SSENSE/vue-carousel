@@ -1,7 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`Slide should mount successfully 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role=\'listbox\', style=\'visibility: hidden;\')
-    .VueCarousel-slide.VueCarousel-slide-active(tabindex=\'-1\')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden;')
+    .VueCarousel-slide.VueCarousel-slide-active(tabindex='-1')
 |  
 .VueCarousel-pagination(style=\'display: none;\')
   ul.VueCarousel-dot-container(role=\'tablist\')
