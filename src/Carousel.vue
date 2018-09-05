@@ -242,6 +242,7 @@ export default {
     },
     /**
      * Listen for an external navigation request using this prop.
+     * Updated to implement navigation without animation by passing an array instead of a number
      */
     navigateTo: {
       type: [Number, Array],
@@ -273,7 +274,8 @@ export default {
     navigateTo: {
       immediate: true,
       handler(val) {
-        if (val.constructor === Array) {  
+        // checking if val is an array, for arrays typeof returns object
+        if (typeof val === "object") {  
             
           if (val[1] == false) {
             // following code is to disable animation
