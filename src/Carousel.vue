@@ -707,6 +707,8 @@ export default {
       this.transitionend,
       this.handleTransitionEnd
     );
+
+    this.$emit("mounted");
   },
   beforeDestroy() {
     this.detachMutationObserver();
