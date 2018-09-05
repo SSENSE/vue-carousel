@@ -121,9 +121,8 @@ Text content of the navigation prev button
 
 ### navigateTo
 
-Allow carousel parent to programatically navigate to a specific slide (zero based index). Recommend using parent data attribute pageNo and carousel pageChange event to keep pageNo in sync with carousel.currentPage to handle subsequent navigation.
-
-* **Type**: `Number`
+Allow carousel parent to programatically navigate to a specific slide (zero based index). Recommend using parent data attribute pageNo and carousel pageChange event to keep pageNo in sync with carousel.currentPage to handle subsequent navigation. To disable the sliding animation the following syntax is to be followed-  :navigateTo=[index, false] where index is the slide number (starts from zero) you want to navigate to.
+* **Type**: `Number` | `Array`
 * **Default**: 0
 
 ## Pagination
