@@ -275,25 +275,23 @@ export default {
       immediate: true,
       handler(val) {
         // checking if val is an array, for arrays typeof returns object
-        if (typeof val === "object") {  
-            
+        if (typeof val === "object") {
           if (val[1] == false) {
             // following code is to disable animation
             this.dragging = true;
-    
+
             // clear dragging after refresh rate
             setTimeout(() => {
               this.dragging = false;
             }, this.refreshRate);
           }
-            
+
           this.$nextTick(() => {
-              this.goToPage(val[0]);
+            this.goToPage(val[0]);
           });
-        } 
-        else {
+        } else {
           this.$nextTick(() => {
-              this.goToPage(val);
+            this.goToPage(val);
           });
         }
       }
