@@ -180,12 +180,13 @@ describe('Carousel', () => {
   it('should increase current page number by 1 when advance page is called', () => {
     const vm = new Vue({
       el: document.createElement('div'),
-      render: (h) => h(Carousel, { props: { perPage: 1 } }, [h(Slide), h(Slide)]),
+      render: (h) => h(Carousel, { props: { perPage: 1 } }, [h(Slide), h(Slide), h(Slide), h(Slide)]),
     });
 
     const carouselInstance = vm.$children[0];
 
     return carouselInstance.$nextTick().then(() => {
+      carouselInstance.goToPage(1);
       carouselInstance.advancePage();
       expect(carouselInstance.currentPage).toBe(1);
 
@@ -196,12 +197,13 @@ describe('Carousel', () => {
   it('should increase current page number by 1 when advance page is called with a non "backward" argument', () => {
     const vm = new Vue({
       el: document.createElement('div'),
-      render: (h) => h(Carousel, { props: { perPage: 1 } }, [h(Slide), h(Slide)]),
+      render: (h) => h(Carousel, { props: { perPage: 1 } }, [h(Slide), h(Slide), h(Slide), h(Slide)]),
     });
 
     const carouselInstance = vm.$children[0];
 
     return carouselInstance.$nextTick().then(() => {
+      carouselInstance.goToPage(1);
       carouselInstance.advancePage('something');
       expect(carouselInstance.currentPage).toBe(1);
 

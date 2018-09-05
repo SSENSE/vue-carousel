@@ -67,6 +67,25 @@ play("Carousel", module)
       h, containerWidth, [h(Carousel, { props: { perPageCustom: [[480, 3], [768, 4]] } }, generateSlideImages(h))]
     )
   )
+  .add("Center and hide navigation", {
+    template:
+      `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+        <carousel :per-page-custom="[[480, 1], [768, 4]]" :center-mode="true" :navigation-enabled="true" style="width: 500px;">
+          <slide v-for="slide in slideCount">
+            <img style="width: 100%;" src="https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176006_1.jpg" />
+          </slide>
+        </carousel>
+      </div>`,
+    components: {
+      Carousel,
+      Slide
+    },
+    data() {
+      return {
+        slideCount: 3
+      }
+    }
+  })
   .add("Autoplay", h => createContainer(
       h, containerWidth, [h(Carousel, { props: { autoplay: true, autoplayHoverPause: false } }, generateSlideImages(h))]
     )

@@ -37,8 +37,6 @@ describe('Navigation', () => {
   });
 
   it('should trigger page advance when next is clicked', () => {
-    vm.$el.querySelector('.VueCarousel-navigation-next').click();
-
     return carouselInstance.$nextTick().then(() => {
       expect(carouselInstance.currentPage).toBe(1);
 
