@@ -1,8 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`Navigation should mount successfully 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role=\'listbox\', style=\'visibility: hidden;\')
-    .VueCarousel-slide(tabindex=\'-1\')
-    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex=\'-1\')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden;')
+    .VueCarousel-slide(tabindex='-1')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
 |  
 .VueCarousel-pagination(style=\'\')
   ul.VueCarousel-dot-container(role=\'tablist\')
@@ -12,17 +14,17 @@ exports[`Navigation should mount successfully 1`] = `
       button.VueCarousel-dot-button(type=\'button\', role=\'button\', aria-label=\'\`Item \${index}\`\', title=\'Item 1\', tabindex=\'0\', style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
 |  
 .VueCarousel-navigation
-  button.VueCarousel-navigation-button.VueCarousel-navigation-prev(type=\'button\', aria-label=\'Previous page\', role=\'button\', style=\'padding: 8px; margin-right: -8px;\') &#x25C0;
+  button.VueCarousel-navigation-button.VueCarousel-navigation-prev(type='button', aria-label='Previous page', role='button', style='padding: 8px; margin-right: -8px;') &#x25C0;
   |  
-  button.VueCarousel-navigation-button.VueCarousel-navigation-next.VueCarousel-navigation--disabled(type=\'button\', aria-label=\'Next page\', role=\'button\', style=\'padding: 8px; margin-left: -8px;\') &#x25B6;
+  button.VueCarousel-navigation-button.VueCarousel-navigation-next.VueCarousel-navigation--disabled(type='button', aria-label='Next page', role='button', style='padding: 8px; margin-left: -8px;') &#x25B6;
 "
 `;
 
 exports[`Navigation should render a next button 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role=\'listbox\', style=\'visibility: hidden;\')
-    .VueCarousel-slide(tabindex=\'-1\')
-    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex=\'-1\')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden;')
+    .VueCarousel-slide(tabindex='-1')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
 |  
 .VueCarousel-pagination(style=\'\')
   ul.VueCarousel-dot-container(role=\'tablist\')
@@ -32,17 +34,17 @@ exports[`Navigation should render a next button 1`] = `
       button.VueCarousel-dot-button(type=\'button\', role=\'button\', aria-label=\'\`Item \${index}\`\', title=\'Item 1\', tabindex=\'0\', style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
 |  
 .VueCarousel-navigation
-  button.VueCarousel-navigation-button.VueCarousel-navigation-prev(type=\'button\', aria-label=\'Previous page\', role=\'button\', style=\'padding: 8px; margin-right: -8px;\') &#x25C0;
+  button.VueCarousel-navigation-button.VueCarousel-navigation-prev(type='button', aria-label='Previous page', role='button', style='padding: 8px; margin-right: -8px;') &#x25C0;
   |  
-  button.VueCarousel-navigation-button.VueCarousel-navigation-next.VueCarousel-navigation--disabled(type=\'button\', aria-label=\'Next page\', role=\'button\', style=\'padding: 8px; margin-left: -8px;\') &#x25B6;
+  button.VueCarousel-navigation-button.VueCarousel-navigation-next.VueCarousel-navigation--disabled(type='button', aria-label='Next page', role='button', style='padding: 8px; margin-left: -8px;') &#x25B6;
 "
 `;
 
 exports[`Navigation should render a prev button 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role=\'listbox\', style=\'visibility: hidden;\')
-    .VueCarousel-slide(tabindex=\'-1\')
-    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex=\'-1\')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden;')
+    .VueCarousel-slide(tabindex='-1')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
 |  
 .VueCarousel-pagination(style=\'\')
   ul.VueCarousel-dot-container(role=\'tablist\')
@@ -52,17 +54,17 @@ exports[`Navigation should render a prev button 1`] = `
       button.VueCarousel-dot-button(type=\'button\', role=\'button\', aria-label=\'\`Item \${index}\`\', title=\'Item 1\', tabindex=\'0\', style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
 |  
 .VueCarousel-navigation
-  button.VueCarousel-navigation-button.VueCarousel-navigation-prev(type=\'button\', aria-label=\'Previous page\', role=\'button\', style=\'padding: 8px; margin-right: -8px;\') &#x25C0;
+  button.VueCarousel-navigation-button.VueCarousel-navigation-prev(type='button', aria-label='Previous page', role='button', style='padding: 8px; margin-right: -8px;') &#x25C0;
   |  
-  button.VueCarousel-navigation-button.VueCarousel-navigation-next.VueCarousel-navigation--disabled(type=\'button\', aria-label=\'Next page\', role=\'button\', style=\'padding: 8px; margin-left: -8px;\') &#x25B6;
+  button.VueCarousel-navigation-button.VueCarousel-navigation-next.VueCarousel-navigation--disabled(type='button', aria-label='Next page', role='button', style='padding: 8px; margin-left: -8px;') &#x25B6;
 "
 `;
 
 exports[`Navigation should trigger page advance backward when prev is clicked 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role=\'listbox\', style=\'visibility: hidden;\')
-    .VueCarousel-slide(tabindex=\'-1\')
-    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex=\'-1\')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden;')
+    .VueCarousel-slide(tabindex='-1')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
 |  
 .VueCarousel-pagination(style=\'\')
   ul.VueCarousel-dot-container(role=\'tablist\')
@@ -72,17 +74,17 @@ exports[`Navigation should trigger page advance backward when prev is clicked 1`
       button.VueCarousel-dot-button(type=\'button\', role=\'button\', aria-label=\'\`Item \${index}\`\', title=\'Item 1\', tabindex=\'0\', style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
 |  
 .VueCarousel-navigation
-  button.VueCarousel-navigation-button.VueCarousel-navigation-prev(type=\'button\', aria-label=\'Previous page\', role=\'button\', style=\'padding: 8px; margin-right: -8px;\') &#x25C0;
+  button.VueCarousel-navigation-button.VueCarousel-navigation-prev(type='button', aria-label='Previous page', role='button', style='padding: 8px; margin-right: -8px;') &#x25C0;
   |  
-  button.VueCarousel-navigation-button.VueCarousel-navigation-next.VueCarousel-navigation--disabled(type=\'button\', aria-label=\'Next page\', role=\'button\', style=\'padding: 8px; margin-left: -8px;\') &#x25B6;
+  button.VueCarousel-navigation-button.VueCarousel-navigation-next.VueCarousel-navigation--disabled(type='button', aria-label='Next page', role='button', style='padding: 8px; margin-left: -8px;') &#x25B6;
 "
 `;
 
 exports[`Navigation should trigger page advance when next is clicked 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role=\'listbox\', style=\'visibility: hidden;\')
-    .VueCarousel-slide(tabindex=\'-1\')
-    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex=\'-1\')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden;')
+    .VueCarousel-slide(tabindex='-1')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
 |  
 .VueCarousel-pagination(style=\'\')
   ul.VueCarousel-dot-container(role=\'tablist\')
@@ -92,8 +94,8 @@ exports[`Navigation should trigger page advance when next is clicked 1`] = `
       button.VueCarousel-dot-button(type=\'button\', role=\'button\', aria-label=\'\`Item \${index}\`\', title=\'Item 1\', tabindex=\'0\', style=\'width: 10px; height: 10px; background: rgb(0, 0, 0);\')
 |  
 .VueCarousel-navigation
-  button.VueCarousel-navigation-button.VueCarousel-navigation-prev(type=\'button\', aria-label=\'Previous page\', role=\'button\', style=\'padding: 8px; margin-right: -8px;\') &#x25C0;
+  button.VueCarousel-navigation-button.VueCarousel-navigation-prev(type='button', aria-label='Previous page', role='button', style='padding: 8px; margin-right: -8px;') &#x25C0;
   |  
-  button.VueCarousel-navigation-button.VueCarousel-navigation-next.VueCarousel-navigation--disabled(type=\'button\', aria-label=\'Next page\', role=\'button\', style=\'padding: 8px; margin-left: -8px;\') &#x25B6;
+  button.VueCarousel-navigation-button.VueCarousel-navigation-next.VueCarousel-navigation--disabled(type='button', aria-label='Next page', role='button', style='padding: 8px; margin-left: -8px;') &#x25B6;
 "
 `;

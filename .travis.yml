@@ -1,9 +1,9 @@
 language: node_js
 
-script: npm run test-coverage
+script: yarn test-coverage
 
 after_script:
-  - npm run coveralls
+  - yarn coveralls
 
 node_js:
-  - "6.9"
+  - "8.11.4"

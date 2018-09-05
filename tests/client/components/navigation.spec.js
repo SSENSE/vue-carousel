@@ -46,6 +46,7 @@ describe('Navigation', () => {
 
   it('should trigger page advance backward when prev is clicked', () => {
     carouselInstance.goToPage(2);
+    vm.$el.querySelector('.VueCarousel-navigation-prev').click();
 
     return carouselInstance.$nextTick().then(() => {
       expect(carouselInstance.currentPage).toBe(1);
