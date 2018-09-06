@@ -596,6 +596,11 @@ export default {
      */
 
     onEnd(e) {
+      // restart autoplay if specified
+      if (this.autoplay && !this.autoplayHoverPause) {
+        this.restartAutoplay();
+      }
+
       // compute the momemtum speed
       const eventPosX = this.isTouch ? e.changedTouches[0].clientX : e.clientX;
       const deltaX = this.dragStartX - eventPosX;
