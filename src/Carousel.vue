@@ -469,6 +469,19 @@ export default {
         this.goToPage(this.getNextPage(), "navigation");
       }
     },
+    goToLastSlide() {
+      // following code is to disable animation
+      this.dragging = true;
+
+      // clear dragging after refresh rate
+      setTimeout(() => {
+        this.dragging = false;
+      }, this.refreshRate);
+
+      this.$nextTick(() => {
+        this.goToPage(this.pageCount);
+      });
+    },
     /**
      * A mutation observer is used to detect changes to the containing node
      * in order to keep the magnet container in sync with the height its reference node.
@@ -596,6 +609,11 @@ export default {
      */
 
     onEnd(e) {
+      // restart autoplay if specified
+      if (this.autoplay && !this.autoplayHoverPause) {
+        this.restartAutoplay();
+      }
+
       // compute the momemtum speed
       const eventPosX = this.isTouch ? e.changedTouches[0].clientX : e.clientX;
       const deltaX = this.dragStartX - eventPosX;
@@ -743,7 +761,12 @@ export default {
     );
 
     this.$emit("mounted");
-  },
+
+    // when autoplay direction is backward start from the last slide
+    if (this.autoplayDirection === "backward") {
+        this.goToLastSlide();
+    }
+  },    
   beforeDestroy() {
     this.detachMutationObserver();
     window.removeEventListener("resize", this.getBrowserWidth);

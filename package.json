@@ -1,6 +1,6 @@
 {
   "name": "vue-carousel",
-  "version": "0.13.1",
+  "version": "0.14.0",
   "description": "A flexible, responsive, touch-friendly carousel for Vue.js",
   "main": "dist/vue-carousel.min.js",
   "scripts": {
