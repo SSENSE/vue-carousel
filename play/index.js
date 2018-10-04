@@ -350,7 +350,9 @@ play("Carousel", module)
       `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
         <carousel style="width: 300px;" :adjustableHeight="true" :navigationEnabled="true" :perPage="1">
           <slide v-for="(slide, idx) in slides">
-            <img :style="'width: ' + ((idx + 1) * 50) + 'px;'" :src="slide" />
+            <div style="width: 300px;">
+              <img :style="'height: ' + ((idx + 1) * 50) + 'px;'" :src="slide" />
+            </div>
           </slide>
         </carousel>
       </div>`,
