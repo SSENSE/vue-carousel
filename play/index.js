@@ -345,3 +345,22 @@ play("Carousel", module)
 
     }
   })
+  .add("With adjustableHeight", {
+    template:
+      `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+        <carousel style="width: 300px;" :adjustableHeight="true" :navigationEnabled="true" :perPage="1">
+          <slide v-for="(slide, idx) in slides">
+            <img :style="'width: ' + ((idx + 1) * 50) + 'px;'" :src="slide" />
+          </slide>
+        </carousel>
+      </div>`,
+    components: {
+      Carousel,
+      Slide
+    },
+    data() {
+      return {
+        slides: images
+      }
+    }
+  })

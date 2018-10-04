@@ -4,7 +4,8 @@
     tabindex="-1"
     :class="{
       'VueCarousel-slide-active': isActive,
-      'VueCarousel-slide-center': isCenter
+      'VueCarousel-slide-center': isCenter,
+      'VueCarousel-slide-adjustableHeight': isAdjustableHeight
     }"
   >
     <slot></slot>
@@ -66,6 +67,14 @@ export default {
       const { perPage } = this.carousel;
       if (perPage % 2 === 0 || !this.isActive) return false;
       return this.activeSlides.indexOf(this._uid) === Math.floor(perPage / 2);
+    },
+    /**
+     * `isAdjustableHeight` describes if the carousel adjusts its height to the active slide(s)
+     * @return {Boolean}
+     */
+    isAdjustableHeight() {
+      const { adjustableHeight } = this.carousel;
+      return adjustableHeight;
     }
   },
   methods: {
@@ -96,5 +105,9 @@ export default {
   backface-visibility: hidden;
   -webkit-touch-callout: none;
   outline: none;
+}
+
+.VueCarousel-slide-adjustableHeight {
+  display: table;
 }
 </style>
