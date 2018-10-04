@@ -503,13 +503,18 @@ export default {
         window.MozMutationObserver;
 
       if (MutationObserver) {
-        const config = {
+        let config = {
           attributes: true,
-          data: true,
-          childList: true,
-          subtree: true,
-          characterData: true
+          data: true
         };
+        if (this.adjustableHeight) {
+          config = {
+            ...config,
+            childList: true,
+            subtree: true,
+            characterData: true
+          }
+        }
         this.mutationObserver = new MutationObserver(() => {
           this.$nextTick(() => {
             this.computeCarouselWidth();
