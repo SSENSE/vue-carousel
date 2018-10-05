@@ -26,18 +26,19 @@
       </div>
     </div>
 
-    <pagination 
-      v-if="paginationEnabled"
-      @paginationclick="goToPage($event, 'pagination')"
-    />
+    <slot name="pagination" v-if="paginationEnabled">
+      <pagination @paginationclick="goToPage($event, 'pagination')"/>
+    </slot>
 
-    <navigation 
-      v-if="navigationEnabled && isNavigationRequired"
-      :clickTargetSize="navigationClickTargetSize"
-      :nextLabel="navigationNextLabel"
-      :prevLabel="navigationPrevLabel"
-      @navigationclick="handleNavigation"
-    />
+    <slot name="navigation" v-if="navigationEnabled">
+      <navigation
+        v-if="isNavigationRequired"
+        :clickTargetSize="navigationClickTargetSize"
+        :nextLabel="navigationNextLabel"
+        :prevLabel="navigationPrevLabel"
+        @navigationclick="handleNavigation"
+      />
+    </slot>
   </section>
 </template>
 <script>

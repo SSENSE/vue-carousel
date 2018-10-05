@@ -169,3 +169,27 @@ Stage padding option adds left and right padding style (in pixels) onto VueCarou
 * **Type**: `Number`
 * **Default**: `0`
 
+## Custom Pagination & Navigation
+
+Use named slots to render pagination and navigation using components.
+
+``` html
+  <carousel>
+    <slide>
+      Slide 1 Content
+    </slide>
+    <slide>
+      Slide 2 Content
+    </slide>
+
+    <numbered-pagination slot="pagination" />
+    <stylish-navigation slot="navigation" />
+  </carousel>
+```
+
+Your components can access the `carousel` provider by adding the following to you component configuration:
+
+```js
+	name: "numbered-pagination",
+	inject: ["carousel"]
+```
