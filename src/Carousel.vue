@@ -513,7 +513,7 @@ export default {
             childList: true,
             subtree: true,
             characterData: true
-          }
+          };
         }
         this.mutationObserver = new MutationObserver(() => {
           this.$nextTick(() => {
