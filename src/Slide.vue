@@ -109,5 +109,7 @@ export default {
 
 .VueCarousel-slide-adjustableHeight {
   display: table;
+  flex-basis: auto;
+  width: 100%;
 }
 </style>
