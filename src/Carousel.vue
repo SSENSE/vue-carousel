@@ -585,6 +585,8 @@ export default {
 
       this.currentHeight =
         maxSlideHeight === 0 ? "auto" : `${maxSlideHeight}px`;
+
+      return this.currentHeight;
     },
     /**
      * Filter slot contents to slide instances and return length
