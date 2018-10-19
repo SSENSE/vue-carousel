@@ -2,7 +2,7 @@
 
 exports[`Carousel should apply custom slides per page when responsive param provided 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden;')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
 |  
 .VueCarousel-pagination(style='display: none;')
   ul.VueCarousel-dot-container(role='tablist')
@@ -12,7 +12,7 @@ exports[`Carousel should apply custom slides per page when responsive param prov
 
 exports[`Carousel should apply default carousel width when element has 0 width 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden;')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
 |  
 .VueCarousel-pagination(style='display: none;')
   ul.VueCarousel-dot-container(role='tablist')
@@ -22,7 +22,7 @@ exports[`Carousel should apply default carousel width when element has 0 width 1
 
 exports[`Carousel should be unable to advance backward by default 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden;')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
 |  
 .VueCarousel-pagination(style='display: none;')
   ul.VueCarousel-dot-container(role='tablist')
@@ -32,7 +32,7 @@ exports[`Carousel should be unable to advance backward by default 1`] = `
 
 exports[`Carousel should be unable to advance forward by default (no slides added) 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden;')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
 |  
 .VueCarousel-pagination(style='display: none;')
   ul.VueCarousel-dot-container(role='tablist')
@@ -42,7 +42,7 @@ exports[`Carousel should be unable to advance forward by default (no slides adde
 
 exports[`Carousel should begin autoplaying when option specified 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden;')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
     .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
     .VueCarousel-slide(tabindex='-1')
 |  
@@ -58,7 +58,7 @@ exports[`Carousel should begin autoplaying when option specified 1`] = `
 
 exports[`Carousel should decrease current page number by 1 when advance page backward is called 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden;')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
     .VueCarousel-slide(tabindex='-1')
     .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
 |  
@@ -74,7 +74,7 @@ exports[`Carousel should decrease current page number by 1 when advance page bac
 
 exports[`Carousel should decrease current slide number by 1 when advance slide backward is called 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden;')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
     .VueCarousel-slide(tabindex='-1')
     .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
     .VueCarousel-slide(tabindex='-1')
@@ -92,7 +92,7 @@ exports[`Carousel should decrease current slide number by 1 when advance slide b
 
 exports[`Carousel should fall back to default slides per page when no responsive param provided 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden;')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
     .VueCarousel-slide(tabindex='-1')
     .VueCarousel-slide(tabindex='-1')
     .VueCarousel-slide.VueCarousel-slide-active(tabindex='-1')
@@ -109,7 +109,7 @@ exports[`Carousel should fall back to default slides per page when no responsive
 
 exports[`Carousel should increase current page number by 1 when advance page is called 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden;')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
     .VueCarousel-slide(tabindex='-1')
     .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
     .VueCarousel-slide(tabindex='-1')
@@ -131,7 +131,7 @@ exports[`Carousel should increase current page number by 1 when advance page is 
 
 exports[`Carousel should increase current page number by 1 when advance page is called with a non "backward" argument 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden;')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
     .VueCarousel-slide(tabindex='-1')
     .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
     .VueCarousel-slide(tabindex='-1')
@@ -153,7 +153,7 @@ exports[`Carousel should increase current page number by 1 when advance page is 
 
 exports[`Carousel should loop back to the start when loop is true and advance page non "backward" is called from the last page 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden;')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
     .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
     .VueCarousel-slide(tabindex='-1')
 |  
@@ -169,7 +169,7 @@ exports[`Carousel should loop back to the start when loop is true and advance pa
 
 exports[`Carousel should loop to the end when loop is true and advance page "backward" is called from the first page 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden;')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
     .VueCarousel-slide(tabindex='-1')
     .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
 |  
@@ -185,7 +185,7 @@ exports[`Carousel should loop to the end when loop is true and advance page "bac
 
 exports[`Carousel should mount successfully 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden;')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
 |  
 .VueCarousel-pagination(style='display: none;')
   ul.VueCarousel-dot-container(role='tablist')
@@ -195,7 +195,7 @@ exports[`Carousel should mount successfully 1`] = `
 
 exports[`Carousel should not reset autoplay when switching slide with autoplayHoverPause 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden;')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
     .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
     .VueCarousel-slide(tabindex='-1')
 |  
@@ -211,7 +211,7 @@ exports[`Carousel should not reset autoplay when switching slide with autoplayHo
 
 exports[`Carousel should register 0 slides when 0 slides are added to the slots 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden;')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
 |  
 .VueCarousel-pagination(style='display: none;')
   ul.VueCarousel-dot-container(role='tablist')
@@ -221,7 +221,7 @@ exports[`Carousel should register 0 slides when 0 slides are added to the slots 
 
 exports[`Carousel should register 3 slides when 3 slides are added to the slots 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden;')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
     .VueCarousel-slide.VueCarousel-slide-active(tabindex='-1')
     .VueCarousel-slide.VueCarousel-slide-active(tabindex='-1')
     .VueCarousel-slide(tabindex='-1')
@@ -238,7 +238,7 @@ exports[`Carousel should register 3 slides when 3 slides are added to the slots 
 
 exports[`Carousel should reset autoplay when switching slide without autoplayHoverPause 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden;')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
     .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
     .VueCarousel-slide(tabindex='-1')
 |  
@@ -252,9 +252,28 @@ exports[`Carousel should reset autoplay when switching slide without autoplayHov
 "
 `;
 
+exports[`Carousel should set carousel height to slide height 1`] = `
+".VueCarousel-wrapper
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: 200px;')
+    .VueCarousel-slide.VueCarousel-slide-adjustableHeight(tabindex='-1')
+    .VueCarousel-slide.VueCarousel-slide-adjustableHeight(tabindex='-1')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center.VueCarousel-slide-adjustableHeight(tabindex='-1')
+|  
+.VueCarousel-pagination(style='')
+  ul.VueCarousel-dot-container(role='tablist')
+    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
+      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 0', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
+    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
+      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 1', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
+    li.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='presentation', aria-selected='true', style='margin-top: 20px; padding: 10px;')
+      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 2', tabindex='0', style='width: 10px; height: 10px; background: rgb(0, 0, 0);')
+// 
+"
+`;
+
 exports[`Carousel should unmount successfully 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden;')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
 |  
 .VueCarousel-pagination(style='display: none;')
   ul.VueCarousel-dot-container(role='tablist')

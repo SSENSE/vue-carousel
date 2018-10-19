@@ -20,6 +20,13 @@ const autoplay = {
     autoplayHoverPause: {
       type: Boolean,
       default: true
+    },
+    /**
+     * Autoplay direction. User can insert backward to make autoplay move from right to left
+     */
+    autoplayDirection: {
+      type: String,
+      default: "forward"
     }
   },
   data() {
@@ -42,7 +49,7 @@ const autoplay = {
     startAutoplay() {
       if (this.autoplay) {
         this.autoplayInterval = setInterval(
-          this.advancePage,
+          this.autoplayAdvancePage,
           this.autoplayTimeout
         );
       }
@@ -50,6 +57,9 @@ const autoplay = {
     restartAutoplay() {
       this.pauseAutoplay();
       this.startAutoplay();
+    },
+    autoplayAdvancePage() {
+      this.advancePage(this.autoplayDirection);
     }
   },
   mounted() {
