@@ -80,11 +80,6 @@
 <li><strong>Type</strong>: <code>Boolean</code></li>
 <li><strong>Default</strong>: <code>true</code></li>
 </ul>
-<h3 id="autoplayDirection"><a href="#autoplayDirection" class="headerlink" title="autoplayDirection"></a>autoplayDirection</h3><p>Set to "backward" to change the autoplay direction to right to left instead of the default left to right movement.</p>
-<ul>
-<li><strong>Type</strong>: <code>String</code></li>
-<li><strong>Default</strong>: <code>forward</code></li>
-</ul>
 <h3 id="loop"><a href="#loop" class="headerlink" title="loop"></a>loop</h3><p>Flag to make the carousel loop (wrap) when it reaches either end.</p>
 <ul>
 <li><strong>Type</strong>: <code>Boolean</code></li>
@@ -183,6 +178,10 @@
 <li><strong>Type</strong>: <code>Number</code></li>
 <li><strong>Default</strong>: <code>0</code></li>
 </ul>
+<h2 id="Custom-Pagination-amp-Navigation"><a href="#Custom-Pagination-amp-Navigation" class="headerlink" title="Custom Pagination &amp; Navigation"></a>Custom Pagination &amp; Navigation</h2><p>Use named slots to render pagination and navigation using components.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">carousel</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">slide</span>&gt;</span></span><br><span class="line">    Slide 1 Content</span><br><span class="line">  <span class="tag">&lt;/<span class="name">slide</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">slide</span>&gt;</span></span><br><span class="line">    Slide 2 Content</span><br><span class="line">  <span class="tag">&lt;/<span class="name">slide</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">numbered-pagination</span> <span class="attr">slot</span>=<span class="string">"pagination"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">stylish-navigation</span> <span class="attr">slot</span>=<span class="string">"navigation"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">carousel</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Your components can access the <code>carousel</code> provider by adding the following to you component configuration:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name: <span class="string">"numbered-pagination"</span>,</span><br><span class="line">inject: [<span class="string">"carousel"</span>]</span><br></pre></td></tr></table></figure>
 
     
     <div class="footer">
