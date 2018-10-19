@@ -18,6 +18,7 @@
           'webkit-flex-basis': `${slideWidth}px`,
           'flex-basis': `${slideWidth}px`,
           'visibility': slideWidth ? 'visible' : 'hidden',
+          'height': `${currentHeight}`,
           'padding-left': `${padding}px`,
           'padding-right': `${padding}px`
         }"
@@ -100,7 +101,8 @@ export default {
       refreshRate: 16,
       slideCount: 0,
       transitionstart: "transitionstart",
-      transitionend: "transitionend"
+      transitionend: "transitionend",
+      currentHeight: "auto"
     };
   },
   mixins: [autoplay],
@@ -282,6 +284,20 @@ export default {
     centerMode: {
       type: Boolean,
       default: false
+    },
+    /**
+     *  Adjust the height of the carousel to the current slide(s)
+     */
+    adjustableHeight: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Slide transition easing for adjustableHeight
+     * Any valid CSS transition easing accepted
+     */
+    adjustableHeightEasing: {
+      type: String
     }
   },
 
@@ -430,7 +446,14 @@ export default {
       return this.centerMode && !this.isNavigationRequired ? true : false;
     },
     transitionStyle() {
-      return `${this.speed / 1000}s ${this.easing} transform`;
+      const speed = `${this.speed / 1000}s`;
+      const transtion = `${speed} ${this.easing} transform`;
+      if (this.adjustableHeight) {
+        return `${transtion}, height ${speed} ${this.adjustableHeightEasing ||
+          this.easing}`;
+      }
+
+      return transtion;
     },
     padding() {
       const padding = this.spacePadding;
@@ -470,6 +493,19 @@ export default {
         this.goToPage(this.getNextPage(), "navigation");
       }
     },
+    goToLastSlide() {
+      // following code is to disable animation
+      this.dragging = true;
+
+      // clear dragging after refresh rate
+      setTimeout(() => {
+        this.dragging = false;
+      }, this.refreshRate);
+
+      this.$nextTick(() => {
+        this.goToPage(this.pageCount);
+      });
+    },
     /**
      * A mutation observer is used to detect changes to the containing node
      * in order to keep the magnet container in sync with the height its reference node.
@@ -481,10 +517,22 @@ export default {
         window.MozMutationObserver;
 
       if (MutationObserver) {
-        const config = { attributes: true, data: true };
+        let config = {
+          attributes: true,
+          data: true
+        };
+        if (this.adjustableHeight) {
+          config = {
+            ...config,
+            childList: true,
+            subtree: true,
+            characterData: true
+          };
+        }
         this.mutationObserver = new MutationObserver(() => {
           this.$nextTick(() => {
             this.computeCarouselWidth();
+            this.computeCarouselHeight();
           });
         });
         if (this.$parent.$el) {
@@ -532,6 +580,29 @@ export default {
       return this.carouselWidth;
     },
     /**
+     * Get the maximum height of the carousel active slides
+     * @return {String} The carousel height
+     */
+    getCarouselHeight() {
+      if (!this.adjustableHeight) {
+        return "auto";
+      }
+
+      const slideOffset = this.currentPerPage * (this.currentPage + 1) - 1;
+      const maxSlideHeight = [...Array(this.currentPerPage)]
+        .map((_, idx) => this.getSlide(slideOffset + idx))
+        .reduce(
+          (clientHeight, slide) =>
+            Math.max(clientHeight, (slide && slide.$el.clientHeight) || 0),
+          0
+        );
+
+      this.currentHeight =
+        maxSlideHeight === 0 ? "auto" : `${maxSlideHeight}px`;
+
+      return this.currentHeight;
+    },
+    /**
      * Filter slot contents to slide instances and return length
      * @return {Number} The number of slides
      */
@@ -543,6 +614,16 @@ export default {
             slot => slot.tag && slot.tag.indexOf("slide") > -1
           ).length) ||
         0;
+    },
+    /**
+     * Gets the slide at the specified index
+     * @return {Object} The slide at the specified index
+     */
+    getSlide(index) {
+      const slides = this.$children.filter(
+        child => child.$vnode.tag.indexOf("slide") > -1
+      );
+      return slides[index];
     },
     /**
      * Set the current page to a specific value
@@ -664,6 +745,7 @@ export default {
     },
     onResize() {
       this.computeCarouselWidth();
+      this.computeCarouselHeight();
 
       this.dragging = true; // force a dragging to disable animation
       this.render();
@@ -704,6 +786,12 @@ export default {
       this.setCurrentPageInBounds();
     },
     /**
+     * Re-compute the height of the carousel and its slides
+     */
+    computeCarouselHeight() {
+      this.getCarouselHeight();
+    },
+    /**
      * When the current page exceeds the carousel bounds, reset it to the maximum allowed
      */
     setCurrentPageInBounds() {
@@ -736,6 +824,7 @@ export default {
 
     this.attachMutationObserver();
     this.computeCarouselWidth();
+    this.computeCarouselHeight();
 
     this.transitionstart = getTransitionEnd();
     this.$refs["VueCarousel-inner"].addEventListener(
@@ -749,6 +838,11 @@ export default {
     );
 
     this.$emit("mounted");
+
+    // when autoplay direction is backward start from the last slide
+    if (this.autoplayDirection === "backward") {
+      this.goToLastSlide();
+    }
   },
   beforeDestroy() {
     this.detachMutationObserver();
