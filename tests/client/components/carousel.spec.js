@@ -298,4 +298,25 @@ describe('Carousel', () => {
     return utils.expectToMatchSnapshot(vm);
   });
 
+  it('should set carousel height to slide height', done => {
+    const vm = new Vue({
+      el: document.createElement('div'),
+      render: (h) => h(Carousel, { props: { adjustableHeight: true, perPage: 1, speed: 1 } },
+        [h(Slide), h(Slide), h(Slide)]
+      ),
+    });
+
+    const carouselInstance = vm.$children[0];
+
+    // Force the slide to return a specific height
+    Object.defineProperty(carouselInstance.$children[2].$el, 'clientHeight', { value: 200 });
+
+    carouselInstance.$nextTick()
+      .then(() => {
+        carouselInstance.computeCarouselHeight();
+        expect(carouselInstance.currentHeight).toBe('200px');
+        utils.expectToMatchSnapshot(vm);
+        done();
+      })
+  });
 });
