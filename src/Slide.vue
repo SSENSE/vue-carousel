@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     activeSlides() {
-      const { currentPage, perPage, $children, slideCount } = this.carousel;
+      const { currentPage, perPage, $children } = this.carousel;
       const activeSlides = [];
       const children = $children
         .filter(

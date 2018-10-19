@@ -76,11 +76,11 @@ exports[`Carousel should decrease current slide number by 1 when advance slide b
 ".VueCarousel-wrapper
   .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
     .VueCarousel-slide(tabindex='-1')
-    .VueCarousel-slide(tabindex='-1')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
     .VueCarousel-slide(tabindex='-1')
     .VueCarousel-slide(tabindex='-1')
 |  
-.VueCarousel-pagination
+.VueCarousel-pagination(style='')
   ul.VueCarousel-dot-container(role='tablist')
     li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
       button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 0', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
