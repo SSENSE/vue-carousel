@@ -70,7 +70,7 @@ This will be an array of arrays. Each array is formatted as [x, y] where x is th
 * **Usage**:
 
 ``` html
-<carousel :perPageCustom="[[768, 3], [1024, 4]]">
+<carousel :per-page-custom="[[768, 3], [1024, 4]]">
 ```
 
 A mobile-first strategy is used to determine the matching breakpoint. In the above example, the [perPage](/vue-carousel/api#perPage) variable has not been set, so the default of **2** is used. If the window size is greater than or equal to 768px, then 3 slides are shown. If the width is greater than or equal to 1024, then 4 slides are shown.
