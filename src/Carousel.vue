@@ -149,6 +149,13 @@ export default {
       type: Boolean,
       default: true
     },
+    /*
+     * Flag to toggle touch dragging
+     */
+    touchDrag: {
+      type: Boolean,
+      default: true
+    },
     /**
      * Flag to render the navigation component
      * (next/prev buttons)
@@ -815,7 +822,7 @@ export default {
     );
 
     // setup the start event only if touch device or mousedrag activated
-    if (this.isTouch || this.mouseDrag) {
+    if ((this.isTouch && this.touchDrag) || this.mouseDrag) {
       this.$refs["VueCarousel-wrapper"].addEventListener(
         this.isTouch ? "touchstart" : "mousedown",
         this.onStart
