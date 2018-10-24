@@ -129,14 +129,18 @@ A sandboxed dev environment is provided by [vue-play](https://github.com/vue-pla
 To begin development, run:
 
 ``` bash
-npm install 
+npm install
+npm install -g getplay
+getplay
 npm run dev
 ```
 
 or, if you prefer yarn
 
 ``` bash
-yarn install 
+yarn install
+yarn global add getplay
+getplay
 yarn dev
 ```
 
