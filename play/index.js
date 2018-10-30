@@ -369,4 +369,25 @@ play("Carousel", module)
         slides: images
       }
     }
+	})
+	.add("With customSlideWidth", {
+    template:
+      `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+        <carousel :custom-slide-width="450" :adjustableHeight="true" :navigationEnabled="true" :perPage="1">
+          <slide v-for="(slide, idx) in slides">
+            <div style="width: 300px; margin: auto">
+              <img style="display: block; height: 300px; margin-left: auto; margin-right: auto" :src="slide" />
+            </div>
+          </slide>
+        </carousel>
+      </div>`,
+    components: {
+      Carousel,
+      Slide
+    },
+    data() {
+      return {
+        slides: images
+      }
+    }
   })

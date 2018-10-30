@@ -318,5 +318,17 @@ describe('Carousel', () => {
         utils.expectToMatchSnapshot(vm);
         done();
       })
+	});
+	
+	it('should set custom carousel width', () => {
+    const vm = new Vue({
+      el: document.createElement('div'),
+      render: (h) => h(Carousel, { props: { perPage: 1, customSlideWidth: 500 } }, [h(Slide), h(Slide)]),
+    });
+
+		const carouselInstance = vm.$children[0];
+		expect(carouselInstance.carouselWidth).toBe(500);
+		expect(carouselInstance.customSlideWidth).toBe(500);
+    return utils.expectToMatchSnapshot(vm);
   });
 });

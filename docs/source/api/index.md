@@ -25,6 +25,13 @@ Flag to pause autoplay on hover
 * **Type**: `Boolean`
 * **Default**: `true`
 
+### customSlideWidth
+
+Sets custom width for the carousel.
+
+* **Type**: `Number`
+* **Default**: `0`
+
 ### loop
 
 Flag to make the carousel loop (wrap) when it reaches either end.

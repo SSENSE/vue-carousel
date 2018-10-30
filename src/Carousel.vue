@@ -1,5 +1,9 @@
 <template>
-  <section class="VueCarousel">
+  <section
+		class="VueCarousel"
+		:style="{
+			'width': customSlideWidth ? `${customSlideWidth}px` : '100%'
+		}">
     <div 
       class="VueCarousel-wrapper"
       ref="VueCarousel-wrapper"
@@ -113,6 +117,13 @@ export default {
     };
   },
   props: {
+    /**
+     * Sets a custom width for the carousel and slides
+     */
+    customSlideWidth: {
+      type: Number,
+      default: 0
+    },
     /**
      * Support for v-model functionality
      */
@@ -569,6 +580,10 @@ export default {
      * @return {Number} Width of the carousel in pixels
      */
     getCarouselWidth() {
+      if (this.customSlideWidth > 0) {
+        this.carouselWidth = this.customSlideWidth;
+        return this.customSlideWidth;
+      }
       let carouselInnerElements = this.$el.getElementsByClassName(
         "VueCarousel-inner"
       );
