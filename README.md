@@ -129,6 +129,18 @@ To listen for the 'slideClick' event you can do the following:
 
 A sandboxed dev environment is provided by [vue-play](https://github.com/vue-play/vue-play). Changes made to the component files will appear in real time in the sandbox. 
 
+# Prerequisites
+- `vue-play`
+```bash
+npm i -g getplay
+```
+
+or, if you prefer yarn
+
+```bash
+yarn add global getplay
+```
+
 To begin development, run:
 
 ``` bash
