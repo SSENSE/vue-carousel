@@ -62,6 +62,9 @@ export default {
 ### Configuration
 | Property                  | Type    | Default | Description                                                                                                                                                                                                                                                                           |
 |:--------------------------|:--------|:--------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| autoplay                  | Boolean | false   | Flag to enable autoplay           
+| autoplayTimeout           | Number  | 2000    | Time elapsed before advancing slide     
+| autoplayHoverPause        | Boolean | false   | Flag to pause autoplay on hover
 | easing                    | String  | ease    | Slide transition easing. Any valid CSS transition easing accepted.                                                                                                                                                                                                                    |
 | minSwipeDistance          | Number  | 8       | Minimum distance for the swipe to trigger a slide advance.                                                                                                                                                                                                                            |
 | navigationClickTargetSize | Number  | 8       | Amount of padding to apply around the label in pixels.                                                                                                                                                                                                                                |
