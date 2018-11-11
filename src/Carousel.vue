@@ -1,10 +1,10 @@
 <template>
   <section class="VueCarousel">
-    <div 
+    <div
       class="VueCarousel-wrapper"
       ref="VueCarousel-wrapper"
     >
-      <div 
+      <div
         ref="VueCarousel-inner"
         :class="[
           'VueCarousel-inner',
@@ -28,7 +28,7 @@
     </div>
 
     <slot name="pagination" v-if="paginationEnabled">
-      <pagination @paginationclick="goToPage($event, 'pagination')"/>
+      <pagination @paginationclick="goToPage(index)"/>
     </slot>
 
     <slot name="navigation" v-if="navigationEnabled">
@@ -485,12 +485,12 @@ export default {
      */
     advancePage(direction) {
       if (direction && direction === "backward" && this.canAdvanceBackward) {
-        this.goToPage(this.getPreviousPage(), "navigation");
+        this.goToPage(this.getPreviousPage());
       } else if (
         (!direction || (direction && direction !== "backward")) &&
         this.canAdvanceForward
       ) {
-        this.goToPage(this.getNextPage(), "navigation");
+        this.goToPage(this.getNextPage());
       }
     },
     goToLastSlide() {
