@@ -140,13 +140,6 @@ A sandboxed dev environment is provided by [vue-play](https://github.com/vue-pla
 To begin development, run:
 
 ``` bash
-npm install
-npm run dev
-```
-
-or, if you prefer yarn
-
-``` bash
 yarn install
 yarn dev
 ```
