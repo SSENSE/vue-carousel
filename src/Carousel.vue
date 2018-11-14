@@ -114,6 +114,27 @@ export default {
   },
   props: {
     /**
+     *  Adjust the height of the carousel for the current slide
+     */
+    adjustableHeight: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Slide transition easing for adjustableHeight
+     * Any valid CSS transition easing accepted
+     */
+    adjustableHeightEasing: {
+      type: String
+    },
+    /**
+     *  Center images when the size is less than the container width
+     */
+    centerMode: {
+      type: Boolean,
+      default: false
+    },
+    /**
      * Slide transition easing
      * Any valid CSS transition easing accepted
      */

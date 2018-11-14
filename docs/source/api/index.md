@@ -4,12 +4,32 @@ title: API
 
 ## Global config
 
+### adjustableHeight
+
+Adjust the height of the carousel for the current slide.
+
+* **Type**: `Boolean`
+* **Default**: `false`
+
+### adjustableHeightEasing
+
+Slide transition easing for adjustableHeight.
+
+* **Type**: `String`
+
 ### autoplay
 
 Flag to enable autoplay.
 
 * **Type**: `Boolean`
 * **Default**: `false`
+
+### autoplayDirection
+
+Sets the autoplay direction for the carousel during autoplay.
+
+* **Type**: `String`
+* **Default**: `forward`
 
 ### autoplayTimeout
 
@@ -24,6 +44,13 @@ Flag to pause autoplay on hover.
 
 * **Type**: `Boolean`
 * **Default**: `true`
+
+### centerMode
+
+Center images when the size is less than the container width
+
+* **Type**: `Boolean`
+* **Default**: `false`
 
 ### easing
 
@@ -235,9 +262,9 @@ Use named slots to render pagination and navigation using components.
 
 Your components can access the `carousel` provider by adding the following to you component configuration:
 
-```js
-	name: "numbered-pagination",
-	inject: ["carousel"]
+```
+  name: "numbered-pagination",
+  inject: ["carousel"]
 ```
 
 ## Events
