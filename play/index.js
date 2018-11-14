@@ -102,7 +102,7 @@ play("Carousel", module)
     template:
       `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
         <carousel style="width: 500px;">
-          <slide v-for="slide in slideCount">
+          <slide v-for="slide in slideCount" :key="slide">
             <img style="width: 100%;" src="https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176006_1.jpg" />
           </slide>
         </carousel>
@@ -150,8 +150,8 @@ play("Carousel", module)
   .add("With local event on pageChange", {
     template:
       `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
-        <carousel style="width: 500px;" @pagechange="onPageChange">
-          <slide v-for="slide in slides">
+        <carousel style="width: 500px;" @pageChange="onPageChange">
+          <slide v-for="slide in slides" :key="slide">
             <img style="width: 100%;" :src="slide" />
           </slide>
         </carousel>
@@ -178,7 +178,7 @@ play("Carousel", module)
           <slide v-for="slide in slides" :key="slide">
             <img style="width: 100%;" :src= slide />
           </slide>
-                    </carousel>
+        </carousel>
         <div style="float: left; z-index: 1000">
           <button style="position: absolute; bottom: 20px; right: 250px" v-on:click="gotoPage(0)">Goto page 1</button>
           <button style="position: absolute; bottom: 20px; right: 150px" v-on:click="gotoPage(1)">Goto page 2</button>
@@ -211,7 +211,7 @@ play("Carousel", module)
           <slide v-for="slide in slides" :key="slide.src">
             <img style="width: 100%;" :src= slide />
           </slide>
-                    </carousel>
+        </carousel>
         <div style="float: left; z-index: 1000">
           <button style="position: absolute; bottom: 20px; right: 250px" v-on:click="gotoSlide(0)">Goto slide 1</button>
           <button style="position: absolute; bottom: 20px; right: 150px" v-on:click="gotoSlide(1)">Goto slide 2</button>

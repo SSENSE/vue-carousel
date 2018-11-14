@@ -1,10 +1,10 @@
 <template>
   <section class="VueCarousel">
-    <div 
+    <div
       class="VueCarousel-wrapper"
       ref="VueCarousel-wrapper"
     >
-      <div 
+      <div
         ref="VueCarousel-inner"
         :class="[
           'VueCarousel-inner',
@@ -114,10 +114,25 @@ export default {
   },
   props: {
     /**
-     * Support for v-model functionality
+     *  Adjust the height of the carousel for the current slide
      */
-    value: {
-      type: Number
+    adjustableHeight: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Slide transition easing for adjustableHeight
+     * Any valid CSS transition easing accepted
+     */
+    adjustableHeightEasing: {
+      type: String
+    },
+    /**
+     *  Center images when the size is less than the container width
+     */
+    centerMode: {
+      type: Boolean,
+      default: false
     },
     /**
      * Slide transition easing
@@ -128,6 +143,13 @@ export default {
       default: "ease"
     },
     /**
+     * Flag to make the carousel loop around when it reaches the end
+     */
+    loop: {
+      type: Boolean,
+      default: false
+    },
+    /**
      * Minimum distance for the swipe to trigger
      * a slide advance
      */
@@ -136,18 +158,25 @@ export default {
       default: 8
     },
     /**
-     * Amount of padding to apply around the label in pixels
-     */
-    navigationClickTargetSize: {
-      type: Number,
-      default: 8
-    },
-    /*
      * Flag to toggle mouse dragging
      */
     mouseDrag: {
       type: Boolean,
       default: true
+    },
+    /**
+     * Listen for an external navigation request using this prop.
+     */
+    navigateTo: {
+      type: Number,
+      default: 0
+    },
+    /**
+     * Amount of padding to apply around the label in pixels
+     */
+    navigationClickTargetSize: {
+      type: Number,
+      default: 8
     },
     /**
      * Flag to render the navigation component
@@ -242,29 +271,6 @@ export default {
       default: true
     },
     /**
-     * Slide transition speed
-     * Number of milliseconds accepted
-     */
-    speed: {
-      type: Number,
-      default: 500
-    },
-    /**
-     * Flag to make the carousel loop around when it reaches the end
-     */
-    loop: {
-      type: Boolean,
-      default: false
-    },
-    /**
-     * Listen for an external navigation request using this prop.
-     * Updated to implement navigation without animation by passing an array instead of a number
-     */
-    navigateTo: {
-      type: [Number, Array],
-      default: 0
-    },
-    /**
      *  Space padding option adds left and right padding style (in pixels) onto VueCarousel-inner.
      */
     spacePadding: {
@@ -279,28 +285,20 @@ export default {
       default: 0
     },
     /**
-     *  Center images when have less than container width
+     * Slide transition speed
+     * Number of milliseconds accepted
      */
-    centerMode: {
-      type: Boolean,
-      default: false
+    speed: {
+      type: Number,
+      default: 500
     },
     /**
-     *  Adjust the height of the carousel to the current slide(s)
+     * Support for v-model functionality
      */
-    adjustableHeight: {
-      type: Boolean,
-      default: false
-    },
-    /**
-     * Slide transition easing for adjustableHeight
-     * Any valid CSS transition easing accepted
-     */
-    adjustableHeightEasing: {
-      type: String
+    value: {
+      type: Number
     }
   },
-
   watch: {
     value(val) {
       if (val !== this.currentPage) {
@@ -338,7 +336,6 @@ export default {
       this.$emit("input", val);
     }
   },
-
   computed: {
     /**
      * Given a viewport width, find the number of slides to display
