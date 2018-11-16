@@ -128,11 +128,11 @@ describe('Carousel', () => {
 
     return carouselInstance.$nextTick().then(() => {
       carouselInstance.goToPage(1);
-      carouselInstance.computeCarouselWidth();
-
-      expect(carouselInstance.currentPage).toBe(1);
-
-      return Promise.resolve();
+      setTimeout(() => {
+        carouselInstance.computeCarouselWidth();
+        expect(carouselInstance.currentPage).toBe(1);
+        return Promise.resolve();
+      }, 150);
     });
   });
 
@@ -187,10 +187,12 @@ describe('Carousel', () => {
 
     return carouselInstance.$nextTick().then(() => {
       carouselInstance.goToPage(1);
-      carouselInstance.advancePage();
-      expect(carouselInstance.currentPage).toBe(1);
+      setTimeout(() => {
+        carouselInstance.advancePage();
+        expect(carouselInstance.currentPage).toBe(1);
 
-      return utils.expectToMatchSnapshot(vm);
+        return utils.expectToMatchSnapshot(vm);
+      }, 150);
     });
   });
 
@@ -204,10 +206,12 @@ describe('Carousel', () => {
 
     return carouselInstance.$nextTick().then(() => {
       carouselInstance.goToPage(1);
-      carouselInstance.advancePage('something');
-      expect(carouselInstance.currentPage).toBe(1);
+      setTimeout(() => {
+        carouselInstance.advancePage('something');
+        expect(carouselInstance.currentPage).toBe(1);
 
-      return utils.expectToMatchSnapshot(vm);
+        return utils.expectToMatchSnapshot(vm);
+      }, 150);
     });
   });
   it('should decrease current slide number by 1 when advance slide backward is called', () => {
@@ -220,10 +224,12 @@ describe('Carousel', () => {
 
     return carouselInstance.$nextTick().then(() => {
       carouselInstance.goToPage(2);
-      carouselInstance.advancePage('backward');
-      expect(carouselInstance.currentPage).toBe(1);
+      setTimeout(() => {
+        carouselInstance.advancePage('backward');
+        expect(carouselInstance.currentPage).toBe(1);
 
-      return utils.expectToMatchSnapshot(vm);
+        return utils.expectToMatchSnapshot(vm);
+      }, 150);
     });
   });
   it('should loop back to the start when loop is true and advance page non "backward" is called from the last page', () => {
@@ -253,9 +259,11 @@ describe('Carousel', () => {
 
     return carouselInstance.$nextTick().then(() => {
       carouselInstance.advancePage('backward');
-      expect(carouselInstance.currentPage).toBe(1);
+      setTimeout(() => {
+        expect(carouselInstance.currentPage).toBe(1);
 
-      return utils.expectToMatchSnapshot(vm);
+        return utils.expectToMatchSnapshot(vm);
+      }, 150);
     });
   });
 
@@ -281,8 +289,10 @@ describe('Carousel', () => {
     const carouselInstance = vm.$children[0];
     const spy = spyOn(carouselInstance, 'restartAutoplay');
     carouselInstance.goToPage(2);
-    expect(carouselInstance.restartAutoplay).toHaveBeenCalled();
-    return utils.expectToMatchSnapshot(vm);
+    setTimeout(() => {
+      expect(carouselInstance.restartAutoplay).toHaveBeenCalled();
+      return utils.expectToMatchSnapshot(vm);
+    }, 150);
   });
 
   it('should not reset autoplay when switching slide with autoplayHoverPause', () => {
