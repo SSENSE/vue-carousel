@@ -13,25 +13,26 @@
         role="listbox"
         :style="{
           'transform': `translate(${currentOffset}px, 0)`,
-          'transition': dragging ? 'none' : transitionStyle,
+          'transition': (dragging || hideTransition) ? 'none' : transitionStyle,
           'ms-flex-preferred-size': `${slideWidth}px`,
           'webkit-flex-basis': `${slideWidth}px`,
           'flex-basis': `${slideWidth}px`,
           'visibility': slideWidth ? 'visible' : 'hidden',
           'height': `${currentHeight}`,
           'padding-left': `${padding}px`,
-          'padding-right': `${padding}px`
+          'padding-right': `${padding}px`,
+          'justify-content': justifyContent,
         }"
       >
         <slot></slot>
       </div>
     </div>
 
-    <slot name="pagination" v-if="paginationEnabled">
+    <slot name="pagination" v-if="paginationEnabled && !infinite">
       <pagination @paginationclick="goToPage($event, 'pagination')"/>
     </slot>
 
-    <slot name="navigation" v-if="navigationEnabled">
+    <slot name="navigation" v-if="navigationEnabled || infinite">
       <navigation
         v-if="isNavigationRequired"
         :clickTargetSize="navigationClickTargetSize"
@@ -96,7 +97,12 @@ export default {
       dragOffset: 0,
       dragStartY: 0,
       dragStartX: 0,
+      forcedOffset: null,
+      hideTransition: false,
+      infiniteMove: null,
       isTouch: typeof window !== "undefined" && "ontouchstart" in window,
+      justifyContent: "normal",
+      navigationButtonPressed: false,
       offset: 0,
       refreshRate: 16,
       slideCount: 0,
@@ -141,6 +147,16 @@ export default {
     easing: {
       type: String,
       default: "ease"
+    },
+    /**
+     * Flag to make the carousel scroll infinitely
+     * Blocks the pagination component
+     * Forces the navigation component
+     * Forces scrollPerPage to false
+     */
+    infinite: {
+      type: Boolean,
+      default: false
     },
     /**
      * Flag to make the carousel loop around when it reaches the end
@@ -331,9 +347,9 @@ export default {
         }
       }
     },
-    currentPage(val) {
-      this.$emit("pageChange", val);
-      this.$emit("input", val);
+    currentPage: {
+      handler: "currentPageChange",
+      immediate: false
     }
   },
   computed: {
@@ -368,13 +384,13 @@ export default {
      * @return {Boolean} Can the slider move forward?
      */
     canAdvanceForward() {
-      return this.loop || this.offset < this.maxOffset;
+      return this.infinite || this.loop || this.offset < this.maxOffset;
     },
     /**
      * @return {Boolean} Can the slider move backward?
      */
     canAdvanceBackward() {
-      return this.loop || this.currentPage > 0;
+      return this.infinite || this.loop || this.currentPage > 0;
     },
     /**
      * Number of slides to display per page in the current context.
@@ -391,7 +407,9 @@ export default {
      * @return {Number} Pixel value of offset to apply
      */
     currentOffset() {
-      if (this.isCenterModeEnabled) {
+      if (this.forcedOffset !== null) {
+        return this.forcedOffset;
+      } else if (this.isCenterModeEnabled) {
         return 0;
       } else {
         return (this.offset + this.dragOffset) * -1;
@@ -416,7 +434,7 @@ export default {
      * @return {Number} Number of pages
      */
     pageCount() {
-      return this.scrollPerPage
+      return this.scrollPerPage && !this.infinite
         ? Math.ceil(this.slideCount / this.currentPerPage)
         : this.slideCount - 2;
     },
@@ -427,7 +445,6 @@ export default {
     slideWidth() {
       const width = this.carouselWidth - this.spacePadding * 2;
       const perPage = this.currentPerPage;
-
       return width / perPage;
     },
     /**
@@ -444,13 +461,13 @@ export default {
     },
     transitionStyle() {
       const speed = `${this.speed / 1000}s`;
-      const transtion = `${speed} ${this.easing} transform`;
+      const transition = `${speed} ${this.easing} transform`;
       if (this.adjustableHeight) {
-        return `${transtion}, height ${speed} ${this.adjustableHeightEasing ||
+        return `${transition}, height ${speed} ${this.adjustableHeightEasing ||
           this.easing}`;
       }
 
-      return transtion;
+      return transition;
     },
     padding() {
       const padding = this.spacePadding;
@@ -458,12 +475,18 @@ export default {
     }
   },
   methods: {
+    currentPageChange(value) {
+      this.$emit("pageChange", value);
+      this.$emit("input", value);
+    },
     /**
      * @return {Number} The index of the next page
      * */
     getNextPage() {
       if (this.currentPage < this.pageCount - 1) {
         return this.currentPage + 1;
+      } else if (this.infinite) {
+        return this.getNextInfinitePage();
       }
       return this.loop ? 0 : this.currentPage;
     },
@@ -473,8 +496,53 @@ export default {
     getPreviousPage() {
       if (this.currentPage > 0) {
         return this.currentPage - 1;
+      } else if (this.infinite) {
+        return this.getPreviousInfinitePage();
       }
       return this.loop ? this.pageCount - 1 : this.currentPage;
+    },
+    /**
+     * Moves the HTMLElements around to allow infinite scrolling going forward.
+     * @return {Number} The index of the next page
+     * */
+    getNextInfinitePage() {
+      const carouselInner = this.$refs["VueCarousel-inner"],
+        firstChild = carouselInner.children[0],
+        lastChild = carouselInner.children[carouselInner.children.length - 1];
+
+      lastChild.after(firstChild.cloneNode(true));
+      this.infiniteMove = { direction: "next", newItem: firstChild };
+      return this.currentPage + 1;
+    },
+    /**
+     * Moves the HTMLElements around to allow infinite scrolling going back.
+     * @return {Number} The index of the next page
+     * */
+    getPreviousInfinitePage() {
+      const carouselInner = this.$refs["VueCarousel-inner"],
+        firstChild = carouselInner.children[0],
+        lastChild = carouselInner.children[carouselInner.children.length - 1];
+
+      this.hideTransition = true;
+      this.justifyContent = "flex-start";
+      this.forcedOffset = -250;
+      firstChild.style.marginLeft = `${this.slideWidth}px`;
+      lastChild.style.display = "none";
+      firstChild.before(lastChild);
+      this.infiniteMove = {
+        direction: "back",
+        newItem: lastChild,
+        oldItem: firstChild
+      };
+
+      setTimeout(
+        function() {
+          this.handleInfiniteScroll();
+        }.bind(this),
+        150
+      );
+
+      return this.currentPage;
     },
     /**
      * Increase/decrease the current page value
@@ -543,6 +611,20 @@ export default {
       }
     },
     handleNavigation(direction) {
+      if (this.infinite) {
+        // A timeout is needed for the button press to control the animations
+        if (!this.navigationButtonPressed) {
+          this.navigationButtonPressed = true;
+          setTimeout(
+            function() {
+              this.navigationButtonPressed = false;
+            }.bind(this),
+            750
+          );
+          return this.advancePage(direction);
+        }
+        return false;
+      }
       this.advancePage(direction);
     },
     /**
@@ -623,27 +705,45 @@ export default {
       return slides[index];
     },
     /**
+     * Calculates the offset for the page
+     * @return {Number} The amount of offset
+     */
+    getOffset(page) {
+      return this.scrollPerPage && !this.infinite
+        ? Math.min(
+            this.slideWidth * this.currentPerPage * page,
+            !this.infinite ? this.maxOffset : this.maxOffset + this.slideWidth
+          )
+        : Math.min(
+            this.slideWidth * page,
+            !this.infinite ? this.maxOffset : this.maxOffset + this.slideWidth
+          );
+    },
+    /**
      * Set the current page to a specific value
      * This function will only apply the change if the value is within the carousel bounds
      * @param  {Number} page The value of the new page number
      */
     goToPage(page) {
-      if (page >= 0 && page <= this.pageCount) {
-        this.offset = this.scrollPerPage
-          ? Math.min(
-              this.slideWidth * this.currentPerPage * page,
-              this.maxOffset
-            )
-          : Math.min(this.slideWidth * page, this.maxOffset);
+      // Small timeout is needed for the infinity effect
+      setTimeout(
+        function() {
+          if (this.infinite || (page >= 0 && page <= this.pageCount)) {
+            this.hideTransition = false;
+            this.offset = this.getOffset(page);
+            // restart autoplay if specified
+            if (this.autoplay && !this.autoplayHoverPause) {
+              this.restartAutoplay();
+            }
 
-        // restart autoplay if specified
-        if (this.autoplay && !this.autoplayHoverPause) {
-          this.restartAutoplay();
-        }
-
-        // update the current page
-        this.currentPage = page;
-      }
+            // update the current page
+            if (this.infinite && this.currentPage === page)
+              this.currentPageChange(page);
+            this.currentPage = page;
+          }
+        }.bind(this),
+        75
+      );
     },
     /**
      * Trigger actions when mouse is pressed
@@ -673,7 +773,6 @@ export default {
      * Trigger actions when mouse is released
      * @param  {Object} e The event object
      */
-
     onEnd(e) {
       // restart autoplay if specified
       if (this.autoplay && !this.autoplayHoverPause) {
@@ -690,9 +789,10 @@ export default {
         this.minSwipeDistance !== 0 &&
         Math.abs(deltaX) >= this.minSwipeDistance
       ) {
-        const width = this.scrollPerPage
-          ? this.slideWidth * this.currentPerPage
-          : this.slideWidth;
+        const width =
+          this.scrollPerPage && !this.infinite
+            ? this.slideWidth * this.currentPerPage
+            : this.slideWidth;
         this.dragOffset = this.dragOffset + Math.sign(deltaX) * (width / 2);
       }
 
@@ -760,18 +860,20 @@ export default {
         ) * this.slideWidth;
 
       // & snap the new offset on a slide or page if scrollPerPage
-      const width = this.scrollPerPage
-        ? this.slideWidth * this.currentPerPage
-        : this.slideWidth;
+      const width =
+        this.scrollPerPage && !this.infinite
+          ? this.slideWidth * this.currentPerPage
+          : this.slideWidth;
       this.offset = width * Math.round(this.offset / width);
 
       // clamp the offset between 0 -> maxOffset
       this.offset = Math.max(0, Math.min(this.offset, this.maxOffset));
 
       // update the current page
-      this.currentPage = this.scrollPerPage
-        ? Math.round(this.offset / this.slideWidth / this.currentPerPage)
-        : Math.round(this.offset / this.slideWidth);
+      this.currentPage =
+        this.scrollPerPage && !this.infinite
+          ? Math.round(this.offset / this.slideWidth / this.currentPerPage)
+          : Math.round(this.offset / this.slideWidth);
     },
     /**
      * Re-compute the width of the carousel and its slides
@@ -803,6 +905,34 @@ export default {
     },
     handleTransitionEnd() {
       this.$emit("transitionEnd");
+      if (this.infiniteMove !== null && this.infiniteMove.direction === "next")
+        this.handleInfiniteScroll();
+    },
+    /**
+     * Special manipulation that is needed to handle the infinite scroll animation.
+     */
+    handleInfiniteScroll() {
+      const { direction, newItem, oldItem } = this.infiniteMove,
+        goingToNext = direction === "next";
+
+      if (goingToNext) {
+        this.hideTransition = true;
+        this.forcedOffset = 250;
+        this.justifyContent = "flex-end";
+        newItem.remove();
+
+        setTimeout(() => {
+          this.currentPage = this.currentPage - 1;
+          this.offset = this.getOffset(this.currentPage);
+          this.justifyContent = "normal";
+          this.forcedOffset = null;
+        }, 75);
+      } else {
+        newItem.style.display = "block";
+        oldItem.style.marginLeft = "0";
+        this.forcedOffset = null;
+      }
+      this.infiniteMove = null;
     }
   },
   mounted() {

@@ -2,7 +2,7 @@
 
 exports[`Navigation should mount successfully 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto; justify-content: normal;')
     .VueCarousel-slide(tabindex='-1')
     .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
 |  
@@ -22,7 +22,7 @@ exports[`Navigation should mount successfully 1`] = `
 
 exports[`Navigation should render a next button 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto; justify-content: normal;')
     .VueCarousel-slide(tabindex='-1')
     .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
 |  
@@ -42,7 +42,7 @@ exports[`Navigation should render a next button 1`] = `
 
 exports[`Navigation should render a prev button 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto; justify-content: normal;')
     .VueCarousel-slide(tabindex='-1')
     .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
 |  
@@ -62,7 +62,7 @@ exports[`Navigation should render a prev button 1`] = `
 
 exports[`Navigation should trigger page advance backward when prev is clicked 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto; justify-content: normal;')
     .VueCarousel-slide(tabindex='-1')
     .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
 |  
@@ -82,7 +82,7 @@ exports[`Navigation should trigger page advance backward when prev is clicked 1`
 
 exports[`Navigation should trigger page advance when next is clicked 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto; justify-content: normal;')
     .VueCarousel-slide(tabindex='-1')
     .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
 |  

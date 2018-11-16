@@ -87,13 +87,13 @@ play("Carousel", module)
     }
   })
   .add("Autoplay", h => createContainer(
-    h, containerWidth, [h(Carousel, { props: { autoplay: true, autoplayHoverPause: false } }, generateSlideImages(h))]
+      h, containerWidth, [h(Carousel, { props: { autoplay: true, autoplayHoverPause: false } }, generateSlideImages(h))]
+    )
   )
-)
-.add("Autoplay, Looping", h => createContainer(
-  h, containerWidth, [h(Carousel, { props: { autoplay: true, autoplayHoverPause: false, loop: true } }, generateSlideImages(h))]
-)
-)
+  .add("Autoplay, Looping", h => createContainer(
+      h, containerWidth, [h(Carousel, { props: { autoplay: true, autoplayHoverPause: false, loop: true } }, generateSlideImages(h))]
+    )
+  )
   .add("Autoplay, pause on hover", h => createContainer(
       h, containerWidth, [h(Carousel, { props: { autoplay: true, autoplayHoverPause: true } }, generateSlideImages(h))]
     )
@@ -318,23 +318,23 @@ play("Carousel", module)
     }
   })
   .add("Get and set current Page with v-model", {
-    template: `
-<div>
-<div style="text-align: center;">
-    <input type="number" v-model="currentPage" style="text-align: center; font-size: 3em; width: 100px;">
-</div>
-<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
-        <carousel
-          style="width: 300px;"
-          v-model="currentPage"
-          :perPage="1"
-        >
-          <slide v-for="slide in slides" :key="slide.src">
-            <img style="width: 100%;" :src= slide />
-          </slide>
-        </carousel>
-      </div>
-</div>`,
+    template:
+      `<div>
+        <div style="text-align: center;">
+            <input type="number" v-model="currentPage" style="text-align: center; font-size: 3em; width: 100px;">
+        </div>
+        <div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+          <carousel
+            style="width: 300px;"
+            v-model="currentPage"
+            :perPage="1"
+          >
+            <slide v-for="slide in slides" :key="slide.src">
+              <img style="width: 100%;" :src= slide />
+            </slide>
+          </carousel>
+        </div>
+      </div>`,
     data() {
       return {
         currentPage: 0,
@@ -370,3 +370,35 @@ play("Carousel", module)
       }
     }
   })
+  .add("Infinite scroll", {
+    template:
+      `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+        <carousel :infinite="true"
+                  style="width: 500px;">
+          <slide class="1">
+            <img style="width: 100%;" src="https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176006_1.jpg" />
+          </slide>
+          <slide class="2">
+            <img style="width: 100%;" src="https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176006_2.jpg" />
+          </slide>
+          <slide class="3">
+            <img style="width: 100%;" src="https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176006_3.jpg" />
+          </slide>
+          <slide class="4">
+            <img style="width: 100%;" src="https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176006_4.jpg" />
+          </slide>
+          <slide class="5">
+            <img style="width: 100%;" src="https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176006_5.jpg" />
+          </slide>
+        </carousel>
+      </div>`,
+    components: {
+      Carousel,
+      Slide
+    },
+    data() {
+      return {
+        slideCount: 5
+      }
+    }
+  });
