@@ -293,6 +293,14 @@ export default {
       default: 500
     },
     /**
+     * Name (tag) of slide component
+     * Overwrite when extending slide component
+     */
+    tagName: {
+      type: String,
+      default: "slide"
+    },
+    /**
      * Support for v-model functionality
      */
     value: {
@@ -608,7 +616,9 @@ export default {
         (this.$slots &&
           this.$slots.default &&
           this.$slots.default.filter(
-            slot => slot.tag && slot.tag.indexOf("slide") > -1
+            slot =>
+              slot.tag &&
+              slot.tag.match(`^vue-component-\\d+-${this.tagName}$`) !== null
           ).length) ||
         0;
     },
@@ -618,7 +628,9 @@ export default {
      */
     getSlide(index) {
       const slides = this.$children.filter(
-        child => child.$vnode.tag.indexOf("slide") > -1
+        child =>
+          child.$vnode.tag.match(`^vue-component-\\d+-${this.tagName}$`) !==
+          null
       );
       return slides[index];
     },

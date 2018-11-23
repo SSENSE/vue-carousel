@@ -209,6 +209,21 @@ exports[`Carousel should not reset autoplay when switching slide with autoplayHo
 "
 `;
 
+exports[`Carousel should only count slides matching tagName 1`] = `
+".VueCarousel-wrapper
+  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
+    .VueCarousel-slide(tabindex='-1')
+    .VueCarousel-slide(tabindex='-1')
+    .VueCarousel-slide(tabindex='-1')
+|  
+.VueCarousel-pagination(style='display: none;')
+  ul.VueCarousel-dot-container(role='tablist')
+    li.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='presentation', aria-selected='true', style='margin-top: 20px; padding: 10px;')
+      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 0', tabindex='0', style='width: 10px; height: 10px; background: rgb(0, 0, 0);')
+// 
+"
+`;
+
 exports[`Carousel should register 0 slides when 0 slides are added to the slots 1`] = `
 ".VueCarousel-wrapper
   .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
