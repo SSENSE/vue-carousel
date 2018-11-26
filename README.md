@@ -104,7 +104,7 @@ export default {
 Once the **Carousel** and **Slide** components are installed globally or imported, they can be used in templates in the following manner:
 
 ``` vue
-  <carousel :per-page="1" :navigate-to="someLocalProperty" mouse-drag="false">
+  <carousel :per-page="1" :navigate-to="someLocalProperty" :mouse-drag="false">
     <slide>
       Slide 1 Content
     </slide>
