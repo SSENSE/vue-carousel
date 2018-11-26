@@ -104,6 +104,7 @@ export default {
   user-select: none;
   backface-visibility: hidden;
   -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   outline: none;
 }
 
