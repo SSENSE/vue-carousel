@@ -164,6 +164,13 @@ export default {
       type: Boolean,
       default: true
     },
+    /*
+     * Flag to toggle touch dragging
+     */
+    touchDrag: {
+      type: Boolean,
+      default: true
+    },
     /**
      * Listen for an external navigation request using this prop.
      */
@@ -763,7 +770,16 @@ export default {
       const width = this.scrollPerPage
         ? this.slideWidth * this.currentPerPage
         : this.slideWidth;
-      this.offset = width * Math.round(this.offset / width);
+      
+      // lock offset to either the nearest page, or to the last slide
+      const lastFullPageOffset = width * Math.floor(this.slideCount / this.currentPerPage - 1)
+      const remainderOffset = lastFullPageOffset + this.slideWidth * (this.slideCount % this.currentPerPage)
+      if (this.offset > (lastFullPageOffset + remainderOffset) / 2) {
+        this.offset = remainderOffset
+      }
+      else {
+        this.offset = width * Math.round(this.offset / width);
+      }
 
       // clamp the offset between 0 -> maxOffset
       this.offset = Math.max(0, Math.min(this.offset, this.maxOffset));
@@ -812,7 +828,7 @@ export default {
     );
 
     // setup the start event only if touch device or mousedrag activated
-    if (this.isTouch || this.mouseDrag) {
+    if ((this.isTouch && this.touchDrag) || this.mouseDrag) {
       this.$refs["VueCarousel-wrapper"].addEventListener(
         this.isTouch ? "touchstart" : "mousedown",
         this.onStart

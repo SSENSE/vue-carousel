@@ -89,7 +89,7 @@ export default {
         this.carousel.minSwipeDistance === 0 ||
         Math.abs(deltaX) < this.carousel.minSwipeDistance
       ) {
-        this.$emit("slideClick", Object.assign({}, e.currentTarget.dataset));
+        this.$emit("slideclick", Object.assign({}, e.currentTarget.dataset));
       }
     }
   }
