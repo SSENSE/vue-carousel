@@ -1,7 +1,8 @@
 {
   "verbose": true,
+  "rootDir": "../",
   "transform": {
-    ".*\\.(js|vue)$": "<rootDir>/preprocessor.js"
+    ".*\\.(js|vue)$": "<rootDir>/tests/preprocessor.js"
   },
   "testPathIgnorePatterns": [
     "/node_modules/",
