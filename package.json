@@ -12,8 +12,8 @@
     "lint": "prettier-eslint --write \"src/**/?(*.js|*.vue)\" || exit 1",
     "precommit": "npm run lint && npm run test",
     "test": "npm run test:client",
-    "test:client": "jest --config tests/client.jest.json --forceExit",
-    "test:client:coverage": "jest --config tests/client.jest.json --coverage --forceExit",
+    "test:client": "jest --config tests/client.jest.json",
+    "test:client:coverage": "jest --config tests/client.jest.json --coverage",
     "test-coverage": "npm run test:client:coverage",
     "updateDocAssets": "cp ./dist/vue-carousel.min.js ./docs/themes/vue/source/js/"
   },
