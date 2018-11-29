@@ -221,12 +221,12 @@ The fill color of pagination dots. Any valid CSS color is accepted.
 * **Type**: `String`
 * **Default**: `#efefef`
 
-### paginationOverlay
+### paginationPosition
 
-Flag to position the pagination component overlaying the images.
+The position of pagination dots. Possible values are 'top', 'top-overlay', 'bottom-overlay'.
 
-* **Type**: `Boolean`
-* **Default**: `false`
+* **Type**: `String`
+* **Default**: `bottom`
 
 ### paginationPadding
 
