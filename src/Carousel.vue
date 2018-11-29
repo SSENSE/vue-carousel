@@ -239,6 +239,13 @@ export default {
       default: 10
     },
     /**
+     * Enable the pagination to overlay the image slider
+     */
+    paginationOverlay: {
+      type: Boolean,
+      default: false
+    },
+    /**
      * The size of each pagination dot
      * Pixel values are accepted
      */

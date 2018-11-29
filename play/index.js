@@ -370,3 +370,6 @@ play("Carousel", module)
       }
     }
   })
+  .add("Pagination overlay", h => createContainer(
+    h, containerWidth, [h(Carousel, { props: { paginationOverlay: true } }, generateSlideImages(h))]
+  ))

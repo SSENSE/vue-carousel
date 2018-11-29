@@ -1,5 +1,9 @@
 <template>
-  <div v-show="carousel.pageCount > 1" class="VueCarousel-pagination">
+  <div
+    v-show="carousel.pageCount > 1"
+    class="VueCarousel-pagination"
+    v-bind:class="{ 'VueCarousel-pagination--overlay': carousel.paginationOverlay }"
+  >
     <ul class="VueCarousel-dot-container" role="tablist">
       <li
         class="VueCarousel-dot"
@@ -76,6 +80,11 @@ export default {
 .VueCarousel-pagination {
   width: 100%;
   text-align: center;
+}
+
+.VueCarousel-pagination--overlay {
+  position: absolute;
+  bottom: 0;
 }
 
 .VueCarousel-dot-container {
