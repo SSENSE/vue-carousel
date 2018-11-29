@@ -1,5 +1,8 @@
 <template>
-  <section class="VueCarousel">
+  <section
+    class="VueCarousel"
+    v-bind:class="{ 'VueCarousel--reverse': paginationPosition === 'top' }"
+  >
     <div
       class="VueCarousel-wrapper"
       ref="VueCarousel-wrapper"
@@ -164,7 +167,7 @@ export default {
       type: Boolean,
       default: true
     },
-    /*
+    /**
      * Flag to toggle touch dragging
      */
     touchDrag: {
@@ -239,11 +242,12 @@ export default {
       default: 10
     },
     /**
-     * Enable the pagination to overlay the image slider
+     * Configure the position for the pagination component.
+     * The possible values are: 'bottom', 'top', 'bottom-overlay' and 'top-overlay'
      */
-    paginationOverlay: {
-      type: Boolean,
-      default: false
+    paginationPosition: {
+      type: String,
+      default: "bottom"
     },
     /**
      * The size of each pagination dot
@@ -885,7 +889,13 @@ export default {
 </script>
 <style>
 .VueCarousel {
+  display: flex;
+  flex-direction: column;
   position: relative;
+}
+
+.VueCarousel--reverse {
+  flex-direction: column-reverse;
 }
 
 .VueCarousel-wrapper {
