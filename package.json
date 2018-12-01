@@ -61,7 +61,6 @@
     "isparta": "^4.0.0",
     "isparta-loader": "^2.0.0",
     "jest": "^23.5.0",
-    "lint-staged": "^8.1.0",
     "prettier": "^1.10.2",
     "prettier-eslint": "^8.8.1",
     "prettier-eslint-cli": "^4.7.0",
