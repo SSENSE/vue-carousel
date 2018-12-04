@@ -223,7 +223,7 @@ The fill color of pagination dots. Any valid CSS color is accepted.
 
 ### paginationPosition
 
-The position of pagination dots. Possible values are 'top', 'top-overlay', 'bottom-overlay'.
+The position of pagination dots. Possible values are `bottom`, `bottom-overlay`, `top` and `top-overlay`. The overlay values place the pagination component over the images.
 
 * **Type**: `String`
 * **Default**: `bottom`
