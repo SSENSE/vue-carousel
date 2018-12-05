@@ -1,322 +1,336 @@
 /* eslint-disable */
 
-const Vue = require('vue');
+import { mount } from '@vue/test-utils';
 const utils = require('../utils');
 
-const VueCarousel = require('../../../src/index.js');
 const Carousel = require('../../../src/Carousel.vue');
 const Slide = require('../../../src/Slide.vue');
 
-Vue.use(VueCarousel.default);
-
 describe('Carousel', () => {
   it('should mount successfully', () => {
-    const vm = new Vue({
-      el: document.createElement('div'),
-      render: (h) => h(Carousel),
-    });
-    const carouselInstance = vm.$children[0];
+    const wrapper = mount(Carousel);
 
-    expect(carouselInstance._isMounted).toBe(true);
+    expect(wrapper.vm._isMounted).toBeTruthy();
 
-    return utils.expectToMatchSnapshot(vm);
+    return utils.expectToMatchSnapshot(wrapper.vm);
   });
 
   it('should unmount successfully', () => {
-    const vm = new Vue({
-      el: document.createElement('div'),
-      render: (h) => h(Carousel),
-    });
-    const carouselInstance = vm.$children[0];
+    const wrapper = mount(Carousel);
 
+    const carouselInstance = wrapper.vm;
     carouselInstance.$destroy();
-    expect(carouselInstance._isDestroyed).toBe(true);
+    expect(carouselInstance._isDestroyed).toBeTruthy();
 
-    return utils.expectToMatchSnapshot(vm);
+    return utils.expectToMatchSnapshot(wrapper.vm);
   });
 
   it('should be unable to advance backward by default', () => {
-    const vm = new Vue({
-      el: document.createElement('div'),
-      render: (h) => h(Carousel),
-    });
-    const carouselInstance = vm.$children[0];
+    const wrapper = mount(Carousel);
 
-    expect(carouselInstance.canAdvanceBackward).toBe(false);
+    expect(wrapper.vm.canAdvanceBackward).toBeFalsy();
 
-    return utils.expectToMatchSnapshot(vm);
+    return utils.expectToMatchSnapshot(wrapper.vm);
   });
 
   it('should be unable to advance forward by default (no slides added)', () => {
-    const vm = new Vue({
-      el: document.createElement('div'),
-      render: (h) => h(Carousel),
-    });
-    const carouselInstance = vm.$children[0];
+    const wrapper = mount(Carousel);
 
-    expect(carouselInstance.canAdvanceForward).toBe(false);
+    expect(wrapper.vm.canAdvanceForward).toBeFalsy();
 
-    return utils.expectToMatchSnapshot(vm);
+    return utils.expectToMatchSnapshot(wrapper.vm);
   });
 
   it('should apply custom slides per page when responsive param provided', () => {
-    const vm = new Vue({
-      el: document.createElement('div'),
-      render: (h) => h(Carousel, { props: { perPageCustom: [[0, 20]] } }),
+    const wrapper = mount(Carousel, {
+      propsData: {
+        perPageCustom: [[0, 20]]
+      }
     });
-    const carouselInstance = vm.$children[0];
 
-    expect(carouselInstance.currentPerPage).toBe(20);
+    expect(wrapper.vm.currentPerPage).toBe(20);
 
-    return utils.expectToMatchSnapshot(vm);
+    return utils.expectToMatchSnapshot(wrapper.vm);
   });
 
   it('should fall back to default slides per page when no responsive param provided', () => {
-    const vm = new Vue({
-      el: document.createElement('div'),
-      render: (h) => h(Carousel, { props: { scrollPerPage: true, perPageCustom: [[9999, 20]] } }, [h(Slide), h(Slide), h(Slide)]),
+    const wrapper = mount(Carousel, {
+      propsData: {
+        scrollPerPage: true,
+        perPageCustom: [[9999, 20]]
+      },
+      slots: {
+        default: [Slide, Slide, Slide]
+      }
     });
-    const carouselInstance = vm.$children[0];
 
-    expect(carouselInstance.currentPerPage).toBe(2);
-    expect(carouselInstance.pageCount).toBe(2);
+    expect(wrapper.vm.currentPerPage).toBe(2);
+    expect(wrapper.vm.pageCount).toBe(2);
 
-    return utils.expectToMatchSnapshot(vm);
+    return utils.expectToMatchSnapshot(wrapper.vm);
   });
 
   it('should apply default carousel width when element has 0 width', () => {
-    const vm = new Vue({
-      el: document.createElement('div'),
-      render: (h) => h(Carousel),
-    });
-    const carouselInstance = vm.$children[0];
+    const wrapper = mount(Carousel);
 
-    expect(carouselInstance.carouselWidth).toBe(0);
+    expect(wrapper.vm.carouselWidth).toBe(0);
 
-    return utils.expectToMatchSnapshot(vm);
+    return utils.expectToMatchSnapshot(wrapper.vm);
   });
 
   it('should apply 200px carousel width when element has 200px width', () => {
-    const vm = new Vue({
-      el: document.createElement('div'),
-      render: (h) => h(Carousel, {},
-      [h(Slide), h(Slide), h(Slide)]
-      ),
+    const wrapper = mount(Carousel, {
+      slots: {
+        default: [Slide, Slide, Slide]
+      }
     });
-    const carouselInstance = vm.$children[0];
 
-    carouselInstance.$el.style.width = "200px";
+    wrapper.vm.$el.style.width = "200px";
 
     setTimeout(() => {
-      carouselInstance.computeCarouselWidth();
+      wrapper.vm.computeCarouselWidth();
 
-      expect(carouselInstance.carouselWidth).toBe(200);
+      expect(wrapper.vm.carouselWidth).toBe(200);
 
-      return utils.expectToMatchSnapshot(vm);
-    }, 2000)
+      utils.expectToMatchSnapshot(wrapper.vm);
+    }, 2000);
   });
 
-  it('should go to second slide when we have odd number of slides and recompute carousel width', () => {
-    const vm = new Vue({
-      el: document.createElement('div'),
-      render: (h) => h(Carousel, {props: { scrollPerPage: true, perPage: 2}},
-        [h(Slide), h(Slide), h(Slide), h(Slide), h(Slide)]
-      ),
+  it('should go to second slide when we have odd number of slides and recompute carousel width', done => {
+    const wrapper = mount(Carousel, {
+      propsData: {
+        scrollPerPage: true,
+        perPage: 2
+      },
+      slots: {
+        default: [Slide, Slide, Slide, Slide, Slide]
+      }
     });
-    const carouselInstance = vm.$children[0];
-    carouselInstance.carouselWidth = 500;
+    wrapper.vm.carouselWidth = 500;
 
-    return carouselInstance.$nextTick().then(() => {
-      carouselInstance.goToPage(1);
-      carouselInstance.computeCarouselWidth();
+    wrapper.vm.$nextTick(() => {
+      wrapper.vm.goToPage(1);
+      wrapper.vm.computeCarouselWidth();
 
-      expect(carouselInstance.currentPage).toBe(1);
+      expect(wrapper.vm.currentPage).toBe(1);
 
-      return Promise.resolve();
+      done();
     });
   });
 
   it('should register 0 slides when 0 slides are added to the slots', () => {
-    const vm = new Vue({
-      el: document.createElement('div'),
-      render: (h) => h(Carousel),
-    });
-    const carouselInstance = vm.$children[0];
+    const wrapper = mount(Carousel);
 
-    expect(carouselInstance.slideCount).toBe(0);
+    expect(wrapper.vm.slideCount).toBe(0);
 
-    return utils.expectToMatchSnapshot(vm);
+    return utils.expectToMatchSnapshot(wrapper.vm);
   });
 
   it('should register 3 slides when 3 slides are added to the slots', () => {
-    const vm = new Vue({
-      el: document.createElement('div'),
-      render: (h) => h(Carousel, {}, [h(Slide), h(Slide), h(Slide)]),
+    const wrapper = mount(Carousel, {
+      slots: {
+        default: [Slide, Slide, Slide]
+      }
     });
-    const carouselInstance = vm.$children[0];
 
-    expect(carouselInstance.slideCount).toBe(3);
+    expect(wrapper.vm.slideCount).toBe(3);
 
-    return utils.expectToMatchSnapshot(vm);
+    return utils.expectToMatchSnapshot(wrapper.vm);
   });
 
-  it('should decrease current page number by 1 when advance page backward is called', () => {
-    const vm = new Vue({
-      el: document.createElement('div'),
-      render: (h) => h(Carousel, { props: { perPage: 1 } }, [h(Slide), h(Slide)]),
+  it('should decrease current page number by 1 when advance page backward is called', done => {
+    const wrapper = mount(Carousel, {
+      propsData: {
+        perPage: 1
+      },
+      slots: {
+        default: [Slide, Slide]
+      }
     });
 
-    const carouselInstance = vm.$children[0];
-
-    return carouselInstance.$nextTick().then(() => {
-      carouselInstance.goToPage(2);
-      carouselInstance.advancePage('backward');
-      expect(carouselInstance.currentPage).toBe(1);
-
-      return utils.expectToMatchSnapshot(vm);
-    });
-  });
-
-  it('should increase current page number by 1 when advance page is called', () => {
-    const vm = new Vue({
-      el: document.createElement('div'),
-      render: (h) => h(Carousel, { props: { perPage: 1 } }, [h(Slide), h(Slide), h(Slide), h(Slide)]),
-    });
-
-    const carouselInstance = vm.$children[0];
-
-    return carouselInstance.$nextTick().then(() => {
-      carouselInstance.goToPage(1);
-      carouselInstance.advancePage();
-      expect(carouselInstance.currentPage).toBe(1);
-
-      return utils.expectToMatchSnapshot(vm);
+    wrapper.vm.$nextTick(() => {
+      wrapper.vm.goToPage(2);
+      wrapper.vm.advancePage('backward');
+      expect(wrapper.vm.currentPage).toBe(1);
+      utils.expectToMatchSnapshot(wrapper.vm);
+      done();
     });
   });
 
-  it('should increase current page number by 1 when advance page is called with a non "backward" argument', () => {
-    const vm = new Vue({
-      el: document.createElement('div'),
-      render: (h) => h(Carousel, { props: { perPage: 1 } }, [h(Slide), h(Slide), h(Slide), h(Slide)]),
+  it('should increase current page number by 1 when advance page is called', done => {
+    const wrapper = mount(Carousel, {
+      propsData: {
+        perPage: 1
+      },
+      slots: {
+        default: [Slide, Slide, Slide, Slide]
+      }
     });
 
-    const carouselInstance = vm.$children[0];
-
-    return carouselInstance.$nextTick().then(() => {
-      carouselInstance.goToPage(1);
-      carouselInstance.advancePage('something');
-      expect(carouselInstance.currentPage).toBe(1);
-
-      return utils.expectToMatchSnapshot(vm);
-    });
-  });
-  it('should decrease current slide number by 1 when advance slide backward is called', () => {
-    const vm = new Vue({
-      el: document.createElement('div'),
-      render: (h) => h(Carousel, { props: { perPage: 1, scrollPerPage: false } }, [h(Slide), h(Slide), h(Slide), h(Slide)]),
-    });
-
-    const carouselInstance = vm.$children[0];
-
-    return carouselInstance.$nextTick().then(() => {
-      carouselInstance.goToPage(2);
-      carouselInstance.advancePage('backward');
-      expect(carouselInstance.currentPage).toBe(1);
-
-      return utils.expectToMatchSnapshot(vm);
-    });
-  });
-  it('should loop back to the start when loop is true and advance page non "backward" is called from the last page', () => {
-    const vm = new Vue({
-      el: document.createElement('div'),
-      render: (h) => h(Carousel, { props: { perPage: 1, loop: true } }, [h(Slide), h(Slide)]),
-    });
-
-    const carouselInstance = vm.$children[0];
-
-    return carouselInstance.$nextTick().then(() => {
-      carouselInstance.goToPage(1);
-      carouselInstance.advancePage();
-      expect(carouselInstance.currentPage).toBe(0);
-
-      return utils.expectToMatchSnapshot(vm);
+    wrapper.vm.$nextTick(() => {
+      wrapper.vm.goToPage(1);
+      wrapper.vm.advancePage();
+      expect(wrapper.vm.currentPage).toBe(1);
+      utils.expectToMatchSnapshot(wrapper.vm);
+      done();
     });
   });
 
-  it('should loop to the end when loop is true and advance page "backward" is called from the first page', () => {
-    const vm = new Vue({
-      el: document.createElement('div'),
-      render: (h) => h(Carousel, { props: { perPage: 1, loop: true } }, [h(Slide), h(Slide)]),
+  it('should increase current page number by 1 when advance page is called with a non "backward" argument', done => {
+    const wrapper = mount(Carousel, {
+      propsData: {
+        perPage: 1
+      },
+      slots: {
+        default: [Slide, Slide, Slide, Slide]
+      }
     });
 
-    const carouselInstance = vm.$children[0];
+    wrapper.vm.$nextTick(() => {
+      wrapper.vm.goToPage(1);
+      wrapper.vm.advancePage('something');
+      expect(wrapper.vm.currentPage).toBe(1);
+      utils.expectToMatchSnapshot(wrapper.vm);
+      done();
+    });
+  });
 
-    return carouselInstance.$nextTick().then(() => {
-      carouselInstance.advancePage('backward');
-      expect(carouselInstance.currentPage).toBe(1);
+  it('should decrease current slide number by 1 when advance slide backward is called', done => {
+    const wrapper = mount(Carousel, {
+      propsData: {
+        perPage: 1,
+        scrollPerPage: false
+      },
+      slots: {
+        default: [Slide, Slide, Slide, Slide]
+      }
+    });
 
-      return utils.expectToMatchSnapshot(vm);
+    wrapper.vm.$nextTick(() => {
+      wrapper.vm.goToPage(2);
+      wrapper.vm.advancePage('backward');
+      expect(wrapper.vm.currentPage).toBe(1);
+      utils.expectToMatchSnapshot(wrapper.vm);
+      done();
+    });
+  });
+
+  it('should loop back to the start when loop is true and advance page non "backward" is called from the last page', done => {
+    const wrapper = mount(Carousel, {
+      propsData: {
+        perPage: 1,
+        loop: true
+      },
+      slots: {
+        default: [Slide, Slide]
+      }
+    });
+
+    wrapper.vm.$nextTick(() => {
+      wrapper.vm.goToPage(1);
+      wrapper.vm.advancePage();
+      expect(wrapper.vm.currentPage).toBe(0);
+      utils.expectToMatchSnapshot(wrapper.vm);
+      done();
+    });
+  });
+
+  it('should loop to the end when loop is true and advance page "backward" is called from the first page', done => {
+    const wrapper = mount(Carousel, {
+      propsData: {
+        perPage: 1,
+        loop: true
+      },
+      slots: {
+        default: [Slide, Slide]
+      }
+    });
+
+    wrapper.vm.$nextTick(() => {
+      wrapper.vm.advancePage('backward');
+      expect(wrapper.vm.currentPage).toBe(1);
+      utils.expectToMatchSnapshot(wrapper.vm);
+      done();
     });
   });
 
   it('should begin autoplaying when option specified', () => {
-    const vm = new Vue({
-      el: document.createElement('div'),
-      render: (h) => h(Carousel, { props: { perPage: 1, autoplay: true, autoplayHoverPause: true } }, [h(Slide), h(Slide)]),
+    const wrapper = mount(Carousel, {
+      propsData: {
+        perPage: 1,
+        autoplay: true,
+        autoplayHoverPause: true
+      },
+      slots: {
+        default: [Slide, Slide]
+      }
     });
 
-    const carouselInstance = vm.$children[0];
-    expect(carouselInstance.autoplayInterval).toBeDefined();
-    carouselInstance.pauseAutoplay();
-    expect(carouselInstance.autoplayInterval).toBe(undefined);
-    return utils.expectToMatchSnapshot(vm);
+    expect(wrapper.vm.autoplayInterval).toBeDefined();
+    wrapper.vm.pauseAutoplay();
+    expect(wrapper.vm.autoplayInterval).toBe(undefined);
+    return utils.expectToMatchSnapshot(wrapper.vm);
   });
 
   it('should reset autoplay when switching slide without autoplayHoverPause', () => {
-    const vm = new Vue({
-      el: document.createElement('div'),
-      render: (h) => h(Carousel, { props: { perPage: 1, autoplay: true, autoplayHoverPause: false } }, [h(Slide), h(Slide)]),
+    const wrapper = mount(Carousel, {
+      propsData: {
+        perPage: 1,
+        autoplay: true,
+        autoplayHoverPause: false
+      },
+      slots: {
+        default: [Slide, Slide]
+      }
     });
 
-    const carouselInstance = vm.$children[0];
-    const spy = spyOn(carouselInstance, 'restartAutoplay');
-    carouselInstance.goToPage(2);
-    expect(carouselInstance.restartAutoplay).toHaveBeenCalled();
-    return utils.expectToMatchSnapshot(vm);
+    const spy = jest.spyOn(wrapper.vm, 'restartAutoplay');
+    wrapper.vm.goToPage(2);
+    expect(wrapper.vm.restartAutoplay).toHaveBeenCalled();
+    spy.mockRestore();
+    return utils.expectToMatchSnapshot(wrapper.vm);
   });
 
   it('should not reset autoplay when switching slide with autoplayHoverPause', () => {
-    const vm = new Vue({
-      el: document.createElement('div'),
-      render: (h) => h(Carousel, { props: { perPage: 1, autoplay: true, autoplayHoverPause: true } }, [h(Slide), h(Slide)]),
+    const wrapper = mount(Carousel, {
+      propsData: {
+        perPage: 1,
+        autoplay: true,
+        autoplayHoverPause: true
+      },
+      slots: {
+        default: [Slide, Slide]
+      }
     });
 
-    const carouselInstance = vm.$children[0];
-    const spy = spyOn(carouselInstance, 'restartAutoplay');
-    carouselInstance.goToPage(2);
-    expect(carouselInstance.restartAutoplay).not.toHaveBeenCalled();
-    return utils.expectToMatchSnapshot(vm);
+    const spy = jest.spyOn(wrapper.vm, 'restartAutoplay');
+    wrapper.vm.goToPage(2);
+    expect(wrapper.vm.restartAutoplay).not.toHaveBeenCalled();
+    spy.mockRestore();
+    return utils.expectToMatchSnapshot(wrapper.vm);
   });
 
   it('should set carousel height to slide height', done => {
-    const vm = new Vue({
-      el: document.createElement('div'),
-      render: (h) => h(Carousel, { props: { adjustableHeight: true, perPage: 1, speed: 1 } },
-        [h(Slide), h(Slide), h(Slide)]
-      ),
+    const wrapper = mount(Carousel, {
+      propsData: {
+        adjustableHeight: true,
+        perPage: 1,
+        speed: 0
+      },
+      slots: {
+        default: [Slide, Slide, Slide]
+      },
+      sync: false
     });
 
-    const carouselInstance = vm.$children[0];
-
     // Force the slide to return a specific height
-    Object.defineProperty(carouselInstance.$children[2].$el, 'clientHeight', { value: 200 });
+    Object.defineProperty(wrapper.vm.$children[2].$el, 'clientHeight', { value: 200 });
 
-    carouselInstance.$nextTick()
-      .then(() => {
-        carouselInstance.computeCarouselHeight();
-        expect(carouselInstance.currentHeight).toBe('200px');
-        utils.expectToMatchSnapshot(vm);
-        done();
-      })
+    wrapper.vm.$nextTick(() => {
+      wrapper.vm.computeCarouselHeight();
+      expect(wrapper.vm.currentHeight).toBe('200px');
+      utils.expectToMatchSnapshot(wrapper.vm);
+      done();
+    });
   });
 });
