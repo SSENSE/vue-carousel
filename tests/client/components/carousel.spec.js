@@ -78,24 +78,6 @@ describe('Carousel', () => {
     return utils.expectToMatchSnapshot(wrapper.vm);
   });
 
-  it('should apply 200px carousel width when element has 200px width', () => {
-    const wrapper = mount(Carousel, {
-      slots: {
-        default: [Slide, Slide, Slide]
-      }
-    });
-
-    wrapper.vm.$el.style.width = "200px";
-
-    setTimeout(() => {
-      wrapper.vm.computeCarouselWidth();
-
-      expect(wrapper.vm.carouselWidth).toBe(200);
-
-      utils.expectToMatchSnapshot(wrapper.vm);
-    }, 2000);
-  });
-
   it('should go to second slide when we have odd number of slides and recompute carousel width', done => {
     const wrapper = mount(Carousel, {
       propsData: {
