@@ -1,21 +1,26 @@
-const Vue = require('vue');
+import { mount } from '@vue/test-utils';
 const utils = require('../utils');
 
 const Carousel = require('../../../src/Carousel.vue');
 const Slide = require('../../../src/Slide.vue');
 
 describe('Navigation', () => {
+  let wrapper;
   let vm;
-  let carouselInstance;
   let $navigation;
 
   beforeEach(() => {
-    vm = new Vue({
-      el: document.createElement('div'),
-      render: (h) => h(Carousel, { props: { navigationEnabled: true, perPage: 1 } }, [h(Slide), h(Slide)]),
+    wrapper = mount(Carousel, {
+      propsData: {
+        navigationEnabled: true,
+        perPage: 1
+      },
+      slots: {
+        default: [Slide, Slide]
+      }
     });
-    carouselInstance = vm.$children[0];
-    $navigation = vm.$el.querySelector('.navigation');
+    vm = wrapper.vm;
+    $navigation = wrapper.find('.navigation');
   });
 
   it('should mount successfully', () => {
@@ -25,33 +30,37 @@ describe('Navigation', () => {
   });
 
   it('should render a next button', () => {
-    expect(vm.$el.querySelector('.VueCarousel-navigation-next')).toBeDefined();
+    expect(wrapper.find('.VueCarousel-navigation-next')).toBeDefined();
 
     return utils.expectToMatchSnapshot(vm);
   });
 
   it('should render a prev button', () => {
-    expect(vm.$el.querySelector('.VueCarousel-navigation-prev')).toBeDefined();
+    expect(wrapper.find('.VueCarousel-navigation-prev')).toBeDefined();
 
     return utils.expectToMatchSnapshot(vm);
   });
 
-  it('should trigger page advance when next is clicked', () => {
-    return carouselInstance.$nextTick().then(() => {
-      expect(carouselInstance.currentPage).toBe(1);
+  it('should trigger page advance when next is clicked', done => {
+    vm.$nextTick(() => {
+      expect(vm.currentPage).toBe(1);
 
-      return utils.expectToMatchSnapshot(vm);
+      utils.expectToMatchSnapshot(vm);
+
+      done();
     });
   });
 
-  it('should trigger page advance backward when prev is clicked', () => {
-    carouselInstance.goToPage(2);
-    vm.$el.querySelector('.VueCarousel-navigation-prev').click();
+  it('should trigger page advance backward when prev is clicked', done => {
+    vm.goToPage(2);
+    wrapper.find('.VueCarousel-navigation-prev').trigger('click');
 
-    return carouselInstance.$nextTick().then(() => {
-      expect(carouselInstance.currentPage).toBe(1);
+    vm.$nextTick(() => {
+      expect(vm.currentPage).toBe(1);
 
-      return utils.expectToMatchSnapshot(vm);
+      utils.expectToMatchSnapshot(vm);
+
+      done();
     });
   });
 });
