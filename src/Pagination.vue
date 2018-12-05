@@ -1,5 +1,9 @@
 <template>
-  <div v-show="carousel.pageCount > 1" class="VueCarousel-pagination">
+  <div
+    v-show="carousel.pageCount > 1"
+    class="VueCarousel-pagination"
+    v-bind:class="{ [`VueCarousel-pagination--${paginationPositionModifierName}`]: paginationPositionModifierName }"
+  >
     <ul class="VueCarousel-dot-container" role="tablist">
       <li
         class="VueCarousel-dot"
@@ -11,7 +15,7 @@
         :key="`${page}_${index}`"
         v-on:click="goToPage(index)"
         :style="`
-          margin-top: ${carousel.paginationPadding * 2}px;
+          margin-${paginationPropertyBasedOnPosition}: ${carousel.paginationPadding * 2}px;
           padding: ${carousel.paginationPadding}px;
         `"
       >
@@ -38,6 +42,17 @@ export default {
   name: "pagination",
   inject: ["carousel"],
   computed: {
+    paginationPositionModifierName() {
+      const { paginationPosition } = this.carousel;
+      // guard to add only required class modifiers
+      if (paginationPosition.indexOf("overlay") < 0) return;
+      return paginationPosition;
+    },
+    paginationPropertyBasedOnPosition() {
+      return this.carousel.paginationPosition.indexOf("top") >= 0
+        ? "bottom"
+        : "top";
+    },
     paginationCount() {
       return this.carousel && this.carousel.scrollPerPage
         ? this.carousel.pageCount
@@ -76,6 +91,16 @@ export default {
 .VueCarousel-pagination {
   width: 100%;
   text-align: center;
+}
+
+.VueCarousel-pagination--top-overlay {
+  position: absolute;
+  top: 0;
+}
+
+.VueCarousel-pagination--bottom-overlay {
+  position: absolute;
+  bottom: 0;
 }
 
 .VueCarousel-dot-container {

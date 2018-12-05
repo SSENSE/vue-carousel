@@ -1,5 +1,8 @@
 <template>
-  <section class="VueCarousel">
+  <section
+    class="VueCarousel"
+    v-bind:class="{ 'VueCarousel--reverse': paginationPosition === 'top' }"
+  >
     <div
       class="VueCarousel-wrapper"
       ref="VueCarousel-wrapper"
@@ -164,7 +167,7 @@ export default {
       type: Boolean,
       default: true
     },
-    /*
+    /**
      * Flag to toggle touch dragging
      */
     touchDrag: {
@@ -237,6 +240,14 @@ export default {
     paginationPadding: {
       type: Number,
       default: 10
+    },
+    /**
+     * Configure the position for the pagination component.
+     * The possible values are: 'bottom', 'top', 'bottom-overlay' and 'top-overlay'
+     */
+    paginationPosition: {
+      type: String,
+      default: "bottom"
     },
     /**
      * The size of each pagination dot
@@ -770,14 +781,16 @@ export default {
       const width = this.scrollPerPage
         ? this.slideWidth * this.currentPerPage
         : this.slideWidth;
-      
+
       // lock offset to either the nearest page, or to the last slide
-      const lastFullPageOffset = width * Math.floor(this.slideCount / this.currentPerPage - 1)
-      const remainderOffset = lastFullPageOffset + this.slideWidth * (this.slideCount % this.currentPerPage)
+      const lastFullPageOffset =
+        width * Math.floor(this.slideCount / this.currentPerPage - 1);
+      const remainderOffset =
+        lastFullPageOffset +
+        this.slideWidth * (this.slideCount % this.currentPerPage);
       if (this.offset > (lastFullPageOffset + remainderOffset) / 2) {
-        this.offset = remainderOffset
-      }
-      else {
+        this.offset = remainderOffset;
+      } else {
         this.offset = width * Math.round(this.offset / width);
       }
 
@@ -878,7 +891,13 @@ export default {
 </script>
 <style>
 .VueCarousel {
+  display: flex;
+  flex-direction: column;
   position: relative;
+}
+
+.VueCarousel--reverse {
+  flex-direction: column-reverse;
 }
 
 .VueCarousel-wrapper {
