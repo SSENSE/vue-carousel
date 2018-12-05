@@ -42,6 +42,7 @@
     "@babel/core": "^7.0.0",
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
+    "@vue/test-utils": "^1.0.0-beta.26",
     "babel-loader": "^8.0.1",
     "coveralls": "^3.0.1",
     "css-loader": "^1.0.0",
