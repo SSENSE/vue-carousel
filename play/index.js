@@ -374,3 +374,12 @@ play("Carousel", module)
       }
     }
   })
+  .add("Pagination position top", h => createContainer(
+    h, containerWidth, [h(Carousel, { props: { paginationPosition: 'top' } }, generateSlideImages(h))]
+  ))
+  .add("Pagination position top-overlay", h => createContainer(
+    h, containerWidth, [h(Carousel, { props: { paginationPosition: 'top-overlay' } }, generateSlideImages(h))]
+  ))
+  .add("Pagination position bottom-overlay", h => createContainer(
+    h, containerWidth, [h(Carousel, { props: { paginationPosition: 'bottom-overlay' } }, generateSlideImages(h))]
+  ))
