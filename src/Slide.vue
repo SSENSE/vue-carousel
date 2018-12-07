@@ -89,7 +89,7 @@ export default {
         this.carousel.minSwipeDistance === 0 ||
         Math.abs(deltaX) < this.carousel.minSwipeDistance
       ) {
-        this.$emit("slideClick", Object.assign({}, e.currentTarget.dataset));
+        this.$emit("slideclick", Object.assign({}, e.currentTarget.dataset));
       }
     }
   }
@@ -104,6 +104,7 @@ export default {
   user-select: none;
   backface-visibility: hidden;
   -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   outline: none;
 }
 
