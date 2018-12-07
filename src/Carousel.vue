@@ -413,9 +413,10 @@ export default {
      * @return {Number}
      */
     maxOffset() {
-      return (
+      return Math.max(
         this.slideWidth * (this.slideCount - this.currentPerPage) -
-        this.spacePadding * this.spacePaddingMaxOffsetFactor
+          this.spacePadding * this.spacePaddingMaxOffsetFactor,
+        0
       );
     },
     /**
