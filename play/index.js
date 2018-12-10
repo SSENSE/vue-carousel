@@ -102,6 +102,35 @@ play("Carousel", module)
       h, containerWidth, [h(Carousel, { props: { autoplay: true, autoplayHoverPause: true } }, generateSlideImages(h))]
     )
   )
+  .add("Autoplay, Pause/Resume", {
+    template:
+      `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+        <carousel style="width: 500px;" :autoplay="autoplay" :loop="true">
+          <slide v-for="slide in slideCount" :key="slide">
+            <img style="width: 100%;" src="https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176006_1.jpg" />
+          </slide>
+        </carousel>
+        <div style="float: left">
+          <pre>Autoplay Status: {{ autoplay }}</pre>
+          <button v-on:click="toggleAutoplay()">Toggle Autoplay</button>
+        </div>
+      </div>`,
+    components: {
+      Carousel,
+      Slide
+    },
+    data() {
+      return {
+        autoplay: true,
+        slideCount: 8
+      }
+    },
+    methods: {
+      toggleAutoplay() {
+        this.autoplay = !this.autoplay;
+      },
+    }
+  })
   .add("Dynamic, add or remove slides", {
     template:
       `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
