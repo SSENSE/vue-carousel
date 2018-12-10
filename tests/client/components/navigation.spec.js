@@ -1,5 +1,4 @@
 import { mount } from '@vue/test-utils';
-const utils = require('../utils');
 
 const Carousel = require('../../../src/Carousel.vue');
 const Slide = require('../../../src/Slide.vue');
@@ -23,29 +22,38 @@ describe('Navigation', () => {
     $navigation = wrapper.find('.navigation');
   });
 
-  it('should mount successfully', () => {
+  it('should mount successfully', done => {
     expect($navigation).toBeDefined();
 
-    return utils.expectToMatchSnapshot(vm);
+    vm.$nextTick(() => {
+      expect(wrapper.element).toMatchSnapshot();
+      done();
+    });
   });
 
-  it('should render a next button', () => {
+  it('should render a next button', done => {
     expect(wrapper.find('.VueCarousel-navigation-next')).toBeDefined();
 
-    return utils.expectToMatchSnapshot(vm);
+    vm.$nextTick(() => {
+      expect(wrapper.element).toMatchSnapshot();
+      done();
+    });
   });
 
-  it('should render a prev button', () => {
+  it('should render a prev button', done => {
     expect(wrapper.find('.VueCarousel-navigation-prev')).toBeDefined();
 
-    return utils.expectToMatchSnapshot(vm);
+    vm.$nextTick(() => {
+      expect(wrapper.element).toMatchSnapshot();
+      done();
+    });
   });
 
   it('should trigger page advance when next is clicked', done => {
     vm.$nextTick(() => {
       expect(vm.currentPage).toBe(1);
 
-      utils.expectToMatchSnapshot(vm);
+      expect(wrapper.element).toMatchSnapshot();
 
       done();
     });
@@ -58,7 +66,7 @@ describe('Navigation', () => {
     vm.$nextTick(() => {
       expect(vm.currentPage).toBe(1);
 
-      utils.expectToMatchSnapshot(vm);
+      expect(wrapper.element).toMatchSnapshot();
 
       done();
     });

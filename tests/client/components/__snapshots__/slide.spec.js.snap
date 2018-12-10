@@ -1,14 +1,52 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Slide should mount successfully 1`] = `
-".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
-    .VueCarousel-slide(tabindex='-1')
-|  
-.VueCarousel-pagination(style='display: none;')
-  ul.VueCarousel-dot-container(role='tablist')
-    li.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='presentation', aria-selected='true', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 0', tabindex='0', style='width: 10px; height: 10px; background: rgb(0, 0, 0);')
-// 
-"
+<section
+  class="VueCarousel"
+>
+  <div
+    class="VueCarousel-wrapper"
+  >
+    <div
+      class="VueCarousel-inner"
+      role="listbox"
+      style="transform: translate(0px, 0); visibility: hidden; height: auto;"
+    >
+      <div
+        class="VueCarousel-slide"
+        tabindex="-1"
+      />
+    </div>
+  </div>
+   
+  <div
+    class="VueCarousel-pagination"
+    style="display: none;"
+  >
+    <ul
+      class="VueCarousel-dot-container"
+      role="tablist"
+    >
+      <li
+        aria-hidden="false"
+        aria-selected="true"
+        class="VueCarousel-dot VueCarousel-dot--active"
+        role="presentation"
+        style="margin-top: 20px; padding: 10px;"
+      >
+        <button
+          aria-label="\`Item \${index}\`"
+          class="VueCarousel-dot-button"
+          role="button"
+          style="width: 10px; height: 10px; background: rgb(0, 0, 0);"
+          tabindex="0"
+          title="Item 0"
+          type="button"
+        />
+      </li>
+    </ul>
+  </div>
+   
+  <!---->
+</section>
 `;

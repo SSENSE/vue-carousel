@@ -1,7 +1,6 @@
 /* eslint-disable */
 
 import { mount } from '@vue/test-utils';
-const utils = require('../utils');
 
 const Carousel = require('../../../src/Carousel.vue');
 const Slide = require('../../../src/Slide.vue');
@@ -12,7 +11,7 @@ describe('Carousel', () => {
 
     expect(wrapper.vm._isMounted).toBeTruthy();
 
-    return utils.expectToMatchSnapshot(wrapper.vm);
+    expect(wrapper.element).toMatchSnapshot();
   });
 
   it('should unmount successfully', () => {
@@ -22,7 +21,7 @@ describe('Carousel', () => {
     carouselInstance.$destroy();
     expect(carouselInstance._isDestroyed).toBeTruthy();
 
-    return utils.expectToMatchSnapshot(wrapper.vm);
+    expect(wrapper.element).toMatchSnapshot();
   });
 
   it('should be unable to advance backward by default', () => {
@@ -30,7 +29,7 @@ describe('Carousel', () => {
 
     expect(wrapper.vm.canAdvanceBackward).toBeFalsy();
 
-    return utils.expectToMatchSnapshot(wrapper.vm);
+    expect(wrapper.element).toMatchSnapshot();
   });
 
   it('should be unable to advance forward by default (no slides added)', () => {
@@ -38,7 +37,7 @@ describe('Carousel', () => {
 
     expect(wrapper.vm.canAdvanceForward).toBeFalsy();
 
-    return utils.expectToMatchSnapshot(wrapper.vm);
+    expect(wrapper.element).toMatchSnapshot();
   });
 
   it('should apply custom slides per page when responsive param provided', () => {
@@ -50,10 +49,10 @@ describe('Carousel', () => {
 
     expect(wrapper.vm.currentPerPage).toBe(20);
 
-    return utils.expectToMatchSnapshot(wrapper.vm);
+    expect(wrapper.element).toMatchSnapshot();
   });
 
-  it('should fall back to default slides per page when no responsive param provided', () => {
+  it('should fall back to default slides per page when no responsive param provided', done => {
     const wrapper = mount(Carousel, {
       propsData: {
         scrollPerPage: true,
@@ -67,7 +66,10 @@ describe('Carousel', () => {
     expect(wrapper.vm.currentPerPage).toBe(2);
     expect(wrapper.vm.pageCount).toBe(2);
 
-    return utils.expectToMatchSnapshot(wrapper.vm);
+    wrapper.vm.$nextTick(() => {
+      expect(wrapper.element).toMatchSnapshot();
+      done();
+    });
   });
 
   it('should apply default carousel width when element has 0 width', () => {
@@ -75,7 +77,7 @@ describe('Carousel', () => {
 
     expect(wrapper.vm.carouselWidth).toBe(0);
 
-    return utils.expectToMatchSnapshot(wrapper.vm);
+    expect(wrapper.element).toMatchSnapshot();
   });
 
   it('should go to second slide when we have odd number of slides and recompute carousel width', done => {
@@ -105,10 +107,10 @@ describe('Carousel', () => {
 
     expect(wrapper.vm.slideCount).toBe(0);
 
-    return utils.expectToMatchSnapshot(wrapper.vm);
+    expect(wrapper.element).toMatchSnapshot();
   });
 
-  it('should register 3 slides when 3 slides are added to the slots', () => {
+  it('should register 3 slides when 3 slides are added to the slots', done => {
     const wrapper = mount(Carousel, {
       slots: {
         default: [Slide, Slide, Slide]
@@ -117,7 +119,10 @@ describe('Carousel', () => {
 
     expect(wrapper.vm.slideCount).toBe(3);
 
-    return utils.expectToMatchSnapshot(wrapper.vm);
+    wrapper.vm.$nextTick(() => {
+      expect(wrapper.element).toMatchSnapshot();
+      done();
+    });
   });
 
   it('should decrease current page number by 1 when advance page backward is called', done => {
@@ -134,7 +139,7 @@ describe('Carousel', () => {
       wrapper.vm.goToPage(2);
       wrapper.vm.advancePage('backward');
       expect(wrapper.vm.currentPage).toBe(1);
-      utils.expectToMatchSnapshot(wrapper.vm);
+      expect(wrapper.element).toMatchSnapshot();
       done();
     });
   });
@@ -153,7 +158,7 @@ describe('Carousel', () => {
       wrapper.vm.goToPage(1);
       wrapper.vm.advancePage();
       expect(wrapper.vm.currentPage).toBe(1);
-      utils.expectToMatchSnapshot(wrapper.vm);
+      expect(wrapper.element).toMatchSnapshot();
       done();
     });
   });
@@ -172,7 +177,7 @@ describe('Carousel', () => {
       wrapper.vm.goToPage(1);
       wrapper.vm.advancePage('something');
       expect(wrapper.vm.currentPage).toBe(1);
-      utils.expectToMatchSnapshot(wrapper.vm);
+      expect(wrapper.element).toMatchSnapshot();
       done();
     });
   });
@@ -192,7 +197,7 @@ describe('Carousel', () => {
       wrapper.vm.goToPage(2);
       wrapper.vm.advancePage('backward');
       expect(wrapper.vm.currentPage).toBe(1);
-      utils.expectToMatchSnapshot(wrapper.vm);
+      expect(wrapper.element).toMatchSnapshot();
       done();
     });
   });
@@ -212,7 +217,7 @@ describe('Carousel', () => {
       wrapper.vm.goToPage(1);
       wrapper.vm.advancePage();
       expect(wrapper.vm.currentPage).toBe(0);
-      utils.expectToMatchSnapshot(wrapper.vm);
+      expect(wrapper.element).toMatchSnapshot();
       done();
     });
   });
@@ -231,12 +236,12 @@ describe('Carousel', () => {
     wrapper.vm.$nextTick(() => {
       wrapper.vm.advancePage('backward');
       expect(wrapper.vm.currentPage).toBe(1);
-      utils.expectToMatchSnapshot(wrapper.vm);
+      expect(wrapper.element).toMatchSnapshot();
       done();
     });
   });
 
-  it('should begin autoplaying when option specified', () => {
+  it('should begin autoplaying when option specified', done => {
     const wrapper = mount(Carousel, {
       propsData: {
         perPage: 1,
@@ -251,10 +256,13 @@ describe('Carousel', () => {
     expect(wrapper.vm.autoplayInterval).toBeDefined();
     wrapper.vm.pauseAutoplay();
     expect(wrapper.vm.autoplayInterval).toBe(undefined);
-    return utils.expectToMatchSnapshot(wrapper.vm);
+    wrapper.vm.$nextTick(() => {
+      expect(wrapper.element).toMatchSnapshot();
+      done();
+    });
   });
 
-  it('should reset autoplay when switching slide without autoplayHoverPause', () => {
+  it('should reset autoplay when switching slide without autoplayHoverPause', done => {
     const wrapper = mount(Carousel, {
       propsData: {
         perPage: 1,
@@ -270,10 +278,13 @@ describe('Carousel', () => {
     wrapper.vm.goToPage(2);
     expect(wrapper.vm.restartAutoplay).toHaveBeenCalled();
     spy.mockRestore();
-    return utils.expectToMatchSnapshot(wrapper.vm);
+    wrapper.vm.$nextTick(() => {
+      expect(wrapper.element).toMatchSnapshot();
+      done();
+    });
   });
 
-  it('should not reset autoplay when switching slide with autoplayHoverPause', () => {
+  it('should not reset autoplay when switching slide with autoplayHoverPause', done => {
     const wrapper = mount(Carousel, {
       propsData: {
         perPage: 1,
@@ -289,7 +300,10 @@ describe('Carousel', () => {
     wrapper.vm.goToPage(2);
     expect(wrapper.vm.restartAutoplay).not.toHaveBeenCalled();
     spy.mockRestore();
-    return utils.expectToMatchSnapshot(wrapper.vm);
+    wrapper.vm.$nextTick(() => {
+      expect(wrapper.element).toMatchSnapshot();
+      done();
+    });
   });
 
   it('should set carousel height to slide height', done => {
@@ -311,7 +325,7 @@ describe('Carousel', () => {
     wrapper.vm.$nextTick(() => {
       wrapper.vm.computeCarouselHeight();
       expect(wrapper.vm.currentHeight).toBe('200px');
-      utils.expectToMatchSnapshot(wrapper.vm);
+      expect(wrapper.element).toMatchSnapshot();
       done();
     });
   });

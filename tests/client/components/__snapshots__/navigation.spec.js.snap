@@ -1,101 +1,471 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Navigation should mount successfully 1`] = `
-".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
-    .VueCarousel-slide(tabindex='-1')
-    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
-|  
-.VueCarousel-pagination(style='')
-  ul.VueCarousel-dot-container(role='tablist')
-    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 0', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
-    li.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='presentation', aria-selected='true', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 1', tabindex='0', style='width: 10px; height: 10px; background: rgb(0, 0, 0);')
-|  
-.VueCarousel-navigation
-  button.VueCarousel-navigation-button.VueCarousel-navigation-prev(type='button', aria-label='Previous page', role='button', style='padding: 8px; margin-right: -8px;') &#x25C0;
-  |  
-  button.VueCarousel-navigation-button.VueCarousel-navigation-next.VueCarousel-navigation--disabled(type='button', aria-label='Next page', role='button', style='padding: 8px; margin-left: -8px;') &#x25B6;
-"
+<section
+  class="VueCarousel"
+>
+  <div
+    class="VueCarousel-wrapper"
+  >
+    <div
+      class="VueCarousel-inner"
+      role="listbox"
+      style="transform: translate(0px, 0); visibility: hidden; height: auto;"
+    >
+      <div
+        class="VueCarousel-slide"
+        tabindex="-1"
+      />
+      <div
+        class="VueCarousel-slide VueCarousel-slide-active VueCarousel-slide-center"
+        tabindex="-1"
+      />
+    </div>
+  </div>
+   
+  <div
+    class="VueCarousel-pagination"
+    style=""
+  >
+    <ul
+      class="VueCarousel-dot-container"
+      role="tablist"
+    >
+      <li
+        aria-hidden="false"
+        aria-selected="false"
+        class="VueCarousel-dot"
+        role="presentation"
+        style="margin-top: 20px; padding: 10px;"
+      >
+        <button
+          aria-label="\`Item \${index}\`"
+          class="VueCarousel-dot-button"
+          role="button"
+          style="width: 10px; height: 10px; background: rgb(239, 239, 239);"
+          tabindex="0"
+          title="Item 0"
+          type="button"
+        />
+      </li>
+      <li
+        aria-hidden="false"
+        aria-selected="true"
+        class="VueCarousel-dot VueCarousel-dot--active"
+        role="presentation"
+        style="margin-top: 20px; padding: 10px;"
+      >
+        <button
+          aria-label="\`Item \${index}\`"
+          class="VueCarousel-dot-button"
+          role="button"
+          style="width: 10px; height: 10px; background: rgb(0, 0, 0);"
+          tabindex="0"
+          title="Item 1"
+          type="button"
+        />
+      </li>
+    </ul>
+  </div>
+   
+  <div
+    class="VueCarousel-navigation"
+  >
+    <button
+      aria-label="Previous page"
+      class="VueCarousel-navigation-button VueCarousel-navigation-prev"
+      role="button"
+      style="padding: 8px; margin-right: -8px;"
+      type="button"
+    >
+      ◀
+    </button>
+     
+    <button
+      aria-label="Next page"
+      class="VueCarousel-navigation-button VueCarousel-navigation-next VueCarousel-navigation--disabled"
+      role="button"
+      style="padding: 8px; margin-left: -8px;"
+      type="button"
+    >
+      ▶
+    </button>
+  </div>
+</section>
 `;
 
 exports[`Navigation should render a next button 1`] = `
-".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
-    .VueCarousel-slide(tabindex='-1')
-    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
-|  
-.VueCarousel-pagination(style='')
-  ul.VueCarousel-dot-container(role='tablist')
-    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 0', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
-    li.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='presentation', aria-selected='true', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 1', tabindex='0', style='width: 10px; height: 10px; background: rgb(0, 0, 0);')
-|  
-.VueCarousel-navigation
-  button.VueCarousel-navigation-button.VueCarousel-navigation-prev(type='button', aria-label='Previous page', role='button', style='padding: 8px; margin-right: -8px;') &#x25C0;
-  |  
-  button.VueCarousel-navigation-button.VueCarousel-navigation-next.VueCarousel-navigation--disabled(type='button', aria-label='Next page', role='button', style='padding: 8px; margin-left: -8px;') &#x25B6;
-"
+<section
+  class="VueCarousel"
+>
+  <div
+    class="VueCarousel-wrapper"
+  >
+    <div
+      class="VueCarousel-inner"
+      role="listbox"
+      style="transform: translate(0px, 0); visibility: hidden; height: auto;"
+    >
+      <div
+        class="VueCarousel-slide"
+        tabindex="-1"
+      />
+      <div
+        class="VueCarousel-slide VueCarousel-slide-active VueCarousel-slide-center"
+        tabindex="-1"
+      />
+    </div>
+  </div>
+   
+  <div
+    class="VueCarousel-pagination"
+    style=""
+  >
+    <ul
+      class="VueCarousel-dot-container"
+      role="tablist"
+    >
+      <li
+        aria-hidden="false"
+        aria-selected="false"
+        class="VueCarousel-dot"
+        role="presentation"
+        style="margin-top: 20px; padding: 10px;"
+      >
+        <button
+          aria-label="\`Item \${index}\`"
+          class="VueCarousel-dot-button"
+          role="button"
+          style="width: 10px; height: 10px; background: rgb(239, 239, 239);"
+          tabindex="0"
+          title="Item 0"
+          type="button"
+        />
+      </li>
+      <li
+        aria-hidden="false"
+        aria-selected="true"
+        class="VueCarousel-dot VueCarousel-dot--active"
+        role="presentation"
+        style="margin-top: 20px; padding: 10px;"
+      >
+        <button
+          aria-label="\`Item \${index}\`"
+          class="VueCarousel-dot-button"
+          role="button"
+          style="width: 10px; height: 10px; background: rgb(0, 0, 0);"
+          tabindex="0"
+          title="Item 1"
+          type="button"
+        />
+      </li>
+    </ul>
+  </div>
+   
+  <div
+    class="VueCarousel-navigation"
+  >
+    <button
+      aria-label="Previous page"
+      class="VueCarousel-navigation-button VueCarousel-navigation-prev"
+      role="button"
+      style="padding: 8px; margin-right: -8px;"
+      type="button"
+    >
+      ◀
+    </button>
+     
+    <button
+      aria-label="Next page"
+      class="VueCarousel-navigation-button VueCarousel-navigation-next VueCarousel-navigation--disabled"
+      role="button"
+      style="padding: 8px; margin-left: -8px;"
+      type="button"
+    >
+      ▶
+    </button>
+  </div>
+</section>
 `;
 
 exports[`Navigation should render a prev button 1`] = `
-".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
-    .VueCarousel-slide(tabindex='-1')
-    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
-|  
-.VueCarousel-pagination(style='')
-  ul.VueCarousel-dot-container(role='tablist')
-    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 0', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
-    li.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='presentation', aria-selected='true', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 1', tabindex='0', style='width: 10px; height: 10px; background: rgb(0, 0, 0);')
-|  
-.VueCarousel-navigation
-  button.VueCarousel-navigation-button.VueCarousel-navigation-prev(type='button', aria-label='Previous page', role='button', style='padding: 8px; margin-right: -8px;') &#x25C0;
-  |  
-  button.VueCarousel-navigation-button.VueCarousel-navigation-next.VueCarousel-navigation--disabled(type='button', aria-label='Next page', role='button', style='padding: 8px; margin-left: -8px;') &#x25B6;
-"
+<section
+  class="VueCarousel"
+>
+  <div
+    class="VueCarousel-wrapper"
+  >
+    <div
+      class="VueCarousel-inner"
+      role="listbox"
+      style="transform: translate(0px, 0); visibility: hidden; height: auto;"
+    >
+      <div
+        class="VueCarousel-slide"
+        tabindex="-1"
+      />
+      <div
+        class="VueCarousel-slide VueCarousel-slide-active VueCarousel-slide-center"
+        tabindex="-1"
+      />
+    </div>
+  </div>
+   
+  <div
+    class="VueCarousel-pagination"
+    style=""
+  >
+    <ul
+      class="VueCarousel-dot-container"
+      role="tablist"
+    >
+      <li
+        aria-hidden="false"
+        aria-selected="false"
+        class="VueCarousel-dot"
+        role="presentation"
+        style="margin-top: 20px; padding: 10px;"
+      >
+        <button
+          aria-label="\`Item \${index}\`"
+          class="VueCarousel-dot-button"
+          role="button"
+          style="width: 10px; height: 10px; background: rgb(239, 239, 239);"
+          tabindex="0"
+          title="Item 0"
+          type="button"
+        />
+      </li>
+      <li
+        aria-hidden="false"
+        aria-selected="true"
+        class="VueCarousel-dot VueCarousel-dot--active"
+        role="presentation"
+        style="margin-top: 20px; padding: 10px;"
+      >
+        <button
+          aria-label="\`Item \${index}\`"
+          class="VueCarousel-dot-button"
+          role="button"
+          style="width: 10px; height: 10px; background: rgb(0, 0, 0);"
+          tabindex="0"
+          title="Item 1"
+          type="button"
+        />
+      </li>
+    </ul>
+  </div>
+   
+  <div
+    class="VueCarousel-navigation"
+  >
+    <button
+      aria-label="Previous page"
+      class="VueCarousel-navigation-button VueCarousel-navigation-prev"
+      role="button"
+      style="padding: 8px; margin-right: -8px;"
+      type="button"
+    >
+      ◀
+    </button>
+     
+    <button
+      aria-label="Next page"
+      class="VueCarousel-navigation-button VueCarousel-navigation-next VueCarousel-navigation--disabled"
+      role="button"
+      style="padding: 8px; margin-left: -8px;"
+      type="button"
+    >
+      ▶
+    </button>
+  </div>
+</section>
 `;
 
 exports[`Navigation should trigger page advance backward when prev is clicked 1`] = `
-".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
-    .VueCarousel-slide(tabindex='-1')
-    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
-|  
-.VueCarousel-pagination(style='')
-  ul.VueCarousel-dot-container(role='tablist')
-    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 0', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
-    li.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='presentation', aria-selected='true', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 1', tabindex='0', style='width: 10px; height: 10px; background: rgb(0, 0, 0);')
-|  
-.VueCarousel-navigation
-  button.VueCarousel-navigation-button.VueCarousel-navigation-prev(type='button', aria-label='Previous page', role='button', style='padding: 8px; margin-right: -8px;') &#x25C0;
-  |  
-  button.VueCarousel-navigation-button.VueCarousel-navigation-next.VueCarousel-navigation--disabled(type='button', aria-label='Next page', role='button', style='padding: 8px; margin-left: -8px;') &#x25B6;
-"
+<section
+  class="VueCarousel"
+>
+  <div
+    class="VueCarousel-wrapper"
+  >
+    <div
+      class="VueCarousel-inner"
+      role="listbox"
+      style="transform: translate(0px, 0); visibility: hidden; height: auto;"
+    >
+      <div
+        class="VueCarousel-slide"
+        tabindex="-1"
+      />
+      <div
+        class="VueCarousel-slide VueCarousel-slide-active VueCarousel-slide-center"
+        tabindex="-1"
+      />
+    </div>
+  </div>
+   
+  <div
+    class="VueCarousel-pagination"
+    style=""
+  >
+    <ul
+      class="VueCarousel-dot-container"
+      role="tablist"
+    >
+      <li
+        aria-hidden="false"
+        aria-selected="false"
+        class="VueCarousel-dot"
+        role="presentation"
+        style="margin-top: 20px; padding: 10px;"
+      >
+        <button
+          aria-label="\`Item \${index}\`"
+          class="VueCarousel-dot-button"
+          role="button"
+          style="width: 10px; height: 10px; background: rgb(239, 239, 239);"
+          tabindex="0"
+          title="Item 0"
+          type="button"
+        />
+      </li>
+      <li
+        aria-hidden="false"
+        aria-selected="true"
+        class="VueCarousel-dot VueCarousel-dot--active"
+        role="presentation"
+        style="margin-top: 20px; padding: 10px;"
+      >
+        <button
+          aria-label="\`Item \${index}\`"
+          class="VueCarousel-dot-button"
+          role="button"
+          style="width: 10px; height: 10px; background: rgb(0, 0, 0);"
+          tabindex="0"
+          title="Item 1"
+          type="button"
+        />
+      </li>
+    </ul>
+  </div>
+   
+  <div
+    class="VueCarousel-navigation"
+  >
+    <button
+      aria-label="Previous page"
+      class="VueCarousel-navigation-button VueCarousel-navigation-prev"
+      role="button"
+      style="padding: 8px; margin-right: -8px;"
+      type="button"
+    >
+      ◀
+    </button>
+     
+    <button
+      aria-label="Next page"
+      class="VueCarousel-navigation-button VueCarousel-navigation-next VueCarousel-navigation--disabled"
+      role="button"
+      style="padding: 8px; margin-left: -8px;"
+      type="button"
+    >
+      ▶
+    </button>
+  </div>
+</section>
 `;
 
 exports[`Navigation should trigger page advance when next is clicked 1`] = `
-".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
-    .VueCarousel-slide(tabindex='-1')
-    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
-|  
-.VueCarousel-pagination(style='')
-  ul.VueCarousel-dot-container(role='tablist')
-    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 0', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
-    li.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='presentation', aria-selected='true', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 1', tabindex='0', style='width: 10px; height: 10px; background: rgb(0, 0, 0);')
-|  
-.VueCarousel-navigation
-  button.VueCarousel-navigation-button.VueCarousel-navigation-prev(type='button', aria-label='Previous page', role='button', style='padding: 8px; margin-right: -8px;') &#x25C0;
-  |  
-  button.VueCarousel-navigation-button.VueCarousel-navigation-next.VueCarousel-navigation--disabled(type='button', aria-label='Next page', role='button', style='padding: 8px; margin-left: -8px;') &#x25B6;
-"
+<section
+  class="VueCarousel"
+>
+  <div
+    class="VueCarousel-wrapper"
+  >
+    <div
+      class="VueCarousel-inner"
+      role="listbox"
+      style="transform: translate(0px, 0); visibility: hidden; height: auto;"
+    >
+      <div
+        class="VueCarousel-slide"
+        tabindex="-1"
+      />
+      <div
+        class="VueCarousel-slide VueCarousel-slide-active VueCarousel-slide-center"
+        tabindex="-1"
+      />
+    </div>
+  </div>
+   
+  <div
+    class="VueCarousel-pagination"
+    style=""
+  >
+    <ul
+      class="VueCarousel-dot-container"
+      role="tablist"
+    >
+      <li
+        aria-hidden="false"
+        aria-selected="false"
+        class="VueCarousel-dot"
+        role="presentation"
+        style="margin-top: 20px; padding: 10px;"
+      >
+        <button
+          aria-label="\`Item \${index}\`"
+          class="VueCarousel-dot-button"
+          role="button"
+          style="width: 10px; height: 10px; background: rgb(239, 239, 239);"
+          tabindex="0"
+          title="Item 0"
+          type="button"
+        />
+      </li>
+      <li
+        aria-hidden="false"
+        aria-selected="true"
+        class="VueCarousel-dot VueCarousel-dot--active"
+        role="presentation"
+        style="margin-top: 20px; padding: 10px;"
+      >
+        <button
+          aria-label="\`Item \${index}\`"
+          class="VueCarousel-dot-button"
+          role="button"
+          style="width: 10px; height: 10px; background: rgb(0, 0, 0);"
+          tabindex="0"
+          title="Item 1"
+          type="button"
+        />
+      </li>
+    </ul>
+  </div>
+   
+  <div
+    class="VueCarousel-navigation"
+  >
+    <button
+      aria-label="Previous page"
+      class="VueCarousel-navigation-button VueCarousel-navigation-prev"
+      role="button"
+      style="padding: 8px; margin-right: -8px;"
+      type="button"
+    >
+      ◀
+    </button>
+     
+    <button
+      aria-label="Next page"
+      class="VueCarousel-navigation-button VueCarousel-navigation-next VueCarousel-navigation--disabled"
+      role="button"
+      style="padding: 8px; margin-left: -8px;"
+      type="button"
+    >
+      ▶
+    </button>
+  </div>
+</section>
 `;
