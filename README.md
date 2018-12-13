@@ -84,13 +84,14 @@ export default {
 | paginationPadding           | Number  | 10      | The padding inside each pagination dot. Pixel values are accepted.                                                                                                                                                                                                                    |
 | paginationSize              | Number  | 10      | The size of each pagination dot. Pixel values are accepted.                                                                                                                                                                                                                           |
 | perPage                     | Number  | 2       | Maximum number of slides displayed on each page.                                                                                                                                                                                                                                      |
-| perPageCustom               | Array   |         | Configure the number of visible slides with a particular browser width. This will be an array of arrays, ex. [[320, 2], [1199, 4]]. Formatted as [x, y] where x=browser width, and y=number of slides displayed. Ex. [1199, 4] means if (window <= 1199) then show 4 slides per page. |
+| perPageCustom               | Array   |         | Configure the number of visible slides with a particular browser width. This will be an array of arrays, ex. [[320, 2], [1199, 4]]. Formatted as [x, y] where x=browser width, and y=number of slides displayed. Ex. [1199, 4] means if (window >= 1199) then show 4 slides per page. |
 | resistanceCoef              | Number  | 20      | Resistance coefficient to dragging on the edge of the carousel. This dictates the effect of the pull as you move towards the boundaries.                                                                                                                                              |
 | scrollPerPage               | Boolean | true    | Scroll per page, not per item.                                                                                                                                                                                                                                                        |
 | spacePadding                | Number  | 0       | Stage padding option adds left and right padding style (in pixels) onto VueCarousel-inner.                                                                                                                                                                                            |
 | spacePaddingMaxOffsetFactor | Number  | 0       | Specify by how much should the space padding value be multiplied of, to re-arange the final slide padding.                                                                                                                                                                            |
 | speed                       | Number  | 500     | Slide transition speed. Number of milliseconds accepted.                                                                                                                                                                                                                              |
 | value                       | Number  |         | Support for v-model functionality. Setting this value will change the current page to the number inputted (if between 0 and pageCount).                                                                                                                                               |
+
 
 ### Events
 | Event                     | Type    | Emitter  | Description                                                                                                                                                                                                                                                                           |
@@ -104,7 +105,7 @@ export default {
 Once the **Carousel** and **Slide** components are installed globally or imported, they can be used in templates in the following manner:
 
 ``` vue
-  <carousel :per-page="1" :navigate-to="someLocalProperty" mouse-drag="false">
+  <carousel :per-page="1" :navigate-to="someLocalProperty" :mouse-drag="false">
     <slide>
       Slide 1 Content
     </slide>

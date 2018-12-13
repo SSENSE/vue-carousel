@@ -86,6 +86,10 @@ exports[`Carousel should decrease current slide number by 1 when advance slide b
       button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 0', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
     li.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='presentation', aria-selected='true', style='margin-top: 20px; padding: 10px;')
       button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 1', tabindex='0', style='width: 10px; height: 10px; background: rgb(0, 0, 0);')
+    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
+      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 2', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
+    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
+      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 3', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
 // 
 "
 `;
