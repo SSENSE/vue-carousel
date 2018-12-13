@@ -51,3 +51,6 @@ jspm_packages/
 
 # vuepress build output
 .vuepress/dist
+
+# npm package lock file
+./package-lock.json

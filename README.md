@@ -93,6 +93,7 @@ export default {
 | tagName                     | String  | slide   | Name (tag) of slide component. Overwrite with coponent name when extending slide component.                                                                                                                                                                                           |
 | value                       | Number  |         | Support for v-model functionality. Setting this value will change the current page to the number inputted (if between 0 and pageCount).                                                                                                                                               |
 
+
 ### Events
 | Event                     | Type    | Emitter  | Description                                                                                                                                                                                                                                                                           |
 |:--------------------------|:--------|:---------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
