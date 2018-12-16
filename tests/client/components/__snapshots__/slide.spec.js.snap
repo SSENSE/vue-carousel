@@ -2,13 +2,11 @@
 
 exports[`Slide should mount successfully 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
-    .VueCarousel-slide(tabindex='-1')
-|  
-.VueCarousel-pagination(style='display: none;')
-  ul.VueCarousel-dot-container(role='tablist')
-    li.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='presentation', aria-selected='true', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 0', tabindex='0', style='width: 10px; height: 10px; background: rgb(0, 0, 0);')
+  .VueCarousel-inner(style='transform: translate(0px, 0); visibility: hidden; height: auto;')
+    .VueCarousel-slide(tabindex='-1', aria-hidden='true', role='tabpanel')
 // 
+.VueCarousel-pagination(style='display: none;')
+  .VueCarousel-dot-container(role='tablist', style='margin-top: 20px;')
+    button.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='tab', title='Item 0', value='Item 0', aria-label='Item 0', aria-selected='true', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);')
 "
 `;

@@ -2,285 +2,235 @@
 
 exports[`Carousel should apply custom slides per page when responsive param provided 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
-|  
-.VueCarousel-pagination(style='display: none;')
-  ul.VueCarousel-dot-container(role='tablist')
+  .VueCarousel-inner(style='transform: translate(0px, 0); visibility: hidden; height: auto;')
 // 
+.VueCarousel-pagination(style='display: none;')
+  .VueCarousel-dot-container(role='tablist', style='margin-top: 20px;')
 "
 `;
 
 exports[`Carousel should apply default carousel width when element has 0 width 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
-|  
-.VueCarousel-pagination(style='display: none;')
-  ul.VueCarousel-dot-container(role='tablist')
+  .VueCarousel-inner(style='transform: translate(0px, 0); visibility: hidden; height: auto;')
 // 
+.VueCarousel-pagination(style='display: none;')
+  .VueCarousel-dot-container(role='tablist', style='margin-top: 20px;')
 "
 `;
 
 exports[`Carousel should be unable to advance backward by default 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
-|  
-.VueCarousel-pagination(style='display: none;')
-  ul.VueCarousel-dot-container(role='tablist')
+  .VueCarousel-inner(style='transform: translate(0px, 0); visibility: hidden; height: auto;')
 // 
+.VueCarousel-pagination(style='display: none;')
+  .VueCarousel-dot-container(role='tablist', style='margin-top: 20px;')
 "
 `;
 
 exports[`Carousel should be unable to advance forward by default (no slides added) 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
-|  
-.VueCarousel-pagination(style='display: none;')
-  ul.VueCarousel-dot-container(role='tablist')
+  .VueCarousel-inner(style='transform: translate(0px, 0); visibility: hidden; height: auto;')
 // 
+.VueCarousel-pagination(style='display: none;')
+  .VueCarousel-dot-container(role='tablist', style='margin-top: 20px;')
 "
 `;
 
 exports[`Carousel should begin autoplaying when option specified 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
-    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
-    .VueCarousel-slide(tabindex='-1')
-|  
-.VueCarousel-pagination(style='')
-  ul.VueCarousel-dot-container(role='tablist')
-    li.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='presentation', aria-selected='true', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 0', tabindex='0', style='width: 10px; height: 10px; background: rgb(0, 0, 0);')
-    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 1', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
+  .VueCarousel-inner(style='transform: translate(0px, 0); visibility: hidden; height: auto;')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1', role='tabpanel')
+    .VueCarousel-slide(tabindex='-1', aria-hidden='true', role='tabpanel')
 // 
+.VueCarousel-pagination(style='')
+  .VueCarousel-dot-container(role='tablist', style='margin-top: 20px;')
+    button.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='tab', title='Item 0', value='Item 0', aria-label='Item 0', aria-selected='true', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);')
+    button.VueCarousel-dot(aria-hidden='false', role='tab', title='Item 1', value='Item 1', aria-label='Item 1', aria-selected='false', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);')
 "
 `;
 
 exports[`Carousel should decrease current page number by 1 when advance page backward is called 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
-    .VueCarousel-slide(tabindex='-1')
-    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
-|  
-.VueCarousel-pagination(style='')
-  ul.VueCarousel-dot-container(role='tablist')
-    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 0', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
-    li.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='presentation', aria-selected='true', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 1', tabindex='0', style='width: 10px; height: 10px; background: rgb(0, 0, 0);')
+  .VueCarousel-inner(style='transform: translate(0px, 0); visibility: hidden; height: auto;')
+    .VueCarousel-slide(tabindex='-1', role='tabpanel', aria-hidden='true')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1', role='tabpanel')
 // 
+.VueCarousel-pagination(style='')
+  .VueCarousel-dot-container(role='tablist', style='margin-top: 20px;')
+    button.VueCarousel-dot(aria-hidden='false', role='tab', title='Item 0', value='Item 0', aria-label='Item 0', aria-selected='false', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);')
+    button.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='tab', title='Item 1', value='Item 1', aria-label='Item 1', aria-selected='true', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);')
 "
 `;
 
 exports[`Carousel should decrease current slide number by 1 when advance slide backward is called 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
-    .VueCarousel-slide(tabindex='-1')
-    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
-    .VueCarousel-slide(tabindex='-1')
-    .VueCarousel-slide(tabindex='-1')
-|  
-.VueCarousel-pagination(style='')
-  ul.VueCarousel-dot-container(role='tablist')
-    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 0', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
-    li.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='presentation', aria-selected='true', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 1', tabindex='0', style='width: 10px; height: 10px; background: rgb(0, 0, 0);')
-    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 2', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
-    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 3', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
+  .VueCarousel-inner(style='transform: translate(0px, 0); visibility: hidden; height: auto;')
+    .VueCarousel-slide(tabindex='-1', aria-hidden='true', role='tabpanel')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1', role='tabpanel')
+    .VueCarousel-slide(tabindex='-1', role='tabpanel', aria-hidden='true')
+    .VueCarousel-slide(tabindex='-1', aria-hidden='true', role='tabpanel')
 // 
+.VueCarousel-pagination(style='')
+  .VueCarousel-dot-container(role='tablist', style='margin-top: 20px;')
+    button.VueCarousel-dot(aria-hidden='false', role='tab', title='Item 0', value='Item 0', aria-label='Item 0', aria-selected='false', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);')
+    button.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='tab', title='Item 1', value='Item 1', aria-label='Item 1', aria-selected='true', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);')
+    button.VueCarousel-dot(aria-hidden='false', role='tab', title='Item 2', value='Item 2', aria-label='Item 2', aria-selected='false', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);')
+    button.VueCarousel-dot(aria-hidden='false', role='tab', title='Item 3', value='Item 3', aria-label='Item 3', aria-selected='false', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);')
 "
 `;
 
 exports[`Carousel should fall back to default slides per page when no responsive param provided 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
-    .VueCarousel-slide(tabindex='-1')
-    .VueCarousel-slide(tabindex='-1')
-    .VueCarousel-slide.VueCarousel-slide-active(tabindex='-1')
-|  
-.VueCarousel-pagination(style='')
-  ul.VueCarousel-dot-container(role='tablist')
-    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 0', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
-    li.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='presentation', aria-selected='true', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 1', tabindex='0', style='width: 10px; height: 10px; background: rgb(0, 0, 0);')
+  .VueCarousel-inner(style='transform: translate(0px, 0); visibility: hidden; height: auto;')
+    .VueCarousel-slide(tabindex='-1', role='tabpanel', aria-hidden='true')
+    .VueCarousel-slide(tabindex='-1', role='tabpanel', aria-hidden='true')
+    .VueCarousel-slide.VueCarousel-slide-active(tabindex='-1', role='tabpanel')
 // 
+.VueCarousel-pagination(style='')
+  .VueCarousel-dot-container(role='tablist', style='margin-top: 20px;')
+    button.VueCarousel-dot(aria-hidden='false', role='tab', title='Item 0', value='Item 0', aria-label='Item 0', aria-selected='false', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);')
+    button.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='tab', title='Item 1', value='Item 1', aria-label='Item 1', aria-selected='true', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);')
 "
 `;
 
 exports[`Carousel should increase current page number by 1 when advance page is called 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
-    .VueCarousel-slide(tabindex='-1')
-    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
-    .VueCarousel-slide(tabindex='-1')
-    .VueCarousel-slide(tabindex='-1')
-|  
-.VueCarousel-pagination(style='')
-  ul.VueCarousel-dot-container(role='tablist')
-    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 0', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
-    li.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='presentation', aria-selected='true', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 1', tabindex='0', style='width: 10px; height: 10px; background: rgb(0, 0, 0);')
-    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 2', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
-    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 3', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
+  .VueCarousel-inner(style='transform: translate(0px, 0); visibility: hidden; height: auto;')
+    .VueCarousel-slide(tabindex='-1', role='tabpanel', aria-hidden='true')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1', role='tabpanel')
+    .VueCarousel-slide(tabindex='-1', aria-hidden='true', role='tabpanel')
+    .VueCarousel-slide(tabindex='-1', aria-hidden='true', role='tabpanel')
 // 
+.VueCarousel-pagination(style='')
+  .VueCarousel-dot-container(role='tablist', style='margin-top: 20px;')
+    button.VueCarousel-dot(aria-hidden='false', role='tab', title='Item 0', value='Item 0', aria-label='Item 0', aria-selected='false', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);')
+    button.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='tab', title='Item 1', value='Item 1', aria-label='Item 1', aria-selected='true', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);')
+    button.VueCarousel-dot(aria-hidden='false', role='tab', title='Item 2', value='Item 2', aria-label='Item 2', aria-selected='false', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);')
+    button.VueCarousel-dot(aria-hidden='false', role='tab', title='Item 3', value='Item 3', aria-label='Item 3', aria-selected='false', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);')
 "
 `;
 
 exports[`Carousel should increase current page number by 1 when advance page is called with a non "backward" argument 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
-    .VueCarousel-slide(tabindex='-1')
-    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
-    .VueCarousel-slide(tabindex='-1')
-    .VueCarousel-slide(tabindex='-1')
-|  
-.VueCarousel-pagination(style='')
-  ul.VueCarousel-dot-container(role='tablist')
-    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 0', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
-    li.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='presentation', aria-selected='true', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 1', tabindex='0', style='width: 10px; height: 10px; background: rgb(0, 0, 0);')
-    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 2', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
-    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 3', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
+  .VueCarousel-inner(style='transform: translate(0px, 0); visibility: hidden; height: auto;')
+    .VueCarousel-slide(tabindex='-1', role='tabpanel', aria-hidden='true')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1', role='tabpanel')
+    .VueCarousel-slide(tabindex='-1', aria-hidden='true', role='tabpanel')
+    .VueCarousel-slide(tabindex='-1', aria-hidden='true', role='tabpanel')
 // 
+.VueCarousel-pagination(style='')
+  .VueCarousel-dot-container(role='tablist', style='margin-top: 20px;')
+    button.VueCarousel-dot(aria-hidden='false', role='tab', title='Item 0', value='Item 0', aria-label='Item 0', aria-selected='false', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);')
+    button.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='tab', title='Item 1', value='Item 1', aria-label='Item 1', aria-selected='true', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);')
+    button.VueCarousel-dot(aria-hidden='false', role='tab', title='Item 2', value='Item 2', aria-label='Item 2', aria-selected='false', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);')
+    button.VueCarousel-dot(aria-hidden='false', role='tab', title='Item 3', value='Item 3', aria-label='Item 3', aria-selected='false', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);')
 "
 `;
 
 exports[`Carousel should loop back to the start when loop is true and advance page non "backward" is called from the last page 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
-    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
-    .VueCarousel-slide(tabindex='-1')
-|  
-.VueCarousel-pagination(style='')
-  ul.VueCarousel-dot-container(role='tablist')
-    li.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='presentation', aria-selected='true', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 0', tabindex='0', style='width: 10px; height: 10px; background: rgb(0, 0, 0);')
-    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 1', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
+  .VueCarousel-inner(style='transform: translate(0px, 0); visibility: hidden; height: auto;')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1', role='tabpanel')
+    .VueCarousel-slide(tabindex='-1', role='tabpanel', aria-hidden='true')
 // 
+.VueCarousel-pagination(style='')
+  .VueCarousel-dot-container(role='tablist', style='margin-top: 20px;')
+    button.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='tab', title='Item 0', value='Item 0', aria-label='Item 0', aria-selected='true', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);')
+    button.VueCarousel-dot(aria-hidden='false', role='tab', title='Item 1', value='Item 1', aria-label='Item 1', aria-selected='false', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);')
 "
 `;
 
 exports[`Carousel should loop to the end when loop is true and advance page "backward" is called from the first page 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
-    .VueCarousel-slide(tabindex='-1')
-    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
-|  
-.VueCarousel-pagination(style='')
-  ul.VueCarousel-dot-container(role='tablist')
-    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 0', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
-    li.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='presentation', aria-selected='true', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 1', tabindex='0', style='width: 10px; height: 10px; background: rgb(0, 0, 0);')
+  .VueCarousel-inner(style='transform: translate(0px, 0); visibility: hidden; height: auto;')
+    .VueCarousel-slide(tabindex='-1', aria-hidden='true', role='tabpanel')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1', role='tabpanel')
 // 
+.VueCarousel-pagination(style='')
+  .VueCarousel-dot-container(role='tablist', style='margin-top: 20px;')
+    button.VueCarousel-dot(aria-hidden='false', role='tab', title='Item 0', value='Item 0', aria-label='Item 0', aria-selected='false', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);')
+    button.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='tab', title='Item 1', value='Item 1', aria-label='Item 1', aria-selected='true', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);')
 "
 `;
 
 exports[`Carousel should mount successfully 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
-|  
-.VueCarousel-pagination(style='display: none;')
-  ul.VueCarousel-dot-container(role='tablist')
+  .VueCarousel-inner(style='transform: translate(0px, 0); visibility: hidden; height: auto;')
 // 
+.VueCarousel-pagination(style='display: none;')
+  .VueCarousel-dot-container(role='tablist', style='margin-top: 20px;')
 "
 `;
 
 exports[`Carousel should not reset autoplay when switching slide with autoplayHoverPause 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
-    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
-    .VueCarousel-slide(tabindex='-1')
-|  
-.VueCarousel-pagination(style='')
-  ul.VueCarousel-dot-container(role='tablist')
-    li.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='presentation', aria-selected='true', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 0', tabindex='0', style='width: 10px; height: 10px; background: rgb(0, 0, 0);')
-    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 1', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
+  .VueCarousel-inner(style='transform: translate(0px, 0); visibility: hidden; height: auto;')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1', role='tabpanel')
+    .VueCarousel-slide(tabindex='-1', aria-hidden='true', role='tabpanel')
 // 
+.VueCarousel-pagination(style='')
+  .VueCarousel-dot-container(role='tablist', style='margin-top: 20px;')
+    button.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='tab', title='Item 0', value='Item 0', aria-label='Item 0', aria-selected='true', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);')
+    button.VueCarousel-dot(aria-hidden='false', role='tab', title='Item 1', value='Item 1', aria-label='Item 1', aria-selected='false', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);')
 "
 `;
 
 exports[`Carousel should register 0 slides when 0 slides are added to the slots 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
-|  
-.VueCarousel-pagination(style='display: none;')
-  ul.VueCarousel-dot-container(role='tablist')
+  .VueCarousel-inner(style='transform: translate(0px, 0); visibility: hidden; height: auto;')
 // 
+.VueCarousel-pagination(style='display: none;')
+  .VueCarousel-dot-container(role='tablist', style='margin-top: 20px;')
 "
 `;
 
 exports[`Carousel should register 3 slides when 3 slides are added to the slots 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
-    .VueCarousel-slide.VueCarousel-slide-active(tabindex='-1')
-    .VueCarousel-slide.VueCarousel-slide-active(tabindex='-1')
-    .VueCarousel-slide(tabindex='-1')
-|  
-.VueCarousel-pagination(style='')
-  ul.VueCarousel-dot-container(role='tablist')
-    li.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='presentation', aria-selected='true', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 0', tabindex='0', style='width: 10px; height: 10px; background: rgb(0, 0, 0);')
-    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 1', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
+  .VueCarousel-inner(style='transform: translate(0px, 0); visibility: hidden; height: auto;')
+    .VueCarousel-slide.VueCarousel-slide-active(tabindex='-1', role='tabpanel')
+    .VueCarousel-slide.VueCarousel-slide-active(tabindex='-1', role='tabpanel')
+    .VueCarousel-slide(tabindex='-1', aria-hidden='true', role='tabpanel')
 // 
+.VueCarousel-pagination(style='')
+  .VueCarousel-dot-container(role='tablist', style='margin-top: 20px;')
+    button.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='tab', title='Item 0', value='Item 0', aria-label='Item 0', aria-selected='true', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);')
+    button.VueCarousel-dot(aria-hidden='false', role='tab', title='Item 1', value='Item 1', aria-label='Item 1', aria-selected='false', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);')
 "
 `;
 
 exports[`Carousel should reset autoplay when switching slide without autoplayHoverPause 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
-    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1')
-    .VueCarousel-slide(tabindex='-1')
-|  
-.VueCarousel-pagination(style='')
-  ul.VueCarousel-dot-container(role='tablist')
-    li.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='presentation', aria-selected='true', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 0', tabindex='0', style='width: 10px; height: 10px; background: rgb(0, 0, 0);')
-    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 1', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
+  .VueCarousel-inner(style='transform: translate(0px, 0); visibility: hidden; height: auto;')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center(tabindex='-1', role='tabpanel')
+    .VueCarousel-slide(tabindex='-1', aria-hidden='true', role='tabpanel')
 // 
+.VueCarousel-pagination(style='')
+  .VueCarousel-dot-container(role='tablist', style='margin-top: 20px;')
+    button.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='tab', title='Item 0', value='Item 0', aria-label='Item 0', aria-selected='true', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);')
+    button.VueCarousel-dot(aria-hidden='false', role='tab', title='Item 1', value='Item 1', aria-label='Item 1', aria-selected='false', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);')
 "
 `;
 
 exports[`Carousel should set carousel height to slide height 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: 200px;')
-    .VueCarousel-slide.VueCarousel-slide-adjustableHeight(tabindex='-1')
-    .VueCarousel-slide.VueCarousel-slide-adjustableHeight(tabindex='-1')
-    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center.VueCarousel-slide-adjustableHeight(tabindex='-1')
-|  
-.VueCarousel-pagination(style='')
-  ul.VueCarousel-dot-container(role='tablist')
-    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 0', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
-    li.VueCarousel-dot(aria-hidden='false', role='presentation', aria-selected='false', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 1', tabindex='0', style='width: 10px; height: 10px; background: rgb(239, 239, 239);')
-    li.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='presentation', aria-selected='true', style='margin-top: 20px; padding: 10px;')
-      button.VueCarousel-dot-button(type='button', role='button', aria-label='\`Item \${index}\`', title='Item 2', tabindex='0', style='width: 10px; height: 10px; background: rgb(0, 0, 0);')
+  .VueCarousel-inner(style='transform: translate(0px, 0); visibility: hidden; height: 200px;')
+    .VueCarousel-slide.VueCarousel-slide-adjustableHeight(tabindex='-1', aria-hidden='true', role='tabpanel')
+    .VueCarousel-slide.VueCarousel-slide-adjustableHeight(tabindex='-1', aria-hidden='true', role='tabpanel')
+    .VueCarousel-slide.VueCarousel-slide-active.VueCarousel-slide-center.VueCarousel-slide-adjustableHeight(tabindex='-1', role='tabpanel')
 // 
+.VueCarousel-pagination(style='')
+  .VueCarousel-dot-container(role='tablist', style='margin-top: 20px;')
+    button.VueCarousel-dot(aria-hidden='false', role='tab', title='Item 0', value='Item 0', aria-label='Item 0', aria-selected='false', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);')
+    button.VueCarousel-dot(aria-hidden='false', role='tab', title='Item 1', value='Item 1', aria-label='Item 1', aria-selected='false', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);')
+    button.VueCarousel-dot.VueCarousel-dot--active(aria-hidden='false', role='tab', title='Item 2', value='Item 2', aria-label='Item 2', aria-selected='true', style='margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);')
 "
 `;
 
 exports[`Carousel should unmount successfully 1`] = `
 ".VueCarousel-wrapper
-  .VueCarousel-inner(role='listbox', style='transform: translate(0px, 0); visibility: hidden; height: auto;')
-|  
-.VueCarousel-pagination(style='display: none;')
-  ul.VueCarousel-dot-container(role='tablist')
+  .VueCarousel-inner(style='transform: translate(0px, 0); visibility: hidden; height: auto;')
 // 
+.VueCarousel-pagination(style='display: none;')
+  .VueCarousel-dot-container(role='tablist', style='margin-top: 20px;')
 "
 `;
