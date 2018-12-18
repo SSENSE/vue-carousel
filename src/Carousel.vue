@@ -352,6 +352,13 @@ export default {
     currentPage(val) {
       this.$emit("pageChange", val);
       this.$emit("input", val);
+    },
+    autoplay(val) {
+      if (val === false) {
+        this.pauseAutoplay();
+      } else {
+        this.restartAutoplay();
+      }
     }
   },
   computed: {
