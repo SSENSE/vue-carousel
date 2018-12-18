@@ -293,19 +293,21 @@ describe('Carousel', () => {
   });
 
   it('should only count slides matching tagName', () => {
-    var CustomSlide = {
+    const CustomSlide = {
       extends: Slide,
       name: 'CustomSlide',
-    }
-    const vm = new Vue({
-      el: document.createElement('div'),
-      render: (h) => h(Carousel, { props: { tagName: 'CustomSlide' } }, [h(CustomSlide), h(CustomSlide), h(Slide)]),
+    };
+    const wrapper = mount(Carousel, {
+      propsData: {
+        tagName: 'CustomSlide'
+      },
+      slots: {
+        default: [CustomSlide, CustomSlide, Slide]
+      }
     });
-
-    const carouselInstance = vm.$children[0];
-    expect(carouselInstance.tagName).toBe('CustomSlide');
-    expect(carouselInstance.slideCount).toBe(2);
-    return utils.expectToMatchSnapshot(vm);
+    expect(wrapper.vm.tagName).toBe('CustomSlide');
+    expect(wrapper.vm.slideCount).toBe(2);
+    return utils.expectToMatchSnapshot(wrapper.vm);
   });
 
   it('should set carousel height to slide height', done => {
