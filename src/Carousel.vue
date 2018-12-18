@@ -352,6 +352,13 @@ export default {
     currentPage(val) {
       this.$emit("pageChange", val);
       this.$emit("input", val);
+    },
+    autoplay(val) {
+      if (val === false) {
+        this.pauseAutoplay();
+      } else {
+        this.restartAutoplay();
+      }
     }
   },
   computed: {
@@ -424,9 +431,10 @@ export default {
      * @return {Number}
      */
     maxOffset() {
-      return (
+      return Math.max(
         this.slideWidth * (this.slideCount - this.currentPerPage) -
-        this.spacePadding * this.spacePaddingMaxOffsetFactor
+          this.spacePadding * this.spacePaddingMaxOffsetFactor,
+        0
       );
     },
     /**
