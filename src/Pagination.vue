@@ -4,36 +4,28 @@
     class="VueCarousel-pagination"
     v-bind:class="{ [`VueCarousel-pagination--${paginationPositionModifierName}`]: paginationPositionModifierName }"
   >
-    <ul class="VueCarousel-dot-container" role="tablist">
-      <li
-        class="VueCarousel-dot"
-        aria-hidden="false"
-        role="presentation"
-        :aria-selected="isCurrentDot(index) ? 'true' : 'false'"
-        v-bind:class="{ 'VueCarousel-dot--active': isCurrentDot(index) }"
+    <div class="VueCarousel-dot-container" role="tablist" :style="`margin-top: ${carousel.paginationPadding * 2}px;`">
+      <button
         v-for="(page, index) in paginationCount"
         :key="`${page}_${index}`"
+        class="VueCarousel-dot"
+        aria-hidden="false"
+        role="tab"
+        :title="`Item ${index}`"
+        :value="`Item ${index}`"
+        :aria-label="`Item ${index}`"
+        :aria-selected="isCurrentDot(index) ? 'true' : 'false'"
+        v-bind:class="{ 'VueCarousel-dot--active': isCurrentDot(index) }"
         v-on:click="goToPage(index)"
         :style="`
           margin-${paginationPropertyBasedOnPosition}: ${carousel.paginationPadding * 2}px;
           padding: ${carousel.paginationPadding}px;
+          width: ${carousel.paginationSize}px;
+          height: ${carousel.paginationSize}px;
+          background-color: ${isCurrentDot(index) ? carousel.paginationActiveColor : carousel.paginationColor};
         `"
-      >
-        <button
-          type="button"
-          role="button"
-          aria-label="`Item ${index}`"
-          :title="`Item ${index}`"
-          class="VueCarousel-dot-button"
-          :tabindex="0"
-          :style="`
-            width: ${carousel.paginationSize}px;
-            height: ${carousel.paginationSize}px;
-            background: ${isCurrentDot(index) ? carousel.paginationActiveColor : carousel.paginationColor};
-            `"
-        ></button>
-      </li>
-    </ul>
+      ></button>
+    </div>
   </div>
 </template>
 
@@ -112,19 +104,16 @@ export default {
 .VueCarousel-dot {
   display: inline-block;
   cursor: pointer;
-}
-
-.VueCarousel-dot-button {
   appearance: none;
   border: none;
-  background-color: transparent;
+  background-clip: content-box;
+  box-sizing: content-box;
   padding: 0;
   border-radius: 100%;
   outline: none;
-  cursor: pointer;
 }
 
-.VueCarousel-dot-button:focus {
+.VueCarousel-dot:focus {
   outline: 1px solid lightblue;
 }
 </style>

@@ -13,7 +13,6 @@
           'VueCarousel-inner',
           { 'VueCarousel-inner--center': isCenterModeEnabled }
         ]"
-        role="listbox"
         :style="{
           'transform': `translate(${currentOffset}px, 0)`,
           'transition': dragging ? 'none' : transitionStyle,
@@ -30,10 +29,6 @@
       </div>
     </div>
 
-    <slot name="pagination" v-if="paginationEnabled">
-      <pagination @paginationclick="goToPage($event, 'pagination')"/>
-    </slot>
-
     <slot name="navigation" v-if="navigationEnabled">
       <navigation
         v-if="isNavigationRequired"
@@ -42,6 +37,10 @@
         :prevLabel="navigationPrevLabel"
         @navigationclick="handleNavigation"
       />
+    </slot>
+
+    <slot name="pagination" v-if="paginationEnabled">
+      <pagination @paginationclick="goToPage($event, 'pagination')"/>
     </slot>
   </section>
 </template>
