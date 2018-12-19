@@ -1,9 +1,6 @@
 <template>
   <section class="VueCarousel">
-    <div
-      class="VueCarousel-wrapper"
-      ref="VueCarousel-wrapper"
-    >
+    <div class="VueCarousel-wrapper" ref="VueCarousel-wrapper">
       <div
         ref="VueCarousel-inner"
         :class="[
@@ -12,13 +9,13 @@
         ]"
         role="listbox"
         :style="{
-          'transform': `translate(${currentOffset}px, 0)`,
-          'transition': dragging ? 'none' : transitionStyle,
+          transform: `translate(${currentOffset}px, 0)`,
+          transition: dragging ? 'none' : transitionStyle,
           'ms-flex-preferred-size': `${slideWidth}px`,
           'webkit-flex-basis': `${slideWidth}px`,
           'flex-basis': `${slideWidth}px`,
-          'visibility': slideWidth ? 'visible' : 'hidden',
-          'height': `${currentHeight}`,
+          visibility: slideWidth ? 'visible' : 'hidden',
+          height: `${currentHeight}`,
           'padding-left': `${padding}px`,
           'padding-right': `${padding}px`
         }"
@@ -28,7 +25,7 @@
     </div>
 
     <slot name="pagination" v-if="paginationEnabled">
-      <pagination @paginationclick="goToPage($event, 'pagination')"/>
+      <pagination @paginationclick="goToPage($event, 'pagination')" />
     </slot>
 
     <slot name="navigation" v-if="navigationEnabled">
@@ -357,8 +354,8 @@ export default {
       const breakpointArray = this.perPageCustom;
       const width = this.browserWidth;
 
-      const breakpoints = breakpointArray.sort(
-        (a, b) => (a[0] > b[0] ? -1 : 1)
+      const breakpoints = breakpointArray.sort((a, b) =>
+        a[0] > b[0] ? -1 : 1
       );
 
       // Reduce the breakpoints to entries where the width is in range

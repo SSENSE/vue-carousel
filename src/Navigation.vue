@@ -7,8 +7,11 @@
       class="VueCarousel-navigation-button VueCarousel-navigation-prev"
       v-on:click.prevent="triggerPageAdvance('backward')"
       v-bind:class="{ 'VueCarousel-navigation--disabled': !canAdvanceBackward }"
-      v-bind:style="`padding: ${clickTargetSize}px; margin-right: -${clickTargetSize}px;`"
-      v-html="prevLabel"></button>
+      v-bind:style="
+        `padding: ${clickTargetSize}px; margin-right: -${clickTargetSize}px;`
+      "
+      v-html="prevLabel"
+    ></button>
     <button
       type="button"
       aria-label="Next page"
@@ -16,8 +19,11 @@
       class="VueCarousel-navigation-button VueCarousel-navigation-next"
       v-on:click.prevent="triggerPageAdvance()"
       v-bind:class="{ 'VueCarousel-navigation--disabled': !canAdvanceForward }"
-      v-bind:style="`padding: ${clickTargetSize}px; margin-left: -${clickTargetSize}px;`"
-      v-html="nextLabel"></button>
+      v-bind:style="
+        `padding: ${clickTargetSize}px; margin-left: -${clickTargetSize}px;`
+      "
+      v-html="nextLabel"
+    ></button>
   </div>
 </template>
 

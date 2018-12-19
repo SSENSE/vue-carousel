@@ -10,10 +10,12 @@
         v-for="(page, index) in paginationCount"
         :key="`${page}_${index}`"
         v-on:click="goToPage(index)"
-        :style="`
+        :style="
+          `
           margin-top: ${carousel.paginationPadding * 2}px;
           padding: ${carousel.paginationPadding}px;
-        `"
+        `
+        "
       >
         <button
           type="button"
@@ -22,11 +24,17 @@
           :title="`Item ${index}`"
           class="VueCarousel-dot-button"
           :tabindex="0"
-          :style="`
+          :style="
+            `
             width: ${carousel.paginationSize}px;
             height: ${carousel.paginationSize}px;
-            background: ${isCurrentDot(index) ? carousel.paginationActiveColor : carousel.paginationColor};
-            `"
+            background: ${
+              isCurrentDot(index)
+                ? carousel.paginationActiveColor
+                : carousel.paginationColor
+            };
+            `
+          "
         ></button>
       </li>
     </ul>
@@ -42,8 +50,8 @@ export default {
       return this.carousel && this.carousel.scrollPerPage
         ? this.carousel.pageCount
         : this.carousel.slideCount && this.carousel.currentPerPage
-          ? this.carousel.slideCount - this.carousel.currentPerPage + 1
-          : 0;
+        ? this.carousel.slideCount - this.carousel.currentPerPage + 1
+        : 0;
     }
   },
   methods: {
