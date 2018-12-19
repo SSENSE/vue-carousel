@@ -292,6 +292,24 @@ describe('Carousel', () => {
     return utils.expectToMatchSnapshot(wrapper.vm);
   });
 
+  it('should only count slides matching tagName', () => {
+    const CustomSlide = {
+      extends: Slide,
+      name: 'CustomSlide',
+    };
+    const wrapper = mount(Carousel, {
+      propsData: {
+        tagName: 'CustomSlide'
+      },
+      slots: {
+        default: [CustomSlide, CustomSlide, Slide]
+      }
+    });
+    expect(wrapper.vm.tagName).toBe('CustomSlide');
+    expect(wrapper.vm.slideCount).toBe(2);
+    return utils.expectToMatchSnapshot(wrapper.vm);
+  });
+
   it('should set carousel height to slide height', done => {
     const wrapper = mount(Carousel, {
       propsData: {
