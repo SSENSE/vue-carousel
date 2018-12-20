@@ -306,7 +306,7 @@ describe('Carousel', () => {
     });
   });
 
-  it('should only count slides matching tagName', () => {
+  it('should only count slides matching tagName', done => {
     const CustomSlide = {
       extends: Slide,
       name: 'CustomSlide',
@@ -321,7 +321,10 @@ describe('Carousel', () => {
     });
     expect(wrapper.vm.tagName).toBe('CustomSlide');
     expect(wrapper.vm.slideCount).toBe(2);
-    return utils.expectToMatchSnapshot(wrapper.vm);
+    wrapper.vm.$nextTick(() => {
+      expect(wrapper).toMatchSnapshot();
+      done();
+    });
   });
 
   it('should set carousel height to slide height', done => {
