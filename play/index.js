@@ -412,3 +412,22 @@ play("Carousel", module)
   .add("Pagination position bottom-overlay", h => createContainer(
     h, containerWidth, [h(Carousel, { props: { paginationPosition: 'bottom-overlay' } }, generateSlideImages(h))]
   ))
+  .add("With custom pagination titles", {
+    template:
+      `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+        <carousel style="width: 500px;">
+          <slide v-for="(slide, index) in slides" :key="slide" :title="'This is my slide #' + index ">
+            <img style="width: 100%;" :src="slide" />
+          </slide>
+        </carousel>
+      </div>`,
+    components: {
+      Carousel,
+      Slide
+    },
+    data() {
+      return {
+        slides: images
+      }
+    }
+  })

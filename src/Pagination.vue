@@ -11,9 +11,9 @@
         class="VueCarousel-dot"
         aria-hidden="false"
         role="tab"
-        :title="`Item ${index}`"
-        :value="`Item ${index}`"
-        :aria-label="`Item ${index}`"
+        :title="getDotTitle(index)"
+        :value="getDotTitle(index)"
+        :aria-label="getDotTitle(index)"
         :aria-selected="isCurrentDot(index) ? 'true' : 'false'"
         v-bind:class="{ 'VueCarousel-dot--active': isCurrentDot(index) }"
         v-on:click="goToPage(index)"
@@ -74,6 +74,17 @@ export default {
      */
     isCurrentDot(index) {
       return index === this.carousel.currentPage;
+    },
+
+    /**
+     * Generate dot title
+     * @param {number} index - dot index
+     * @return {string}
+     */
+    getDotTitle(index) {
+      return this.carousel.$children[index].title
+        ? this.carousel.$children[index].title
+        : `Item ${index}`;
     }
   }
 };
