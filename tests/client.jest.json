@@ -4,6 +4,9 @@
   "transform": {
     ".*\\.(js|vue)$": "<rootDir>/tests/preprocessor.js"
   },
+  "snapshotSerializers": [
+    "jest-serializer-vue"
+  ],
   "testPathIgnorePatterns": [
     "/node_modules/",
     "/debug/"
