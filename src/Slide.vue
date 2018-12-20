@@ -17,6 +17,7 @@
 <script>
 export default {
   name: "slide",
+  props: ["title"],
   data() {
     return {
       width: null
