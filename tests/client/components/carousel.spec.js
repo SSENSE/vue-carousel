@@ -350,4 +350,38 @@ describe('Carousel', () => {
       done();
     });
   });
+
+  it('should not set adjustable height transition easing', done => {
+    const wrapper = mount(Carousel, {
+      propsData: {
+        adjustableHeight: false,
+        adjustableHeightEasing: 'linear',
+        speed: 0
+      }
+    });
+
+    expect(wrapper.vm.transitionStyle).toBe('0s ease transform');
+
+    wrapper.vm.$nextTick(() => {
+      expect(wrapper).toMatchSnapshot();
+      done();
+    });
+  });
+
+  it('should set adjustable height transition easing', done => {
+    const wrapper = mount(Carousel, {
+      propsData: {
+        adjustableHeight: true,
+        adjustableHeightEasing: 'linear',
+        speed: 0
+      }
+    });
+
+    expect(wrapper.vm.transitionStyle).toBe('0s ease transform, height 0s linear');
+
+    wrapper.vm.$nextTick(() => {
+      expect(wrapper).toMatchSnapshot();
+      done();
+    });
+  });
 });
