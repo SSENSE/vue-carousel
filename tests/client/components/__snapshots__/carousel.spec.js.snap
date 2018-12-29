@@ -202,6 +202,18 @@ exports[`Carousel should not reset autoplay when switching slide with autoplayHo
 </section>
 `;
 
+exports[`Carousel should not set adjustable height transition easing 1`] = `
+<section class="VueCarousel">
+  <div class="VueCarousel-wrapper">
+    <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;"></div>
+  </div>
+  <!---->
+  <div class="VueCarousel-pagination" style="display: none;">
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"></div>
+  </div>
+</section>
+`;
+
 exports[`Carousel should only count slides matching tagName 1`] = `
 <section class="VueCarousel">
   <div class="VueCarousel-wrapper">
@@ -257,6 +269,18 @@ exports[`Carousel should reset autoplay when switching slide without autoplayHov
   <!---->
   <div class="VueCarousel-pagination" style="">
     <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
+  </div>
+</section>
+`;
+
+exports[`Carousel should set adjustable height transition easing 1`] = `
+<section class="VueCarousel">
+  <div class="VueCarousel-wrapper">
+    <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;"></div>
+  </div>
+  <!---->
+  <div class="VueCarousel-pagination" style="display: none;">
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"></div>
   </div>
 </section>
 `;
