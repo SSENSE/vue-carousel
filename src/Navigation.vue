@@ -102,13 +102,13 @@ export default {
 
 .VueCarousel-navigation-next {
   right: 0;
-  transform: translateY(-50%) translateX(-100%);
+  transform: translateY(-50%) translateX(100%);
   font-family: "system";
 }
 
 .VueCarousel-navigation-prev {
   left: 0;
-  transform: translateY(-50%) translateX(100%);
+  transform: translateY(-50%) translateX(-100%);
   font-family: "system";
 }
 
