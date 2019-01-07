@@ -55,6 +55,10 @@ play("Carousel", module)
       h, containerWidth, [h(Carousel, {}, generateSlideImages(h))]
     )
   )
+  .add("Too few per page", h => createContainer(
+      h, containerWidth, [h(Carousel, { props: { perPage: 10, scrollPerPage: false } }, generateSlideImages(h))]
+    )
+  )
   .add("3 per page", h => createContainer(
       h, containerWidth, [h(Carousel, { props: { perPage: 3 } }, generateSlideImages(h))]
     )
@@ -98,6 +102,35 @@ play("Carousel", module)
       h, containerWidth, [h(Carousel, { props: { autoplay: true, autoplayHoverPause: true } }, generateSlideImages(h))]
     )
   )
+  .add("Autoplay, Pause/Resume", {
+    template:
+      `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+        <carousel style="width: 500px;" :autoplay="autoplay" :loop="true">
+          <slide v-for="slide in slideCount" :key="slide">
+            <img style="width: 100%;" src="https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176006_1.jpg" />
+          </slide>
+        </carousel>
+        <div style="float: left">
+          <pre>Autoplay Status: {{ autoplay }}</pre>
+          <button v-on:click="toggleAutoplay()">Toggle Autoplay</button>
+        </div>
+      </div>`,
+    components: {
+      Carousel,
+      Slide
+    },
+    data() {
+      return {
+        autoplay: true,
+        slideCount: 8
+      }
+    },
+    methods: {
+      toggleAutoplay() {
+        this.autoplay = !this.autoplay;
+      },
+    }
+  })
   .add("Dynamic, add or remove slides", {
     template:
       `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
@@ -357,6 +390,34 @@ play("Carousel", module)
             <div style="width: 300px;">
               <img :style="'height: ' + ((idx + 1) * 50) + 'px;'" :src="slide" />
             </div>
+          </slide>
+        </carousel>
+      </div>`,
+    components: {
+      Carousel,
+      Slide
+    },
+    data() {
+      return {
+        slides: images
+      }
+    }
+  })
+  .add("Pagination position top", h => createContainer(
+    h, containerWidth, [h(Carousel, { props: { paginationPosition: 'top' } }, generateSlideImages(h))]
+  ))
+  .add("Pagination position top-overlay", h => createContainer(
+    h, containerWidth, [h(Carousel, { props: { paginationPosition: 'top-overlay' } }, generateSlideImages(h))]
+  ))
+  .add("Pagination position bottom-overlay", h => createContainer(
+    h, containerWidth, [h(Carousel, { props: { paginationPosition: 'bottom-overlay' } }, generateSlideImages(h))]
+  ))
+  .add("With custom pagination titles", {
+    template:
+      `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+        <carousel style="width: 500px;">
+          <slide v-for="(slide, index) in slides" :key="slide" :title="'This is my slide #' + index ">
+            <img style="width: 100%;" :src="slide" />
           </slide>
         </carousel>
       </div>`,

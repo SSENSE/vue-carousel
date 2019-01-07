@@ -1,5 +1,8 @@
 <template>
-  <section class="VueCarousel">
+  <section
+    class="VueCarousel"
+    v-bind:class="{ 'VueCarousel--reverse': paginationPosition === 'top' }"
+  >
     <div
       class="VueCarousel-wrapper"
       ref="VueCarousel-wrapper"
@@ -10,7 +13,6 @@
           'VueCarousel-inner',
           { 'VueCarousel-inner--center': isCenterModeEnabled }
         ]"
-        role="listbox"
         :style="{
           'transform': `translate(${currentOffset}px, 0)`,
           'transition': dragging ? 'none' : transitionStyle,
@@ -27,10 +29,6 @@
       </div>
     </div>
 
-    <slot name="pagination" v-if="paginationEnabled">
-      <pagination @paginationclick="goToPage($event, 'pagination')"/>
-    </slot>
-
     <slot name="navigation" v-if="navigationEnabled">
       <navigation
         v-if="isNavigationRequired"
@@ -39,6 +37,10 @@
         :prevLabel="navigationPrevLabel"
         @navigationclick="handleNavigation"
       />
+    </slot>
+
+    <slot name="pagination" v-if="paginationEnabled">
+      <pagination @paginationclick="goToPage($event, 'pagination')"/>
     </slot>
   </section>
 </template>
@@ -165,6 +167,13 @@ export default {
       default: true
     },
     /**
+     * Flag to toggle touch dragging
+     */
+    touchDrag: {
+      type: Boolean,
+      default: true
+    },
+    /**
      * Listen for an external navigation request using this prop.
      */
     navigateTo: {
@@ -232,6 +241,14 @@ export default {
       default: 10
     },
     /**
+     * Configure the position for the pagination component.
+     * The possible values are: 'bottom', 'top', 'bottom-overlay' and 'top-overlay'
+     */
+    paginationPosition: {
+      type: String,
+      default: "bottom"
+    },
+    /**
      * The size of each pagination dot
      * Pixel values are accepted
      */
@@ -293,6 +310,14 @@ export default {
       default: 500
     },
     /**
+     * Name (tag) of slide component
+     * Overwrite when extending slide component
+     */
+    tagName: {
+      type: String,
+      default: "slide"
+    },
+    /**
      * Support for v-model functionality
      */
     value: {
@@ -334,6 +359,13 @@ export default {
     currentPage(val) {
       this.$emit("pageChange", val);
       this.$emit("input", val);
+    },
+    autoplay(val) {
+      if (val === false) {
+        this.pauseAutoplay();
+      } else {
+        this.restartAutoplay();
+      }
     }
   },
   computed: {
@@ -406,9 +438,10 @@ export default {
      * @return {Number}
      */
     maxOffset() {
-      return (
+      return Math.max(
         this.slideWidth * (this.slideCount - this.currentPerPage) -
-        this.spacePadding * this.spacePaddingMaxOffsetFactor
+          this.spacePadding * this.spacePaddingMaxOffsetFactor,
+        0
       );
     },
     /**
@@ -418,7 +451,7 @@ export default {
     pageCount() {
       return this.scrollPerPage
         ? Math.ceil(this.slideCount / this.currentPerPage)
-        : this.slideCount - 2;
+        : this.slideCount - this.currentPerPage + 1;
     },
     /**
      * Calculate the width of each slide
@@ -608,7 +641,9 @@ export default {
         (this.$slots &&
           this.$slots.default &&
           this.$slots.default.filter(
-            slot => slot.tag && slot.tag.indexOf("slide") > -1
+            slot =>
+              slot.tag &&
+              slot.tag.match(`^vue-component-\\d+-${this.tagName}$`) !== null
           ).length) ||
         0;
     },
@@ -618,7 +653,9 @@ export default {
      */
     getSlide(index) {
       const slides = this.$children.filter(
-        child => child.$vnode.tag.indexOf("slide") > -1
+        child =>
+          child.$vnode.tag.match(`^vue-component-\\d+-${this.tagName}$`) !==
+          null
       );
       return slides[index];
     },
@@ -763,7 +800,18 @@ export default {
       const width = this.scrollPerPage
         ? this.slideWidth * this.currentPerPage
         : this.slideWidth;
-      this.offset = width * Math.round(this.offset / width);
+
+      // lock offset to either the nearest page, or to the last slide
+      const lastFullPageOffset =
+        width * Math.floor(this.slideCount / (this.currentPerPage - 1));
+      const remainderOffset =
+        lastFullPageOffset +
+        this.slideWidth * (this.slideCount % this.currentPerPage);
+      if (this.offset > (lastFullPageOffset + remainderOffset) / 2) {
+        this.offset = remainderOffset;
+      } else {
+        this.offset = width * Math.round(this.offset / width);
+      }
 
       // clamp the offset between 0 -> maxOffset
       this.offset = Math.max(0, Math.min(this.offset, this.maxOffset));
@@ -812,7 +860,7 @@ export default {
     );
 
     // setup the start event only if touch device or mousedrag activated
-    if (this.isTouch || this.mouseDrag) {
+    if ((this.isTouch && this.touchDrag) || this.mouseDrag) {
       this.$refs["VueCarousel-wrapper"].addEventListener(
         this.isTouch ? "touchstart" : "mousedown",
         this.onStart
@@ -862,7 +910,13 @@ export default {
 </script>
 <style>
 .VueCarousel {
+  display: flex;
+  flex-direction: column;
   position: relative;
+}
+
+.VueCarousel--reverse {
+  flex-direction: column-reverse;
 }
 
 .VueCarousel-wrapper {

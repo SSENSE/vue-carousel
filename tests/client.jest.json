@@ -1,8 +1,12 @@
 {
   "verbose": true,
+  "rootDir": "../",
   "transform": {
-    ".*\\.(js|vue)$": "<rootDir>/preprocessor.js"
+    ".*\\.(js|vue)$": "<rootDir>/tests/preprocessor.js"
   },
+  "snapshotSerializers": [
+    "jest-serializer-vue"
+  ],
   "testPathIgnorePatterns": [
     "/node_modules/",
     "/debug/"

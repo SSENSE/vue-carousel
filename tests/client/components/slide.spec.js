@@ -1,19 +1,20 @@
-const Vue = require('vue');
-const utils = require('../utils');
+import { mount } from '@vue/test-utils';
 
 const Carousel = require('../../../src/Carousel.vue');
 const Slide = require('../../../src/Slide.vue');
 
 describe('Slide', () => {
-  it('should mount successfully', () => {
-    const vm = new Vue({
-      el: document.createElement('div'),
-      render: (h) => h(Carousel, {}, [h(Slide)]),
+  it('should mount successfully', done => {
+    const wrapper = mount(Carousel, {
+      slots: {
+        default: [Slide]
+      }
     });
-    const carouselInstance = vm.$children[0];
-    const slideInstance = carouselInstance.$children[0];
-    expect(slideInstance._isMounted).toBe(true);
+    expect(wrapper.vm.$children[0]._isMounted).toBeTruthy();
 
-    return utils.expectToMatchSnapshot(vm);
+    wrapper.vm.$nextTick(() => {
+      expect(wrapper).toMatchSnapshot();
+      done();
+    });
   });
 });

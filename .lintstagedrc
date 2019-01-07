@@ -1,0 +1,8 @@
+{
+  "linters": {
+    "src/**/?(*.js|*.vue)": [
+      "prettier-eslint --write",
+      "git add"
+    ]
+  }
+}
