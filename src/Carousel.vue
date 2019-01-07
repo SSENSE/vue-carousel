@@ -689,6 +689,12 @@ export default {
     /* istanbul ignore next */
     onStart(e) {
       // alert("start");
+
+      // detect right click
+      if (e.button == 2) {
+        return;
+      }
+
       document.addEventListener(
         this.isTouch ? "touchend" : "mouseup",
         this.onEnd,
