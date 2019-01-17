@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Carousel should apply custom slides per page when responsive param provided 1`] = `
+exports[`Carousel component Adjustable height easing should not set adjustable height transition easing 1`] = `
 <section class="VueCarousel">
   <div class="VueCarousel-wrapper">
     <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;"></div>
@@ -12,7 +12,7 @@ exports[`Carousel should apply custom slides per page when responsive param prov
 </section>
 `;
 
-exports[`Carousel should apply default carousel width when element has 0 width 1`] = `
+exports[`Carousel component Adjustable height easing should set adjustable height transition easing 1`] = `
 <section class="VueCarousel">
   <div class="VueCarousel-wrapper">
     <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;"></div>
@@ -24,31 +24,7 @@ exports[`Carousel should apply default carousel width when element has 0 width 1
 </section>
 `;
 
-exports[`Carousel should be unable to advance backward by default 1`] = `
-<section class="VueCarousel">
-  <div class="VueCarousel-wrapper">
-    <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;"></div>
-  </div>
-  <!---->
-  <div class="VueCarousel-pagination" style="display: none;">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"></div>
-  </div>
-</section>
-`;
-
-exports[`Carousel should be unable to advance forward by default (no slides added) 1`] = `
-<section class="VueCarousel">
-  <div class="VueCarousel-wrapper">
-    <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;"></div>
-  </div>
-  <!---->
-  <div class="VueCarousel-pagination" style="display: none;">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"></div>
-  </div>
-</section>
-`;
-
-exports[`Carousel should begin autoplaying when option specified 1`] = `
+exports[`Carousel component Autoplay functionality should begin autoplaying when option specified 1`] = `
 <section class="VueCarousel">
   <div class="VueCarousel-wrapper">
     <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;">
@@ -63,39 +39,49 @@ exports[`Carousel should begin autoplaying when option specified 1`] = `
 </section>
 `;
 
-exports[`Carousel should decrease current page number by 1 when advance page backward is called 1`] = `
+exports[`Carousel component Autoplay functionality should not reset autoplay when switching slide with autoplayHoverPause 1`] = `
 <section class="VueCarousel">
   <div class="VueCarousel-wrapper">
     <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;">
-      <div tabindex="-1" role="tabpanel" class="VueCarousel-slide" aria-hidden="true"></div>
       <div tabindex="-1" role="tabpanel" class="VueCarousel-slide VueCarousel-slide-active VueCarousel-slide-center"></div>
-    </div>
-  </div>
-  <!---->
-  <div class="VueCarousel-pagination" style="">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button></div>
-  </div>
-</section>
-`;
-
-exports[`Carousel should decrease current slide number by 1 when advance slide backward is called 1`] = `
-<section class="VueCarousel">
-  <div class="VueCarousel-wrapper">
-    <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;">
-      <div tabindex="-1" aria-hidden="true" role="tabpanel" class="VueCarousel-slide"></div>
-      <div tabindex="-1" role="tabpanel" class="VueCarousel-slide VueCarousel-slide-active VueCarousel-slide-center"></div>
-      <div tabindex="-1" role="tabpanel" class="VueCarousel-slide" aria-hidden="true"></div>
       <div tabindex="-1" aria-hidden="true" role="tabpanel" class="VueCarousel-slide"></div>
     </div>
   </div>
   <!---->
   <div class="VueCarousel-pagination" style="">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" title="Item 2" value="Item 2" aria-label="Item 2" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 3" value="Item 3" aria-label="Item 3" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
   </div>
 </section>
 `;
 
-exports[`Carousel should fall back to default slides per page when no responsive param provided 1`] = `
+exports[`Carousel component Autoplay functionality should reset autoplay when switching slide without autoplayHoverPause 1`] = `
+<section class="VueCarousel">
+  <div class="VueCarousel-wrapper">
+    <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;">
+      <div tabindex="-1" role="tabpanel" class="VueCarousel-slide VueCarousel-slide-active VueCarousel-slide-center"></div>
+      <div tabindex="-1" aria-hidden="true" role="tabpanel" class="VueCarousel-slide"></div>
+    </div>
+  </div>
+  <!---->
+  <div class="VueCarousel-pagination" style="">
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
+  </div>
+</section>
+`;
+
+exports[`Carousel component Carousel slides per page should apply custom slides per page when responsive param provided 1`] = `
+<section class="VueCarousel">
+  <div class="VueCarousel-wrapper">
+    <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;"></div>
+  </div>
+  <!---->
+  <div class="VueCarousel-pagination" style="display: none;">
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"></div>
+  </div>
+</section>
+`;
+
+exports[`Carousel component Carousel slides per page should fall back to default slides per page when no responsive param provided 1`] = `
 <section class="VueCarousel">
   <div class="VueCarousel-wrapper">
     <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;">
@@ -111,41 +97,95 @@ exports[`Carousel should fall back to default slides per page when no responsive
 </section>
 `;
 
-exports[`Carousel should increase current page number by 1 when advance page is called 1`] = `
+exports[`Carousel component Default mounting properties should apply default carousel width when element has 0 width 1`] = `
+<section class="VueCarousel">
+  <div class="VueCarousel-wrapper">
+    <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;"></div>
+  </div>
+  <!---->
+  <div class="VueCarousel-pagination" style="display: none;">
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"></div>
+  </div>
+</section>
+`;
+
+exports[`Carousel component Default mounting properties should be unable to advance backward by default 1`] = `
+<section class="VueCarousel">
+  <div class="VueCarousel-wrapper">
+    <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;"></div>
+  </div>
+  <!---->
+  <div class="VueCarousel-pagination" style="display: none;">
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"></div>
+  </div>
+</section>
+`;
+
+exports[`Carousel component Default mounting properties should be unable to advance forward by default (no slides added) 1`] = `
+<section class="VueCarousel">
+  <div class="VueCarousel-wrapper">
+    <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;"></div>
+  </div>
+  <!---->
+  <div class="VueCarousel-pagination" style="display: none;">
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"></div>
+  </div>
+</section>
+`;
+
+exports[`Carousel component Default mounting properties should mount successfully 1`] = `
+<section class="VueCarousel">
+  <div class="VueCarousel-wrapper">
+    <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;"></div>
+  </div>
+  <!---->
+  <div class="VueCarousel-pagination" style="display: none;">
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"></div>
+  </div>
+</section>
+`;
+
+exports[`Carousel component Default mounting properties should register 0 slides when 0 slides are added to the slots 1`] = `
+<section class="VueCarousel">
+  <div class="VueCarousel-wrapper">
+    <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;"></div>
+  </div>
+  <!---->
+  <div class="VueCarousel-pagination" style="display: none;">
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"></div>
+  </div>
+</section>
+`;
+
+exports[`Carousel component Default mounting properties should register 3 slides when 3 slides are added to the slots 1`] = `
 <section class="VueCarousel">
   <div class="VueCarousel-wrapper">
     <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;">
-      <div tabindex="-1" role="tabpanel" class="VueCarousel-slide" aria-hidden="true"></div>
-      <div tabindex="-1" role="tabpanel" class="VueCarousel-slide VueCarousel-slide-active VueCarousel-slide-center"></div>
-      <div tabindex="-1" aria-hidden="true" role="tabpanel" class="VueCarousel-slide"></div>
+      <div tabindex="-1" role="tabpanel" class="VueCarousel-slide VueCarousel-slide-active"></div>
+      <div tabindex="-1" role="tabpanel" class="VueCarousel-slide VueCarousel-slide-active"></div>
       <div tabindex="-1" aria-hidden="true" role="tabpanel" class="VueCarousel-slide"></div>
     </div>
   </div>
   <!---->
   <div class="VueCarousel-pagination" style="">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" title="Item 2" value="Item 2" aria-label="Item 2" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 3" value="Item 3" aria-label="Item 3" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
   </div>
 </section>
 `;
 
-exports[`Carousel should increase current page number by 1 when advance page is called with a non "backward" argument 1`] = `
+exports[`Carousel component Default mounting properties should unmount successfully 1`] = `
 <section class="VueCarousel">
   <div class="VueCarousel-wrapper">
-    <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;">
-      <div tabindex="-1" role="tabpanel" class="VueCarousel-slide" aria-hidden="true"></div>
-      <div tabindex="-1" role="tabpanel" class="VueCarousel-slide VueCarousel-slide-active VueCarousel-slide-center"></div>
-      <div tabindex="-1" aria-hidden="true" role="tabpanel" class="VueCarousel-slide"></div>
-      <div tabindex="-1" aria-hidden="true" role="tabpanel" class="VueCarousel-slide"></div>
-    </div>
+    <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;"></div>
   </div>
   <!---->
-  <div class="VueCarousel-pagination" style="">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" title="Item 2" value="Item 2" aria-label="Item 2" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 3" value="Item 3" aria-label="Item 3" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
+  <div class="VueCarousel-pagination" style="display: none;">
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"></div>
   </div>
 </section>
 `;
 
-exports[`Carousel should loop back to the start when loop is true and advance page non "backward" is called from the last page 1`] = `
+exports[`Carousel component Loop functionality should loop back to the start when loop is true and advance page non "backward" is called from the last page 1`] = `
 <section class="VueCarousel">
   <div class="VueCarousel-wrapper">
     <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;">
@@ -160,7 +200,7 @@ exports[`Carousel should loop back to the start when loop is true and advance pa
 </section>
 `;
 
-exports[`Carousel should loop to the end when loop is true and advance page "backward" is called from the first page 1`] = `
+exports[`Carousel component Loop functionality should loop to the end when loop is true and advance page "backward" is called from the first page 1`] = `
 <section class="VueCarousel">
   <div class="VueCarousel-wrapper">
     <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;">
@@ -175,46 +215,7 @@ exports[`Carousel should loop to the end when loop is true and advance page "bac
 </section>
 `;
 
-exports[`Carousel should mount successfully 1`] = `
-<section class="VueCarousel">
-  <div class="VueCarousel-wrapper">
-    <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;"></div>
-  </div>
-  <!---->
-  <div class="VueCarousel-pagination" style="display: none;">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"></div>
-  </div>
-</section>
-`;
-
-exports[`Carousel should not reset autoplay when switching slide with autoplayHoverPause 1`] = `
-<section class="VueCarousel">
-  <div class="VueCarousel-wrapper">
-    <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;">
-      <div tabindex="-1" role="tabpanel" class="VueCarousel-slide VueCarousel-slide-active VueCarousel-slide-center"></div>
-      <div tabindex="-1" aria-hidden="true" role="tabpanel" class="VueCarousel-slide"></div>
-    </div>
-  </div>
-  <!---->
-  <div class="VueCarousel-pagination" style="">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
-  </div>
-</section>
-`;
-
-exports[`Carousel should not set adjustable height transition easing 1`] = `
-<section class="VueCarousel">
-  <div class="VueCarousel-wrapper">
-    <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;"></div>
-  </div>
-  <!---->
-  <div class="VueCarousel-pagination" style="display: none;">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"></div>
-  </div>
-</section>
-`;
-
-exports[`Carousel should only count slides matching tagName 1`] = `
+exports[`Carousel component Tag name should only count slides matching tagName 1`] = `
 <section class="VueCarousel">
   <div class="VueCarousel-wrapper">
     <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;">
@@ -230,62 +231,73 @@ exports[`Carousel should only count slides matching tagName 1`] = `
 </section>
 `;
 
-exports[`Carousel should register 0 slides when 0 slides are added to the slots 1`] = `
+exports[`Carousel component should decrease current page number by 1 when advance page backward is called 1`] = `
 <section class="VueCarousel">
   <div class="VueCarousel-wrapper">
-    <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;"></div>
+    <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;">
+      <div tabindex="-1" role="tabpanel" class="VueCarousel-slide" aria-hidden="true"></div>
+      <div tabindex="-1" role="tabpanel" class="VueCarousel-slide VueCarousel-slide-active VueCarousel-slide-center"></div>
+    </div>
   </div>
   <!---->
-  <div class="VueCarousel-pagination" style="display: none;">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"></div>
+  <div class="VueCarousel-pagination" style="">
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button></div>
   </div>
 </section>
 `;
 
-exports[`Carousel should register 3 slides when 3 slides are added to the slots 1`] = `
+exports[`Carousel component should decrease current slide number by 1 when advance slide backward is called 1`] = `
 <section class="VueCarousel">
   <div class="VueCarousel-wrapper">
     <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;">
-      <div tabindex="-1" role="tabpanel" class="VueCarousel-slide VueCarousel-slide-active"></div>
-      <div tabindex="-1" role="tabpanel" class="VueCarousel-slide VueCarousel-slide-active"></div>
+      <div tabindex="-1" aria-hidden="true" role="tabpanel" class="VueCarousel-slide"></div>
+      <div tabindex="-1" role="tabpanel" class="VueCarousel-slide VueCarousel-slide-active VueCarousel-slide-center"></div>
+      <div tabindex="-1" role="tabpanel" class="VueCarousel-slide" aria-hidden="true"></div>
       <div tabindex="-1" aria-hidden="true" role="tabpanel" class="VueCarousel-slide"></div>
     </div>
   </div>
   <!---->
   <div class="VueCarousel-pagination" style="">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" title="Item 2" value="Item 2" aria-label="Item 2" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 3" value="Item 3" aria-label="Item 3" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
   </div>
 </section>
 `;
 
-exports[`Carousel should reset autoplay when switching slide without autoplayHoverPause 1`] = `
+exports[`Carousel component should increase current page number by 1 when advance page is called 1`] = `
 <section class="VueCarousel">
   <div class="VueCarousel-wrapper">
     <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;">
+      <div tabindex="-1" role="tabpanel" class="VueCarousel-slide" aria-hidden="true"></div>
       <div tabindex="-1" role="tabpanel" class="VueCarousel-slide VueCarousel-slide-active VueCarousel-slide-center"></div>
       <div tabindex="-1" aria-hidden="true" role="tabpanel" class="VueCarousel-slide"></div>
+      <div tabindex="-1" aria-hidden="true" role="tabpanel" class="VueCarousel-slide"></div>
     </div>
   </div>
   <!---->
   <div class="VueCarousel-pagination" style="">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" title="Item 2" value="Item 2" aria-label="Item 2" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 3" value="Item 3" aria-label="Item 3" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
   </div>
 </section>
 `;
 
-exports[`Carousel should set adjustable height transition easing 1`] = `
+exports[`Carousel component should increase current page number by 1 when advance page is called with a non "backward" argument 1`] = `
 <section class="VueCarousel">
   <div class="VueCarousel-wrapper">
-    <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;"></div>
+    <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;">
+      <div tabindex="-1" role="tabpanel" class="VueCarousel-slide" aria-hidden="true"></div>
+      <div tabindex="-1" role="tabpanel" class="VueCarousel-slide VueCarousel-slide-active VueCarousel-slide-center"></div>
+      <div tabindex="-1" aria-hidden="true" role="tabpanel" class="VueCarousel-slide"></div>
+      <div tabindex="-1" aria-hidden="true" role="tabpanel" class="VueCarousel-slide"></div>
+    </div>
   </div>
   <!---->
-  <div class="VueCarousel-pagination" style="display: none;">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"></div>
+  <div class="VueCarousel-pagination" style="">
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" title="Item 2" value="Item 2" aria-label="Item 2" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 3" value="Item 3" aria-label="Item 3" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
   </div>
 </section>
 `;
 
-exports[`Carousel should set carousel height to slide height 1`] = `
+exports[`Carousel component should set carousel height to slide height 1`] = `
 <section class="VueCarousel">
   <div class="VueCarousel-wrapper">
     <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;">
@@ -297,18 +309,6 @@ exports[`Carousel should set carousel height to slide height 1`] = `
   <!---->
   <div class="VueCarousel-pagination" style="">
     <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 2" value="Item 2" aria-label="Item 2" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button></div>
-  </div>
-</section>
-`;
-
-exports[`Carousel should unmount successfully 1`] = `
-<section class="VueCarousel">
-  <div class="VueCarousel-wrapper">
-    <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;"></div>
-  </div>
-  <!---->
-  <div class="VueCarousel-pagination" style="display: none;">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"></div>
   </div>
 </section>
 `;
