@@ -110,13 +110,13 @@ describe('Carousel component', () => {
   });
 
   describe('Autoplay functionality', () => {
-    it('should disable autoplay by default', () => {});
+    it.skip('should disable autoplay by default', () => {});
 
-    it('should set the autoplay direction to forward by default', () => {});
+    it.skip('should set the autoplay direction to forward by default', () => {});
 
-    it('should set the autoplay hover pause to true by default', () => {});
+    it.skip('should set the autoplay hover pause to true by default', () => {});
 
-    it('should set the autoplay timeout to 2000 by default', () => {});
+    it.skip('should set the autoplay timeout to 2000 by default', () => {});
 
     it('should begin autoplaying when option specified', done => {
       const wrapper = mount(Carousel, {
@@ -140,16 +140,16 @@ describe('Carousel component', () => {
     });
 
     // start on first slide and allow the autoplay to advance to the second slide
-    it('should display the second slide after waiting the timeout duration with direction forward', () => {});
+    it.skip('should display the second slide after waiting the timeout duration with direction forward', () => {});
 
     // start on the second slide and allow autoplay to advanced to the first slide
-    it('should display the first slide after waiting the timeout duration with direction backward', () => {});
+    it.skip('should display the first slide after waiting the timeout duration with direction backward', () => {});
 
-    it('should not allow the autoplay feature to advance on hover', () => {});
+    it.skip('should not allow the autoplay feature to advance on hover', () => {});
 
-    it('should allow the autoplay feature to advance on hover when hover pause false', () => {});
+    it.skip('should allow the autoplay feature to advance on hover when hover pause false', () => {});
 
-    it('should show the first slide twice when looping is enabled with autoplay', () => {});
+    it.skip('should show the first slide twice when looping is enabled with autoplay', () => {});
 
     it('should reset autoplay when switching slide without autoplayHoverPause', done => {
       const wrapper = mount(Carousel, {
@@ -197,23 +197,23 @@ describe('Carousel component', () => {
   });
 
   describe('Center mode', () => {
-    it('should not center image when image is less than the container width', () => {});
+    it.skip('should not center image when image is less than the container width', () => {});
 
-    it('should center image when image is less than container width and centerMode is true', () => {});
+    it.skip('should center image when image is less than container width and centerMode is true', () => {});
   });
 
   describe('Custom easing property', () => {
-    it('should set easing to ease by default', () => {});
+    it.skip('should set easing to ease by default', () => {});
 
-    it('should set easing to the custom easing supplied', () => {});
+    it.skip('should set easing to the custom easing supplied', () => {});
 
     // TODO: Should we be testing for valid CSS transition easing like the README suggests?
   });
 
   describe('Dynamic slide count', () => {
-    it('should match the stored snapshot if a new slide is added dynamically', () => {});
+    it.skip('should match the stored snapshot if a new slide is added dynamically', () => {});
 
-    it('should match the stored snapshot if a slide is removed dynamically', () => {});
+    it.skip('should match the stored snapshot if a slide is removed dynamically', () => {});
   });
 
   describe('Loop functionality', () => {
@@ -258,40 +258,40 @@ describe('Carousel component', () => {
   });
 
   describe('Minimum swipe distance', () => {
-    it('should set minSwipeDistance to 8 by default', () => {});
+    it.skip('should set minSwipeDistance to 8 by default', () => {});
 
-    it('should set minSwipeDistance to the custom value of 10', () => {});
+    it.skip('should set minSwipeDistance to the custom value of 10', () => {});
 
-    it('should swipe to the second slide when the minSwipeDistance is reached', () => {});
+    it.skip('should swipe to the second slide when the minSwipeDistance is reached', () => {});
 
-    it('should not swipe to the second slide when the minSwipeDistance is not reached', () => {});
+    it.skip('should not swipe to the second slide when the minSwipeDistance is not reached', () => {});
   });
 
   describe('Mouse drag', () => {
-    it('should set the mouseDrag to true by default', () => {});
+    it.skip('should set the mouseDrag to true by default', () => {});
 
-    it('should set the mouseDrag to false', () => {});
+    it.skip('should set the mouseDrag to false', () => {});
 
-    it('should allow the mouse to drag to the second slide', () => {});
+    it.skip('should allow the mouse to drag to the second slide', () => {});
 
-    it('should not allow the mouse to drag to the second slide', () => {});
+    it.skip('should not allow the mouse to drag to the second slide', () => {});
   });
 
   describe('Carousel navigation', () => {
-    it('should render the navigation component when navigation is enabled', () => {});
+    it.skip('should render the navigation component when navigation is enabled', () => {});
 
-    it('should not render the navigation component when navigation is disabled', () => {});
+    it.skip('should not render the navigation component when navigation is disabled', () => {});
 
-    it('should navigate to slide 2', () => {});
+    it.skip('should navigate to slide 2', () => {});
 
     // TODO: Is this desired functionality?
-    it('should navigate to slide to even when navigation is not enabled', () => {});
+    it.skip('should navigate to slide to even when navigation is not enabled', () => {});
   });
 
   describe('Carousel pagination', () => {
-    it('should render the pagination component when pagination is enabled', () => {});
+    it.skip('should render the pagination component when pagination is enabled', () => {});
 
-    it('should not render the pagination component when pagination is disabled', () => {});
+    it.skip('should not render the pagination component when pagination is disabled', () => {});
 
     // TODO: It seems that the pagination component is heavily connected to the carousel, decouple this?
     // If no then we should add tests here in the carousel for it
@@ -330,23 +330,23 @@ describe('Carousel component', () => {
       });
     });
 
-    it('should have 2 slides on the current page by default', () => {});
+    it.skip('should have 2 slides on the current page by default', () => {});
 
-    it('should have 3 slides on the current page when perPage is set to 3', () => {});
+    it.skip('should have 3 slides on the current page when perPage is set to 3', () => {});
 
-    it('should have 3 slides when perPage is set to 6', () => {});
+    it.skip('should have 3 slides when perPage is set to 6', () => {});
 
-    it('should only have one page when number of slides is less than slides per page', () => {});
+    it.skip('should only have one page when number of slides is less than slides per page', () => {});
   });
 
   describe('Resistance co-efficient', () => {
-    it('should have the resistanceCoef set to 20 by default', () => {});
+    it.skip('should have the resistanceCoef set to 20 by default', () => {});
 
-    it('should set the resistanceCoef to 30', () => {});
+    it.skip('should set the resistanceCoef to 30', () => {});
   });
 
   describe('Scrolling per page', () => {
-    it('should have scroll per page set to true by default', () => {});
+    it.skip('should have scroll per page set to true by default', () => {});
 
     // TODO: Reconsider updating this test case name
     it('should go to second slide when we have odd number of slides and recompute carousel width', done => {
@@ -371,27 +371,27 @@ describe('Carousel component', () => {
       });
     });
 
-    it('should advanced the page by only one slide when scroll per page is false', () => {});
+    it.skip('should advanced the page by only one slide when scroll per page is false', () => {});
   });
 
   describe('Space padding', () => {
-    it('should have 0 space padding by default', () => {});
+    it.skip('should have 0 space padding by default', () => {});
 
-    it('should have 0 space padding maximum offset factor by default', () => {});
+    it.skip('should have 0 space padding maximum offset factor by default', () => {});
 
-    it('should have 10 space padding', () => {});
+    it.skip('should have 10 space padding', () => {});
 
-    it('should have 10 space padding maximum offset factor by default', () => {});
+    it.skip('should have 10 space padding maximum offset factor by default', () => {});
   });
 
   describe('Speed', () => {
-    it('should have a speed of 500 by default', () => {});
+    it.skip('should have a speed of 500 by default', () => {});
 
-    it('should have a speed of 600', () => {});
+    it.skip('should have a speed of 600', () => {});
   });
 
   describe('Tag name', () => {
-    it('should only count slides matching the default tagName of slide', () => {});
+    it.skip('should only count slides matching the default tagName of slide', () => {});
 
     it('should only count slides matching tagName', done => {
       const CustomSlide = {
@@ -416,21 +416,21 @@ describe('Carousel component', () => {
   });
 
   describe('v-model with value prop', () => {
-    it('should set currentPage to 1', () => {});
+    it.skip('should set currentPage to 1', () => {});
 
-    it('should not change the current page when selecting the same page', () => {});
+    it.skip('should not change the current page when selecting the same page', () => {});
 
-    it('should not change the current page when value is negative', () => {});
+    it.skip('should not change the current page when value is negative', () => {});
 
-    it('should not change the current page when value is greater than pageCount', () => {});
+    it.skip('should not change the current page when value is greater than pageCount', () => {});
   });
 
   describe('Events', () => {
-    it('should emit a pageChange event with the page number on page change', () => {});
+    it.skip('should emit a pageChange event with the page number on page change', () => {});
 
-    it('should emit a slideClick event with the object?? blah on slide click', () => {});
+    it.skip('should emit a slideClick event with the object?? blah on slide click', () => {});
 
-    it('should emit a transitionEnd event on transition end', () => {});
+    it.skip('should emit a transitionEnd event on transition end', () => {});
   });
 
   it('should decrease current page number by 1 when advance page backward is called', done => {
