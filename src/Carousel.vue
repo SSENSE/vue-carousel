@@ -15,7 +15,7 @@
         ]"
         :style="{
           'transform': `translate(${currentOffset}px, 0)`,
-          'transition': dragging ? 'none' : transitionStyle,
+          'transition': noTransition || dragging ? 'none' : transitionStyle,
           'ms-flex-preferred-size': `${slideWidth}px`,
           'webkit-flex-basis': `${slideWidth}px`,
           'flex-basis': `${slideWidth}px`,
@@ -94,6 +94,7 @@ export default {
       carouselWidth: 0,
       currentPage: 0,
       dragging: false,
+      noTransition: false,
       dragMomentum: 0,
       dragOffset: 0,
       dragStartY: 0,
@@ -148,6 +149,13 @@ export default {
      * Flag to make the carousel loop around when it reaches the end
      */
     loop: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Flag to make the carousel loop without scrolling back
+     */
+    infiniteLoop: {
       type: Boolean,
       default: false
     },
@@ -429,6 +437,13 @@ export default {
         return (this.offset + this.dragOffset) * -1;
       }
     },
+    /**
+     * Infinite scrolling triples the slides array, so pageCount is multiplied as well.
+     * @return {Number} "real" pageCount: original number of slides
+     */
+    realPageCount() {
+      return this.pageCount / 3
+    },
     isHidden() {
       return this.carouselWidth <= 0;
     },
@@ -442,7 +457,7 @@ export default {
         this.slideWidth * (this.slideCount - this.currentPerPage) -
           this.spacePadding * this.spacePaddingMaxOffsetFactor,
         0
-      );
+      )
     },
     /**
      * Calculate the number of pages of slides
@@ -499,6 +514,24 @@ export default {
         return this.currentPage + 1;
       }
       return this.loop ? 0 : this.currentPage;
+    },
+    /**
+     * Infinite loop without scrolling back functionality:
+     * Slides array is concated itself three times. We always want to jump to a Slide in the middle third 
+     * to have enough room to be able to scroll outside this window.
+     * Ensure infinite loop by always jumping to middle "third" of the slides array on transitionend
+     * */
+    handleInfiniteLoop() {
+      //calculate values of pageCount and currentPage, assuming middle third to be the main slides
+      const realCurrentPage = this.currentPage - this.realPageCount
+      if (realCurrentPage > this.realPageCount - 1) { // after last slide
+        console.log("after last real slide")
+        this.jumpToPage(this.currentPage - this.realPageCount)
+      }
+      if (realCurrentPage < 0) { //before first slide
+        console.log("before first slide")
+        this.jumpToPage(this.currentPage + this.realPageCount)
+      }
     },
     /**
      * @return {Number} The index of the previous page
@@ -633,6 +666,17 @@ export default {
       return this.currentHeight;
     },
     /**
+     * Jump to page without transition
+     */
+    jumpToPage(page) {
+      this.noTransition = true
+      this.offset = this.slideWidth * this.currentPerPage * page
+      this.$nextTick(() => {
+        this.noTransition = false
+      })
+      this.currentPage = page
+    },
+    /**
      * Filter slot contents to slide instances and return length
      * @return {Number} The number of slides
      */
@@ -665,7 +709,7 @@ export default {
      * @param  {Number} page The value of the new page number
      */
     goToPage(page) {
-      if (page >= 0 && page <= this.pageCount) {
+      if (page >= -1 && page <= this.pageCount) {
         this.offset = this.scrollPerPage
           ? Math.min(
               this.slideWidth * this.currentPerPage * page,
@@ -850,6 +894,7 @@ export default {
       this.$emit("transitionStart");
     },
     handleTransitionEnd() {
+      if (this.infiniteLoop) this.handleInfiniteLoop();
       this.$emit("transitionEnd");
     }
   },
@@ -883,6 +928,10 @@ export default {
     );
 
     this.$emit("mounted");
+
+    // add infinite loop helper slides
+    this.$slots.default = [...this.$slots.default, ...this.$slots.default, ...this.$slots.default]
+    this.jumpToPage(this.realPageCount)
 
     // when autoplay direction is backward start from the last slide
     if (this.autoplayDirection === "backward") {
