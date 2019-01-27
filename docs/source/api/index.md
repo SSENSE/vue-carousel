@@ -298,3 +298,17 @@ Events emitted from components
 
 * **Type**: `none`
 * **Emitter**: `Carousel`
+
+### navigation-click
+
+Emits when the a navigation button is clicked, with the current direction (`backward` or `forward`)
+
+* **Type**: `String`
+* **Emitter**: `Carousel`
+
+### pagination-click
+
+Emits when a pagination button is clicked, with the current `pageNumber`
+
+* **Type**: `Number`
+* **Emitter**: `Carousel`

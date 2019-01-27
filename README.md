@@ -101,6 +101,8 @@ export default {
 | pageChange                | Number  | Carousel | "pageChange" event emits the value of the current page                                                                                                                                                                                                                                |
 | slideClick                | Object  | Slide    | "slideClick" event throws the *dataset* object of the selected element                                                                                                                                                                                                                |
 | transitionEnd             |         | Carousel | "transitionEnd" event is thrown when the transition end is reached                                                                                                                                                                                                                    |
+| `navigation-click`             |         | Carousel | Emits when the a navigation button is clicked, with the current direction (`backward` or `forward`)                                                                                                                                                                                                                     |
+| `pagination-click`             |         | Carousel | Emits when a pagination button is clicked, with the current `pageNumber`                                                                                                                                                                                                                        |
 
 ### HTML Structure
 
