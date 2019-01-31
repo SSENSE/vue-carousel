@@ -139,18 +139,6 @@ describe('Carousel component', () => {
       });
     });
 
-    // start on first slide and allow the autoplay to advance to the second slide
-    it.skip('should display the second slide after waiting the timeout duration with direction forward', () => {});
-
-    // start on the second slide and allow autoplay to advanced to the first slide
-    it.skip('should display the first slide after waiting the timeout duration with direction backward', () => {});
-
-    it.skip('should not allow the autoplay feature to advance on hover', () => {});
-
-    it.skip('should allow the autoplay feature to advance on hover when hover pause false', () => {});
-
-    it.skip('should show the first slide twice when looping is enabled with autoplay', () => {});
-
     it('should reset autoplay when switching slide without autoplayHoverPause', done => {
       const wrapper = mount(Carousel, {
         propsData: {
@@ -207,13 +195,17 @@ describe('Carousel component', () => {
 
     it.skip('should set easing to the custom easing supplied', () => {});
 
-    // TODO: Should we be testing for valid CSS transition easing like the README suggests?
+    // TODO: Add tests for valid CSS transition easing
   });
 
   describe('Dynamic slide count', () => {
     it.skip('should match the stored snapshot if a new slide is added dynamically', () => {});
 
     it.skip('should match the stored snapshot if a slide is removed dynamically', () => {});
+
+    it.skip('should have the correct tabIndex if a new slide is added dynamically', () => {});
+
+    it.skip('should have the correct tabIndex if a slide is removed dynamically', () => {});
   });
 
   describe('Loop functionality', () => {
@@ -339,7 +331,7 @@ describe('Carousel component', () => {
     it.skip('should only have one page when number of slides is less than slides per page', () => {});
   });
 
-  describe('Resistance co-efficient', () => {
+  describe('Carousel resistance co-efficient pull effect', () => {
     it.skip('should have the resistanceCoef set to 20 by default', () => {});
 
     it.skip('should set the resistanceCoef to 30', () => {});
@@ -428,7 +420,7 @@ describe('Carousel component', () => {
   describe('Events', () => {
     it.skip('should emit a pageChange event with the page number on page change', () => {});
 
-    it.skip('should emit a slideClick event with the object?? blah on slide click', () => {});
+    it.skip('should emit a slideClick event with a dataset object on slide click', () => {});
 
     it.skip('should emit a transitionEnd event on transition end', () => {});
   });
