@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import { mount } from '@vue/test-utils';
+import { mount, shallowMount } from '@vue/test-utils';
 
 const Carousel = require('../../../src/Carousel.vue');
 const Slide = require('../../../src/Slide.vue');
@@ -110,13 +110,29 @@ describe('Carousel component', () => {
   });
 
   describe('Autoplay functionality', () => {
-    it.skip('should disable autoplay by default', () => {});
+    it('should disable autoplay by default', () => {
+      const wrapper = shallowMount(Carousel);
 
-    it.skip('should set the autoplay direction to forward by default', () => {});
+      expect(wrapper.vm.autoplay).toBe(false);
+    });
 
-    it.skip('should set the autoplay hover pause to true by default', () => {});
+    it('should set the autoplay direction to forward by default', () => {
+      const wrapper = shallowMount(Carousel);
 
-    it.skip('should set the autoplay timeout to 2000 by default', () => {});
+      expect(wrapper.vm.autoplayDirection).toBe('forward');
+    });
+
+    it('should set the autoplay hover pause to true by default', () => {
+      const wrapper = shallowMount(Carousel);
+
+      expect(wrapper.vm.autoplayHoverPause).toBe(true);
+    });
+
+    it('should set the autoplay timeout to 2000 by default', () => {
+      const wrapper = shallowMount(Carousel);
+
+      expect(wrapper.vm.autoplayTimeout).toBe(2000);
+    });
 
     it('should begin autoplaying when option specified', done => {
       const wrapper = mount(Carousel, {
