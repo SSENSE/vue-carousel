@@ -365,6 +365,7 @@ export default {
     },
     currentPage(val) {
       this.$emit("pageChange", val);
+      this.$emit("page-change", val);
       this.$emit("input", val);
     },
     autoplay(val) {
@@ -855,9 +856,11 @@ export default {
     },
     handleTransitionStart() {
       this.$emit("transitionStart");
+      this.$emit("transition-start");
     },
     handleTransitionEnd() {
       this.$emit("transitionEnd");
+      this.$emit("transition-end");
     }
   },
   mounted() {
