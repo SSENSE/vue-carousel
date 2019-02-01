@@ -98,9 +98,13 @@ export default {
 ### Events
 | Event                     | Type    | Emitter  | Description                                                                                                                                                                                                                                                                           |
 |:--------------------------|:--------|:---------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| pageChange                | Number  | Carousel | "pageChange" event emits the value of the current page                                                                                                                                                                                                                                |
-| slideClick                | Object  | Slide    | "slideClick" event throws the *dataset* object of the selected element                                                                                                                                                                                                                |
-| transitionEnd             |         | Carousel | "transitionEnd" event is thrown when the transition end is reached                                                                                                                                                                                                                    |
+| `page-change`                 | Number  | Carousel | Emits with the current page number.                                                                                                                                                                                                                       |
+| `slide-click`                | Object  | Slide    | Emits with the *dataset* object of the selected element                        ··                                                                
+| `transition-start` | | Carousel | Emits when the transition end is reached                                                                                                                                                  |
+| `transition-end`             |         | Carousel | Emits when the transition start is reached                                                                                                     ·                                                                                                               |
+
+Lowercase versions of the above events are also emitted, namely—`pagechange`, `slideclick`, `transitionstart` and `transitionend`.
+
 
 ### HTML Structure
 
@@ -117,14 +121,14 @@ Once the **Carousel** and **Slide** components are installed globally or importe
   </carousel>
 ```
 
-To listen for the 'slideClick' event you can do the following:
+To listen for the 'slideclick' event you can do the following:
 
 ``` vue
   <carousel>
     <slide
         data-index="0"
         data-name="MySlideName"
-        @slideClick="handleSlideClick">
+        @slideclick="handleSlideClick">
       Slide 1 Content
     </slide>
     ...
