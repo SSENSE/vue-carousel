@@ -297,9 +297,17 @@ describe('Carousel component', () => {
   });
 
   describe('Carousel pagination', () => {
-    it.skip('should render the pagination component when pagination is enabled', () => {});
+    it('should render the pagination component when pagination is enabled', () => {
+      const wrapper = mount(Carousel);
 
-    it.skip('should not render the pagination component when pagination is disabled', () => {});
+      expect(wrapper.find({ name: 'pagination' }).exists()).toBe(true);
+    });
+
+    it('should not render the pagination component when pagination is disabled', () => {
+      const wrapper = mount(Carousel, { props: { paginationEnabled: false } });
+
+      expect(wrapper.find({ name: 'pagination' }).exists()).toBe(false);
+    });
 
     // TODO: It seems that the pagination component is heavily connected to the carousel, decouple this?
     // If no then we should add tests here in the carousel for it
