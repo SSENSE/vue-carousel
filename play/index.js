@@ -312,15 +312,15 @@ play("Carousel", module)
   .add("NavigateTo slides", {
     template:
       `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
-        <carousel style="width: 500px;" :navigateTo="newSlide" :scrollPerPage=false v-on:pagechange="pageChanged">
+        <carousel style="width: 500px;" :navigateTo="navigateTo" :scrollPerPage=false v-on:pagechange="pageChanged">
           <slide v-for="slide in slides" :key="slide.src">
             <img style="width: 100%;" :src= slide />
           </slide>
         </carousel>
         <div style="float: left; z-index: 1000">
-          <button style="position: absolute; bottom: 20px; right: 250px" v-on:click="gotoSlide(0)">Goto slide 1</button>
-          <button style="position: absolute; bottom: 20px; right: 150px" v-on:click="gotoSlide(1)">Goto slide 2</button>
-          <button style="position: absolute; bottom: 20px; right: 50px" v-on:click="gotoSlide(5)">Goto slide 5</button>
+          <button style="position: absolute; bottom: 20px; right: 350px" v-on:click="gotoSlide(0)">Goto slide 1</button>
+          <button style="position: absolute; bottom: 20px; right: 250px" v-on:click="gotoSlide(1)">Goto slide 2</button>
+          <button style="position: absolute; bottom: 20px; right: 50px" v-on:click="gotoSlide(4, false)">Goto slide 5 without animation</button>
         </div>
       </div>`,
     components: {
@@ -330,11 +330,22 @@ play("Carousel", module)
     data(){
       return {
         newSlide: 0,
+        newSlideAnimation: true,
         slides: images
       }
     },
+    computed: {
+      navigateTo() {
+        if (this.newSlideAnimation)
+          return this.newSlide
+
+        else
+          return [this.newSlide, false]
+      }
+    },
     methods: {
-      gotoSlide(val) {
+      gotoSlide(val, animation) {
+        this.newSlideAnimation = (animation === false ? false : true);
         this.newSlide = val;
       },
       pageChanged(val) {

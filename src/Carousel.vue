@@ -177,7 +177,7 @@ export default {
      * Listen for an external navigation request using this prop.
      */
     navigateTo: {
-      type: Number,
+      type: [Number, Array],
       default: 0
     },
     /**
