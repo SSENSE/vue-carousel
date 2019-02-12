@@ -201,9 +201,47 @@ describe('Carousel component', () => {
   });
 
   describe('Center mode', () => {
-    it.skip('should not center image when image is less than the container width', () => {});
+    it('should not center slides when there are less slides than can be displayed', () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          perPage: 2
+        },
+        slots: {
+          default: [Slide]
+        }
+      });
 
-    it.skip('should center image when image is less than container width and centerMode is true', () => {});
+      expect(wrapper.find('.VueCarousel-inner--center').exists()).toBe(false);
+    });
+
+    it('should center slides when there are less slides than can be displayed and centerMode is true', () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          perPage: 2,
+          centerMode: true
+        },
+        slots: {
+          default: [Slide]
+        }
+      });
+
+      expect(wrapper.find('.VueCarousel-inner--center').exists()).toBe(true);
+    });
+
+    // TODO: Figure out how to properly test this
+    it.skip('should not center images when there are more slides than can be displayed and centerMode is true', () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          perPage: 1,
+          centerMode: true,
+        },
+        slots: {
+          default: [Slide, Slide]
+        }
+      });
+
+      expect(wrapper.find('.VueCarousel-inner--center').exists()).toBe(false);
+    });
   });
 
   describe('Custom easing property', () => {
