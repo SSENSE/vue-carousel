@@ -383,6 +383,7 @@ play("Carousel", module)
       `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
         <carousel style="width: 500px;" :navigateTo="navigateTo" :scrollPerPage=false v-on:pagechange="pageChanged">
         <carousel style="width: 500px;" :navigateTo="newSlide" :scrollPerPage=false v-on:pagechange="pageChanged">
+        <carousel style="width: 500px;" :navigateTo="navigateTo" :scrollPerPage=false v-on:pagechange="pageChanged">
           <slide v-for="slide in slides" :key="slide.src">
             <img style="width: 100%;" :src= slide />
           </slide>
@@ -402,6 +403,15 @@ play("Carousel", module)
         newSlide: 0,
         newSlideAnimation: true,
         slides: images
+      }
+    },
+    computed: {
+      navigateTo() {
+        if (this.newSlideAnimation)
+          return this.newSlide
+
+        else
+          return [this.newSlide, false]
       }
     },
     methods: {
