@@ -201,44 +201,49 @@ describe('Carousel component', () => {
   });
 
   describe('Center mode', () => {
-    it('should not center slides when there are less slides than can be displayed', () => {
+    it('should not center slides when centerMode is not enabled by default', async () => {
       const wrapper = shallowMount(Carousel, {
         propsData: {
           perPage: 2
         },
         slots: {
-          default: [Slide]
+          default: Slide
         }
       });
+
+      await wrapper.vm.$nextTick();
 
       expect(wrapper.find('.VueCarousel-inner--center').exists()).toBe(false);
     });
 
-    it('should center slides when there are less slides than can be displayed and centerMode is true', () => {
+    it('should center slides when there are less slides than can be displayed and centerMode is true', async () => {
       const wrapper = shallowMount(Carousel, {
         propsData: {
           perPage: 2,
           centerMode: true
         },
         slots: {
-          default: [Slide]
+          default: Slide
         }
       });
+
+      await wrapper.vm.$nextTick();
 
       expect(wrapper.find('.VueCarousel-inner--center').exists()).toBe(true);
     });
 
-    // TODO: Figure out how to properly test this
-    it.skip('should not center images when there are more slides than can be displayed and centerMode is true', () => {
+    it('should not center images when there are more slides than can be displayed and centerMode is true', async () => {
       const wrapper = shallowMount(Carousel, {
         propsData: {
           perPage: 1,
-          centerMode: true,
+          centerMode: true
         },
         slots: {
           default: [Slide, Slide]
         }
       });
+
+      await wrapper.vm.$nextTick();
 
       expect(wrapper.find('.VueCarousel-inner--center').exists()).toBe(false);
     });
