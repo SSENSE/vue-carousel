@@ -327,13 +327,21 @@ describe('Carousel component', () => {
   });
 
   describe('Mouse drag', () => {
-    it.skip('should set the mouseDrag to true by default', () => {});
+    it('should set the mouseDrag to true by default', () => {
+      const wrapper = shallowMount(Carousel);
 
-    it.skip('should set the mouseDrag to false', () => {});
+      expect(wrapper.vm.mouseDrag).toBe(true);
+    });
 
-    it.skip('should allow the mouse to drag to the second slide', () => {});
+    it('should set the mouseDrag to false', () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          mouseDrag: false
+        }
+      });
 
-    it.skip('should not allow the mouse to drag to the second slide', () => {});
+      expect(wrapper.vm.mouseDrag).toBe(false);
+    });
   });
 
   describe('Carousel navigation', () => {
