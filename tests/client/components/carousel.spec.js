@@ -267,16 +267,6 @@ describe('Carousel component', () => {
     });
   });
 
-  describe('Dynamic slide count', () => {
-    it.skip('should match the stored snapshot if a new slide is added dynamically', () => {});
-
-    it.skip('should match the stored snapshot if a slide is removed dynamically', () => {});
-
-    it.skip('should have the correct tabIndex if a new slide is added dynamically', () => {});
-
-    it.skip('should have the correct tabIndex if a slide is removed dynamically', () => {});
-  });
-
   describe('Loop functionality', () => {
     it('should loop back to the start when loop is true and advance page non "backward" is called from the last page', done => {
       const wrapper = mount(Carousel, {
