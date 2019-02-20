@@ -345,14 +345,39 @@ describe('Carousel component', () => {
   });
 
   describe('Carousel navigation', () => {
-    it.skip('should render the navigation component when navigation is enabled', () => {});
+    it('should render the navigation component when navigation is enabled and navigation is required', async () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          navigationEnabled: true
+        },
+        slots: {
+          default: [Slide, Slide, Slide]
+        }
+      });
 
-    it.skip('should not render the navigation component when navigation is disabled', () => {});
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.find('navigation-stub').exists()).toBe(true);
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it('should not render the navigation component when navigation is disabled', async () => {
+      const wrapper = shallowMount(Carousel, {
+        slots: {
+          default: [Slide, Slide, Slide]
+        }
+      });
+
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.find('navigation-stub').exists()).toBe(false);
+      expect(wrapper).toMatchSnapshot();
+    });
 
     it.skip('should navigate to slide 2', () => {});
 
     // TODO: Is this desired functionality?
-    it.skip('should navigate to slide to even when navigation is not enabled', () => {});
+    it.skip('should navigate to slide 2 even when navigation is not enabled', () => {});
   });
 
   describe('Carousel pagination', () => {
@@ -363,7 +388,7 @@ describe('Carousel component', () => {
     });
 
     it('should not render the pagination component when pagination is disabled', () => {
-      const wrapper = mount(Carousel, { props: { paginationEnabled: false } });
+      const wrapper = mount(Carousel, { propsData: { paginationEnabled: false } });
 
       expect(wrapper.find({ name: 'pagination' }).exists()).toBe(false);
     });

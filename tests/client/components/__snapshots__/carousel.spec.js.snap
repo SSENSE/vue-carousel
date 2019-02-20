@@ -69,6 +69,34 @@ exports[`Carousel component Autoplay functionality should reset autoplay when sw
 </section>
 `;
 
+exports[`Carousel component Carousel navigation should not render the navigation component when navigation is disabled 1`] = `
+<section class="VueCarousel">
+  <div class="VueCarousel-wrapper">
+    <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;">
+      <div tabindex="-1" role="tabpanel" class="VueCarousel-slide VueCarousel-slide-active"></div>
+      <div tabindex="-1" role="tabpanel" class="VueCarousel-slide VueCarousel-slide-active"></div>
+      <div tabindex="-1" aria-hidden="true" role="tabpanel" class="VueCarousel-slide"></div>
+    </div>
+  </div>
+  <!---->
+  <pagination-stub></pagination-stub>
+</section>
+`;
+
+exports[`Carousel component Carousel navigation should render the navigation component when navigation is enabled and navigation is required 1`] = `
+<section class="VueCarousel">
+  <div class="VueCarousel-wrapper">
+    <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;">
+      <div tabindex="-1" role="tabpanel" class="VueCarousel-slide" aria-hidden="true"></div>
+      <div tabindex="-1" role="tabpanel" class="VueCarousel-slide" aria-hidden="true"></div>
+      <div tabindex="-1" role="tabpanel" class="VueCarousel-slide VueCarousel-slide-active"></div>
+    </div>
+  </div>
+  <navigation-stub clicktargetsize="8" nextlabel="&amp;#9654" prevlabel="&amp;#9664"></navigation-stub>
+  <pagination-stub></pagination-stub>
+</section>
+`;
+
 exports[`Carousel component Carousel slides per page should apply custom slides per page when responsive param provided 1`] = `
 <section class="VueCarousel">
   <div class="VueCarousel-wrapper">
