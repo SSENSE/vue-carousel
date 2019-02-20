@@ -142,6 +142,13 @@ export default {
      */
     easing: {
       type: String,
+      validator: function(value) {
+        return (
+          ["ease", "linear", "ease-in", "ease-out", "ease-in-out"].indexOf(
+            value
+          ) !== -1 || value.includes("cubic-bezier")
+        );
+      },
       default: "ease"
     },
     /**

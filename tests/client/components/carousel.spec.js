@@ -250,11 +250,21 @@ describe('Carousel component', () => {
   });
 
   describe('Custom easing property', () => {
-    it.skip('should set easing to ease by default', () => {});
+    it('should set easing to ease by default', () => {
+      const wrapper = shallowMount(Carousel);
 
-    it.skip('should set easing to the custom easing supplied', () => {});
+      expect(wrapper.vm.transitionStyle).toMatch(/ease/);
+    });
 
-    // TODO: Add tests for valid CSS transition easing
+    it('should set easing to the custom value supplied', () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          easing: 'linear'
+        }
+      });
+
+      expect(wrapper.vm.transitionStyle).toMatch(/linear/);
+    });
   });
 
   describe('Dynamic slide count', () => {
