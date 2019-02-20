@@ -309,13 +309,21 @@ describe('Carousel component', () => {
   });
 
   describe('Minimum swipe distance', () => {
-    it.skip('should set minSwipeDistance to 8 by default', () => {});
+    it('should set minSwipeDistance to 8 by default', () => {
+      const wrapper = shallowMount(Carousel);
 
-    it.skip('should set minSwipeDistance to the custom value of 10', () => {});
+      expect(wrapper.vm.minSwipeDistance).toBe(8);
+    });
 
-    it.skip('should swipe to the second slide when the minSwipeDistance is reached', () => {});
+    it('should set minSwipeDistance to the custom value of 10', () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          minSwipeDistance: 10
+        }
+      });
 
-    it.skip('should not swipe to the second slide when the minSwipeDistance is not reached', () => {});
+      expect(wrapper.vm.minSwipeDistance).toBe(10);
+    });
   });
 
   describe('Mouse drag', () => {
