@@ -114,7 +114,7 @@ Resistance coefficient to dragging on the edge of the carousel. This dictates th
 Scroll per page, not per item.
 
 * **Type**: `Boolean`
-* **Default**: `false`
+* **Default**: `true`
 
 ### size
 
