@@ -322,6 +322,13 @@ export default {
      */
     value: {
       type: Number
+    },
+    /**
+     * Support Max pagination dot amount
+     */
+    maxPaginationDotCount: {
+      type: Number,
+      default: -1
     }
   },
   watch: {

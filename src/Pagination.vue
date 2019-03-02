@@ -4,7 +4,7 @@
     class="VueCarousel-pagination"
     v-bind:class="{ [`VueCarousel-pagination--${paginationPositionModifierName}`]: paginationPositionModifierName }"
   >
-    <div class="VueCarousel-dot-container" role="tablist" :style="`margin-top: ${carousel.paginationPadding * 2}px;`">
+    <div class="VueCarousel-dot-container" role="tablist" :style="dotContainerStyle">
       <button
         v-for="(page, index) in paginationCount"
         :key="`${page}_${index}`"
@@ -17,13 +17,7 @@
         :aria-selected="isCurrentDot(index) ? 'true' : 'false'"
         v-bind:class="{ 'VueCarousel-dot--active': isCurrentDot(index) }"
         v-on:click="goToPage(index)"
-        :style="`
-          margin-${paginationPropertyBasedOnPosition}: ${carousel.paginationPadding * 2}px;
-          padding: ${carousel.paginationPadding}px;
-          width: ${carousel.paginationSize}px;
-          height: ${carousel.paginationSize}px;
-          background-color: ${isCurrentDot(index) ? carousel.paginationActiveColor : carousel.paginationColor};
-        `"
+        :style="dotStyle(index)"
       ></button>
     </div>
   </div>
@@ -51,6 +45,24 @@ export default {
         : this.carousel.slideCount && this.carousel.currentPerPage
           ? this.carousel.slideCount - this.carousel.currentPerPage + 1
           : 0;
+    },
+    dotContainerStyle() {
+      const { carousel } = this;
+      if (carousel.maxPaginationDotCount === -1)
+        return {
+          "margin-top": `${carousel.paginationPadding * 2}px`
+        };
+      const doublePadding = carousel.paginationPadding * 2;
+      const containerWidth =
+        carousel.maxPaginationDotCount *
+        (carousel.paginationSize + doublePadding);
+      return {
+        "margin-top": `${carousel.paginationPadding * 2}px`,
+        overflow: "hidden",
+        width: `${containerWidth}px`,
+        margin: "0 auto",
+        "white-space": "nowrap"
+      };
     }
   },
   methods: {
@@ -85,6 +97,50 @@ export default {
       return this.carousel.$children[index].title
         ? this.carousel.$children[index].title
         : `Item ${index}`;
+    },
+    /**
+     * Control dots appear and disappear
+     * @param {number} index - dot index
+     * @return {Object} - dot(buttn) style
+     */
+    dotStyle(index) {
+      const { carousel } = this;
+      const basicBtnStyle = {};
+      basicBtnStyle[
+        `margin-${this.paginationPropertyBasedOnPosition}`
+      ] = `${carousel.paginationPadding * 2}px`;
+
+      Object.assign(basicBtnStyle, {
+        padding: `${carousel.paginationPadding}px`,
+        width: `${carousel.paginationSize}px`,
+        height: `${carousel.paginationSize}px`,
+        "background-color": `${
+          this.isCurrentDot(index)
+            ? carousel.paginationActiveColor
+            : carousel.paginationColor
+        }`
+      });
+
+      if (carousel.maxPaginationDotCount === -1) return basicBtnStyle;
+
+      const eachDotsWidth =
+        carousel.paginationSize + carousel.paginationPadding * 2;
+      const maxReverse = carousel.pageCount - carousel.maxPaginationDotCount;
+      const translateAmount =
+        carousel.currentPage > maxReverse
+          ? maxReverse
+          : carousel.currentPage <= carousel.maxPaginationDotCount / 2
+            ? 0
+            : carousel.currentPage -
+              Math.ceil(carousel.maxPaginationDotCount / 2) +
+              1;
+      const transformWidth = 0 - eachDotsWidth * translateAmount;
+      return Object.assign(basicBtnStyle, {
+        "-webkit-transform": `translate3d(${transformWidth}px,0,0)`,
+        transform: `translate3d(${transformWidth}px,0,0)`,
+        "-webkit-transition": `-webkit-transform ${carousel.speed / 1000}s`,
+        transition: `transform ${carousel.speed / 1000}s`
+      });
     }
   }
 };
