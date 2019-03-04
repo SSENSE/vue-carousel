@@ -577,6 +577,7 @@ export default {
     },
     handleNavigation(direction) {
       this.advancePage(direction);
+      this.pauseAutoplay();
     },
     /**
      * Stop listening to mutation changes
@@ -664,7 +665,7 @@ export default {
      * This function will only apply the change if the value is within the carousel bounds
      * @param  {Number} page The value of the new page number
      */
-    goToPage(page) {
+    goToPage(page, eventType) {
       if (page >= 0 && page <= this.pageCount) {
         this.offset = this.scrollPerPage
           ? Math.min(
@@ -680,6 +681,10 @@ export default {
 
         // update the current page
         this.currentPage = page;
+
+        if (eventType === "pagination") {
+          this.pauseAutoplay();
+        }
       }
     },
     /**
@@ -716,6 +721,7 @@ export default {
       if (this.autoplay && !this.autoplayHoverPause) {
         this.restartAutoplay();
       }
+      this.pauseAutoplay();
 
       // compute the momemtum speed
       const eventPosX = this.isTouch ? e.changedTouches[0].clientX : e.clientX;
