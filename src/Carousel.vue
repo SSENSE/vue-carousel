@@ -322,6 +322,13 @@ export default {
      */
     value: {
       type: Number
+    },
+    /**
+     * Support right to left
+     */
+    rtl: {
+      type: Boolean,
+      default: false
     }
   },
   watch: {
@@ -425,6 +432,8 @@ export default {
     currentOffset() {
       if (this.isCenterModeEnabled) {
         return 0;
+      } else if (this.rtl) {
+        return (this.offset - this.dragOffset) * 1;
       } else {
         return (this.offset + this.dragOffset) * -1;
       }
@@ -733,7 +742,11 @@ export default {
         this.dragOffset = this.dragOffset + Math.sign(deltaX) * (width / 2);
       }
 
-      this.offset += this.dragOffset;
+      if (this.rtl) {
+        this.offset -= this.dragOffset;
+      } else {
+        this.offset += this.dragOffset;
+      }
       this.dragOffset = 0;
       this.dragging = false;
 
@@ -771,10 +784,19 @@ export default {
 
       this.dragOffset = newOffsetX;
       const nextOffset = this.offset + this.dragOffset;
-      if (nextOffset < 0) {
-        this.dragOffset = -Math.sqrt(-this.resistanceCoef * this.dragOffset);
-      } else if (nextOffset > this.maxOffset) {
-        this.dragOffset = Math.sqrt(this.resistanceCoef * this.dragOffset);
+
+      if (this.rtl) {
+        if (this.offset == 0 && this.dragOffset > 0) {
+          this.dragOffset = Math.sqrt(this.resistanceCoef * this.dragOffset);
+        } else if (this.offset == this.maxOffset && this.dragOffset < 0) {
+          this.dragOffset = -Math.sqrt(-this.resistanceCoef * this.dragOffset);
+        }
+      } else {
+        if (nextOffset < 0) {
+          this.dragOffset = -Math.sqrt(-this.resistanceCoef * this.dragOffset);
+        } else if (nextOffset > this.maxOffset) {
+          this.dragOffset = Math.sqrt(this.resistanceCoef * this.dragOffset);
+        }
       }
     },
     onResize() {
@@ -790,11 +812,14 @@ export default {
     },
     render() {
       // add extra slides depending on the momemtum speed
-      this.offset +=
-        Math.max(
-          -this.currentPerPage + 1,
-          Math.min(Math.round(this.dragMomentum), this.currentPerPage - 1)
-        ) * this.slideWidth;
+      if (this.rtl) {
+      } else {
+        this.offset +=
+          Math.max(
+            -this.currentPerPage + 1,
+            Math.min(Math.round(this.dragMomentum), this.currentPerPage - 1)
+          ) * this.slideWidth;
+      }
 
       // & snap the new offset on a slide or page if scrollPerPage
       const width = this.scrollPerPage
