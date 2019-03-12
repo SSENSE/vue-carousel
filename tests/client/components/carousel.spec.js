@@ -421,8 +421,21 @@ describe('Carousel component', () => {
       expect(wrapper.find({ name: 'pagination' }).exists()).toBe(false);
     });
 
-    // TODO: It seems that the pagination component is heavily connected to the carousel, decouple this?
-    // If no then we should add tests here in the carousel for it
+    it('should move the carousel to page 1', async () => {
+      const wrapper = shallowMount(Carousel, {
+        slots: {
+          default: [Slide, Slide, Slide]
+        }
+      });
+      wrapper.vm.carouselWidth = 1; // Set a width otherwise internal calculations will not make sense
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.vm.currentPage).toBe(0);
+
+      wrapper.find('pagination-stub').vm.$emit('paginationclick', 1);
+
+      expect(wrapper.vm.currentPage).toBe(1);
+    });
   });
 
   describe('Carousel slides per page', () => {
