@@ -583,23 +583,71 @@ describe('Carousel component', () => {
   });
 
   describe('Space padding', () => {
-    it.skip('should have 0 space padding by default', () => {});
+    it('should have 0 space padding by default', () => {
+      const wrapper = shallowMount(Carousel);
 
-    it.skip('should have 0 space padding maximum offset factor by default', () => {});
+      expect(wrapper.vm.spacePadding).toBe(0);
+    });
 
-    it.skip('should have 10 space padding', () => {});
+    it('should have 0 space padding maximum offset factor by default', () => {
+      const wrapper = shallowMount(Carousel);
 
-    it.skip('should have 10 space padding maximum offset factor by default', () => {});
+      expect(wrapper.vm.spacePaddingMaxOffsetFactor).toBe(0);
+    });
+
+    it('should have 10 space padding', () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          spacePadding: 10
+        }
+      });
+
+      expect(wrapper.vm.spacePadding).toBe(10);
+    });
+
+    it('should have 10 space padding maximum offset factor by default', () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          spacePaddingMaxOffsetFactor: 10
+        }
+      });
+
+      expect(wrapper.vm.spacePaddingMaxOffsetFactor).toBe(10);
+    });
   });
 
   describe('Speed', () => {
-    it.skip('should have a speed of 500 by default', () => {});
+    it('should have a speed of 500 by default', () => {
+      const wrapper = shallowMount(Carousel);
 
-    it.skip('should have a speed of 600', () => {});
+      expect(wrapper.vm.speed).toBe(500);
+    });
+
+    it('should have a speed of 600', () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          speed: 600
+        }
+      });
+
+      expect(wrapper.vm.speed).toBe(600);
+    });
   });
 
   describe('Tag name', () => {
-    it.skip('should only count slides matching the default tagName of slide', () => {});
+    it('should only count slides matching the default tagName of slide', async () => {
+      const CustomSlide = {
+        extends: Slide,
+        name: 'CustomSlide',
+      };
+      const wrapper = mount(Carousel, {
+        slots: {
+          default: [CustomSlide, CustomSlide, Slide]
+        }
+      });
+      expect(wrapper.vm.tagName).toBe('slide');
+      expect(wrapper.vm.slideCount).toBe(1);
+    });
 
     it('should only count slides matching tagName', done => {
       const CustomSlide = {
@@ -634,11 +682,27 @@ describe('Carousel component', () => {
   });
 
   describe('Events', () => {
-    it.skip('should emit a pageChange event with the page number on page change', () => {});
+    it('should emit a pageChange event with the page number on page change', async () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          navigateTo: 2
+        },
+        slots: {
+          default: [Slide, Slide, Slide]
+        }
+      });
+      await wrapper.vm.$nextTick();
 
-    it.skip('should emit a slideClick event with a dataset object on slide click', () => {});
+      expect(wrapper.emitted().pageChange[0][0]).toBe(2);
+    });
 
-    it.skip('should emit a transitionEnd event on transition end', () => {});
+    it('should emit a transitionEnd event on transition end', async () => {
+      const wrapper = mount(Carousel);
+
+      wrapper.vm.handleTransitionEnd();
+
+      expect(wrapper.emitted().transitionEnd).toEqual([[]]);
+    });
   });
 
   it('should decrease current page number by 1 when advance page backward is called', done => {
