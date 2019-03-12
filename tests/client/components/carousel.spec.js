@@ -374,10 +374,38 @@ describe('Carousel component', () => {
       expect(wrapper).toMatchSnapshot();
     });
 
-    it.skip('should navigate to slide 2', () => {});
+    it('should navigate to slide 1', async () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          navigationEnabled: true
+        },
+        slots: {
+          default: [Slide, Slide, Slide]
+        }
+      });
+      wrapper.vm.carouselWidth = 1; // Set a width otherwise internal calculations will not make sense
+      await wrapper.vm.$nextTick();
 
-    // TODO: Is this desired functionality?
-    it.skip('should navigate to slide 2 even when navigation is not enabled', () => {});
+      expect(wrapper.vm.currentPage).toBe(0);
+
+      wrapper.find('navigation-stub').vm.$emit('navigationclick');
+
+      expect(wrapper.vm.currentPage).toBe(1);
+    });
+
+    it('should navigate to slide 2 even when navigation is not enabled', async () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          navigateTo: 2
+        },
+        slots: {
+          default: [Slide, Slide, Slide]
+        }
+      });
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.vm.currentPage).toBe(2);
+    });
   });
 
   describe('Carousel pagination', () => {
