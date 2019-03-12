@@ -471,13 +471,44 @@ describe('Carousel component', () => {
       });
     });
 
-    it.skip('should have 2 slides on the current page by default', () => {});
+    it('should have 2 slides on the current page by default', () => {
+      const wrapper = shallowMount(Carousel);
 
-    it.skip('should have 3 slides on the current page when perPage is set to 3', () => {});
+      expect(wrapper.vm.perPage).toBe(2);
+    });
 
-    it.skip('should have 3 slides when perPage is set to 6', () => {});
+    it('should have 3 slides on the current page when perPage is set to 3', () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          perPage: 3
+        }
+      });
 
-    it.skip('should only have one page when number of slides is less than slides per page', () => {});
+      expect(wrapper.vm.perPage).toBe(3);
+    });
+
+    it('should have 3 pages when number of slides is 6', () => {
+      const wrapper = shallowMount(Carousel, {
+        slots: {
+          default: [Slide, Slide, Slide, Slide, Slide, Slide]
+        }
+      });
+
+      expect(wrapper.vm.pageCount).toBe(3);
+    });
+
+    it('should only have one page when number of slides is less than slides per page', () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          perPage: 3
+        },
+        slots: {
+          default: [Slide, Slide, Slide]
+        }
+      });
+
+      expect(wrapper.vm.pageCount).toBe(1);
+    });
   });
 
   describe('Carousel resistance co-efficient pull effect', () => {
