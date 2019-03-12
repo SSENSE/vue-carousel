@@ -672,13 +672,93 @@ describe('Carousel component', () => {
   });
 
   describe('v-model with value prop', () => {
-    it.skip('should set currentPage to 1', () => {});
+    it('should set currentPage to 1', async () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          value: 0
+        },
+        slots: {
+          default: [Slide, Slide, Slide]
+        }
+      });
+      wrapper.vm.carouselWidth = 1; // Set a width otherwise internal calculations will not make sense
+      await wrapper.vm.$nextTick();
 
-    it.skip('should not change the current page when selecting the same page', () => {});
+      expect(wrapper.emitted().input).toBeUndefined();
+      expect(wrapper.vm.currentPage).toBe(0);
 
-    it.skip('should not change the current page when value is negative', () => {});
+      wrapper.setProps({ value: 1 });
+      await wrapper.vm.$nextTick();
 
-    it.skip('should not change the current page when value is greater than pageCount', () => {});
+      expect(wrapper.emitted().input[0][0]).toBe(1);
+      expect(wrapper.vm.currentPage).toBe(1);
+    });
+
+    it('should not change the current page when selecting the same page', async () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          value: 0
+        },
+        slots: {
+          default: [Slide, Slide, Slide]
+        }
+      });
+      wrapper.vm.carouselWidth = 1; // Set a width otherwise internal calculations will not make sense
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.emitted().input).toBeUndefined();
+      expect(wrapper.vm.currentPage).toBe(0);
+
+      wrapper.setProps({ value: 0 });
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.emitted().input).toBeUndefined();
+      expect(wrapper.vm.currentPage).toBe(0);
+    });
+
+    it('should not change the current page when value is negative', async () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          value: 0
+        },
+        slots: {
+          default: [Slide, Slide, Slide]
+        }
+      });
+      wrapper.vm.carouselWidth = 1; // Set a width otherwise internal calculations will not make sense
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.emitted().input).toBeUndefined();
+      expect(wrapper.vm.currentPage).toBe(0);
+
+      wrapper.setProps({ value: -1 });
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.emitted().input).toBeUndefined();
+      expect(wrapper.vm.currentPage).toBe(0);
+    });
+
+    it('should not change the current page when value is greater than pageCount', async () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          value: 0
+        },
+        slots: {
+          default: [Slide, Slide, Slide]
+        }
+      });
+      wrapper.vm.carouselWidth = 1; // Set a width otherwise internal calculations will not make sense
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.emitted().input).toBeUndefined();
+      expect(wrapper.vm.currentPage).toBe(0);
+
+      wrapper.setProps({ value: 100 });
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.emitted().input).toBeUndefined();
+      expect(wrapper.vm.currentPage).toBe(0);
+    });
   });
 
   describe('Events', () => {
@@ -697,11 +777,11 @@ describe('Carousel component', () => {
     });
 
     it('should emit a transitionEnd event on transition end', async () => {
-      const wrapper = mount(Carousel);
+      const wrapper = shallowMount(Carousel);
 
       wrapper.vm.handleTransitionEnd();
 
-      expect(wrapper.emitted().transitionEnd).toEqual([[]]);
+      expect(wrapper.emitted().transitionEnd).toBeDefined();
     });
   });
 
