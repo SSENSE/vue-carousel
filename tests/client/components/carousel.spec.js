@@ -512,15 +512,33 @@ describe('Carousel component', () => {
   });
 
   describe('Carousel resistance co-efficient pull effect', () => {
-    it.skip('should have the resistanceCoef set to 20 by default', () => {});
+    it('should have the resistanceCoef set to 20 by default', () => {
+      const wrapper = shallowMount(Carousel);
 
-    it.skip('should set the resistanceCoef to 30', () => {});
+      expect(wrapper.vm.resistanceCoef).toBe(20);
+    });
+
+    it('should set the resistanceCoef to 30', () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          resistanceCoef: 30
+        },
+        slots: {
+          default: [Slide, Slide, Slide]
+        }
+      });
+
+      expect(wrapper.vm.resistanceCoef).toBe(30);
+    });
   });
 
   describe('Scrolling per page', () => {
-    it.skip('should have scroll per page set to true by default', () => {});
+    it('should have scroll per page set to true by default', () => {
+      const wrapper = shallowMount(Carousel);
 
-    // TODO: Reconsider updating this test case name
+      expect(wrapper.vm.scrollPerPage).toBe(true);
+    });
+
     it('should go to second slide when we have odd number of slides and recompute carousel width', done => {
       const wrapper = mount(Carousel, {
         propsData: {
@@ -543,7 +561,25 @@ describe('Carousel component', () => {
       });
     });
 
-    it.skip('should advanced the page by only one slide when scroll per page is false', () => {});
+    it('should advanced the page by only one slide (half the carousel width) when scroll per page is false', async () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          scrollPerPage: false,
+          navigationEnabled: true
+        },
+        slots: {
+          default: [Slide, Slide, Slide]
+        }
+      });
+      wrapper.vm.carouselWidth = 1; // Set a width otherwise internal calculations will not make sense
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.vm.offset).toBe(0);
+
+      wrapper.find('navigation-stub').vm.$emit('navigationclick');
+
+      expect(wrapper.vm.offset).toBe(0.5);
+    });
   });
 
   describe('Space padding', () => {
