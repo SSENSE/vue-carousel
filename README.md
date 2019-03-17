@@ -99,7 +99,7 @@ export default {
 | Event                     | Type    | Emitter  | Description                                                                                                                                                                                                                                                                           |
 |:--------------------------|:--------|:---------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | pageChange                | Number  | Carousel | "pageChange" event emits the value of the current page                                                                                                                                                                                                                                |
-| slideClick                | Object  | Slide    | "slideClick" event throws the *dataset* object of the selected element                                                                                                                                                                                                                |
+| slideclick                | Object  | Slide    | "slideclick" event throws the *dataset* object of the selected element                                                                                                                                                                                                                |
 | transitionEnd             |         | Carousel | "transitionEnd" event is thrown when the transition end is reached                                                                                                                                                                                                                    |
 | `navigation-click`             |         | Carousel | Emits when the a navigation button is clicked, with the current direction (`backward` or `forward`)                                                                                                                                                                                                                     |
 | `pagination-click`             |         | Carousel | Emits when a pagination button is clicked, with the current `pageNumber`                                                                                                                                                                                                                        |
@@ -119,14 +119,14 @@ Once the **Carousel** and **Slide** components are installed globally or importe
   </carousel>
 ```
 
-To listen for the 'slideClick' event you can do the following:
+To listen for the 'slideclick' event you can do the following:
 
 ``` vue
   <carousel>
     <slide
         data-index="0"
         data-name="MySlideName"
-        @slideClick="handleSlideClick">
+        @slideclick="handleSlideClick">
       Slide 1 Content
     </slide>
     ...
