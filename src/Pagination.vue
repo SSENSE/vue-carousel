@@ -46,11 +46,12 @@ export default {
         : "top";
     },
     paginationCount() {
-      return this.carousel && this.carousel.scrollPerPage
+      let paginationCount = this.carousel && this.carousel.scrollPerPage
         ? this.carousel.pageCount
         : this.carousel.slideCount && this.carousel.currentPerPage
           ? this.carousel.slideCount - this.carousel.currentPerPage + 1
           : 0;
+      return this.carousel.infiniteLoop ? paginationCount / 3 : paginationCount
     }
   },
   methods: {
@@ -64,6 +65,7 @@ export default {
        * @event paginationclick
        * @type {number}
        */
+      if (this.carousel.infiniteLoop) index += this.carousel.realPageCount
       this.$emit("paginationclick", index);
     },
 
@@ -73,7 +75,9 @@ export default {
      * @return {boolean}
      */
     isCurrentDot(index) {
-      return index === this.carousel.currentPage;
+      return this.carousel.infiniteLoop ?
+        index === this.carousel.currentPage % this.carousel.realPageCount :
+        index === this.carousel.currentPage;
     },
 
     /**
