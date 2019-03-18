@@ -836,6 +836,11 @@ export default {
     render() {
       // add extra slides depending on the momemtum speed
       if (this.rtl) {
+        this.offset -=
+          Math.max(
+            -this.currentPerPage + 1,
+            Math.min(Math.round(this.dragMomentum), this.currentPerPage - 1)
+          ) * this.slideWidth;
       } else {
         this.offset +=
           Math.max(
