@@ -82,6 +82,11 @@ export default {
   },
   methods: {
     onTouchEnd(e) {
+      /**
+       * @event slideclick
+       * @event slide-click
+       * @type {Object}
+       */
       const eventPosX =
         this.carousel.isTouch && e.changedTouches && e.changedTouches.length > 0
           ? e.changedTouches[0].clientX
@@ -93,6 +98,7 @@ export default {
         Math.abs(deltaX) < this.carousel.minSwipeDistance
       ) {
         this.$emit("slideclick", Object.assign({}, e.currentTarget.dataset));
+        this.$emit("slide-click", Object.assign({}, e.currentTarget.dataset));
       }
     }
   }
