@@ -307,3 +307,18 @@ Events emitted from components
 * **Emitter**: `Carousel`
 
 > Lowercase versions of the above events are also emitted, namely—`pagechange`, `slideclick`, `transitionstart` and `transitionend`.
+
+
+### navigation-click
+
+Emits when the a navigation button is clicked, with the current direction (`backward` or `forward`)
+
+* **Type**: `String`
+* **Emitter**: `Carousel`
+
+### pagination-click
+
+Emits when a pagination button is clicked, with the current `pageNumber`
+
+* **Type**: `Number`
+* **Emitter**: `Carousel`

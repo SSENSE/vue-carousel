@@ -585,6 +585,7 @@ export default {
     },
     handleNavigation(direction) {
       this.advancePage(direction);
+      this.$emit("navigation-click", direction);
     },
     /**
      * Stop listening to mutation changes
@@ -671,8 +672,9 @@ export default {
      * Set the current page to a specific value
      * This function will only apply the change if the value is within the carousel bounds
      * @param  {Number} page The value of the new page number
+     * @param  {string|undefined} advanceType An optional value describing the type of page advance
      */
-    goToPage(page) {
+    goToPage(page, advanceType) {
       if (page >= 0 && page <= this.pageCount) {
         this.offset = this.scrollPerPage
           ? Math.min(
@@ -688,6 +690,10 @@ export default {
 
         // update the current page
         this.currentPage = page;
+
+        if (advanceType === "pagination") {
+          this.$emit("pagination-click", page);
+        }
       }
     },
     /**
