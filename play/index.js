@@ -431,3 +431,32 @@ play("Carousel", module)
       }
     }
   })
+  .add("With styled navigation buttons", {
+    template:
+      `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+        <carousel style="width: 300px;" 
+                  :adjustableHeight="true" 
+                  :navigationEnabled="true" 
+                  :perPage="1"
+                  :navigationNextLabel="''"
+                  :navigationPrevLabel="''"
+                  :navigationPrevStyle="'prevNavBtnStyle'"
+                  :navigationNextStyle="'nextNavBtnStyle'">
+          <slide v-for="(slide, idx) in slides">
+            <div style="width: 300px;">
+              <img :style="'width: 100%'" :src="slide" />
+            </div>
+          </slide>
+        </carousel>
+      </div>`,
+    components: {
+      Carousel,
+      Slide
+    },
+    data() {
+      return {
+        slides: images
+      }
+    }
+  })
+  

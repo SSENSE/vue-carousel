@@ -6,7 +6,7 @@
       :tabindex="canAdvanceBackward ? 0 : -1"
       class="VueCarousel-navigation-button VueCarousel-navigation-prev"
       v-on:click.prevent="triggerPageAdvance('backward')"
-      v-bind:class="{ 'VueCarousel-navigation--disabled': !canAdvanceBackward }"
+      v-bind:class="{ 'VueCarousel-navigation--disabled': !canAdvanceBackward, [prevNavStyle] : prevNavStyle && !prevLabel}"
       v-bind:style="`padding: ${clickTargetSize}px; margin-right: -${clickTargetSize}px;`"
       v-html="prevLabel"></button>
     <button
@@ -15,7 +15,7 @@
       :tabindex="canAdvanceForward ? 0 : -1"
       class="VueCarousel-navigation-button VueCarousel-navigation-next"
       v-on:click.prevent="triggerPageAdvance()"
-      v-bind:class="{ 'VueCarousel-navigation--disabled': !canAdvanceForward }"
+      v-bind:class="{ 'VueCarousel-navigation--disabled': !canAdvanceForward, [nextNavStyle] : nextNavStyle && !nextLabel }"
       v-bind:style="`padding: ${clickTargetSize}px; margin-left: -${clickTargetSize}px;`"
       v-html="nextLabel"></button>
   </div>
@@ -46,6 +46,22 @@ export default {
     prevLabel: {
       type: String,
       default: "&#9664"
+    },
+    /**
+     * Style class of the navigation prev button
+     * used only of prevLabel is set to empty String
+     */
+    prevNavStyle: {
+      type: String,
+      default: ""
+    },
+    /**
+     * Style class of the navigation next button
+     * used only of nextNavStyle is set to empty String
+     */
+    nextNavStyle: {
+      type: String,
+      default: ""
     }
   },
   computed: {

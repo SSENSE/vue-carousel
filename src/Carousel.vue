@@ -35,6 +35,8 @@
         :clickTargetSize="navigationClickTargetSize"
         :nextLabel="navigationNextLabel"
         :prevLabel="navigationPrevLabel"
+        :nextNavStyle="navigationNextStyle"
+        :prevNavStyle="navigationPrevStyle"
         @navigationclick="handleNavigation"
       />
     </slot>
@@ -215,6 +217,22 @@ export default {
     navigationPrevLabel: {
       type: String,
       default: "&#9664"
+    },
+    /**
+     * Style class of the navigation prev button
+     * used only if navigationPrevLabel is set to empty String
+     */
+    navigationPrevStyle: {
+      type: String,
+      default: ""
+    },
+    /**
+     * Style class of the navigation next button
+     * used only if navigationNextLabel is set to empty String
+     */
+    navigationNextStyle: {
+      type: String,
+      default: ""
     },
     /**
      * The fill color of the active pagination dot
@@ -940,5 +958,36 @@ export default {
 
 .VueCarousel-inner--center {
   justify-content: center;
+}
+
+.prevNavBtnStyle,
+.nextNavBtnStyle {
+  display: inline-block;
+  width: 3em !important;
+  height: 3em !important;
+  padding: 1em !important;
+  box-sizing: border-box !important;
+  border-top: 0.2em solid #42b883 !important;
+  border-right: 0.2em solid #42b883 !important;
+  cursor: pointer !important;
+  margin: 0 1em;
+  transition: transform 75ms linear !important;
+}
+.prevNavBtnStyle[disabled],
+.nextNavBtnStyle[disabled] {
+  opacity: 0.2;
+  border-color: black;
+}
+.prevNavBtnStyle {
+  transform: rotate(-135deg) !important;
+}
+.prevNavBtnStyle:active {
+  transform: rotate(-135deg) scale(0.9) !important;
+}
+.nextNavBtnStyle {
+  transform: rotate(45deg) !important;
+}
+.nextNavBtnStyle:active {
+  transform: rotate(45deg) scale(0.9) !important;
 }
 </style>
