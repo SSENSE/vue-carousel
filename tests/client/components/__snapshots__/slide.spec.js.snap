@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Slide should mount successfully 1`] = `
-<section class="VueCarousel">
+<div class="VueCarousel">
   <div class="VueCarousel-wrapper">
     <div class="VueCarousel-inner" style="transform: translate(0px, 0); visibility: hidden; height: auto;">
       <div tabindex="-1" aria-hidden="true" role="tabpanel" class="VueCarousel-slide"></div>
@@ -11,5 +11,5 @@ exports[`Slide should mount successfully 1`] = `
   <div class="VueCarousel-pagination" style="display: none;">
     <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button></div>
   </div>
-</section>
+</div>
 `;
