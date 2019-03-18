@@ -98,19 +98,14 @@ export default {
 ### Events
 | Event                     | Type    | Emitter  | Description                                                                                                                                                                                                                                                                           |
 |:--------------------------|:--------|:---------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-<<<<<<< HEAD
-| pageChange                | Number  | Carousel | "pageChange" event emits the value of the current page                                                                                                                                                                                                                                |
-| slideclick                | Object  | Slide    | "slideclick" event throws the *dataset* object of the selected element                                                                                                                                                                                                                |
-| transitionEnd             |         | Carousel | "transitionEnd" event is thrown when the transition end is reached                                                                                                                                                                                                                    |
-=======
+| `navigation-click`             |         | Carousel | Emits when the a navigation button is clicked, with the current direction (`backward` or `forward`)                                                                                                                                                                                                                     |
+| `pagination-click`             |         | Carousel | Emits when a pagination button is clicked, with the current `pageNumber`                                                                                                                                                                                                                        |
 | `page-change`                 | Number  | Carousel | Emits with the current page number.                                                                                                                                                                                                                       |
 | `slide-click`                | Object  | Slide    | Emits with the *dataset* object of the selected element                        ··                                                                
 | `transition-start` | | Carousel | Emits when the transition end is reached                                                                                                                                                  |
 | `transition-end`             |         | Carousel | Emits when the transition start is reached                                                                                                     ·                                                                                                               |
 
 Lowercase versions of the above events are also emitted, namely—`pagechange`, `slideclick`, `transitionstart` and `transitionend`.
-
->>>>>>> #310 fix(event): adding kebab-case public events (#361)
 
 ### HTML Structure
 
