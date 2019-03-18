@@ -142,6 +142,13 @@ export default {
      */
     easing: {
       type: String,
+      validator: function(value) {
+        return (
+          ["ease", "linear", "ease-in", "ease-out", "ease-in-out"].indexOf(
+            value
+          ) !== -1 || value.includes("cubic-bezier")
+        );
+      },
       default: "ease"
     },
     /**
@@ -474,13 +481,13 @@ export default {
      * @return {Boolean} Is navigation required?
      */
     isNavigationRequired() {
-      return this.slideCount <= this.currentPerPage ? false : true;
+      return this.slideCount > this.currentPerPage;
     },
     /**
      * @return {Boolean} Center images when have less than min currentPerPage value
      */
     isCenterModeEnabled() {
-      return this.centerMode && !this.isNavigationRequired ? true : false;
+      return this.centerMode && !this.isNavigationRequired;
     },
     transitionStyle() {
       const speed = `${this.speed / 1000}s`;
