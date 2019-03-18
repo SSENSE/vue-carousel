@@ -184,7 +184,7 @@ export default {
      * Listen for an external navigation request using this prop.
      */
     navigateTo: {
-      type: Number,
+      type: [Number, Array],
       default: 0
     },
     /**
@@ -372,6 +372,7 @@ export default {
     },
     currentPage(val) {
       this.$emit("pageChange", val);
+      this.$emit("page-change", val);
       this.$emit("input", val);
     },
     autoplay(val) {
@@ -593,6 +594,8 @@ export default {
     },
     handleNavigation(direction) {
       this.advancePage(direction);
+      this.pauseAutoplay();
+      this.$emit("navigation-click", direction);
     },
     /**
      * Stop listening to mutation changes
@@ -679,8 +682,9 @@ export default {
      * Set the current page to a specific value
      * This function will only apply the change if the value is within the carousel bounds
      * @param  {Number} page The value of the new page number
+     * @param  {string|undefined} advanceType An optional value describing the type of page advance
      */
-    goToPage(page) {
+    goToPage(page, advanceType) {
       if (page >= 0 && page <= this.pageCount) {
         this.offset = this.scrollPerPage
           ? Math.min(
@@ -696,6 +700,11 @@ export default {
 
         // update the current page
         this.currentPage = page;
+
+        if (advanceType === "pagination") {
+          this.pauseAutoplay();
+          this.$emit("pagination-click", page);
+        }
       }
     },
     /**
@@ -705,6 +714,12 @@ export default {
     /* istanbul ignore next */
     onStart(e) {
       // alert("start");
+
+      // detect right click
+      if (e.button == 2) {
+        return;
+      }
+
       document.addEventListener(
         this.isTouch ? "touchend" : "mouseup",
         this.onEnd,
@@ -732,6 +747,7 @@ export default {
       if (this.autoplay && !this.autoplayHoverPause) {
         this.restartAutoplay();
       }
+      this.pauseAutoplay();
 
       // compute the momemtum speed
       const eventPosX = this.isTouch ? e.changedTouches[0].clientX : e.clientX;
@@ -880,9 +896,11 @@ export default {
     },
     handleTransitionStart() {
       this.$emit("transitionStart");
+      this.$emit("transition-start");
     },
     handleTransitionEnd() {
       this.$emit("transitionEnd");
+      this.$emit("transition-end");
     }
   },
   mounted() {
