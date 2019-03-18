@@ -278,26 +278,36 @@ Your components can access the `carousel` provider by adding the following to yo
 
 Events emitted from components
 
-### pageChange
+### page-change
 
-"pageChange" event emits the value of the current page.
+`page-change` event emits the value of the current page.
 
 * **Type**: `Number`
 * **Emitter**: `Carousel`
 
-### slideClick
+### slide-click
 
-"slideClick" event throws the *dataset* object of the selected element.
+`slide-click` event throws the *dataset* object of the selected element.
 
 * **Type**: `Object`
 * **Emitter**: `Slide`
 
-### transitionEnd
+### transition-start
 
-"transitionEnd" event is thrown when the transition end is reached.
+`transition-start` event is thrown when the transition starts.
 
 * **Type**: `none`
 * **Emitter**: `Carousel`
+
+### transition-end
+
+`transition-end` event is thrown when the transition end is reached.
+
+* **Type**: `none`
+* **Emitter**: `Carousel`
+
+> Lowercase versions of the above events are also emitted, namely—`pagechange`, `slideclick`, `transitionstart` and `transitionend`.
+
 
 ### navigation-click
 
