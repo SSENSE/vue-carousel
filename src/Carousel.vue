@@ -603,6 +603,7 @@ export default {
       this.advancePage(direction);
       this.pauseAutoplay();
       this.$emit("navigation-click", direction);
+      this.$emit("navigation-click", direction);
     },
     /**
      * Stop listening to mutation changes
