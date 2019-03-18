@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import { mount } from '@vue/test-utils';
+import { mount, shallowMount } from '@vue/test-utils';
 
 const Carousel = require('../../../src/Carousel.vue');
 const Slide = require('../../../src/Slide.vue');
@@ -110,13 +110,29 @@ describe('Carousel component', () => {
   });
 
   describe('Autoplay functionality', () => {
-    it.skip('should disable autoplay by default', () => {});
+    it('should disable autoplay by default', () => {
+      const wrapper = shallowMount(Carousel);
 
-    it.skip('should set the autoplay direction to forward by default', () => {});
+      expect(wrapper.vm.autoplay).toBe(false);
+    });
 
-    it.skip('should set the autoplay hover pause to true by default', () => {});
+    it('should set the autoplay direction to forward by default', () => {
+      const wrapper = shallowMount(Carousel);
 
-    it.skip('should set the autoplay timeout to 2000 by default', () => {});
+      expect(wrapper.vm.autoplayDirection).toBe('forward');
+    });
+
+    it('should set the autoplay hover pause to true by default', () => {
+      const wrapper = shallowMount(Carousel);
+
+      expect(wrapper.vm.autoplayHoverPause).toBe(true);
+    });
+
+    it('should set the autoplay timeout to 2000 by default', () => {
+      const wrapper = shallowMount(Carousel);
+
+      expect(wrapper.vm.autoplayTimeout).toBe(2000);
+    });
 
     it('should begin autoplaying when option specified', done => {
       const wrapper = mount(Carousel, {
@@ -185,27 +201,70 @@ describe('Carousel component', () => {
   });
 
   describe('Center mode', () => {
-    it.skip('should not center image when image is less than the container width', () => {});
+    it('should not center slides when centerMode is not enabled by default', async () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          perPage: 2
+        },
+        slots: {
+          default: Slide
+        }
+      });
 
-    it.skip('should center image when image is less than container width and centerMode is true', () => {});
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.find('.VueCarousel-inner--center').exists()).toBe(false);
+    });
+
+    it('should center slides when there are less slides than can be displayed and centerMode is true', async () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          perPage: 2,
+          centerMode: true
+        },
+        slots: {
+          default: Slide
+        }
+      });
+
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.find('.VueCarousel-inner--center').exists()).toBe(true);
+    });
+
+    it('should not center images when there are more slides than can be displayed and centerMode is true', async () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          perPage: 1,
+          centerMode: true
+        },
+        slots: {
+          default: [Slide, Slide]
+        }
+      });
+
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.find('.VueCarousel-inner--center').exists()).toBe(false);
+    });
   });
 
   describe('Custom easing property', () => {
-    it.skip('should set easing to ease by default', () => {});
+    it('should set easing to ease by default', () => {
+      const wrapper = shallowMount(Carousel);
 
-    it.skip('should set easing to the custom easing supplied', () => {});
+      expect(wrapper.vm.transitionStyle).toMatch(/ease/);
+    });
 
-    // TODO: Add tests for valid CSS transition easing
-  });
+    it('should set easing to the custom value supplied', () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          easing: 'linear'
+        }
+      });
 
-  describe('Dynamic slide count', () => {
-    it.skip('should match the stored snapshot if a new slide is added dynamically', () => {});
-
-    it.skip('should match the stored snapshot if a slide is removed dynamically', () => {});
-
-    it.skip('should have the correct tabIndex if a new slide is added dynamically', () => {});
-
-    it.skip('should have the correct tabIndex if a slide is removed dynamically', () => {});
+      expect(wrapper.vm.transitionStyle).toMatch(/linear/);
+    });
   });
 
   describe('Loop functionality', () => {
@@ -250,43 +309,133 @@ describe('Carousel component', () => {
   });
 
   describe('Minimum swipe distance', () => {
-    it.skip('should set minSwipeDistance to 8 by default', () => {});
+    it('should set minSwipeDistance to 8 by default', () => {
+      const wrapper = shallowMount(Carousel);
 
-    it.skip('should set minSwipeDistance to the custom value of 10', () => {});
+      expect(wrapper.vm.minSwipeDistance).toBe(8);
+    });
 
-    it.skip('should swipe to the second slide when the minSwipeDistance is reached', () => {});
+    it('should set minSwipeDistance to the custom value of 10', () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          minSwipeDistance: 10
+        }
+      });
 
-    it.skip('should not swipe to the second slide when the minSwipeDistance is not reached', () => {});
+      expect(wrapper.vm.minSwipeDistance).toBe(10);
+    });
   });
 
   describe('Mouse drag', () => {
-    it.skip('should set the mouseDrag to true by default', () => {});
+    it('should set the mouseDrag to true by default', () => {
+      const wrapper = shallowMount(Carousel);
 
-    it.skip('should set the mouseDrag to false', () => {});
+      expect(wrapper.vm.mouseDrag).toBe(true);
+    });
 
-    it.skip('should allow the mouse to drag to the second slide', () => {});
+    it('should set the mouseDrag to false', () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          mouseDrag: false
+        }
+      });
 
-    it.skip('should not allow the mouse to drag to the second slide', () => {});
+      expect(wrapper.vm.mouseDrag).toBe(false);
+    });
   });
 
   describe('Carousel navigation', () => {
-    it.skip('should render the navigation component when navigation is enabled', () => {});
+    it('should render the navigation component when navigation is enabled and navigation is required', async () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          navigationEnabled: true
+        },
+        slots: {
+          default: [Slide, Slide, Slide]
+        }
+      });
 
-    it.skip('should not render the navigation component when navigation is disabled', () => {});
+      await wrapper.vm.$nextTick();
 
-    it.skip('should navigate to slide 2', () => {});
+      expect(wrapper.find('navigation-stub').exists()).toBe(true);
+      expect(wrapper).toMatchSnapshot();
+    });
 
-    // TODO: Is this desired functionality?
-    it.skip('should navigate to slide to even when navigation is not enabled', () => {});
+    it('should not render the navigation component when navigation is disabled', async () => {
+      const wrapper = shallowMount(Carousel, {
+        slots: {
+          default: [Slide, Slide, Slide]
+        }
+      });
+
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.find('navigation-stub').exists()).toBe(false);
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it('should navigate to slide 1', async () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          navigationEnabled: true
+        },
+        slots: {
+          default: [Slide, Slide, Slide]
+        }
+      });
+      wrapper.vm.carouselWidth = 1; // Set a width otherwise internal calculations will not make sense
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.vm.currentPage).toBe(0);
+
+      wrapper.find('navigation-stub').vm.$emit('navigationclick');
+
+      expect(wrapper.vm.currentPage).toBe(1);
+    });
+
+    it('should navigate to slide 2 even when navigation is not enabled', async () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          navigateTo: 2
+        },
+        slots: {
+          default: [Slide, Slide, Slide]
+        }
+      });
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.vm.currentPage).toBe(2);
+    });
   });
 
   describe('Carousel pagination', () => {
-    it.skip('should render the pagination component when pagination is enabled', () => {});
+    it('should render the pagination component when pagination is enabled', () => {
+      const wrapper = mount(Carousel);
 
-    it.skip('should not render the pagination component when pagination is disabled', () => {});
+      expect(wrapper.find({ name: 'pagination' }).exists()).toBe(true);
+    });
 
-    // TODO: It seems that the pagination component is heavily connected to the carousel, decouple this?
-    // If no then we should add tests here in the carousel for it
+    it('should not render the pagination component when pagination is disabled', () => {
+      const wrapper = mount(Carousel, { propsData: { paginationEnabled: false } });
+
+      expect(wrapper.find({ name: 'pagination' }).exists()).toBe(false);
+    });
+
+    it('should move the carousel to page 1', async () => {
+      const wrapper = shallowMount(Carousel, {
+        slots: {
+          default: [Slide, Slide, Slide]
+        }
+      });
+      wrapper.vm.carouselWidth = 1; // Set a width otherwise internal calculations will not make sense
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.vm.currentPage).toBe(0);
+
+      wrapper.find('pagination-stub').vm.$emit('paginationclick', 1);
+
+      expect(wrapper.vm.currentPage).toBe(1);
+    });
   });
 
   describe('Carousel slides per page', () => {
@@ -322,25 +471,74 @@ describe('Carousel component', () => {
       });
     });
 
-    it.skip('should have 2 slides on the current page by default', () => {});
+    it('should have 2 slides on the current page by default', () => {
+      const wrapper = shallowMount(Carousel);
 
-    it.skip('should have 3 slides on the current page when perPage is set to 3', () => {});
+      expect(wrapper.vm.perPage).toBe(2);
+    });
 
-    it.skip('should have 3 slides when perPage is set to 6', () => {});
+    it('should have 3 slides on the current page when perPage is set to 3', () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          perPage: 3
+        }
+      });
 
-    it.skip('should only have one page when number of slides is less than slides per page', () => {});
+      expect(wrapper.vm.perPage).toBe(3);
+    });
+
+    it('should have 3 pages when number of slides is 6', () => {
+      const wrapper = shallowMount(Carousel, {
+        slots: {
+          default: [Slide, Slide, Slide, Slide, Slide, Slide]
+        }
+      });
+
+      expect(wrapper.vm.pageCount).toBe(3);
+    });
+
+    it('should only have one page when number of slides is less than slides per page', () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          perPage: 3
+        },
+        slots: {
+          default: [Slide, Slide, Slide]
+        }
+      });
+
+      expect(wrapper.vm.pageCount).toBe(1);
+    });
   });
 
   describe('Carousel resistance co-efficient pull effect', () => {
-    it.skip('should have the resistanceCoef set to 20 by default', () => {});
+    it('should have the resistanceCoef set to 20 by default', () => {
+      const wrapper = shallowMount(Carousel);
 
-    it.skip('should set the resistanceCoef to 30', () => {});
+      expect(wrapper.vm.resistanceCoef).toBe(20);
+    });
+
+    it('should set the resistanceCoef to 30', () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          resistanceCoef: 30
+        },
+        slots: {
+          default: [Slide, Slide, Slide]
+        }
+      });
+
+      expect(wrapper.vm.resistanceCoef).toBe(30);
+    });
   });
 
   describe('Scrolling per page', () => {
-    it.skip('should have scroll per page set to true by default', () => {});
+    it('should have scroll per page set to true by default', () => {
+      const wrapper = shallowMount(Carousel);
 
-    // TODO: Reconsider updating this test case name
+      expect(wrapper.vm.scrollPerPage).toBe(true);
+    });
+
     it('should go to second slide when we have odd number of slides and recompute carousel width', done => {
       const wrapper = mount(Carousel, {
         propsData: {
@@ -363,27 +561,93 @@ describe('Carousel component', () => {
       });
     });
 
-    it.skip('should advanced the page by only one slide when scroll per page is false', () => {});
+    it('should advanced the page by only one slide (half the carousel width) when scroll per page is false', async () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          scrollPerPage: false,
+          navigationEnabled: true
+        },
+        slots: {
+          default: [Slide, Slide, Slide]
+        }
+      });
+      wrapper.vm.carouselWidth = 1; // Set a width otherwise internal calculations will not make sense
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.vm.offset).toBe(0);
+
+      wrapper.find('navigation-stub').vm.$emit('navigationclick');
+
+      expect(wrapper.vm.offset).toBe(0.5);
+    });
   });
 
   describe('Space padding', () => {
-    it.skip('should have 0 space padding by default', () => {});
+    it('should have 0 space padding by default', () => {
+      const wrapper = shallowMount(Carousel);
 
-    it.skip('should have 0 space padding maximum offset factor by default', () => {});
+      expect(wrapper.vm.spacePadding).toBe(0);
+    });
 
-    it.skip('should have 10 space padding', () => {});
+    it('should have 0 space padding maximum offset factor by default', () => {
+      const wrapper = shallowMount(Carousel);
 
-    it.skip('should have 10 space padding maximum offset factor by default', () => {});
+      expect(wrapper.vm.spacePaddingMaxOffsetFactor).toBe(0);
+    });
+
+    it('should have 10 space padding', () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          spacePadding: 10
+        }
+      });
+
+      expect(wrapper.vm.spacePadding).toBe(10);
+    });
+
+    it('should have 10 space padding maximum offset factor by default', () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          spacePaddingMaxOffsetFactor: 10
+        }
+      });
+
+      expect(wrapper.vm.spacePaddingMaxOffsetFactor).toBe(10);
+    });
   });
 
   describe('Speed', () => {
-    it.skip('should have a speed of 500 by default', () => {});
+    it('should have a speed of 500 by default', () => {
+      const wrapper = shallowMount(Carousel);
 
-    it.skip('should have a speed of 600', () => {});
+      expect(wrapper.vm.speed).toBe(500);
+    });
+
+    it('should have a speed of 600', () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          speed: 600
+        }
+      });
+
+      expect(wrapper.vm.speed).toBe(600);
+    });
   });
 
   describe('Tag name', () => {
-    it.skip('should only count slides matching the default tagName of slide', () => {});
+    it('should only count slides matching the default tagName of slide', async () => {
+      const CustomSlide = {
+        extends: Slide,
+        name: 'CustomSlide',
+      };
+      const wrapper = mount(Carousel, {
+        slots: {
+          default: [CustomSlide, CustomSlide, Slide]
+        }
+      });
+      expect(wrapper.vm.tagName).toBe('slide');
+      expect(wrapper.vm.slideCount).toBe(1);
+    });
 
     it('should only count slides matching tagName', done => {
       const CustomSlide = {
@@ -408,21 +672,117 @@ describe('Carousel component', () => {
   });
 
   describe('v-model with value prop', () => {
-    it.skip('should set currentPage to 1', () => {});
+    it('should set currentPage to 1', async () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          value: 0
+        },
+        slots: {
+          default: [Slide, Slide, Slide]
+        }
+      });
+      wrapper.vm.carouselWidth = 1; // Set a width otherwise internal calculations will not make sense
+      await wrapper.vm.$nextTick();
 
-    it.skip('should not change the current page when selecting the same page', () => {});
+      expect(wrapper.emitted().input).toBeUndefined();
+      expect(wrapper.vm.currentPage).toBe(0);
 
-    it.skip('should not change the current page when value is negative', () => {});
+      wrapper.setProps({ value: 1 });
+      await wrapper.vm.$nextTick();
 
-    it.skip('should not change the current page when value is greater than pageCount', () => {});
+      expect(wrapper.emitted().input[0][0]).toBe(1);
+      expect(wrapper.vm.currentPage).toBe(1);
+    });
+
+    it('should not change the current page when selecting the same page', async () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          value: 0
+        },
+        slots: {
+          default: [Slide, Slide, Slide]
+        }
+      });
+      wrapper.vm.carouselWidth = 1; // Set a width otherwise internal calculations will not make sense
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.emitted().input).toBeUndefined();
+      expect(wrapper.vm.currentPage).toBe(0);
+
+      wrapper.setProps({ value: 0 });
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.emitted().input).toBeUndefined();
+      expect(wrapper.vm.currentPage).toBe(0);
+    });
+
+    it('should not change the current page when value is negative', async () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          value: 0
+        },
+        slots: {
+          default: [Slide, Slide, Slide]
+        }
+      });
+      wrapper.vm.carouselWidth = 1; // Set a width otherwise internal calculations will not make sense
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.emitted().input).toBeUndefined();
+      expect(wrapper.vm.currentPage).toBe(0);
+
+      wrapper.setProps({ value: -1 });
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.emitted().input).toBeUndefined();
+      expect(wrapper.vm.currentPage).toBe(0);
+    });
+
+    it('should not change the current page when value is greater than pageCount', async () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          value: 0
+        },
+        slots: {
+          default: [Slide, Slide, Slide]
+        }
+      });
+      wrapper.vm.carouselWidth = 1; // Set a width otherwise internal calculations will not make sense
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.emitted().input).toBeUndefined();
+      expect(wrapper.vm.currentPage).toBe(0);
+
+      wrapper.setProps({ value: 100 });
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.emitted().input).toBeUndefined();
+      expect(wrapper.vm.currentPage).toBe(0);
+    });
   });
 
   describe('Events', () => {
-    it.skip('should emit a pageChange event with the page number on page change', () => {});
+    it('should emit a pageChange event with the page number on page change', async () => {
+      const wrapper = shallowMount(Carousel, {
+        propsData: {
+          navigateTo: 2
+        },
+        slots: {
+          default: [Slide, Slide, Slide]
+        }
+      });
+      await wrapper.vm.$nextTick();
 
-    it.skip('should emit a slideClick event with a dataset object on slide click', () => {});
+      expect(wrapper.emitted().pageChange[0][0]).toBe(2);
+    });
 
-    it.skip('should emit a transitionEnd event on transition end', () => {});
+    it('should emit a transitionEnd event on transition end', async () => {
+      const wrapper = shallowMount(Carousel);
+
+      wrapper.vm.handleTransitionEnd();
+
+      expect(wrapper.emitted().transitionEnd).toBeDefined();
+    });
   });
 
   it('should decrease current page number by 1 when advance page backward is called', done => {
