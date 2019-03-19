@@ -1,74 +1,102 @@
-import { mount } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 
-const Carousel = require('../../../src/Carousel.vue');
-const Slide = require('../../../src/Slide.vue');
+const Navigation = require('../../../src/Navigation');
 
 describe('Navigation', () => {
-  let wrapper;
-  let vm;
-  let $navigation;
+  let carousel;
 
   beforeEach(() => {
-    wrapper = mount(Carousel, {
-      propsData: {
-        navigationEnabled: true,
-        perPage: 1
-      },
-      slots: {
-        default: [Slide, Slide]
-      }
-    });
-    vm = wrapper.vm;
-    $navigation = wrapper.find('.navigation');
+    carousel = {
+      canAdvanceForward: true,
+      canAdvanceBackward: true
+    };
   });
 
-  it('should mount successfully', done => {
-    expect($navigation).toBeDefined();
+  it('should match the stored snapshot', () => {
+    const wrapper = shallowMount(Navigation, {
+      provide: { carousel },
+    });
 
-    vm.$nextTick(() => {
-      expect(wrapper).toMatchSnapshot();
-      done();
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render a next button', () => {
+    const wrapper = shallowMount(Navigation, {
+      provide: { carousel },
+    });
+
+    expect(wrapper.find('.VueCarousel-navigation-next').exists()).toBeTruthy();
+  });
+
+  it('should render a prev button', () => {
+    const wrapper = shallowMount(Navigation, {
+      provide: { carousel },
+    });
+
+    expect(wrapper.find('.VueCarousel-navigation-prev').exists()).toBeTruthy();
+  });
+
+  describe('navigationclick events', () => {
+    it('should emit page advance when next is clicked', () => {
+      const wrapper = shallowMount(Navigation, {
+        provide: { carousel },
+      });
+
+      wrapper.find('.VueCarousel-navigation-next').trigger('click');
+
+      expect(wrapper.emitted().navigationclick[0][0]).toBeUndefined()
+    });
+
+    it('should emit page advance backward when prev is clicked', () => {
+      const wrapper = shallowMount(Navigation, {
+        provide: { carousel },
+      });
+
+      wrapper.find('.VueCarousel-navigation-prev').trigger('click');
+
+      expect(wrapper.emitted().navigationclick[0][0]).toBe('backward')
     });
   });
 
-  it('should render a next button', done => {
-    expect(wrapper.find('.VueCarousel-navigation-next')).toBeDefined();
+  describe('canAdvanceForward', () => {
+    it('should be able to advance forwards', () => {
+      const wrapper = shallowMount(Navigation, {
+        provide: { carousel },
+      });
 
-    vm.$nextTick(() => {
+      expect(wrapper.vm.canAdvanceForward).toBeTruthy()
+    });
+
+    it('should not be able to advance forwards', () => {
+      carousel.canAdvanceForward = false;
+
+      const wrapper = shallowMount(Navigation, {
+        provide: { carousel },
+      });
+
+      expect(wrapper.vm.canAdvanceForward).toBeFalsy();
       expect(wrapper).toMatchSnapshot();
-      done();
     });
   });
 
-  it('should render a prev button', done => {
-    expect(wrapper.find('.VueCarousel-navigation-prev')).toBeDefined();
+  describe('canAdvanceBackward', () => {
+    it('should be able to advanced backwards', () => {
+      const wrapper = shallowMount(Navigation, {
+        provide: { carousel },
+      });
 
-    vm.$nextTick(() => {
-      expect(wrapper).toMatchSnapshot();
-      done();
+      expect(wrapper.vm.canAdvanceBackward).toBeTruthy()
     });
-  });
 
-  it('should trigger page advance when next is clicked', done => {
-    vm.$nextTick(() => {
-      expect(vm.currentPage).toBe(1);
+    it('should not be able to advanced backwards', () => {
+      carousel.canAdvanceBackward = false;
 
+      const wrapper = shallowMount(Navigation, {
+        provide: { carousel },
+      });
+
+      expect(wrapper.vm.canAdvanceBackward).toBeFalsy();
       expect(wrapper).toMatchSnapshot();
-
-      done();
-    });
-  });
-
-  it('should trigger page advance backward when prev is clicked', done => {
-    vm.goToPage(2);
-    wrapper.find('.VueCarousel-navigation-prev').trigger('click');
-
-    vm.$nextTick(() => {
-      expect(vm.currentPage).toBe(1);
-
-      expect(wrapper).toMatchSnapshot();
-
-      done();
     });
   });
 });
