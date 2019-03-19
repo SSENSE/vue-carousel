@@ -1,8 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 exports[`Slide should match the stored snapshot 1`] = `<div tabindex="-1" aria-hidden="true" role="tabpanel" class="VueCarousel-slide VueCarousel-slide-adjustableHeight"></div>`;
 =======
+=======
+>>>>>>> chore: fix/implement slide tests
 exports[`Slide should mount successfully 1`] = `
 <div class="VueCarousel">
   <div class="VueCarousel-wrapper">
@@ -16,4 +19,10 @@ exports[`Slide should mount successfully 1`] = `
   </div>
 </div>
 `;
+<<<<<<< HEAD
 >>>>>>>  Fixes #388 - Updated snapshots (#398)
+=======
+=======
+exports[`Slide should match the stored snapshot 1`] = `<div tabindex="-1" aria-hidden="true" role="tabpanel" class="VueCarousel-slide VueCarousel-slide-adjustableHeight"></div>`;
+>>>>>>> chore: fix/implement slide tests
+>>>>>>> chore: fix/implement slide tests
