@@ -681,6 +681,7 @@ export default {
     /**
      * Set the current page to a specific value
      * This function will only apply the change if the value is within the carousel bounds
+     * for carousel scrolling per page.
      * @param  {Number} page The value of the new page number
      * @param  {string|undefined} advanceType An optional value describing the type of page advance
      */
@@ -691,7 +692,7 @@ export default {
               this.slideWidth * this.currentPerPage * page,
               this.maxOffset
             )
-          : Math.min(this.slideWidth * page, this.maxOffset);
+          : this.slideWidth * page;
 
         // restart autoplay if specified
         if (this.autoplay && !this.autoplayHoverPause) {
