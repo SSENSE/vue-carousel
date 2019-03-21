@@ -1,5 +1,5 @@
 <template>
-  <section
+  <div
     class="VueCarousel"
     v-bind:class="{ 'VueCarousel--reverse': paginationPosition === 'top' }"
   >
@@ -42,7 +42,7 @@
     <slot name="pagination" v-if="paginationEnabled">
       <pagination @paginationclick="goToPage($event, 'pagination')"/>
     </slot>
-  </section>
+  </div>
 </template>
 <script>
 import autoplay from "./mixins/autoplay";
