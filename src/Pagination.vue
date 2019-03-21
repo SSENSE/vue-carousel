@@ -42,9 +42,7 @@ export default {
     paginationCount() {
       return this.carousel && this.carousel.scrollPerPage
         ? this.carousel.pageCount
-        : this.carousel.slideCount && this.carousel.currentPerPage
-          ? this.carousel.slideCount - this.carousel.currentPerPage + 1
-          : 0;
+        : this.carousel.slideCount || 0;
     },
     dotContainerStyle() {
       const { carousel } = this;
