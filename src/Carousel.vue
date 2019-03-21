@@ -142,6 +142,13 @@ export default {
      */
     easing: {
       type: String,
+      validator: function(value) {
+        return (
+          ["ease", "linear", "ease-in", "ease-out", "ease-in-out"].indexOf(
+            value
+          ) !== -1 || value.includes("cubic-bezier")
+        );
+      },
       default: "ease"
     },
     /**
@@ -177,7 +184,7 @@ export default {
      * Listen for an external navigation request using this prop.
      */
     navigateTo: {
-      type: Number,
+      type: [Number, Array],
       default: 0
     },
     /**
@@ -322,6 +329,13 @@ export default {
      */
     value: {
       type: Number
+    },
+    /**
+     * Support right to left
+     */
+    rtl: {
+      type: Boolean,
+      default: false
     }
   },
   watch: {
@@ -358,6 +372,7 @@ export default {
     },
     currentPage(val) {
       this.$emit("pageChange", val);
+      this.$emit("page-change", val);
       this.$emit("input", val);
     },
     autoplay(val) {
@@ -425,6 +440,8 @@ export default {
     currentOffset() {
       if (this.isCenterModeEnabled) {
         return 0;
+      } else if (this.rtl) {
+        return (this.offset - this.dragOffset) * 1;
       } else {
         return (this.offset + this.dragOffset) * -1;
       }
@@ -467,13 +484,13 @@ export default {
      * @return {Boolean} Is navigation required?
      */
     isNavigationRequired() {
-      return this.slideCount <= this.currentPerPage ? false : true;
+      return this.slideCount > this.currentPerPage;
     },
     /**
      * @return {Boolean} Center images when have less than min currentPerPage value
      */
     isCenterModeEnabled() {
-      return this.centerMode && !this.isNavigationRequired ? true : false;
+      return this.centerMode && !this.isNavigationRequired;
     },
     transitionStyle() {
       const speed = `${this.speed / 1000}s`;
@@ -577,6 +594,8 @@ export default {
     },
     handleNavigation(direction) {
       this.advancePage(direction);
+      this.pauseAutoplay();
+      this.$emit("navigation-click", direction);
     },
     /**
      * Stop listening to mutation changes
@@ -664,8 +683,9 @@ export default {
      * This function will only apply the change if the value is within the carousel bounds
      * for carousel scrolling per page.
      * @param  {Number} page The value of the new page number
+     * @param  {string|undefined} advanceType An optional value describing the type of page advance
      */
-    goToPage(page) {
+    goToPage(page, advanceType) {
       if (page >= 0 && page <= this.pageCount) {
         this.offset = this.scrollPerPage
           ? Math.min(
@@ -681,6 +701,11 @@ export default {
 
         // update the current page
         this.currentPage = page;
+
+        if (advanceType === "pagination") {
+          this.pauseAutoplay();
+          this.$emit("pagination-click", page);
+        }
       }
     },
     /**
@@ -690,6 +715,12 @@ export default {
     /* istanbul ignore next */
     onStart(e) {
       // alert("start");
+
+      // detect right click
+      if (e.button == 2) {
+        return;
+      }
+
       document.addEventListener(
         this.isTouch ? "touchend" : "mouseup",
         this.onEnd,
@@ -717,6 +748,7 @@ export default {
       if (this.autoplay && !this.autoplayHoverPause) {
         this.restartAutoplay();
       }
+      this.pauseAutoplay();
 
       // compute the momemtum speed
       const eventPosX = this.isTouch ? e.changedTouches[0].clientX : e.clientX;
@@ -734,7 +766,11 @@ export default {
         this.dragOffset = this.dragOffset + Math.sign(deltaX) * (width / 2);
       }
 
-      this.offset += this.dragOffset;
+      if (this.rtl) {
+        this.offset -= this.dragOffset;
+      } else {
+        this.offset += this.dragOffset;
+      }
       this.dragOffset = 0;
       this.dragging = false;
 
@@ -772,10 +808,19 @@ export default {
 
       this.dragOffset = newOffsetX;
       const nextOffset = this.offset + this.dragOffset;
-      if (nextOffset < 0) {
-        this.dragOffset = -Math.sqrt(-this.resistanceCoef * this.dragOffset);
-      } else if (nextOffset > this.maxOffset) {
-        this.dragOffset = Math.sqrt(this.resistanceCoef * this.dragOffset);
+
+      if (this.rtl) {
+        if (this.offset == 0 && this.dragOffset > 0) {
+          this.dragOffset = Math.sqrt(this.resistanceCoef * this.dragOffset);
+        } else if (this.offset == this.maxOffset && this.dragOffset < 0) {
+          this.dragOffset = -Math.sqrt(-this.resistanceCoef * this.dragOffset);
+        }
+      } else {
+        if (nextOffset < 0) {
+          this.dragOffset = -Math.sqrt(-this.resistanceCoef * this.dragOffset);
+        } else if (nextOffset > this.maxOffset) {
+          this.dragOffset = Math.sqrt(this.resistanceCoef * this.dragOffset);
+        }
       }
     },
     onResize() {
@@ -791,11 +836,19 @@ export default {
     },
     render() {
       // add extra slides depending on the momemtum speed
-      this.offset +=
-        Math.max(
-          -this.currentPerPage + 1,
-          Math.min(Math.round(this.dragMomentum), this.currentPerPage - 1)
-        ) * this.slideWidth;
+      if (this.rtl) {
+        this.offset -=
+          Math.max(
+            -this.currentPerPage + 1,
+            Math.min(Math.round(this.dragMomentum), this.currentPerPage - 1)
+          ) * this.slideWidth;
+      } else {
+        this.offset +=
+          Math.max(
+            -this.currentPerPage + 1,
+            Math.min(Math.round(this.dragMomentum), this.currentPerPage - 1)
+          ) * this.slideWidth;
+      }
 
       // & snap the new offset on a slide or page if scrollPerPage
       const width = this.scrollPerPage
@@ -849,9 +902,11 @@ export default {
     },
     handleTransitionStart() {
       this.$emit("transitionStart");
+      this.$emit("transition-start");
     },
     handleTransitionEnd() {
       this.$emit("transitionEnd");
+      this.$emit("transition-end");
     }
   },
   mounted() {
