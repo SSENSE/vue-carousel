@@ -336,6 +336,8 @@ export default {
     maxPaginationDotCount: {
       type: Number,
       default: -1
+    },
+    /**
      * Support right to left
      */
     rtl: {
