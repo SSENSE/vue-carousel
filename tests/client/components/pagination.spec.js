@@ -69,24 +69,23 @@ describe('Pagination Component', () => {
       expect(wrapper.vm.paginationCount).toBe(1);
     });
 
-    it('should be set to 0 if the currentPerPage is 0 and scrollPerPage is disabled', () => {
+    it('should be set to 0 if the slideCount is undefined and scrollPerPage is disabled', () => {
       carousel.scrollPerPage = false;
-      carousel.currentPerPage = 0;
+      carousel.slideCount = undefined;
 
       const wrapper = shallowMount(Pagination, { provide: { carousel } });
 
       expect(wrapper.vm.paginationCount).toBe(0);
     });
 
-    it('should be set to 1 if the currentPerPage is 2, slideCount is 2 and scrollPerPage is disabled', () => {
+    it('should be set to 1 if the slideCount is 1 and scrollPerPage is disabled', () => {
       carousel.scrollPerPage = false;
-      carousel.currentPerPage = 2;
-      carousel.slideCount = 2;
+      carousel.slideCount = 1;
 
       const wrapper = shallowMount(Pagination, { provide: { carousel } });
 
       expect(wrapper.vm.paginationCount).toBe(1);
-    })
+    });
   });
 
   describe('isCurrentDot', () => {
