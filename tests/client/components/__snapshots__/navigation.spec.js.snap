@@ -2,6 +2,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 exports[`Navigation canAdvanceBackward should not be able to advanced backwards 1`] = `<div class="VueCarousel-navigation"><button type="button" aria-label="Previous page" tabindex="-1" class="VueCarousel-navigation-button VueCarousel-navigation-prev VueCarousel-navigation--disabled" style="padding: 8px; margin-right: -8px;">◀</button> <button type="button" aria-label="Next page" tabindex="0" class="VueCarousel-navigation-button VueCarousel-navigation-next" style="padding: 8px; margin-left: -8px;">▶</button></div>`;
 
 exports[`Navigation canAdvanceForward should not be able to advance forwards 1`] = `<div class="VueCarousel-navigation"><button type="button" aria-label="Previous page" tabindex="0" class="VueCarousel-navigation-button VueCarousel-navigation-prev" style="padding: 8px; margin-right: -8px;">◀</button> <button type="button" aria-label="Next page" tabindex="-1" class="VueCarousel-navigation-button VueCarousel-navigation-next VueCarousel-navigation--disabled" style="padding: 8px; margin-left: -8px;">▶</button></div>`;
@@ -88,10 +89,15 @@ exports[`Navigation should trigger page advance when next is clicked 1`] = `
 >>>>>>>  Fixes #388 - Updated snapshots (#398)
 =======
 =======
+=======
+>>>>>>> fix(test): update snapshots
 exports[`Navigation canAdvanceBackward should not be able to advanced backwards 1`] = `<div class="VueCarousel-navigation"><button type="button" aria-label="Previous page" tabindex="-1" class="VueCarousel-navigation-button VueCarousel-navigation-prev VueCarousel-navigation--disabled" style="padding: 8px; margin-right: -8px;">◀</button> <button type="button" aria-label="Next page" tabindex="0" class="VueCarousel-navigation-button VueCarousel-navigation-next" style="padding: 8px; margin-left: -8px;">▶</button></div>`;
 
 exports[`Navigation canAdvanceForward should not be able to advance forwards 1`] = `<div class="VueCarousel-navigation"><button type="button" aria-label="Previous page" tabindex="0" class="VueCarousel-navigation-button VueCarousel-navigation-prev" style="padding: 8px; margin-right: -8px;">◀</button> <button type="button" aria-label="Next page" tabindex="-1" class="VueCarousel-navigation-button VueCarousel-navigation-next VueCarousel-navigation--disabled" style="padding: 8px; margin-left: -8px;">▶</button></div>`;
 
 exports[`Navigation should match the stored snapshot 1`] = `<div class="VueCarousel-navigation"><button type="button" aria-label="Previous page" tabindex="0" class="VueCarousel-navigation-button VueCarousel-navigation-prev" style="padding: 8px; margin-right: -8px;">◀</button> <button type="button" aria-label="Next page" tabindex="0" class="VueCarousel-navigation-button VueCarousel-navigation-next" style="padding: 8px; margin-left: -8px;">▶</button></div>`;
+<<<<<<< HEAD
 >>>>>>> chore: fix/implement navigation tests
 >>>>>>> chore: fix/implement navigation tests
+=======
+>>>>>>> fix(test): update snapshots

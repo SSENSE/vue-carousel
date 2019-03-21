@@ -2,6 +2,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 exports[`Slide should match the stored snapshot 1`] = `<div tabindex="-1" aria-hidden="true" role="tabpanel" class="VueCarousel-slide VueCarousel-slide-adjustableHeight"></div>`;
 =======
 =======
@@ -26,3 +27,6 @@ exports[`Slide should mount successfully 1`] = `
 exports[`Slide should match the stored snapshot 1`] = `<div tabindex="-1" aria-hidden="true" role="tabpanel" class="VueCarousel-slide VueCarousel-slide-adjustableHeight"></div>`;
 >>>>>>> chore: fix/implement slide tests
 >>>>>>> chore: fix/implement slide tests
+=======
+exports[`Slide should match the stored snapshot 1`] = `<div tabindex="-1" aria-hidden="true" role="tabpanel" class="VueCarousel-slide VueCarousel-slide-adjustableHeight"></div>`;
+>>>>>>> fix(test): update snapshots
