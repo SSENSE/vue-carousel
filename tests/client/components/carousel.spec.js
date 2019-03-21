@@ -249,6 +249,56 @@ describe('Carousel component', () => {
     });
   });
 
+  describe('Active slides class', () => {
+    it('should be present by default on the visible slides', done => {
+      const wrapper = mount(Carousel, {
+        slots: {
+          default: [Slide, Slide, Slide]
+        }
+      });
+
+      wrapper.vm.$nextTick(() => {
+        expect(wrapper.findAll('.VueCarousel-slide-active').length).toBe(2);
+        expect(wrapper).toMatchSnapshot();
+        done();
+      });
+    });
+
+    it('should be present on the appropriate number of slides when responsive param provided', done => {
+      const wrapper = mount(Carousel, {
+        propsData: {
+          perPageCustom: [[0, 3]]
+        },
+        slots: {
+          default: [Slide, Slide, Slide, Slide, Slide, Slide]
+        }
+      });
+
+      wrapper.vm.$nextTick(() => {
+        expect(wrapper.findAll('.VueCarousel-slide-active').length).toBe(3);
+        expect(wrapper).toMatchSnapshot();
+        done();
+      });
+    });
+
+    it('should be present on the appropriate number of slides when perPage is used', done => {
+      const wrapper = mount(Carousel, {
+        propsData: {
+          perPage: 1
+        },
+        slots: {
+          default: [Slide, Slide, Slide, Slide, Slide]
+        }
+      });
+
+      wrapper.vm.$nextTick(() => {
+        expect(wrapper.findAll('.VueCarousel-slide-active').length).toBe(1);
+        expect(wrapper).toMatchSnapshot();
+        done();
+      });
+    });
+  });
+
   describe('Custom easing property', () => {
     it('should set easing to ease by default', () => {
       const wrapper = shallowMount(Carousel);

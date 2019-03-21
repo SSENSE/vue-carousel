@@ -111,7 +111,10 @@ play("Carousel", module)
     h, containerWidth, [h(Carousel, { props: { autoplay: true, autoplayHoverPause: false } }, generateSlideImages(h))]
   )
 )
-.add("Autoplay, Looping", h => createContainer(
+.add("Autoplay, navigation", h => createContainer(
+  h, containerWidth, [h(Carousel, { props: { autoplay: true, autoplayHoverPause: false , navigationEnabled: true} }, generateSlideImages(h))]
+)
+).add("Autoplay, Looping", h => createContainer(
   h, containerWidth, [h(Carousel, { props: { autoplay: true, autoplayHoverPause: false, loop: true } }, generateSlideImages(h))]
 )
 )
@@ -197,6 +200,54 @@ play("Carousel", module)
       h, containerWidth, [h('style', '.VueCarousel-navigation-button { font-size: 36px; }'), h(Carousel, { props: { paginationColor: '#fac232', paginationActiveColor: '#c9750c', navigationEnabled: true, navigationNextLabel: '👉', navigationPrevLabel: '👈' } }, generateSlideImages(h))]
     )
   )
+  .add("navigation-click event", {
+    template:
+      `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+        <carousel style="width: 500px;" @navigation-click="onNavigationClick" navigationEnabled :paginationEnabled="false">
+          <slide v-for="slide in slides" :key="slide">
+            <img style="width: 100%;" :src="slide" />
+          </slide>
+        </carousel>
+      </div>`,
+    components: {
+      Carousel,
+      Slide
+    },
+    data() {
+      return {
+        slides: images
+      }
+    },
+    methods: {
+      onNavigationClick(direction) {
+        this.$log(`Captured [navigation-click] event. Current direction is ${direction}`)
+      },
+    }
+  })
+  .add("pagination-click event", {
+    template:
+      `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+        <carousel style="width: 500px;" @pagination-click="onPaginationClick">
+          <slide v-for="slide in slides" :key="slide">
+            <img style="width: 100%;" :src="slide" />
+          </slide>
+        </carousel>
+      </div>`,
+    components: {
+      Carousel,
+      Slide
+    },
+    data() {
+      return {
+        slides: images
+      }
+    },
+    methods: {
+      onPaginationClick (currentPage) {
+        this.$log(`Captured [pagination-click] event. Current page is ${currentPage}`)
+      },
+    }
+  })
   .add("With local event on pageChange", {
     template:
       `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
@@ -217,14 +268,86 @@ play("Carousel", module)
     },
     methods: {
       onPageChange(currentPage) {
-        this.$log(`page changed to ${currentPage}`)
+        this.$log(`Captured [pageChange] event. Current page is ${currentPage}`)
+      },
+    }
+  })
+  .add("slideclick event", {
+    template:
+      `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+        <carousel style="width: 500px;">
+          <slide v-for="slide in slides" :key="slide" @slideclick="onSlideClick">
+            <img style="width: 100%;" :src="slide" />
+          </slide>
+        </carousel>
+      </div>`,
+    components: {
+      Carousel,
+      Slide
+    },
+    data() {
+      return {
+        slides: images
+      }
+    },
+    methods: {
+      onSlideClick(currentDataset) {
+        this.$log(`Captured [slideclick] event. Current dataset is ${JSON.stringify(currentDataset)}`)
+      },
+    }
+  })
+  .add("slide-click event", {
+    template:
+      `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+        <carousel style="width: 500px;">
+          <slide v-for="slide in slides" :key="slide" @slide-click="onSlideClick">
+            <img style="width: 100%;" :src="slide" />
+          </slide>
+        </carousel>
+      </div>`,
+    components: {
+      Carousel,
+      Slide
+    },
+    data() {
+      return {
+        slides: images
+      }
+    },
+    methods: {
+      onSlideClick(currentDataset) {
+        this.$log(`Captured [slide-click] event. Current dataset is ${JSON.stringify(currentDataset)}`)
+      },
+    }
+  })
+  .add("page-change event", {
+    template:
+      `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+        <carousel style="width: 500px;" @page-change="onPageChange">
+          <slide v-for="slide in slides" :key="slide">
+            <img style="width: 100%;" :src="slide" />
+          </slide>
+        </carousel>
+      </div>`,
+    components: {
+      Carousel,
+      Slide
+    },
+    data() {
+      return {
+        slides: images
+      }
+    },
+    methods: {
+      onPageChange(currentPage) {
+        this.$log(`Captured [page-change] event. Current page is ${currentPage}`)
       },
     }
   })
   .add("NavigateTo pages", {
     template:
       `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
-        <carousel style="width: 500px;" :navigateTo="newPage" v-on:pageChange="pageChanged">
+        <carousel style="width: 500px;" :navigateTo="newPage" v-on:pagechange="pageChanged">
           <slide v-for="slide in slides" :key="slide">
             <img style="width: 100%;" :src= slide />
           </slide>
@@ -257,15 +380,15 @@ play("Carousel", module)
   .add("NavigateTo slides", {
     template:
       `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
-        <carousel style="width: 500px;" :navigateTo="newSlide" :scrollPerPage=false v-on:pageChange="pageChanged">
+        <carousel style="width: 500px;" :navigateTo="navigateTo" :scrollPerPage=false v-on:pagechange="pageChanged">
           <slide v-for="slide in slides" :key="slide.src">
             <img style="width: 100%;" :src= slide />
           </slide>
         </carousel>
         <div style="float: left; z-index: 1000">
-          <button style="position: absolute; bottom: 20px; right: 250px" v-on:click="gotoSlide(0)">Goto slide 1</button>
-          <button style="position: absolute; bottom: 20px; right: 150px" v-on:click="gotoSlide(1)">Goto slide 2</button>
-          <button style="position: absolute; bottom: 20px; right: 50px" v-on:click="gotoSlide(5)">Goto slide 5</button>
+          <button style="position: absolute; bottom: 20px; right: 350px" v-on:click="gotoSlide(0)">Goto slide 1</button>
+          <button style="position: absolute; bottom: 20px; right: 250px" v-on:click="gotoSlide(1)">Goto slide 2</button>
+          <button style="position: absolute; bottom: 20px; right: 50px" v-on:click="gotoSlide(4, false)">Goto slide 5 without animation</button>
         </div>
       </div>`,
     components: {
@@ -275,11 +398,22 @@ play("Carousel", module)
     data(){
       return {
         newSlide: 0,
+        newSlideAnimation: true,
         slides: images
       }
     },
+    computed: {
+      navigateTo() {
+        if (this.newSlideAnimation)
+          return this.newSlide
+
+        else
+          return [this.newSlide, false]
+      }
+    },
     methods: {
-      gotoSlide(val) {
+      gotoSlide(val, animation) {
+        this.newSlideAnimation = (animation === false ? false : true);
         this.newSlide = val;
       },
       pageChanged(val) {
@@ -291,7 +425,59 @@ play("Carousel", module)
       h, containerWidth, [h(Carousel, { props: { spacePadding: 100, perPage: 1} }, generateSlideImages(h))]
       )
   )
-  .add("Transition end", {
+  .add("transitionStart event", {
+    template: `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+        <carousel
+          style="width: 500px;"
+          @transitionStart="handleTransitionStart"
+        >
+          <slide v-for="slide in slides" :key="slide.src">
+            <img style="width: 100%;" :src= slide />
+          </slide>
+        </carousel>
+      </div>`,
+    data() {
+      return {
+        slides: images
+      }
+    },
+    components: {
+      Carousel,
+      Slide
+    },
+    methods: {
+      handleTransitionStart() {
+        this.$log('Captured [transitionStart] event')
+      }
+    }
+  })
+  .add("transition-start event", {
+    template: `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+        <carousel
+          style="width: 500px;"
+          @transition-start="handleTransitionStart"
+        >
+          <slide v-for="slide in slides" :key="slide.src">
+            <img style="width: 100%;" :src= slide />
+          </slide>
+        </carousel>
+      </div>`,
+    data() {
+      return {
+        slides: images
+      }
+    },
+    components: {
+      Carousel,
+      Slide
+    },
+    methods: {
+      handleTransitionStart() {
+        this.$log('Captured [transition-start] event')
+      }
+    }
+  })
+  .add("transitionEnd event", {
     template: `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
         <carousel
           style="width: 500px;"
@@ -313,7 +499,33 @@ play("Carousel", module)
     },
     methods: {
       handleTransitionEnd() {
-        alert('transition end!')
+        this.$log('Captured [transitionEnd] event')
+      }
+    }
+  })
+  .add("transition-end event", {
+    template: `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+        <carousel
+          style="width: 500px;"
+          @transition-end="handleTransitionEnd"
+        >
+          <slide v-for="slide in slides" :key="slide.src">
+            <img style="width: 100%;" :src= slide />
+          </slide>
+        </carousel>
+      </div>`,
+    data() {
+      return {
+        slides: images
+      }
+    },
+    components: {
+      Carousel,
+      Slide
+    },
+    methods: {
+      handleTransitionEnd() {
+        this.$log('Captured [transition-end] event')
       }
     }
   })
@@ -346,7 +558,7 @@ play("Carousel", module)
     template:
       `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
         <carousel style="width: 500px;" :navigateTo="newSlide" :scrollPerPage=false>
-          <slide v-for="(slide, index) in slides" :key="slide.src" :data-index="index" v-on:slideClick="onSlideClick">
+          <slide v-for="(slide, index) in slides" :key="slide.src" :data-index="index" v-on:slideclick="onSlideClick">
             <img style="width: 100%;" :src= slide />
           </slide>
         </carousel>

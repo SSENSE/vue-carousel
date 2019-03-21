@@ -130,7 +130,7 @@
 <li><strong>Type</strong>: <code>Array</code></li>
 <li><strong>Usage</strong>:</li>
 </ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">carousel</span> <span class="attr">:per-page-custom</span>=<span class="string">"[[768, 3], [1024, 4]]"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">carousel</span> <span class="attr">:per-page-custom</span>=<span class="string">"[[768, 3], [1024, 4]]"</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>A mobile-first strategy is used to determine the matching breakpoint. In the above example, the <a href="/vue-carousel/api#perPage">perPage</a> variable has not been set, so the default of <strong>2</strong> is used. If the window size is greater than or equal to 768px, then 3 slides are shown. If the width is greater than or equal to 1024, then 4 slides are shown.</p>
 <h3 id="resistanceCoef"><a href="#resistanceCoef" class="headerlink" title="resistanceCoef"></a>resistanceCoef</h3><p>Resistance coefficient to dragging on the edge of the carousel. This dictates the effect of the pull as you move towards the boundaries.</p>
 <ul>
@@ -213,6 +213,11 @@
 <li><strong>Type</strong>: <code>String</code></li>
 <li><strong>Default</strong>: <code>#efefef</code></li>
 </ul>
+<h3 id="paginationPosition"><a href="#paginationPosition" class="headerlink" title="paginationPosition"></a>paginationPosition</h3><p>The position of pagination dots. Possible values are <code>bottom</code>, <code>bottom-overlay</code>, <code>top</code> and <code>top-overlay</code>. The overlay values place the pagination component over the images.</p>
+<ul>
+<li><strong>Type</strong>: <code>String</code></li>
+<li><strong>Default</strong>: <code>bottom</code></li>
+</ul>
 <h3 id="paginationPadding"><a href="#paginationPadding" class="headerlink" title="paginationPadding"></a>paginationPadding</h3><p>The padding inside each pagination dot. Pixel values are accepted.</p>
 <ul>
 <li><strong>Type</strong>: <code>Number</code></li>
@@ -229,25 +234,33 @@
 <li><strong>Default</strong>: <code>0</code></li>
 </ul>
 <h2 id="Custom-Pagination-amp-Navigation"><a href="#Custom-Pagination-amp-Navigation" class="headerlink" title="Custom Pagination &amp; Navigation"></a>Custom Pagination &amp; Navigation</h2><p>Use named slots to render pagination and navigation using components.</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">carousel</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">slide</span>&gt;</span></span><br><span class="line">    Slide 1 Content</span><br><span class="line">  <span class="tag">&lt;/<span class="name">slide</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">slide</span>&gt;</span></span><br><span class="line">    Slide 2 Content</span><br><span class="line">  <span class="tag">&lt;/<span class="name">slide</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">numbered-pagination</span> <span class="attr">slot</span>=<span class="string">"pagination"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">stylish-navigation</span> <span class="attr">slot</span>=<span class="string">"navigation"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">carousel</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">carousel</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">slide</span>&gt;</span></div><div class="line">    Slide 1 Content</div><div class="line">  <span class="tag">&lt;/<span class="name">slide</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">slide</span>&gt;</span></div><div class="line">    Slide 2 Content</div><div class="line">  <span class="tag">&lt;/<span class="name">slide</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="name">numbered-pagination</span> <span class="attr">slot</span>=<span class="string">"pagination"</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">stylish-navigation</span> <span class="attr">slot</span>=<span class="string">"navigation"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">carousel</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>Your components can access the <code>carousel</code> provider by adding the following to you component configuration:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name: &quot;numbered-pagination&quot;,</span><br><span class="line">inject: [&quot;carousel&quot;]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">name: &quot;numbered-pagination&quot;,</div><div class="line">inject: [&quot;carousel&quot;]</div></pre></td></tr></table></figure>
 <h2 id="Events"><a href="#Events" class="headerlink" title="Events"></a>Events</h2><p>Events emitted from components</p>
-<h3 id="pageChange"><a href="#pageChange" class="headerlink" title="pageChange"></a>pageChange</h3><p>“pageChange” event emits the value of the current page.</p>
+<h3 id="page-change"><a href="#page-change" class="headerlink" title="page-change"></a>page-change</h3><p><code>page-change</code> event emits the value of the current page.</p>
 <ul>
 <li><strong>Type</strong>: <code>Number</code></li>
 <li><strong>Emitter</strong>: <code>Carousel</code></li>
 </ul>
-<h3 id="slideClick"><a href="#slideClick" class="headerlink" title="slideClick"></a>slideClick</h3><p>“slideClick” event throws the <em>dataset</em> object of the selected element.</p>
+<h3 id="slide-click"><a href="#slide-click" class="headerlink" title="slide-click"></a>slide-click</h3><p><code>slide-click</code> event throws the <em>dataset</em> object of the selected element.</p>
 <ul>
 <li><strong>Type</strong>: <code>Object</code></li>
 <li><strong>Emitter</strong>: <code>Slide</code></li>
 </ul>
-<h3 id="transitionEnd"><a href="#transitionEnd" class="headerlink" title="transitionEnd"></a>transitionEnd</h3><p>“transitionEnd” event is thrown when the transition end is reached.</p>
+<h3 id="transition-start"><a href="#transition-start" class="headerlink" title="transition-start"></a>transition-start</h3><p><code>transition-start</code> event is thrown when the transition starts.</p>
 <ul>
 <li><strong>Type</strong>: <code>none</code></li>
 <li><strong>Emitter</strong>: <code>Carousel</code></li>
 </ul>
+<h3 id="transition-end"><a href="#transition-end" class="headerlink" title="transition-end"></a>transition-end</h3><p><code>transition-end</code> event is thrown when the transition end is reached.</p>
+<ul>
+<li><strong>Type</strong>: <code>none</code></li>
+<li><strong>Emitter</strong>: <code>Carousel</code></li>
+</ul>
+<blockquote>
+<p>Lowercase versions of the above events are also emitted, namely—<code>pagechange</code>, <code>slideclick</code>, <code>transitionstart</code> and <code>transitionend</code>.</p>
+</blockquote>
 
     
     <div class="footer">
