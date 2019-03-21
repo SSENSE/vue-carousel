@@ -331,6 +331,11 @@ export default {
       type: Number
     },
     /**
+     * Support Max pagination dot amount
+     */
+    maxPaginationDotCount: {
+      type: Number,
+      default: -1
      * Support right to left
      */
     rtl: {
