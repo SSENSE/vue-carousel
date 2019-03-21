@@ -44,11 +44,7 @@ describe('Navigation', () => {
 
       wrapper.find('.VueCarousel-navigation-next').trigger('click');
 
-<<<<<<< HEAD
       expect(wrapper.emitted().navigationclick[0][0]).toBe('forward')
-=======
-      expect(wrapper.emitted().navigationclick[0][0]).toBeUndefined()
->>>>>>> chore: fix/implement navigation tests
     });
 
     it('should emit page advance backward when prev is clicked', () => {
