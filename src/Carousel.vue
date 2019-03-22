@@ -47,6 +47,7 @@
 <script>
 import autoplay from "./mixins/autoplay";
 import debounce from "./utils/debounce";
+import supportsPassive from "./utils/support-passive";
 import Navigation from "./Navigation.vue";
 import Pagination from "./Pagination.vue";
 import Slide from "./Slide.vue";
@@ -926,7 +927,8 @@ export default {
     if ((this.isTouch && this.touchDrag) || this.mouseDrag) {
       this.$refs["VueCarousel-wrapper"].addEventListener(
         this.isTouch ? "touchstart" : "mousedown",
-        this.onStart
+        this.onStart,
+        supportsPassive ? { passive: true } : false
       );
     }
 
