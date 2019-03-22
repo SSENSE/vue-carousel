@@ -1,5 +1,5 @@
 {
-  "name": "vue-carousel",
+  "name": "vue-carousel-variable-width",
   "version": "0.18.0",
   "description": "A flexible, responsive, touch-friendly carousel for Vue.js",
   "main": "dist/vue-carousel.min.js",
@@ -10,7 +10,7 @@
     "dev:build": "vue-play build",
     "docs:build": "npm run build && rm -rf ./docs/public && mkdir ./docs/public/ && cd ./docs/public/ && git init && git remote add origin git@github.com:SSENSE/vue-carousel.git && git fetch && git checkout -f gh-pages && cd .. && npm install && ./node_modules/.bin/hexo clean && ./node_modules/.bin/hexo generate",
     "lint": "prettier-eslint --write \"src/**/?(*.js|*.vue)\" || exit 1",
-    "precommit": "lint-staged && npm run test",
+    "precommit": "lint-staged",
     "test": "npm run test:client",
     "test:client": "jest --config tests/client.jest.json",
     "test:client:coverage": "jest --config tests/client.jest.json --coverage",
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/SSENSE/vue-carousel.git"
+    "url": "git+ssh://git@github.com/bhailogee/vue-carousel"
   },
   "keywords": [
     "Vue",
@@ -32,7 +32,7 @@
   "bugs": {
     "url": "https://github.com/ssense/vue-carousel/issues"
   },
-  "homepage": "https://github.com/ssense/vue-carousel#readme",
+  "homepage": "https://github.com/bhailogee/vue-carousel#readme",
   "dependencies": {
     "global": "^4.3.2",
     "regenerator-runtime": "^0.12.1",
@@ -73,7 +73,7 @@
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.5.17",
     "webpack": "^4.16.5",
-    "webpack-cli": "^3.1.0",
+    "webpack-cli": "^3.3.0",
     "webpack-merge": "^4.1.4"
   }
 }

@@ -4,6 +4,8 @@
 [![Coverage Status](https://coveralls.io/repos/github/SSENSE/vue-carousel/badge.svg?branch=master)](https://coveralls.io/github/SSENSE/vue-carousel?branch=master)
 [![Latest Stable Version](https://img.shields.io/npm/v/vue-carousel.svg)](https://www.npmjs.com/package/vue-carousel)
 
+**IMPORTANT: It is the fork of https://github.com/ssense/vue-carousel. We changed it as per our needs, Please follow the owners page for latest updates.**
+ 
 **WARNING: vue-carousel is at pre-alpha stage of development and may undergo significant changes.**
 
 **Feel free to submit issues and feature requests [here](https://github.com/SSENSE/vue-carousel/issues)**.
@@ -19,13 +21,13 @@
 ## Installation
 
 ``` bash
-npm install vue-carousel
+npm install vue-carousel-variable-width
 ```
 
 or if you prefer yarn
 
 ``` bash
-yarn add vue-carousel
+yarn add vue-carousel-variable-width
 ```
 
 ## Usage
