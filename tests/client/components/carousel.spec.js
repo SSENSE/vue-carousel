@@ -155,6 +155,27 @@ describe('Carousel component', () => {
       });
     });
 
+    it('should call start and pause when restarting autoplay', done => {
+      const wrapper = mount(Carousel, {
+        propsData: {
+          perPage: 1,
+          autoplay: true,
+          autoplayHoverPause: false,
+	  autoplayDirection: 'test'
+        },
+        slots: {
+          default: [Slide, Slide]
+        }
+      });
+
+      const spy = jest.spyOn(wrapper.vm, 'advancePage');
+      wrapper.vm.autoplayAdvancePage();
+      expect(spy).toHaveBeenCalledWith('test');
+
+      spy.mockRestore(); 
+      done()
+    });
+
     it('should reset autoplay when switching slide without autoplayHoverPause', done => {
       const wrapper = mount(Carousel, {
         propsData: {
@@ -936,3 +957,4 @@ describe('Carousel component', () => {
     });
   });
 });
+
