@@ -1,10 +1,9 @@
 /* eslint-disable */
 
 import { mount, shallowMount } from '@vue/test-utils';
-
-const Carousel = require('../../../src/Carousel.vue');
-const Slide = require('../../../src/Slide.vue');
-
+import Carousel from '../../../src/Carousel.vue';
+import Slide  from '../../../src/Slide.vue';
+ 
 describe('Carousel component', () => {
   describe('Default mounting properties', () => {
     it('should mount successfully', () => {

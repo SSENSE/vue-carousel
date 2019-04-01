@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 
-const Navigation = require('../../../src/Navigation');
+import Navigation from '../../../src/Navigation.vue';
 
 describe('Navigation', () => {
   let carousel;
