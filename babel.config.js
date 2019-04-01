@@ -1,6 +1,5 @@
-module.exports = api => {
+module.exports = (api) => {
   const isTest = api.env('test');
-  // You can use isTest to determine what presets and plugins to use.
 
   const config =  {
     presets: [
@@ -13,16 +12,9 @@ module.exports = api => {
     ],	
   };
 
-  if (isTest) {
-    if (!config.plugins) { 
-	config.plugins = [];
-    }
-    config.plugins.push(['istanbul', {
-	exclude: [
-            "tests",
-          ]
-    }, 'babel-istanbul']);
-  }
+ if(isTest) {
+    api.cache.never();
+ }
 
   return config;
 };
