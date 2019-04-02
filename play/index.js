@@ -248,56 +248,6 @@ play("Carousel", module)
       },
     }
   })
-  .add("With local event on pageChange", {
-  .add("navigation-click event", {
-    template:
-      `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
-        <carousel style="width: 500px;" @navigation-click="onNavigationClick" navigationEnabled :paginationEnabled="false">
-          <slide v-for="slide in slides" :key="slide">
-            <img style="width: 100%;" :src="slide" />
-          </slide>
-        </carousel>
-      </div>`,
-    components: {
-      Carousel,
-      Slide
-    },
-    data() {
-      return {
-        slides: images
-      }
-    },
-    methods: {
-      onNavigationClick(direction) {
-        this.$log(`Captured [navigation-click] event. Current direction is ${direction}`)
-      },
-    }
-  })
-  .add("pagination-click event", {
-    template:
-      `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
-        <carousel style="width: 500px;" @pagination-click="onPaginationClick">
-          <slide v-for="slide in slides" :key="slide">
-            <img style="width: 100%;" :src="slide" />
-          </slide>
-        </carousel>
-      </div>`,
-    components: {
-      Carousel,
-      Slide
-    },
-    data() {
-      return {
-        slides: images
-      }
-    },
-    methods: {
-      onPaginationClick (currentPage) {
-        this.$log(`Captured [pagination-click] event. Current page is ${currentPage}`)
-      },
-    }
-  })
-  .add("With local event on pageChange", {
   .add("pageChange event", {
     template:
       `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
