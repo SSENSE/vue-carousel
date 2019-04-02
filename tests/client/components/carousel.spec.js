@@ -1,10 +1,9 @@
 /* eslint-disable */
 
 import { mount, shallowMount } from '@vue/test-utils';
-
-const Carousel = require('../../../src/Carousel.vue');
-const Slide = require('../../../src/Slide.vue');
-
+import Carousel from '../../../src/Carousel.vue';
+import Slide  from '../../../src/Slide.vue';
+ 
 describe('Carousel component', () => {
   describe('Default mounting properties', () => {
     it('should mount successfully', () => {
@@ -153,6 +152,27 @@ describe('Carousel component', () => {
         expect(wrapper).toMatchSnapshot();
         done();
       });
+    });
+
+    it('should call start and pause when restarting autoplay', done => {
+      const wrapper = mount(Carousel, {
+        propsData: {
+          perPage: 1,
+          autoplay: true,
+          autoplayHoverPause: false,
+	  autoplayDirection: 'test'
+        },
+        slots: {
+          default: [Slide, Slide]
+        }
+      });
+
+      const spy = jest.spyOn(wrapper.vm, 'advancePage');
+      wrapper.vm.autoplayAdvancePage();
+      expect(spy).toHaveBeenCalledWith('test');
+
+      spy.mockRestore(); 
+      done()
     });
 
     it('should reset autoplay when switching slide without autoplayHoverPause', done => {
@@ -936,3 +956,4 @@ describe('Carousel component', () => {
     });
   });
 });
+
