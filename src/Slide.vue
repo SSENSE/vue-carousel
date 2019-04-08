@@ -38,7 +38,7 @@ export default {
   },
   computed: {
     activeSlides() {
-      const { currentPage, perPage, $children } = this.carousel;
+      const { currentPage, breakpointSlidesPerPage, $children } = this.carousel;
       const activeSlides = [];
       const children = $children
         .filter(
@@ -48,8 +48,8 @@ export default {
         .map(child => child._uid);
 
       let i = 0;
-      while (i < perPage) {
-        const child = children[currentPage * perPage + i];
+      while (i < breakpointSlidesPerPage) {
+        const child = children[currentPage * breakpointSlidesPerPage + i];
         activeSlides.push(child);
         i++;
       }
@@ -71,9 +71,12 @@ export default {
      * @return {Boolean}
      */
     isCenter() {
-      const { perPage } = this.carousel;
-      if (perPage % 2 === 0 || !this.isActive) return false;
-      return this.activeSlides.indexOf(this._uid) === Math.floor(perPage / 2);
+      const { breakpointSlidesPerPage } = this.carousel;
+      if (breakpointSlidesPerPage % 2 === 0 || !this.isActive) return false;
+      return (
+        this.activeSlides.indexOf(this._uid) ===
+        Math.floor(breakpointSlidesPerPage / 2)
+      );
     },
     /**
      * `isAdjustableHeight` describes if the carousel adjusts its height to the active slide(s)
@@ -86,6 +89,11 @@ export default {
   },
   methods: {
     onTouchEnd(e) {
+      /**
+       * @event slideclick
+       * @event slide-click
+       * @type {Object}
+       */
       const eventPosX =
         this.carousel.isTouch && e.changedTouches && e.changedTouches.length > 0
           ? e.changedTouches[0].clientX
@@ -97,6 +105,7 @@ export default {
         Math.abs(deltaX) < this.carousel.minSwipeDistance
       ) {
         this.$emit("slideclick", Object.assign({}, e.currentTarget.dataset));
+        this.$emit("slide-click", Object.assign({}, e.currentTarget.dataset));
       }
     }
   }
