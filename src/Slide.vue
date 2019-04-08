@@ -20,7 +20,8 @@ export default {
   props: ["title"],
   data() {
     return {
-      width: null
+      width: null,
+      isMounted: false
     };
   },
   inject: ["carousel"],
@@ -33,6 +34,7 @@ export default {
       this.carousel.isTouch ? "touchend" : "mouseup",
       this.onTouchEnd
     );
+    this.isMounted = this._isMounted;
   },
   computed: {
     activeSlides() {
@@ -59,7 +61,9 @@ export default {
      * @return {Boolean}
      */
     isActive() {
-      return this.activeSlides.indexOf(this._uid) >= 0;
+      if (this.isMounted) {
+        return this.activeSlides.indexOf(this._uid) >= 0;
+      }
     },
     /**
      * `isCenter` describes whether a slide is in the center of all visible slides
