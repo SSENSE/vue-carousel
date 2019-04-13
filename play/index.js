@@ -682,3 +682,27 @@ play("Carousel", module)
       }
     }
   })
+  .add("Navigation-key event", {
+    template:
+      `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+        <carousel style="width: 500px;" @navigation-click="onKeypressNavigation">
+          <slide v-for="slide in slides" :key="slide">
+            <img style="width: 100%;" :src="slide" />
+          </slide>
+        </carousel>
+      </div>`,
+    components: {
+      Carousel,
+      Slide
+    },
+    data() {
+      return {
+        slides: images
+      }
+    },
+    methods: {
+      onKeypressNavigation(direction) {
+        this.$log(`Captured [navigation-key] event. Current direction is ${direction}`)
+      },
+    }
+})
