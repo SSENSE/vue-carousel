@@ -47,6 +47,7 @@
 <script>
 import autoplay from "./mixins/autoplay";
 import debounce from "./utils/debounce";
+import keypressNavigation from "./mixins/keypressNavigation";
 import Navigation from "./Navigation.vue";
 import Pagination from "./Pagination.vue";
 import Slide from "./Slide.vue";
@@ -107,7 +108,7 @@ export default {
       currentHeight: "auto"
     };
   },
-  mixins: [autoplay],
+  mixins: [autoplay, keypressNavigation],
   // use `provide` to avoid `Slide` being nested with other components
   provide() {
     return {
