@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 
-const Slide = require('../../../src/Slide.vue');
+import Slide from '../../../src/Slide.vue';
 
 describe('Slide', () => {
   let carousel;
