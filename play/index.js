@@ -682,3 +682,32 @@ play("Carousel", module)
       }
     }
   })
+  .add("Inside a form", {
+    template:
+      `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+        <form method="get" action="https://www.google.com/search" target="_blank" @submit="onSubmit">
+          <input name="q" v-model="searchQuery">
+          <carousel style="width: 500px" :maxPaginationDotCount="5" :perPage="1">
+            <slide v-for="(slide, index) in slides" :key="slide" :title="'This is my slide #' + index ">
+                <img style="width: 100%;" :src="slide" />
+            </slide>
+          </carousel>
+        </form>
+      </div>`,
+
+    components: {
+      Carousel,
+      Slide
+    },
+    data() {
+      return {
+        slides: LargeAmountImages,
+        searchQuery: ''
+      }
+    },
+    methods: {
+        onSubmit(e) {
+            console.log(e)
+        }
+    }
+  })
