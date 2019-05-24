@@ -6,6 +6,8 @@
     <div
       class="VueCarousel-wrapper"
       ref="VueCarousel-wrapper"
+      @touchstart="isTouch && touchDrag && onStart($event)"
+      @mousedown="mouseDrag && onStart($event)"
     >
       <div
         ref="VueCarousel-inner"
@@ -922,14 +924,6 @@ export default {
       debounce(this.onResize, this.refreshRate)
     );
 
-    // setup the start event only if touch device or mousedrag activated
-    if ((this.isTouch && this.touchDrag) || this.mouseDrag) {
-      this.$refs["VueCarousel-wrapper"].addEventListener(
-        this.isTouch ? "touchstart" : "mousedown",
-        this.onStart
-      );
-    }
-
     this.attachMutationObserver();
     this.computeCarouselWidth();
     this.computeCarouselHeight();
@@ -962,11 +956,6 @@ export default {
     this.$refs["VueCarousel-inner"].removeEventListener(
       this.transitionend,
       this.handleTransitionEnd
-    );
-
-    this.$refs["VueCarousel-wrapper"].removeEventListener(
-      this.isTouch ? "touchstart" : "mousedown",
-      this.onStart
     );
   }
 };
