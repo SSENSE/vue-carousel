@@ -28,6 +28,18 @@ or if you prefer yarn
 yarn add vue-carousel
 ```
 
+### Nuxt.js
+
+Add `vue-carousel/nuxt` to the modules section of `nuxt.config.js`
+
+```js
+{
+    modules: [
+        'vue-carousel/nuxt'
+    ]
+}
+```
+
 ## Usage
 
 ### Global
