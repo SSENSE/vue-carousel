@@ -914,14 +914,20 @@ export default {
     handleTransitionEnd() {
       this.$emit("transitionEnd");
       this.$emit("transition-end");
+    },
+    removeWindowEventListeners(eventType, ...handlers) {
+      handlers.forEach(handler =>
+              window.removeEventListener(eventType, handler)
+      );
     }
   },
   mounted() {
-    window.addEventListener(
-      "resize",
-      debounce(this.onResize, this.refreshRate)
+    this.debounceHandler = debounce(this.onResize, this.refreshRate);
+    this.removeWindowEventListeners(
+            "resize",
+            this.getBrowserWidth,
+            this.debounceHandler
     );
-
     // setup the start event only if touch device or mousedrag activated
     if ((this.isTouch && this.touchDrag) || this.mouseDrag) {
       this.$refs["VueCarousel-wrapper"].addEventListener(
