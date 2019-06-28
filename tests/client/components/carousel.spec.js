@@ -854,6 +854,15 @@ describe('Carousel component', () => {
       expect(wrapper.emitted().transitionEnd).toBeDefined();
     });
 
+    it('should call removeEventListeners on destroy', () => {
+      const wrapper = mount(Carousel);
+
+      const carouselInstance = wrapper.vm;
+      const spy = jest.spyOn(carouselInstance, "removeWindowEventListeners");
+      carouselInstance.$destroy();
+
+      expect(spy).toHaveBeenCalled;
+
     it('should emit a resize event on carousel resized', async () => {
       const wrapper = shallowMount(Carousel);
 
