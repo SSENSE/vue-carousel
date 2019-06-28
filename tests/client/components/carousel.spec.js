@@ -2,7 +2,7 @@
 
 import { mount, shallowMount } from '@vue/test-utils';
 import Carousel from '../../../src/Carousel.vue';
-import Slide  from '../../../src/Slide.vue';
+import Slide from '../../../src/Slide.vue';
 
 describe('Carousel component', () => {
   describe('Default mounting properties', () => {
@@ -160,7 +160,7 @@ describe('Carousel component', () => {
           perPage: 1,
           autoplay: true,
           autoplayHoverPause: false,
-	  autoplayDirection: 'test'
+          autoplayDirection: 'test'
         },
         slots: {
           default: [Slide, Slide]
@@ -862,6 +862,13 @@ describe('Carousel component', () => {
       carouselInstance.$destroy();
 
       expect(spy).toHaveBeenCalled;
+
+    it('should emit a resize event on carousel resized', async () => {
+      const wrapper = shallowMount(Carousel);
+
+      wrapper.vm.onResize();
+
+      expect(wrapper.emitted().resize).toBeDefined();
     });
   });
 

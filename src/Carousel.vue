@@ -6,6 +6,8 @@
     <div
       class="VueCarousel-wrapper"
       ref="VueCarousel-wrapper"
+      @touchstart="isTouch && touchDrag && onStart($event)"
+      @mousedown="mouseDrag && onStart($event)"
     >
       <div
         ref="VueCarousel-inner"
@@ -840,6 +842,8 @@ export default {
       setTimeout(() => {
         this.dragging = false;
       }, this.refreshRate);
+
+      this.$emit("resize");
     },
     render() {
       // add extra slides depending on the momemtum speed
@@ -928,6 +932,7 @@ export default {
             this.getBrowserWidth,
             this.debounceHandler
     );
+
     // setup the start event only if touch device or mousedrag activated
     if ((this.isTouch && this.touchDrag) || this.mouseDrag) {
       this.$refs["VueCarousel-wrapper"].addEventListener(
@@ -968,11 +973,6 @@ export default {
     this.$refs["VueCarousel-inner"].removeEventListener(
       this.transitionend,
       this.handleTransitionEnd
-    );
-
-    this.$refs["VueCarousel-wrapper"].removeEventListener(
-      this.isTouch ? "touchstart" : "mousedown",
-      this.onStart
     );
   }
 };

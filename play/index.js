@@ -682,3 +682,32 @@ play("Carousel", module)
       }
     }
   })
+  .add("Draging, Dynamic", {
+    template:
+      `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+        <carousel style="width: 500px;" :touchDrag="drag" :mouseDrag="drag" :loop="true">
+          <slide v-for="slide in slideCount" :key="slide">
+            <img style="width: 100%;" src="https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_1086,w_724/c_scale,h_560/v588/171924M176006_1.jpg" />
+          </slide>
+        </carousel>
+        <div style="float: left">
+          <pre>touchDrag Status: {{ drag }}</pre>
+          <button v-on:click="toggleDrag()">Toggle drag</button>
+        </div>
+      </div>`,
+    components: {
+      Carousel,
+      Slide
+    },
+    data() {
+      return {
+        drag: true,
+        slideCount: 8
+      }
+    },
+    methods: {
+      toggleDrag() {
+        this.drag ^= true;
+      },
+    }
+  })
