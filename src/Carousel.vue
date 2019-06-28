@@ -842,6 +842,8 @@ export default {
       setTimeout(() => {
         this.dragging = false;
       }, this.refreshRate);
+
+      this.$emit("resize");
     },
     render() {
       // add extra slides depending on the momemtum speed
