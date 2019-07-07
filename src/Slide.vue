@@ -25,10 +25,7 @@ export default {
   },
   inject: ["carousel"],
   mounted() {
-    if (!this.$isServer) {
-      this.$el.addEventListener("dragstart", e => e.preventDefault());
-    }
-
+    this.$el.addEventListener("dragstart", e => e.preventDefault());
     this.$el.addEventListener(
       this.carousel.isTouch ? "touchend" : "mouseup",
       this.onTouchEnd
