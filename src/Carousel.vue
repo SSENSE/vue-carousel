@@ -826,7 +826,6 @@ export default {
      */
     computeCarouselWidth() {
       this.getSlideCount();
-      this.getBrowserWidth();
       this.getCarouselWidth();
       this.setCurrentPageInBounds();
     },
@@ -856,11 +855,6 @@ export default {
     }
   },
   mounted() {
-    window.addEventListener(
-      "resize",
-      debounce(this.onResize, this.refreshRate)
-    );
-
     // setup the start event only if touch device or mousedrag activated
     if ((this.isTouch && this.touchDrag) || this.mouseDrag) {
       this.$refs["VueCarousel-wrapper"].addEventListener(
@@ -891,7 +885,6 @@ export default {
     }
   },
   beforeDestroy() {
-    window.removeEventListener("resize", this.getBrowserWidth);
     this.$refs["VueCarousel-inner"].removeEventListener(
       this.transitionstart,
       this.handleTransitionStart
