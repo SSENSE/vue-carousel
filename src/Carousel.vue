@@ -3,10 +3,7 @@
     class="VueCarousel"
     v-bind:class="{ 'VueCarousel--reverse': paginationPosition === 'top' }"
   >
-    <div
-      class="VueCarousel-wrapper"
-      ref="VueCarousel-wrapper"
-    >
+    <div class="VueCarousel-wrapper" ref="VueCarousel-wrapper">
       <div
         ref="VueCarousel-inner"
         :class="[
@@ -14,13 +11,13 @@
           { 'VueCarousel-inner--center': isCenterModeEnabled }
         ]"
         :style="{
-          'transform': `translate(${currentOffset}px, 0)`,
-          'transition': dragging ? 'none' : transitionStyle,
+          transform: `translate(${currentOffset}px, 0)`,
+          transition: dragging ? 'none' : transitionStyle,
           'ms-flex-preferred-size': `${slideWidth}px`,
           'webkit-flex-basis': `${slideWidth}px`,
           'flex-basis': `${slideWidth}px`,
-          'visibility': slideWidth ? 'visible' : 'hidden',
-          'height': `${currentHeight}`,
+          visibility: slideWidth ? 'visible' : 'hidden',
+          height: `${currentHeight}`,
           'padding-left': `${padding}px`,
           'padding-right': `${padding}px`
         }"
@@ -40,7 +37,7 @@
     </slot>
 
     <slot name="pagination" v-if="paginationEnabled">
-      <pagination @paginationclick="goToPage($event, 'pagination')"/>
+      <pagination @paginationclick="goToPage($event, 'pagination')" />
     </slot>
   </div>
 </template>
@@ -404,8 +401,8 @@ export default {
       const breakpointArray = this.perPageCustom;
       const width = this.browserWidth;
 
-      const breakpoints = breakpointArray.sort(
-        (a, b) => (a[0] > b[0] ? -1 : 1)
+      const breakpoints = breakpointArray.sort((a, b) =>
+        a[0] > b[0] ? -1 : 1
       );
 
       // Reduce the breakpoints to entries where the width is in range
@@ -560,57 +557,10 @@ export default {
         this.goToPage(this.pageCount);
       });
     },
-    /**
-     * A mutation observer is used to detect changes to the containing node
-     * in order to keep the magnet container in sync with the height its reference node.
-     */
-    attachMutationObserver() {
-      const MutationObserver =
-        window.MutationObserver ||
-        window.WebKitMutationObserver ||
-        window.MozMutationObserver;
-
-      if (MutationObserver) {
-        let config = {
-          attributes: true,
-          data: true
-        };
-        if (this.adjustableHeight) {
-          config = {
-            ...config,
-            childList: true,
-            subtree: true,
-            characterData: true
-          };
-        }
-        this.mutationObserver = new MutationObserver(() => {
-          this.$nextTick(() => {
-            this.computeCarouselWidth();
-            this.computeCarouselHeight();
-          });
-        });
-        if (this.$parent.$el) {
-          let carouselInnerElements = this.$el.getElementsByClassName(
-            "VueCarousel-inner"
-          );
-          for (let i = 0; i < carouselInnerElements.length; i++) {
-            this.mutationObserver.observe(carouselInnerElements[i], config);
-          }
-        }
-      }
-    },
     handleNavigation(direction) {
       this.advancePage(direction);
       this.pauseAutoplay();
       this.$emit("navigation-click", direction);
-    },
-    /**
-     * Stop listening to mutation changes
-     */
-    detachMutationObserver() {
-      if (this.mutationObserver) {
-        this.mutationObserver.disconnect();
-      }
     },
     /**
      * Get the current browser viewport width
@@ -930,7 +880,6 @@ export default {
       );
     }
 
-    this.attachMutationObserver();
     this.computeCarouselWidth();
     this.computeCarouselHeight();
 
@@ -953,7 +902,6 @@ export default {
     }
   },
   beforeDestroy() {
-    this.detachMutationObserver();
     window.removeEventListener("resize", this.getBrowserWidth);
     this.$refs["VueCarousel-inner"].removeEventListener(
       this.transitionstart,
