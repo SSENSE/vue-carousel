@@ -62,13 +62,14 @@ const autoplay = {
       this.advancePage(this.autoplayDirection);
     }
   },
+  created() {
+    this.startAutoplay()
+  },
   mounted() {
     if (!this.$isServer && this.autoplayHoverPause) {
       this.$el.addEventListener("mouseenter", this.pauseAutoplay);
       this.$el.addEventListener("mouseleave", this.startAutoplay);
     }
-
-    this.startAutoplay();
   }
 };
 

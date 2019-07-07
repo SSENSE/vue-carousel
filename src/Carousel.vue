@@ -854,6 +854,12 @@ export default {
       this.$emit("transition-end");
     }
   },
+  created() {
+    // when autoplay direction is backward start from the last slide
+    if (this.autoplayDirection === "backward") {
+      this.goToLastSlide();
+    }
+  },
   mounted() {
     // setup the start event only if touch device or mousedrag activated
     if ((this.isTouch && this.touchDrag) || this.mouseDrag) {
@@ -878,11 +884,6 @@ export default {
     );
 
     this.$emit("mounted");
-
-    // when autoplay direction is backward start from the last slide
-    if (this.autoplayDirection === "backward") {
-      this.goToLastSlide();
-    }
   },
   beforeDestroy() {
     this.$refs["VueCarousel-inner"].removeEventListener(
