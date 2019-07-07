@@ -667,13 +667,13 @@ export default {
         return;
       }
 
-      document.addEventListener(
+      this.$refs["VueCarousel-inner"].addEventListener(
         this.isTouch ? "touchend" : "mouseup",
         this.onEnd,
         true
       );
 
-      document.addEventListener(
+      this.$refs["VueCarousel-inner"].addEventListener(
         this.isTouch ? "touchmove" : "mousemove",
         this.onDrag,
         true
@@ -723,12 +723,12 @@ export default {
       this.render();
 
       // clear events listeners
-      document.removeEventListener(
+      this.$refs["VueCarousel-inner"].removeEventListener(
         this.isTouch ? "touchend" : "mouseup",
         this.onEnd,
         true
       );
-      document.removeEventListener(
+      this.$refs["VueCarousel-inner"].removeEventListener(
         this.isTouch ? "touchmove" : "mousemove",
         this.onDrag,
         true
