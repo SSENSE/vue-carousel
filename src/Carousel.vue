@@ -826,7 +826,6 @@ export default {
      */
     computeCarouselWidth() {
       this.getSlideCount();
-      this.getCarouselWidth();
       this.setCurrentPageInBounds();
     },
     /**
@@ -855,6 +854,9 @@ export default {
     }
   },
   created() {
+    this.computeCarouselWidth();
+    this.computeCarouselHeight();
+
     // when autoplay direction is backward start from the last slide
     if (this.autoplayDirection === "backward") {
       this.goToLastSlide();
@@ -869,8 +871,7 @@ export default {
       );
     }
 
-    this.computeCarouselWidth();
-    this.computeCarouselHeight();
+    this.getCarouselWidth();
 
     this.transitionstart = getTransitionEnd();
     this.$refs["VueCarousel-inner"].addEventListener(
