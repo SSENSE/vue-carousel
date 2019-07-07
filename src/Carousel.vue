@@ -87,7 +87,6 @@ export default {
   },
   data() {
     return {
-      browserWidth: null,
       carouselWidth: 0,
       currentPage: 0,
       dragging: false,
@@ -399,7 +398,7 @@ export default {
       }
 
       const breakpointArray = this.perPageCustom;
-      const width = this.browserWidth;
+      const width = this.carouselWidth;
 
       const breakpoints = breakpointArray.sort((a, b) =>
         a[0] > b[0] ? -1 : 1
@@ -563,14 +562,6 @@ export default {
       this.$emit("navigation-click", direction);
     },
     /**
-     * Get the current browser viewport width
-     * @return {Number} Browser"s width in pixels
-     */
-    getBrowserWidth() {
-      this.browserWidth = window.innerWidth;
-      return this.browserWidth;
-    },
-    /**
      * Get the width of the carousel DOM element
      * @return {Number} Width of the carousel in pixels
      */
@@ -671,8 +662,6 @@ export default {
      */
     /* istanbul ignore next */
     onStart(e) {
-      // alert("start");
-
       // detect right click
       if (e.button == 2) {
         return;
