@@ -5,6 +5,7 @@
   "main": "dist/vue-carousel.min.js",
   "scripts": {
     "build": "webpack --config webpack.prod.js && npm run updateDocAssets",
+    "build:ssr": "webpack --config webpack.ssr.js && npm run updateNuxtSSR",
     "coveralls": "cat coverage/client/lcov.info | ./node_modules/.bin/coveralls",
     "dev": "vue-play start --standalone",
     "dev:build": "vue-play build",
