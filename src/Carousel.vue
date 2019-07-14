@@ -1,27 +1,14 @@
 <template>
   <transition name="fade">
   <div
-    class="VueCarousel"
-    v-bind:class="{ 'VueCarousel--reverse': paginationPosition === 'top' }"
+      :class="rootClass"
+      ref="VueCarousel"
   >
     <div class="VueCarousel-wrapper" ref="VueCarousel-wrapper">
       <div
+          :class="innerClass"
+          :style="innerStyles"
         ref="VueCarousel-inner"
-        :class="[
-          'VueCarousel-inner',
-          { 'VueCarousel-inner--center': isCenterModeEnabled }
-        ]"
-        :style="{
-          transform: `translate(${currentOffset}px, 0)`,
-          transition: dragging ? 'none' : transitionStyle,
-          'ms-flex-preferred-size': `${slideWidth}px`,
-          'webkit-flex-basis': `${slideWidth}px`,
-          'flex-basis': `${slideWidth}px`,
-          visibility: slideWidth ? 'visible' : 'hidden',
-          height: `${currentHeight}`,
-          'padding-left': `${padding}px`,
-          'padding-right': `${padding}px`
-        }"
       >
         <slot></slot>
       </div>
@@ -389,6 +376,31 @@ export default {
     }
   },
   computed: {
+    rootClass() {
+      return {
+        'VueCarousel': true,
+        'VueCarousel--reverse': this.paginationPosition === 'top'
+      }
+    },
+    innerClass() {
+      return {
+        'VueCarousel-inner': true,
+        'VueCarousel-inner--center': this.isCenterModeEnabled
+      }
+    },
+    innerStyles() {
+      return {
+        transform: `translate(${this.currentOffset}px, 0)`,
+        transition: this.dragging ? 'none' : this.transitionStyle,
+        'ms-flex-preferred-size': `${this.slideWidth}px`,
+        'webkit-flex-basis': `${this.slideWidth}px`,
+        'flex-basis': `${this.slideWidth}px`,
+        visibility: this.slideWidth ? 'visible' : 'hidden',
+        height: `${this.currentHeight}`,
+        'padding-left': `${this.padding}px`,
+        'padding-right': `${this.padding}px`
+      }
+    },
     /**
      * Given a viewport width, find the number of slides to display
      * @param  {Number} width Current viewport width in pixels
