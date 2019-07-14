@@ -18,7 +18,10 @@
           :value="getDotTitle(index)"
           :aria-label="getDotTitle(index)"
           :aria-selected="isCurrentDot(index) ? 'true' : 'false'"
-          :class="buttonClass(index)"
+          :class="[
+            'VueCarousel-dot',
+            { 'VueCarousel-dot--active': isCurrentDot(index) }
+          ]"
           v-on:click="goToPage(index)"
           :style="dotStyle(index)"
         ></button>
@@ -36,12 +39,6 @@ export default {
       return {
         'VueCarousel-pagination': true,
         [`VueCarousel-pagination--${this.paginationPositionModifierName}`]: this.paginationPositionModifierName 
-      }
-    },
-    buttonClass(index) {
-      return {
-        'VueCarousel-dot': true,
-        'VueCarousel-dot--active': this.isCurrentDot(index)
       }
     },
     paginationPositionModifierName() {
