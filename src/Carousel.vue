@@ -1,33 +1,39 @@
 <template>
   <transition name="fade">
-  <div
+    <div
       :class="rootClass"
       ref="VueCarousel"
-  >
-    <div class="VueCarousel-wrapper" ref="VueCarousel-wrapper">
-      <div
+    >
+      <div class="VueCarousel-wrapper" ref="VueCarousel-wrapper">
+        <div
           :class="innerClass"
           :style="innerStyles"
-        ref="VueCarousel-inner"
-      >
+          ref="VueCarousel-inner"
+        >
         <slot></slot>
+        </div>
       </div>
+
+      <slot 
+        v-if="navigationEnabled"
+        name="navigation" 
+      >
+        <navigation
+          v-if="isNavigationRequired"
+          :clickTargetSize="navigationClickTargetSize"
+          :nextLabel="navigationNextLabel"
+          :prevLabel="navigationPrevLabel"
+          @navigationclick="handleNavigation"
+        />
+      </slot>
+
+      <slot 
+        v-if="paginationEnabled"
+        name="pagination" 
+      >
+        <pagination @paginationclick="goToPage($event, 'pagination')" />
+      </slot>
     </div>
-
-    <slot name="navigation" v-if="navigationEnabled">
-      <navigation
-        v-if="isNavigationRequired"
-        :clickTargetSize="navigationClickTargetSize"
-        :nextLabel="navigationNextLabel"
-        :prevLabel="navigationPrevLabel"
-        @navigationclick="handleNavigation"
-      />
-    </slot>
-
-    <slot name="pagination" v-if="paginationEnabled">
-      <pagination @paginationclick="goToPage($event, 'pagination')" />
-    </slot>
-  </div>
   </transition>
 </template>
 <script>
