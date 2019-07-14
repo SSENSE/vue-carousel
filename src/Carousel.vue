@@ -1,4 +1,5 @@
 <template>
+  <transition name="overlay-fade">
   <div
     class="VueCarousel"
     v-bind:class="{ 'VueCarousel--reverse': paginationPosition === 'top' }"
@@ -40,6 +41,7 @@
       <pagination @paginationclick="goToPage($event, 'pagination')" />
     </slot>
   </div>
+  </transition>
 </template>
 <script>
 import autoplay from "./mixins/autoplay";
@@ -928,5 +930,14 @@ export default {
 
 .VueCarousel-inner--center {
   justify-content: center;
+}
+
+.overlay-fade-enter-active,
+.overlay-fade-leave-active {
+  transition: all 0.2s;
+}
+.overlay-fade-enter,
+.overlay-fade-leave-active {
+  opacity: 0;
 }
 </style>
