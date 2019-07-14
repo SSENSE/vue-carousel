@@ -5,7 +5,7 @@
     role="tabpanel"
     :class="slideClass"
   >
-    <slot></slot>
+    <slot/>
   </div>
 </template>
 
