@@ -10,7 +10,7 @@
           :style="innerStyles"
           ref="VueCarousel-inner"
         >
-        <slot></slot>
+          <slot name="slides" />
         </div>
       </div>
 
