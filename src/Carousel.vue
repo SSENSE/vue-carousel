@@ -1,5 +1,5 @@
 <template>
-  <transition name="overlay-fade">
+  <transition name="fade">
   <div
     class="VueCarousel"
     v-bind:class="{ 'VueCarousel--reverse': paginationPosition === 'top' }"
@@ -932,12 +932,12 @@ export default {
   justify-content: center;
 }
 
-.overlay-fade-enter-active,
-.overlay-fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: all 0.2s;
 }
-.overlay-fade-enter,
-.overlay-fade-leave-active {
+.fade-enter,
+.fade-leave-active {
   opacity: 0;
 }
 </style>

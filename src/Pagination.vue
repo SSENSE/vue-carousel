@@ -1,5 +1,5 @@
 <template>
-  <transition name="overlay-fade">
+  <transition name="fade">
     <div
       v-show="carousel.pageCount > 1"
       :class="paginationClass"
@@ -198,12 +198,12 @@ export default {
   outline: 1px solid lightblue;
 }
 
-.overlay-fade-enter-active,
-.overlay-fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: all 0.2s;
 }
-.overlay-fade-enter,
-.overlay-fade-leave-active {
+.fade-enter,
+.fade-leave-active {
   opacity: 0;
 }
 </style>
