@@ -41,7 +41,7 @@ export default {
     buttonClass(index) {
       return {
         'VueCarousel-dot': true,
-        'VueCarousel-dot--active': isCurrentDot(index)
+        'VueCarousel-dot--active': this.isCurrentDot(index)
       }
     },
     paginationPositionModifierName() {
