@@ -1,20 +1,6 @@
-# Vue Carousel
-
-[![Build Status](https://travis-ci.org/SSENSE/vue-carousel.svg?branch=master)](https://travis-ci.org/SSENSE/vue-carousel)
-[![Coverage Status](https://coveralls.io/repos/github/SSENSE/vue-carousel/badge.svg?branch=master)](https://coveralls.io/github/SSENSE/vue-carousel?branch=master)
-[![Latest Stable Version](https://img.shields.io/npm/v/vue-carousel.svg)](https://www.npmjs.com/package/vue-carousel)
-
-**WARNING: vue-carousel is at pre-alpha stage of development and may undergo significant changes.**
-
-**Feel free to submit issues and feature requests [here](https://github.com/SSENSE/vue-carousel/issues)**.
-
-**[Full documentation and examples](https://ssense.github.io/vue-carousel)**
-
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
-- [Development](#development)
-- [License](#license)
 
 ## Installation
 
@@ -142,21 +128,3 @@ To listen for the 'slideclick' event you can do the following:
     console.log(dataset.index, dataset.name)
   }
 ```
-## Development
-
-A sandboxed dev environment is provided by [vue-play](https://github.com/vue-play/vue-play). Changes made to the component files will appear in real time in the sandbox.
-
-To begin development, run:
-
-``` bash
-yarn install
-yarn dev
-```
-
-then navigate to `http://localhost:5000`
-
-To modify and add sandbox scenarios, edit `play/index.js`
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
