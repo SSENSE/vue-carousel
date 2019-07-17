@@ -1,3 +1,4 @@
+require("./css/vue-carousel.css");
 import Carousel from "./Carousel.vue";
 import Slide from "./Slide.vue";
 
