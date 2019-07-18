@@ -143,3 +143,42 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.VueCarousel-pagination {
+  width: 100%;
+  text-align: center;
+}
+
+.VueCarousel-pagination--top-overlay {
+  position: absolute;
+  top: 0;
+}
+
+.VueCarousel-pagination--bottom-overlay {
+  position: absolute;
+  bottom: 0;
+}
+
+.VueCarousel-dot-container {
+  display: inline-block;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.VueCarousel-dot {
+  display: inline-block;
+  cursor: pointer;
+  appearance: none;
+  border: none;
+  background-clip: content-box;
+  box-sizing: content-box;
+  padding: 0;
+  border-radius: 100%;
+  outline: none;
+}
+
+.VueCarousel-dot:focus {
+  outline: 1px solid lightblue;
+}
+</style>

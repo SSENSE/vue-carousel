@@ -1,10 +1,14 @@
 {
   "name": "vue-carousel",
-  "version": "0.18.0",
+  "version": "0.19.0",
   "description": "A flexible, responsive, touch-friendly carousel for Vue.js",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "style": "src/css/vue-carousel.css",
-  "scripts": {},
+  "scripts": {
+    "build": "parcel build src/index.js",
+    "lint": "prettier-eslint --write \"src/**/?(*.js|*.vue)\" || exit 1",
+    "precommit": "lint-staged"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com:jambonn/vue-carousel.git"
@@ -22,7 +26,7 @@
     "vue": "^2.5.17"
   },
   "resolutions": {
-     "babel-core": "7.0.0-bridge.0"
+    "babel-core": "7.0.0-bridge.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -50,6 +54,7 @@
     "jest": "^24.5.0",
     "jest-serializer-vue": "^2.0.2",
     "lint-staged": "^8.1.0",
+    "parcel-bundler": "^1.12.3",
     "prettier": "^1.10.2",
     "prettier-eslint": "^8.8.1",
     "prettier-eslint-cli": "^4.7.0",
@@ -60,9 +65,6 @@
     "vue-play": "^3.2.1",
     "vue-play-cli": "^1.1.1",
     "vue-style-loader": "^4.1.2",
-    "vue-template-compiler": "^2.5.17",
-    "webpack": "^4.16.5",
-    "webpack-cli": "^3.1.0",
-    "webpack-merge": "^4.1.4"
+    "vue-template-compiler": "^2.5.17"
   }
 }
