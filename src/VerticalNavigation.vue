@@ -21,27 +21,27 @@
 
 <script>
 export default {
-    methods: {
-        goDown() {
-            this.$emit('down');
-        },
-        goUp() {
-            this.$emit('up');
-        },
+  methods: {
+    goDown() {
+      this.$emit("down");
     },
+    goUp() {
+      this.$emit("up");
+    }
+  }
 };
 </script>
 
 <style>
 .VueCarousel-vertical-button {
-    position: absolute;
+  position: absolute;
 }
 
 #VueCarousel-nav-up {
-    top: 0;
+  top: 0;
 }
 
 #VueCarousel-nav-down {
-    bottom: 0;
+  bottom: 0;
 }
 </style>

@@ -1,6 +1,6 @@
 {
-  "name": "vue-carousel",
-  "version": "0.18.0",
+  "name": "@alibaba-aero/vue-carousel",
+  "version": "0.19.0",
   "description": "A flexible, responsive, touch-friendly carousel for Vue.js",
   "main": "dist/vue-carousel.min.js",
   "scripts": {
