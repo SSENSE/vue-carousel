@@ -24,43 +24,47 @@
 </template>
 
 <script>
-import VerticalNavigation from './VerticalNavigation';
+import VerticalNavigation from "./VerticalNavigation";
 
 export default {
-    components: {
-        VerticalNavigation,
+  components: {
+    VerticalNavigation
+  },
+  props: {
+    maxHeight: {
+      type: Number,
+      default: 500
+    }
+  },
+  methods: {
+    goDown() {
+      this.$refs["VueCarouselContainer"].scrollTop += this.$refs[
+        "VueCarouselContainer"
+      ].firstElementChild.offsetHeight;
     },
-    props: {
-        maxHeight: {
-            type: Number,
-            default: 500,
-        },
-    },
-    methods: {
-        goDown() {
-            this.$refs['VueCarouselContainer'].scrollTop += this.$refs['VueCarouselContainer'].firstElementChild.offsetHeight;
-        },
-        goUp() {
-            this.$refs['VueCarouselContainer'].scrollTop -= this.$refs['VueCarouselContainer'].firstElementChild.offsetHeight;
-        },
-    },
+    goUp() {
+      this.$refs["VueCarouselContainer"].scrollTop -= this.$refs[
+        "VueCarouselContainer"
+      ].firstElementChild.offsetHeight;
+    }
+  }
 };
 </script>
 
 <style>
 #VueCarousel-vertical-carousel-container {
-    width: 100%;
-    position: relative;
-    overflow: hidden;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
 }
 
 #VueCarousel-vertical-carousel {
-    width: 100%;
-    position: relative;
-    overflow: hidden;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
 }
 
 div {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 </style>
