@@ -40,6 +40,15 @@ const autoplay = {
       this.$el.removeEventListener("mouseleave", this.startAutoplay);
     }
   },
+  watch: {
+    autoplay: function(shouldAutoPlay) {
+      if (shouldAutoPlay === false) {
+        this.pauseAutoplay();
+      } else {
+        this.startAutoplay();
+      }
+    }
+  },
   methods: {
     pauseAutoplay() {
       if (this.autoplayInterval) {
