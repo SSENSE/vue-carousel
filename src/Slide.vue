@@ -88,13 +88,29 @@ export default {
       /**
        * @event slideclick
        * @event slide-click
+       * @event slidetouchend
+       * @event slide-touch-end
        * @type {Object}
        */
       const eventPosX =
         this.carousel.isTouch && e.changedTouches && e.changedTouches.length > 0
           ? e.changedTouches[0].clientX
           : e.clientX;
-      const deltaX = this.carousel.dragStartX - eventPosX;
+      const eventPosY =
+        this.carousel.isTouch && e.changedTouches && e.changedTouches.length > 0
+          ? e.changedTouches[0].clientY
+          : e.clientY;
+
+      const deltaX = eventPosX - this.carousel.dragStartX;
+      const deltaY = eventPosY - this.carousel.dragStartY;
+
+      var toucheEndData = {
+        dataset: Object.assign({}, e.currentTarget.dataset),
+        deltaX,
+        deltaY
+      };
+      this.$emit("slidetouchend", toucheEndData);
+      this.$emit("slide-touch-end", toucheEndData);
 
       if (
         this.carousel.minSwipeDistance === 0 ||

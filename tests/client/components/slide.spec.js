@@ -10,6 +10,7 @@ describe('Slide', () => {
       isTouch: true,
       adjustableHeight: true,
       dragStartX: 0,
+      dragStartY: 15,
       minSwipeDistance: 10,
       perPage: 3,
       currentPage: 0,
@@ -120,7 +121,7 @@ describe('Slide', () => {
       expect(wrapper.emitted().slideclick[0][0]).toEqual({"foo": "dataset"});
     });
 
-    it('shoud not emit slideclick event', () => {
+    it('shoud not emit slideclick event if swipe on X is more than the carousel\'s minSwipeDistance', () => {
       const wrapper = shallowMount(Slide, {
         propsData: { title: 'fooTitle' },
         provide: { carousel }
@@ -129,6 +130,46 @@ describe('Slide', () => {
       wrapper.vm.onTouchEnd({ clientX: 11, currentTarget: { dataset: { foo: 'dataset' } } });
 
       expect(wrapper.emitted().slideclick).toBeUndefined();
+    });
+
+
+    it('should emit slidetoucheend event if carousel is isTouch', () => {
+      const wrapper = shallowMount(Slide, {
+        propsData: { title: 'fooTitle' },
+        provide: { carousel }
+      });
+
+      wrapper.vm.onTouchEnd({ changedTouches: [{ clientX: 9, clientY: 9 }], currentTarget: { dataset: { foo: 'dataset' } } });
+
+      expect(wrapper.emitted().slidetouchend[0][0].dataset).toEqual({ foo: 'dataset' });
+      expect(wrapper.emitted().slidetouchend[0][0].deltaY).toEqual(-6);
+      expect(wrapper.emitted().slidetouchend[0][0].deltaX).toEqual(9);
+    });
+
+    it('should emit slidetoucheend event if carousel is not isTouch', () => {
+      carousel.isTouch = false;
+
+      const wrapper = shallowMount(Slide, {
+        propsData: { title: 'fooTitle' },
+        provide: { carousel }
+      });
+
+      wrapper.vm.onTouchEnd({ clientX: 9, clientY: 9, currentTarget: { dataset: { foo: 'dataset' } } });
+
+      expect(wrapper.emitted().slidetouchend[0][0].dataset).toEqual({ foo: 'dataset' });
+      expect(wrapper.emitted().slidetouchend[0][0].deltaY).toEqual(-6);
+      expect(wrapper.emitted().slidetouchend[0][0].deltaX).toEqual(9);
+    });
+
+    it("shoud emit slidetoucheend event if swipe on X more than the carousel's minSwipeDistance", () => {
+      const wrapper = shallowMount(Slide, {
+        propsData: { title: 'fooTitle' },
+        provide: { carousel }
+      });
+
+      wrapper.vm.onTouchEnd({ clientX: 11, clientY: 9, currentTarget: { dataset: { foo: 'dataset' } }});
+
+      expect(wrapper.emitted().slidetouchend).toBeDefined();
     });
   });
 });

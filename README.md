@@ -103,6 +103,7 @@ export default {
 | `pagination-click`             |         | Carousel | Emits when a pagination button is clicked, with the current `pageNumber`                                                                                                                                                                                                                        |
 | `page-change`                 | Number  | Carousel | Emits with the current page number.                                                                                                                                                                                                                       |
 | `slide-click`                | Object  | Slide    | Emits with the *dataset* object of the selected element                        ··
+| `slide-touch-end`                | Object  | Slide    | Emits an object with the *dataset* object of the selected element, deltaX and deltaY of the gesture or mouse move
 | `transition-start` | | Carousel | Emits when the transition end is reached                                                                                                                                                  |
 | `transition-end`             |         | Carousel | Emits when the transition start is reached                                                                                                     ·                                                                                                               |
 
