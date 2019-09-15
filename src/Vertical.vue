@@ -31,6 +31,10 @@ export default {
     VerticalNavigation
   },
   props: {
+    index: {
+      type: Number,
+      default: 0
+    },
     maxHeight: {
       type: Number,
       default: 500
@@ -46,6 +50,16 @@ export default {
       this.$refs["VueCarouselContainer"].scrollTop -= this.$refs[
         "VueCarouselContainer"
       ].firstElementChild.offsetHeight;
+    },
+    goToIndex(index) {
+      this.$refs["VueCarouselContainer"].scrollTop = this.$refs[
+        "VueCarouselContainer"
+      ].firstElementChild.offsetHeight * index;
+    }
+  },
+  watch: {
+    index(val) {
+      this.goToIndex(val);
     }
   }
 };
