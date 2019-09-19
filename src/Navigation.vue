@@ -101,13 +101,13 @@ export default {
 .VueCarousel-navigation-next {
   right: 0;
   transform: translateY(-50%) translateX(100%);
-  font-family: "system";
+  font-family: "vue-carousel-system";
 }
 
 .VueCarousel-navigation-prev {
   left: 0;
   transform: translateY(-50%) translateX(-100%);
-  font-family: "system";
+  font-family: "vue-carousel-system";
 }
 
 .VueCarousel-navigation--disabled {
@@ -115,9 +115,9 @@ export default {
   cursor: default;
 }
 
-/* Define the "system" font family */
+/* Define the "vue-carousel-system" font family */
 @font-face {
-  font-family: system;
+  font-family: vue-carousel-system;
   font-style: normal;
   font-weight: 300;
   src: local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"),
