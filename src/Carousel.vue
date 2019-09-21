@@ -35,6 +35,7 @@
         :clickTargetSize="navigationClickTargetSize"
         :nextLabel="navigationNextLabel"
         :prevLabel="navigationPrevLabel"
+        :reverseNavs="reverseNavs"
         @navigationclick="handleNavigation"
       />
     </slot>
@@ -341,6 +342,10 @@ export default {
      * Support right to left
      */
     rtl: {
+      type: Boolean,
+      default: false
+    },
+    reverseNavs: {
       type: Boolean,
       default: false
     }

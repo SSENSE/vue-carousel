@@ -4,20 +4,28 @@
       type="button"
       aria-label="Previous page"
       :tabindex="canAdvanceBackward ? 0 : -1"
-      class="VueCarousel-navigation-button VueCarousel-navigation-prev"
+      class="VueCarousel-navigation-button"
+      :class="{
+        'VueCarousel-navigation-next': reverseNavs,
+        'VueCarousel-navigation-prev': !reverseNavs,
+        'VueCarousel-navigation--disabled': !canAdvanceBackward
+      }"
       v-on:click.prevent="triggerPageAdvance('backward')"
-      v-bind:class="{ 'VueCarousel-navigation--disabled': !canAdvanceBackward }"
       v-bind:style="`padding: ${clickTargetSize}px; margin-right: -${clickTargetSize}px;`"
-      v-html="prevLabel"></button>
+      v-html="reverseNavs ? nextLabel : prevLabel"></button>
     <button
       type="button"
       aria-label="Next page"
       :tabindex="canAdvanceForward ? 0 : -1"
-      class="VueCarousel-navigation-button VueCarousel-navigation-next"
+      class="VueCarousel-navigation-button"
+      :class="{
+        'VueCarousel-navigation-next': !reverseNavs,
+        'VueCarousel-navigation-prev': reverseNavs,
+        'VueCarousel-navigation--disabled': !canAdvanceForward,
+      }"
       v-on:click.prevent="triggerPageAdvance('forward')"
-      v-bind:class="{ 'VueCarousel-navigation--disabled': !canAdvanceForward }"
       v-bind:style="`padding: ${clickTargetSize}px; margin-left: -${clickTargetSize}px;`"
-      v-html="nextLabel"></button>
+      v-html="reverseNavs ? prevLabel : nextLabel"></button>
   </div>
 </template>
 
@@ -46,6 +54,10 @@ export default {
     prevLabel: {
       type: String,
       default: "&#9664"
+    },
+    reverseNavs: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
