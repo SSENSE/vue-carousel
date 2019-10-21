@@ -2,7 +2,7 @@
 
 exports[`Pagination Component should match the stored snapshot 1`] = `
 <div class="VueCarousel-pagination" style="display: none;">
-  <div role="tablist" class="VueCarousel-dot-container" style="overflow: hidden; margin: 0px auto; white-space: nowrap;"><button aria-hidden="false" role="tab" title="title1" value="title1" aria-label="title1" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-bottom: 2px; padding: 1px; width: 1px; height: 1px; background-color: red; transform: translate3d(NaNpx,0,0);"></button></div>
+  <div role="tablist" class="VueCarousel-dot-container" style="overflow: hidden; margin: 0px auto; white-space: nowrap;"><button aria-hidden="false" role="tab" type="button" title="title1" value="title1" aria-label="title1" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-bottom: 2px; padding: 1px; width: 1px; height: 1px; background-color: red; transform: translate3d(NaNpx,0,0);"></button></div>
 </div>
 `;
 
