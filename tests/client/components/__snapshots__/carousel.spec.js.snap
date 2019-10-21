@@ -11,7 +11,7 @@ exports[`Carousel component Active slides class should be present by default on 
   </div>
   <!---->
   <div class="VueCarousel-pagination" style="">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" type="button" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" type="button" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
   </div>
 </div>
 `;
@@ -29,7 +29,7 @@ exports[`Carousel component Active slides class should be present on the appropr
   </div>
   <!---->
   <div class="VueCarousel-pagination" style="">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 2" value="Item 2" aria-label="Item 2" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 3" value="Item 3" aria-label="Item 3" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 4" value="Item 4" aria-label="Item 4" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" type="button" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" type="button" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" type="button" title="Item 2" value="Item 2" aria-label="Item 2" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" type="button" title="Item 3" value="Item 3" aria-label="Item 3" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" type="button" title="Item 4" value="Item 4" aria-label="Item 4" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
   </div>
 </div>
 `;
@@ -48,7 +48,7 @@ exports[`Carousel component Active slides class should be present on the appropr
   </div>
   <!---->
   <div class="VueCarousel-pagination" style="">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button></div>
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" type="button" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" type="button" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button></div>
   </div>
 </div>
 `;
@@ -87,7 +87,7 @@ exports[`Carousel component Autoplay functionality should begin autoplaying when
   </div>
   <!---->
   <div class="VueCarousel-pagination" style="">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" type="button" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" type="button" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
   </div>
 </div>
 `;
@@ -102,7 +102,7 @@ exports[`Carousel component Autoplay functionality should not reset autoplay whe
   </div>
   <!---->
   <div class="VueCarousel-pagination" style="">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" type="button" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" type="button" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
   </div>
 </div>
 `;
@@ -117,7 +117,7 @@ exports[`Carousel component Autoplay functionality should reset autoplay when sw
   </div>
   <!---->
   <div class="VueCarousel-pagination" style="">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" type="button" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" type="button" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
   </div>
 </div>
 `;
@@ -173,7 +173,7 @@ exports[`Carousel component Carousel slides per page should fall back to default
   </div>
   <!---->
   <div class="VueCarousel-pagination" style="">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button></div>
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" type="button" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" type="button" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button></div>
   </div>
 </div>
 `;
@@ -249,7 +249,7 @@ exports[`Carousel component Default mounting properties should register 3 slides
   </div>
   <!---->
   <div class="VueCarousel-pagination" style="">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" type="button" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" type="button" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
   </div>
 </div>
 `;
@@ -276,7 +276,7 @@ exports[`Carousel component Loop functionality should loop back to the start whe
   </div>
   <!---->
   <div class="VueCarousel-pagination" style="">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" type="button" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" type="button" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
   </div>
 </div>
 `;
@@ -291,7 +291,7 @@ exports[`Carousel component Loop functionality should loop to the end when loop 
   </div>
   <!---->
   <div class="VueCarousel-pagination" style="">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button></div>
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" type="button" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" type="button" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button></div>
   </div>
 </div>
 `;
@@ -307,7 +307,7 @@ exports[`Carousel component Tag name should only count slides matching tagName 1
   </div>
   <!---->
   <div class="VueCarousel-pagination" style="display: none;">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button></div>
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" type="button" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button></div>
   </div>
 </div>
 `;
@@ -322,7 +322,7 @@ exports[`Carousel component should decrease current page number by 1 when advanc
   </div>
   <!---->
   <div class="VueCarousel-pagination" style="">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button></div>
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" type="button" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" type="button" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button></div>
   </div>
 </div>
 `;
@@ -339,7 +339,7 @@ exports[`Carousel component should decrease current slide number by 1 when advan
   </div>
   <!---->
   <div class="VueCarousel-pagination" style="">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" title="Item 2" value="Item 2" aria-label="Item 2" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 3" value="Item 3" aria-label="Item 3" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" type="button" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" type="button" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" type="button" title="Item 2" value="Item 2" aria-label="Item 2" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" type="button" title="Item 3" value="Item 3" aria-label="Item 3" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
   </div>
 </div>
 `;
@@ -356,7 +356,7 @@ exports[`Carousel component should increase current page number by 1 when advanc
   </div>
   <!---->
   <div class="VueCarousel-pagination" style="">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" title="Item 2" value="Item 2" aria-label="Item 2" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 3" value="Item 3" aria-label="Item 3" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" type="button" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" type="button" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" type="button" title="Item 2" value="Item 2" aria-label="Item 2" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" type="button" title="Item 3" value="Item 3" aria-label="Item 3" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
   </div>
 </div>
 `;
@@ -373,7 +373,7 @@ exports[`Carousel component should increase current page number by 1 when advanc
   </div>
   <!---->
   <div class="VueCarousel-pagination" style="">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" title="Item 2" value="Item 2" aria-label="Item 2" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 3" value="Item 3" aria-label="Item 3" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" type="button" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" type="button" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button><button aria-hidden="false" role="tab" type="button" title="Item 2" value="Item 2" aria-label="Item 2" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" type="button" title="Item 3" value="Item 3" aria-label="Item 3" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button></div>
   </div>
 </div>
 `;
@@ -389,7 +389,7 @@ exports[`Carousel component should set carousel height to slide height 1`] = `
   </div>
   <!---->
   <div class="VueCarousel-pagination" style="">
-    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" title="Item 2" value="Item 2" aria-label="Item 2" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button></div>
+    <div role="tablist" class="VueCarousel-dot-container" style="margin-top: 20px;"><button aria-hidden="false" role="tab" type="button" title="Item 0" value="Item 0" aria-label="Item 0" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" type="button" title="Item 1" value="Item 1" aria-label="Item 1" aria-selected="false" class="VueCarousel-dot" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(239, 239, 239);"></button><button aria-hidden="false" role="tab" type="button" title="Item 2" value="Item 2" aria-label="Item 2" aria-selected="true" class="VueCarousel-dot VueCarousel-dot--active" style="margin-top: 20px; padding: 10px; width: 10px; height: 10px; background-color: rgb(0, 0, 0);"></button></div>
   </div>
 </div>
 `;

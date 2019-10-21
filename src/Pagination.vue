@@ -11,6 +11,7 @@
         class="VueCarousel-dot"
         aria-hidden="false"
         role="tab"
+        type="button"
         :title="getDotTitle(index)"
         :value="getDotTitle(index)"
         :aria-label="getDotTitle(index)"
