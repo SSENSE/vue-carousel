@@ -2,9 +2,15 @@
   <div
     v-show="carousel.pageCount > 1"
     class="VueCarousel-pagination"
-    v-bind:class="{ [`VueCarousel-pagination--${paginationPositionModifierName}`]: paginationPositionModifierName }"
+    v-bind:class="{
+      [`VueCarousel-pagination--${paginationPositionModifierName}`]: paginationPositionModifierName
+    }"
   >
-    <div class="VueCarousel-dot-container" role="tablist" :style="dotContainerStyle">
+    <div
+      class="VueCarousel-dot-container"
+      role="tablist"
+      :style="dotContainerStyle"
+    >
       <button
         v-for="(page, index) in paginationCount"
         :key="`${page}_${index}`"
@@ -15,7 +21,10 @@
         :value="getDotTitle(index)"
         :aria-label="getDotTitle(index)"
         :aria-selected="isCurrentDot(index) ? 'true' : 'false'"
-        v-bind:class="{ 'VueCarousel-dot--active': isCurrentDot(index) }"
+        v-bind:class="[
+          { 'VueCarousel-dot--active': isCurrentDot(index) },
+          dotClassList[index]
+        ]"
         v-on:click="goToPage(index)"
         :style="dotStyle(index)"
       ></button>
@@ -27,6 +36,11 @@
 export default {
   name: "pagination",
   inject: ["carousel"],
+  data() {
+    return {
+      dotClassList: []
+    };
+  },
   computed: {
     paginationPositionModifierName() {
       const { paginationPosition } = this.carousel;
@@ -50,17 +64,25 @@ export default {
         return {
           "margin-top": `${carousel.paginationPadding * 2}px`
         };
+
       const doublePadding = carousel.paginationPadding * 2;
       const containerWidth =
-        carousel.maxPaginationDotCount *
+        (carousel.maxPaginationDotCount + 4) *
+          (carousel.paginationSize + doublePadding) +
         (carousel.paginationSize + doublePadding);
+
       return {
         "margin-top": `${carousel.paginationPadding * 2}px`,
         overflow: "hidden",
         width: `${containerWidth}px`,
-        margin: "0 auto",
         "white-space": "nowrap"
       };
+    },
+    currentPage() {
+      return this.carousel.currentPage;
+    },
+    slideCount() {
+      return this.carousel.slideCount;
     }
   },
   methods: {
@@ -76,7 +98,6 @@ export default {
        */
       this.$emit("paginationclick", index);
     },
-
     /**
      * Check on current dot
      * @param {number} index - dot index
@@ -119,26 +140,60 @@ export default {
         }`
       });
 
-      if (carousel.maxPaginationDotCount === -1) return basicBtnStyle;
-
-      const eachDotsWidth =
-        carousel.paginationSize + carousel.paginationPadding * 2;
-      const maxReverse = carousel.pageCount - carousel.maxPaginationDotCount;
-      const translateAmount =
-        carousel.currentPage > maxReverse
-          ? maxReverse
-          : carousel.currentPage <= carousel.maxPaginationDotCount / 2
-            ? 0
-            : carousel.currentPage -
-              Math.ceil(carousel.maxPaginationDotCount / 2) +
-              1;
-      const transformWidth = 0 - eachDotsWidth * translateAmount;
-      return Object.assign(basicBtnStyle, {
-        "-webkit-transform": `translate3d(${transformWidth}px,0,0)`,
-        transform: `translate3d(${transformWidth}px,0,0)`,
-        "-webkit-transition": `-webkit-transform ${carousel.speed / 1000}s`,
-        transition: `transform ${carousel.speed / 1000}s`
-      });
+      return basicBtnStyle;
+    },
+    setDotClassList(className, index) {
+      if (this.dotClassList[index] !== undefined) {
+        this.dotClassList[index] = className;
+      }
+    }
+  },
+  watch: {
+    currentPage(newPage, oldPage) {
+      const maxDotCount = this.carousel.maxPaginationDotCount;
+      if (
+        this.carousel.slideCount > maxDotCount &&
+        this.dotClassList[newPage].includes("small-scale")
+      ) {
+        if (newPage > oldPage) {
+          this.setDotClassList("", newPage);
+          this.setDotClassList("small-scale", newPage + 1);
+          this.setDotClassList("extra-small-scale", newPage + 2);
+          this.setDotClassList("small-scale", newPage - maxDotCount);
+          this.setDotClassList(
+            "extra-small-scale",
+            newPage - (maxDotCount + 1)
+          );
+          this.setDotClassList("zero-scale", newPage - (maxDotCount + 2));
+        } else {
+          this.setDotClassList("", newPage);
+          this.setDotClassList("small-scale", newPage + maxDotCount);
+          this.setDotClassList("small-scale", newPage - 1);
+          this.setDotClassList("extra-small-scale", newPage - 2);
+          this.setDotClassList(
+            "extra-small-scale",
+            newPage + (maxDotCount + 1)
+          );
+          this.setDotClassList("zero-scale", newPage + (maxDotCount + 2));
+        }
+      }
+    },
+    slideCount(count) {
+      if (this.carousel.maxPaginationDotCount !== -1) {
+        for (let i = 0; i < count; i++) {
+          if (i >= this.carousel.maxPaginationDotCount) {
+            if (i === this.carousel.maxPaginationDotCount) {
+              this.dotClassList[i] = "small-scale";
+            } else if (i === this.carousel.maxPaginationDotCount + 1) {
+              this.dotClassList[i] = "extra-small-scale";
+            } else {
+              this.dotClassList[i] = "zero-scale";
+            }
+          } else {
+            this.dotClassList[i] = "";
+          }
+        }
+      }
     }
   }
 };
@@ -146,7 +201,6 @@ export default {
 
 <style scoped>
 .VueCarousel-pagination {
-  width: 100%;
   text-align: center;
 }
 
@@ -176,9 +230,26 @@ export default {
   padding: 0;
   border-radius: 100%;
   outline: none;
+  transition: all 0.12s linear;
 }
 
 .VueCarousel-dot:focus {
   outline: 1px solid lightblue;
+}
+
+.zero-scale {
+  transform: scale(0);
+  width: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+}
+
+.small-scale {
+  transform: scale(0.5);
+}
+
+.extra-small-scale {
+  transform: scale(0.3);
+  pointer-events: none;
 }
 </style>
