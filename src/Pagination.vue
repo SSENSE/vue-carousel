@@ -11,7 +11,6 @@
       role="tablist"
       :style="dotContainerStyle"
     >
-      <!-- Abbas -->
       <button
         v-for="(page, index) in paginationCount"
         :key="`${page}_${index}`"
@@ -37,7 +36,6 @@
 export default {
   name: "pagination",
   inject: ["carousel"],
-  // Abbas
   data() {
     return {
       dotClassList: []
@@ -68,7 +66,6 @@ export default {
         };
 
       const doublePadding = carousel.paginationPadding * 2;
-      // Abbas
       const containerWidth =
         (carousel.maxPaginationDotCount + 4) *
           (carousel.paginationSize + doublePadding) +
@@ -81,7 +78,6 @@ export default {
         "white-space": "nowrap"
       };
     },
-    // Abbas
     currentPage() {
       return this.carousel.currentPage;
     },
@@ -145,27 +141,6 @@ export default {
       });
 
       return basicBtnStyle;
-
-      // Abbas
-
-      // const eachDotsWidth =
-      //   carousel.paginationSize + carousel.paginationPadding * 2;
-      // const maxReverse = carousel.pageCount - carousel.maxPaginationDotCount;
-      // const translateAmount =
-      //   carousel.currentPage > maxReverse
-      //     ? maxReverse
-      //     : carousel.currentPage <= carousel.maxPaginationDotCount / 2
-      //       ? 0
-      //       : carousel.currentPage -
-      //         Math.ceil(carousel.maxPaginationDotCount / 2) +
-      //         1;
-      // const transformWidth = 0 - eachDotsWidth * translateAmount;
-      // return Object.assign(basicBtnStyle, {
-      //   "-webkit-transform": `translate3d(${transformWidth}px,0,0)`,
-      //   transform: `translate3d(${transformWidth}px,0,0)`,
-      //   "-webkit-transition": `-webkit-transform ${carousel.speed / 1000}s`,
-      //   transition: `transform ${carousel.speed / 1000}s`
-      // });
     },
     setDotClassList(className, index) {
       if (this.dotClassList[index] !== undefined) {
@@ -173,45 +148,33 @@ export default {
       }
     }
   },
-  // Abbas
   watch: {
     currentPage(newPage, oldPage) {
+      const maxDotCount = this.carousel.maxPaginationDotCount;
       if (
-        this.carousel.slideCount > this.carousel.maxPaginationDotCount &&
+        this.carousel.slideCount > maxDotCount &&
         this.dotClassList[newPage].includes("small-scale")
       ) {
         if (newPage > oldPage) {
           this.setDotClassList("", newPage);
           this.setDotClassList("small-scale", newPage + 1);
           this.setDotClassList("extra-small-scale", newPage + 2);
-          this.setDotClassList(
-            "small-scale",
-            newPage - this.carousel.maxPaginationDotCount
-          );
+          this.setDotClassList("small-scale", newPage - maxDotCount);
           this.setDotClassList(
             "extra-small-scale",
-            newPage - (this.carousel.maxPaginationDotCount + 1)
+            newPage - (maxDotCount + 1)
           );
-          this.setDotClassList(
-            "zero-scale",
-            newPage - (this.carousel.maxPaginationDotCount + 2)
-          );
+          this.setDotClassList("zero-scale", newPage - (maxDotCount + 2));
         } else {
           this.setDotClassList("", newPage);
-          this.setDotClassList(
-            "small-scale",
-            newPage + this.carousel.maxPaginationDotCount
-          );
+          this.setDotClassList("small-scale", newPage + maxDotCount);
           this.setDotClassList("small-scale", newPage - 1);
           this.setDotClassList("extra-small-scale", newPage - 2);
           this.setDotClassList(
             "extra-small-scale",
-            newPage + (this.carousel.maxPaginationDotCount + 1)
+            newPage + (maxDotCount + 1)
           );
-          this.setDotClassList(
-            "zero-scale",
-            newPage + (this.carousel.maxPaginationDotCount + 2)
-          );
+          this.setDotClassList("zero-scale", newPage + (maxDotCount + 2));
         }
       }
     },
@@ -237,7 +200,6 @@ export default {
 </script>
 
 <style scoped>
-/* Abbas */
 .VueCarousel-pagination {
   text-align: center;
 }
@@ -274,7 +236,6 @@ export default {
 .VueCarousel-dot:focus {
   outline: 1px solid lightblue;
 }
-/* Abbas */
 
 .zero-scale {
   transform: scale(0);
