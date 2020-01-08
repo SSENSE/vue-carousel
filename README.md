@@ -19,13 +19,13 @@
 ## Installation
 
 ``` bash
-npm install vue-carousel
+npm install @jabama/vue-carousel
 ```
 
 or if you prefer yarn
 
 ``` bash
-yarn add vue-carousel
+yarn add @jabama/vue-carousel
 ```
 
 ## Usage
@@ -36,7 +36,7 @@ You may install Vue Carousel globally:
 
 ``` js
 import Vue from 'vue';
-import VueCarousel from 'vue-carousel';
+import VueCarousel from '@jabama/vue-carousel';
 
 Vue.use(VueCarousel);
 ```
@@ -47,7 +47,7 @@ This will make **&lt;carousel&gt;** and **&lt;slide&gt;** available to all compo
 Include the carousel directly into your component using import:
 
 ``` js
-import { Carousel, Slide } from 'vue-carousel';
+import { Carousel, Slide } from '@jabama/vue-carousel';
 
 export default {
   ...
