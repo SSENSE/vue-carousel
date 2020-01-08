@@ -1,6 +1,6 @@
 {
-  "name": "@alibaba-aero/vue-carousel",
-  "version": "0.21.0",
+  "name": "@jabama/vue-carousel",
+  "version": "0.22.0",
   "description": "A flexible, responsive, touch-friendly carousel for Vue.js",
   "main": "dist/vue-carousel.min.js",
   "scripts": {
@@ -37,9 +37,6 @@
     "global": "^4.3.2",
     "regenerator-runtime": "^0.12.1",
     "vue": "^2.5.17"
-  },
-  "resolutions": {
-    "babel-core": "7.0.0-bridge.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
