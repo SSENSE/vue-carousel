@@ -64,14 +64,14 @@ const transitionEndNames = {
   ontransitionend: "transitionend"
 };
 const getTransitionStart = () => {
-  for (let name in transitionStartNames) {
+  for (const name in transitionStartNames) {
     if (name in window) {
       return transitionStartNames[name];
     }
   }
 };
 const getTransitionEnd = () => {
-  for (let name in transitionEndNames) {
+  for (const name in transitionEndNames) {
     if (name in window) {
       return transitionEndNames[name];
     }
@@ -142,7 +142,7 @@ export default {
      */
     easing: {
       type: String,
-      validator: function(value) {
+      validator(value) {
         return (
           ["ease", "linear", "ease-in", "ease-out", "ease-in-out"].indexOf(
             value
@@ -449,9 +449,8 @@ export default {
         return 0;
       } else if (this.rtl) {
         return (this.offset - this.dragOffset) * 1;
-      } else {
-        return (this.offset + this.dragOffset) * -1;
       }
+      return (this.offset + this.dragOffset) * -1;
     },
     isHidden() {
       return this.carouselWidth <= 0;
@@ -590,7 +589,7 @@ export default {
           });
         });
         if (this.$parent.$el) {
-          let carouselInnerElements = this.$el.getElementsByClassName(
+          const carouselInnerElements = this.$el.getElementsByClassName(
             "VueCarousel-inner"
           );
           for (let i = 0; i < carouselInnerElements.length; i++) {
@@ -625,7 +624,7 @@ export default {
      * @return {Number} Width of the carousel in pixels
      */
     getCarouselWidth() {
-      let carouselInnerElements = this.$el.getElementsByClassName(
+      const carouselInnerElements = this.$el.getElementsByClassName(
         "VueCarousel-inner"
       );
       for (let i = 0; i < carouselInnerElements.length; i++) {
@@ -649,7 +648,10 @@ export default {
         .map((_, idx) => this.getSlide(slideOffset + idx))
         .reduce(
           (clientHeight, slide) =>
-            Math.max(clientHeight, (slide && slide.$el.clientHeight) || 0),
+            Math.max(
+              clientHeight,
+              (slide && slide.$refs.content.clientHeight) || 0
+            ),
           0
         );
 
@@ -770,7 +772,7 @@ export default {
         const width = this.scrollPerPage
           ? this.slideWidth * this.currentPerPage
           : this.slideWidth;
-        this.dragOffset = this.dragOffset + Math.sign(deltaX) * (width / 2);
+        this.dragOffset += Math.sign(deltaX) * (width / 2);
       }
 
       if (this.rtl) {
@@ -822,12 +824,10 @@ export default {
         } else if (this.offset == this.maxOffset && this.dragOffset < 0) {
           this.dragOffset = -Math.sqrt(-this.resistanceCoef * this.dragOffset);
         }
-      } else {
-        if (nextOffset < 0) {
-          this.dragOffset = -Math.sqrt(-this.resistanceCoef * this.dragOffset);
-        } else if (nextOffset > this.maxOffset) {
-          this.dragOffset = Math.sqrt(this.resistanceCoef * this.dragOffset);
-        }
+      } else if (nextOffset < 0) {
+        this.dragOffset = -Math.sqrt(-this.resistanceCoef * this.dragOffset);
+      } else if (nextOffset > this.maxOffset) {
+        this.dragOffset = Math.sqrt(this.resistanceCoef * this.dragOffset);
       }
     },
     onResize() {

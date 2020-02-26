@@ -10,7 +10,9 @@
       'VueCarousel-slide-adjustableHeight': isAdjustableHeight
     }"
   >
-    <slot></slot>
+    <div ref="content">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -110,9 +112,14 @@ export default {
 
 <style>
 .VueCarousel-slide {
+  display: flex;
   flex-basis: inherit;
   flex-grow: 0;
   flex-shrink: 0;
+}
+
+.VueCarousel-slide,
+.VueCarousel-slide-wrapper {
   user-select: none;
   backface-visibility: hidden;
   -webkit-touch-callout: none;
@@ -120,8 +127,14 @@ export default {
   outline: none;
 }
 
+.VueCarousel-slide-wrapper {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: inherit;
+}
+
 .VueCarousel-slide-adjustableHeight {
-  display: table;
+  display: block;
   flex-basis: auto;
   width: 100%;
 }
