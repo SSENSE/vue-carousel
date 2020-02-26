@@ -3,7 +3,7 @@
 import { mount, shallowMount } from '@vue/test-utils';
 import Carousel from '../../../src/Carousel.vue';
 import Slide  from '../../../src/Slide.vue';
- 
+
 describe('Carousel component', () => {
   describe('Default mounting properties', () => {
     it('should mount successfully', () => {
@@ -171,7 +171,7 @@ describe('Carousel component', () => {
       wrapper.vm.autoplayAdvancePage();
       expect(spy).toHaveBeenCalledWith('test');
 
-      spy.mockRestore(); 
+      spy.mockRestore();
       done()
     });
 
@@ -946,7 +946,7 @@ describe('Carousel component', () => {
     });
 
     // Force the slide to return a specific height
-    Object.defineProperty(wrapper.vm.$children[2].$el, 'clientHeight', { value: 200 });
+    Object.defineProperty(wrapper.vm.$children[2].$refs.content, 'clientHeight', { value: 200 });
 
     wrapper.vm.$nextTick(() => {
       wrapper.vm.computeCarouselHeight();
@@ -956,4 +956,3 @@ describe('Carousel component', () => {
     });
   });
 });
-

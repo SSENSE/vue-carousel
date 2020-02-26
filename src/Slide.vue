@@ -10,7 +10,9 @@
       'VueCarousel-slide-adjustableHeight': isAdjustableHeight
     }"
   >
-    <slot></slot>
+    <div ref="content">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -121,7 +123,6 @@ export default {
 }
 
 .VueCarousel-slide-adjustableHeight {
-  display: table;
   flex-basis: auto;
   width: 100%;
 }
