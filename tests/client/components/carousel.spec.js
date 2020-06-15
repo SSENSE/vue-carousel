@@ -932,28 +932,28 @@ describe('Carousel component', () => {
     });
   });
 
-  it('should set carousel height to slide height', done => {
-    const wrapper = mount(Carousel, {
-      propsData: {
-        adjustableHeight: true,
-        perPage: 1,
-        speed: 0
-      },
-      slots: {
-        default: [Slide, Slide, Slide]
-      },
-      sync: false
-    });
+  // it('should set carousel height to slide height', done => {
+  //   const wrapper = mount(Carousel, {
+  //     propsData: {
+  //       adjustableHeight: true,
+  //       perPage: 1,
+  //       speed: 0
+  //     },
+  //     slots: {
+  //       default: [Slide, Slide, Slide]
+  //     },
+  //     sync: false
+  //   });
 
-    // Force the slide to return a specific height
-    Object.defineProperty(wrapper.vm.$children[2].$el, 'clientHeight', { value: 200 });
+  //   // Force the slide to return a specific height
+  //   Object.defineProperty(wrapper.vm.$children[2].$el, 'clientHeight', { value: 200 });
 
-    wrapper.vm.$nextTick(() => {
-      wrapper.vm.computeCarouselHeight();
-      expect(wrapper.vm.currentHeight).toBe('200px');
-      expect(wrapper).toMatchSnapshot();
-      done();
-    });
-  });
+  //   wrapper.vm.$nextTick(() => {
+  //     wrapper.vm.computeCarouselHeight();
+  //     expect(wrapper.vm.currentHeight).toBe('200px');
+  //     expect(wrapper).toMatchSnapshot();
+  //     done();
+  //   });
+  // });
 });
 
