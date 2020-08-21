@@ -343,6 +343,13 @@ export default {
     rtl: {
       type: Boolean,
       default: false
+    },
+    /**
+     * Propagation of the touchmove/mousemove event
+     */
+    immediateMovePropagation: {
+      type: Boolean,
+      default: false
     }
   },
   watch: {
@@ -811,7 +818,9 @@ export default {
         return;
       }
 
-      e.stopImmediatePropagation();
+      if (!this.immediateMovePropagation) {
+        e.stopImmediatePropagation();
+      }
 
       this.dragOffset = newOffsetX;
       const nextOffset = this.offset + this.dragOffset;
