@@ -4,13 +4,14 @@
     v-bind:class="{ 'VueCarousel--reverse': paginationPosition === 'top' }"
   >
     <div
-      class="VueCarousel-wrapper"
-      :ref="`${refPrefix}-wrapper`"
+      :class="['VueCarousel-wrapper', wrapperRefName]"
+      :ref="`${wrapperRefName}`"
     >
       <div
-        :ref="`${refPrefix}-inner`"
+        :ref="`${innerRefName}`"
         :class="[
           'VueCarousel-inner',
+          innerRefName,
           { 'VueCarousel-inner--center': isCenterModeEnabled }
         ]"
         :style="{
@@ -65,14 +66,14 @@ const transitionEndNames = {
   ontransitionend: "transitionend"
 };
 const getTransitionStart = () => {
-  for (let name in transitionStartNames) {
+  for (const name in transitionStartNames) {
     if (name in window) {
       return transitionStartNames[name];
     }
   }
 };
 const getTransitionEnd = () => {
-  for (let name in transitionEndNames) {
+  for (const name in transitionEndNames) {
     if (name in window) {
       return transitionEndNames[name];
     }
@@ -147,7 +148,7 @@ export default {
      */
     easing: {
       type: String,
-      validator: function(value) {
+      validator(value) {
         return (
           ["ease", "linear", "ease-in", "ease-out", "ease-in-out"].indexOf(
             value
@@ -400,6 +401,12 @@ export default {
     }
   },
   computed: {
+    innerRefName() {
+      return `${this.refPrefix}-inner`;
+    },
+    wrapperRefName() {
+      return `${this.refPrefix}-wrapper`;
+    },
     /**
      * Given a viewport width, find the number of slides to display
      * @param  {Number} width Current viewport width in pixels
@@ -458,9 +465,9 @@ export default {
         return 0;
       } else if (this.rtl) {
         return (this.offset - this.dragOffset) * 1;
-      } else {
+      } 
         return (this.offset + this.dragOffset) * -1;
-      }
+       }
     },
     isHidden() {
       return this.carouselWidth <= 0;
@@ -599,8 +606,8 @@ export default {
           });
         });
         if (this.$parent.$el) {
-          let carouselInnerElements = this.$el.getElementsByClassName(
-            "VueCarousel-inner"
+          const carouselInnerElements = this.$el.getElementsByClassName(
+            this.innerRefName
           );
           for (let i = 0; i < carouselInnerElements.length; i++) {
             this.mutationObserver.observe(carouselInnerElements[i], config);
@@ -634,8 +641,8 @@ export default {
      * @return {Number} Width of the carousel in pixels
      */
     getCarouselWidth() {
-      let carouselInnerElements = this.$el.getElementsByClassName(
-        "VueCarousel-inner"
+      const carouselInnerElements = this.$el.getElementsByClassName(
+        this.innerRefName
       );
       for (let i = 0; i < carouselInnerElements.length; i++) {
         if (carouselInnerElements[i].clientWidth > 0) {
@@ -831,13 +838,11 @@ export default {
         } else if (this.offset == this.maxOffset && this.dragOffset < 0) {
           this.dragOffset = -Math.sqrt(-this.resistanceCoef * this.dragOffset);
         }
-      } else {
-        if (nextOffset < 0) {
+      } else if (nextOffset < 0) {
           this.dragOffset = -Math.sqrt(-this.resistanceCoef * this.dragOffset);
         } else if (nextOffset > this.maxOffset) {
           this.dragOffset = Math.sqrt(this.resistanceCoef * this.dragOffset);
         }
-      }
     },
     onResize() {
       this.computeCarouselWidth();
@@ -933,7 +938,7 @@ export default {
 
     // setup the start event only if touch device or mousedrag activated
     if ((this.isTouch && this.touchDrag) || this.mouseDrag) {
-      this.$refs["VueCarousel-wrapper"].addEventListener(
+      this.$refs[this.wrapperRefName].addEventListener(
         this.isTouch ? "touchstart" : "mousedown",
         this.onStart
       );
@@ -944,12 +949,12 @@ export default {
     this.computeCarouselHeight();
 
     this.transitionstart = getTransitionEnd();
-    this.$refs["VueCarousel-inner"].addEventListener(
+    this.$refs[this.innerRefName].addEventListener(
       this.transitionstart,
       this.handleTransitionStart
     );
     this.transitionend = getTransitionEnd();
-    this.$refs["VueCarousel-inner"].addEventListener(
+    this.$refs[this.innerRefName].addEventListener(
       this.transitionend,
       this.handleTransitionEnd
     );
@@ -964,16 +969,16 @@ export default {
   beforeDestroy() {
     this.detachMutationObserver();
     window.removeEventListener("resize", this.getBrowserWidth);
-    this.$refs["VueCarousel-inner"].removeEventListener(
+    this.$refs[this.innerRefName].removeEventListener(
       this.transitionstart,
       this.handleTransitionStart
     );
-    this.$refs["VueCarousel-inner"].removeEventListener(
+    this.$refs[this.innerRefName].removeEventListener(
       this.transitionend,
       this.handleTransitionEnd
     );
 
-    this.$refs["VueCarousel-wrapper"].removeEventListener(
+    this.$refs[this.wrapperRefName].removeEventListener(
       this.isTouch ? "touchstart" : "mousedown",
       this.onStart
     );
