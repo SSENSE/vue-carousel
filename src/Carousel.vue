@@ -5,10 +5,10 @@
   >
     <div
       class="VueCarousel-wrapper"
-      ref="VueCarousel-wrapper"
+      :ref="`${refPrefix}-wrapper`"
     >
       <div
-        ref="VueCarousel-inner"
+        :ref="`${refPrefix}-inner`"
         :class="[
           'VueCarousel-inner',
           { 'VueCarousel-inner--center': isCenterModeEnabled }
@@ -116,6 +116,10 @@ export default {
     };
   },
   props: {
+    refPrefix: {
+      type: String,
+      default: "VueCarousel"
+    },
     /**
      *  Adjust the height of the carousel for the current slide
      */
