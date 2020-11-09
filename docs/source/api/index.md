@@ -109,6 +109,13 @@ Resistance coefficient to dragging on the edge of the carousel. This dictates th
 * **Type**: `Number`
 * **Default**: `20`
 
+### rtl
+
+Changes the behaviour for right-to-left pages.
+
+* **Type**: `Boolean`
+* **Default**: `false`
+
 ### scrollPerPage
 
 Scroll per page, not per item.
