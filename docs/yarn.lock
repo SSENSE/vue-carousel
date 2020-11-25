@@ -886,8 +886,8 @@ hexo@^3.2.0:
     warehouse "^2.2.0"
 
 highlight.js@^9.4.0:
-  version "9.9.0"
-  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.9.0.tgz#b9995dcfdc2773e307a34f0460d92b9a474782c0"
+  version "9.18.5"
+  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.18.5.tgz#d18a359867f378c138d6819edfc2a8acd5f29825"
 
 hoek@2.x.x:
   version "2.16.3"
