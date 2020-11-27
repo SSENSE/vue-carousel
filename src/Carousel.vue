@@ -98,7 +98,9 @@ export default {
       dragOffset: 0,
       dragStartY: 0,
       dragStartX: 0,
-      isTouch: typeof window !== "undefined" && "ontouchstart" in window,
+      isTouch: (typeof window !== "undefined" && "ontouchstart" in window) ||  
+           ( navigator.maxTouchPoints > 0 ) ||  
+           ( navigator.msMaxTouchPoints > 0 ),
       offset: 0,
       refreshRate: 16,
       slideCount: 0,
