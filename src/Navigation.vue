@@ -92,6 +92,7 @@ export default {
   padding: 0;
   cursor: pointer;
   outline: none;
+  z-index: 1000;
 }
 
 .VueCarousel-navigation-button:focus {
