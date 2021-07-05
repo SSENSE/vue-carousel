@@ -144,7 +144,7 @@ To listen for the 'slideclick' event you can do the following:
 ```
 ## Development
 
-A sandboxed dev environment is provided by Storyblok. Changes made to the component files will appear in real time in the sandbox.
+A sandboxed dev environment is provided by Storybook. Changes made to the component files will appear in real time in the sandbox.
 
 To begin development, run:
 
