@@ -60,20 +60,6 @@ const transitionEndNames = {
   onotransitionend: "oTransitionEnd otransitionend",
   ontransitionend: "transitionend"
 };
-const getTransitionStart = () => {
-  for (let name in transitionStartNames) {
-    if (name in window) {
-      return transitionStartNames[name];
-    }
-  }
-};
-const getTransitionEnd = () => {
-  for (let name in transitionEndNames) {
-    if (name in window) {
-      return transitionEndNames[name];
-    }
-  }
-};
 
 export default {
   name: "carousel",
@@ -391,6 +377,20 @@ export default {
     }
   },
   computed: {
+    getTransitionStart() {
+      for (let name in transitionStartNames) {
+        if (name in window) {
+          return transitionStartNames[name];
+        }
+      }
+    },
+    getTransitionEnd() {
+      for (let name in transitionEndNames) {
+        if (name in window) {
+          return transitionEndNames[name];
+        }
+      }
+    },
     /**
      * Given a viewport width, find the number of slides to display
      * @param  {Number} width Current viewport width in pixels
@@ -934,12 +934,12 @@ export default {
     this.computeCarouselWidth();
     this.computeCarouselHeight();
 
-    this.transitionstart = getTransitionStart();
+    this.transitionstart = this.getTransitionStart;
     this.$refs["VueCarousel-inner"].addEventListener(
       this.transitionstart,
       this.handleTransitionStart
     );
-    this.transitionend = getTransitionEnd();
+    this.transitionend = this.getTransitionEnd;
     this.$refs["VueCarousel-inner"].addEventListener(
       this.transitionend,
       this.handleTransitionEnd
