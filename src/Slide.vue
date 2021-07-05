@@ -18,11 +18,6 @@
 export default {
   name: "slide",
   props: ["title"],
-  data() {
-    return {
-      width: null
-    };
-  },
   inject: ["carousel"],
   mounted() {
     if (!this.$isServer) {

@@ -2,10 +2,17 @@
   <div
     v-show="carousel.pageCount > 1"
     class="VueCarousel-pagination"
-    v-bind:class="{ [`VueCarousel-pagination--${paginationPositionModifierName}`]: paginationPositionModifierName }"
+    v-bind:class="{
+      [`VueCarousel-pagination--${paginationPositionModifierName}`]: paginationPositionModifierName
+    }"
   >
-    <div class="VueCarousel-dot-container" role="tablist" :style="dotContainerStyle">
+    <div
+      class="VueCarousel-dot-container"
+      role="tablist"
+      :style="dotContainerStyle"
+    >
       <button
+        type="button"
         v-for="(page, index) in paginationCount"
         :key="`${page}_${index}`"
         class="VueCarousel-dot"
@@ -128,10 +135,10 @@ export default {
         carousel.currentPage > maxReverse
           ? maxReverse
           : carousel.currentPage <= carousel.maxPaginationDotCount / 2
-            ? 0
-            : carousel.currentPage -
-              Math.ceil(carousel.maxPaginationDotCount / 2) +
-              1;
+          ? 0
+          : carousel.currentPage -
+            Math.ceil(carousel.maxPaginationDotCount / 2) +
+            1;
       const transformWidth = 0 - eachDotsWidth * translateAmount;
       return Object.assign(basicBtnStyle, {
         "-webkit-transform": `translate3d(${transformWidth}px,0,0)`,

@@ -144,18 +144,26 @@ To listen for the 'slideclick' event you can do the following:
 ```
 ## Development
 
-A sandboxed dev environment is provided by [vue-play](https://github.com/vue-play/vue-play). Changes made to the component files will appear in real time in the sandbox.
+A sandboxed dev environment is provided by Storyblok. Changes made to the component files will appear in real time in the sandbox.
 
 To begin development, run:
 
 ``` bash
-yarn install
+npm install
 yarn dev
 ```
 
-then navigate to `http://localhost:5000`
+To run tests:
 
-To modify and add sandbox scenarios, edit `play/index.js`
+``` bash
+yarn test
+```
+
+To build:
+
+``` bash
+yarn build
+```
 
 ## License
 
