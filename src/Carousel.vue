@@ -934,7 +934,7 @@ export default {
     this.computeCarouselWidth();
     this.computeCarouselHeight();
 
-    this.transitionstart = getTransitionEnd();
+    this.transitionstart = getTransitionStart();
     this.$refs["VueCarousel-inner"].addEventListener(
       this.transitionstart,
       this.handleTransitionStart
