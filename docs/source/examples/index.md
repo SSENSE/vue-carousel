@@ -49,6 +49,6 @@ Buttons added to advance the carousel in either direction.
 
 Customized pagination dot colors and sizes. Customized speed and easing.
 
-<script async src="//jsfiddle.net/toddlawton/ycp9bwhp/embed/result,js/"></script>
+<script async src="//jsfiddle.net/aumar/g3x9mt2o/1/embed/"></script>
 
 <style type="text/css">iframe { max-height: 230px; }</style>
