@@ -272,6 +272,30 @@ play("Carousel", module)
       },
     }
   })
+  .add("non-touch slideclick event", {
+    template:
+      `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+        <carousel style="width: 500px;">
+          <slide v-for="slide in slides" :key="slide" @slideclick="onSlideClick">
+            <img style="width: 100%;" :src="slide" />
+          </slide>
+        </carousel>
+      </div>`,
+    components: {
+      Carousel,
+      Slide
+    },
+    data() {
+      return {
+        slides: images
+      }
+    },
+    methods: {
+      onSlideClick(currentDataset) {
+        this.$log(`Captured non touch slide click event. Current dataset is ${JSON.stringify(currentDataset)}`)
+      },
+    }
+  })
   .add("slideclick event", {
     template:
       `<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
