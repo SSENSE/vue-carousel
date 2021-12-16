@@ -31,7 +31,8 @@ export default {
 
     this.$el.addEventListener(
       this.carousel.isTouch ? "touchend" : "mouseup",
-      this.onTouchEnd
+      this.onTouchEnd,
+      this.onMouseUp
     );
   },
   computed: {
@@ -99,6 +100,20 @@ export default {
       if (
         this.carousel.minSwipeDistance === 0 ||
         Math.abs(deltaX) < this.carousel.minSwipeDistance
+      ) {
+        this.$emit("slideclick", Object.assign({}, e.currentTarget.dataset));
+        this.$emit("slide-click", Object.assign({}, e.currentTarget.dataset));
+      }
+    },
+
+    onMouseUp(e) {
+      // On click for non-touch events only
+      const X_Axis_Pos = e.clientX;
+      const X_Axis_Change = this.carousel.dragStartX - X_Axis_Pos;
+
+      if (
+        this.carousel.minSwipeDistance === 0 ||
+        Math.abs(X_Axis_Change) < this.carousel.minSwipeDistance
       ) {
         this.$emit("slideclick", Object.assign({}, e.currentTarget.dataset));
         this.$emit("slide-click", Object.assign({}, e.currentTarget.dataset));
