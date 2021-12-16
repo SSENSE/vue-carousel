@@ -136,6 +136,16 @@ export default {
       type: Boolean,
       default: false
     },
+
+    endOfCarouselLink: {
+      type: String,
+      default: null
+    },
+
+    beginningOfCarouselLink: {
+      type: String,
+      defualt: null
+    },
     /**
      * Slide transition easing
      * Any valid CSS transition easing accepted
@@ -540,12 +550,23 @@ export default {
     advancePage(direction) {
       if (direction && direction === "backward" && this.canAdvanceBackward) {
         this.goToPage(this.getPreviousPage(), "navigation");
+        this.$log("1");
       } else if (
         (!direction || (direction && direction !== "backward")) &&
         this.canAdvanceForward
       ) {
         this.goToPage(this.getNextPage(), "navigation");
+        this.$log("2");
       }
+      else if (direction && direction === "backward" && !this.canAdvanceBackward && this.beginningOfCarouselLink) {
+        this.$log("beginnning");
+        this.route(this.beginningOfCarouselLink);
+      }
+      else if (direction && direction === "forward" && !this.canAdvanceForward && this.endOfCarouselLink !== null) {
+        this.$log("end");
+        this.route(this.endOfCarouselLink);
+      }
+
     },
     goToLastSlide() {
       // following code is to disable animation
@@ -914,6 +935,9 @@ export default {
     handleTransitionEnd() {
       this.$emit("transitionEnd");
       this.$emit("transition-end");
+    },
+    route(link) {
+      window.location.href = link
     }
   },
   mounted() {
