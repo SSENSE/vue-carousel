@@ -1214,12 +1214,16 @@ mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@~0.5.1:
     minimist "0.0.8"
 
 moment-timezone@^0.5.4:
-  version "0.5.11"
-  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.11.tgz#9b76c03d8ef514c7e4249a7bbce649eed39ef29f"
+  version "0.5.37"
+  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.37.tgz#adf97f719c4e458fdb12e2b4e87b8bec9f4eef1e"
   dependencies:
-    moment ">= 2.6.0"
+    moment ">= 2.9.0"
 
-"moment@>= 2.6.0", moment@^2.10.6, moment@~2.13.0:
+"moment@>= 2.9.0", moment@^2.10.6:
+  version "2.29.4"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.4.tgz#3dbe052889fe7c1b2ed966fcb3a77328964ef108"
+
+moment@~2.13.0:
   version "2.13.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.13.0.tgz#24162d99521e6d40f99ae6939e806d2139eaac52"
 
