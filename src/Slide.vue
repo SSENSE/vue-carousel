@@ -25,7 +25,7 @@ export default {
   },
   inject: ["carousel"],
   mounted() {
-    if (!this.$isServer) {
+    if (!this.$isServer && this.carousel.mouseDrag) {
       this.$el.addEventListener("dragstart", e => e.preventDefault());
     }
 

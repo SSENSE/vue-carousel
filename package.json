@@ -4,13 +4,11 @@
   "description": "A flexible, responsive, touch-friendly carousel for Vue.js",
   "main": "dist/vue-carousel.min.js",
   "scripts": {
-    "build": "webpack --config webpack.prod.js && npm run updateDocAssets",
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider && webpack --config webpack.prod.js && npm run updateDocAssets",
     "coveralls": "cat coverage/client/lcov.info | ./node_modules/.bin/coveralls",
     "dev": "vue-play start --standalone",
     "dev:build": "vue-play build",
     "docs:build": "npm run build && rm -rf ./docs/public && mkdir ./docs/public/ && cd ./docs/public/ && git init && git remote add origin git@github.com:SSENSE/vue-carousel.git && git fetch && git checkout -f gh-pages && cd .. && npm install && ./node_modules/.bin/hexo clean && ./node_modules/.bin/hexo generate",
-    "lint": "prettier-eslint --write \"src/**/?(*.js|*.vue)\" || exit 1",
-    "precommit": "lint-staged && npm run test",
     "test": "npm run test:client",
     "test:client": "jest --config tests/client.jest.json",
     "test:client:coverage": "jest --config tests/client.jest.json --coverage",
@@ -39,7 +37,7 @@
     "vue": "^2.5.17"
   },
   "resolutions": {
-     "babel-core": "7.0.0-bridge.0"
+    "babel-core": "7.0.0-bridge.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
