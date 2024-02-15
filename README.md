@@ -11,18 +11,37 @@
 **[Full documentation and examples](https://ssense.github.io/vue-carousel)**
 
 ## Table of Contents
+- [Introduction](#introduction)
+- [Features](#features)
+- [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Development](#development)
 - [License](#license)
 
+## Introduction
+Welcome to Vue Carousel! This lightweight and customizable slide carousel is an open-source project built with Javascript and Vue.js, providing a seamless way to showcase your images or content in a visually appealing manner. Whether you're creating a portfolio, a product showcase, or a simple image slider, Vue Carousel offers a smooth and interactive experience for your users. This project is designed to seamlessly integrate into your web applications creating sleek and intuitive user interfaces. Its user-friendly setup and configurations make Vue Carousel easily accessible for developers of all levels, allowing you to deliver a captivating user experience without dealing with overly complex code. Overall, Vue Carousel aims to elevate your web projects by presenting content in a visually engaging and interactive manner.
+
+## Features
+- **Easy Integration:** This project is built upon Vue.js, allowing it to be easily imported into any project.
+- **Customizable Styles:** Modify the appearance of the carousel to match your preferred design choices by changing the sizing, transitions, and color with ease.
+- **Responsive Design:** Vue Carousel is designed to be responsive and user friendly, ensuring a consistent and engaging experience across various devices.
+- **Navigation Controls:** Users can easily navigate through the images by sliding the carousel, using the provided dots, or through arrow buttons.
+- **Automatic Rotation:** Optionally, the carousel can automatically rotate through the slides at a specified interval.
+- **Lightweight and Fast:** This project is optimized for performance and ensures quick loading times and smooth transitions.
+
+## Requirements
+In order to use Vue Carousel, you must have [npm](https://docs.npmjs.com/getting-started) or [yarn](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable) installed, as well as an up to date version of [Node.js](https://nodejs.org/en/download).
+
 ## Installation
+
+To install using npm, run the following command in your command prompt:
 
 ``` bash
 npm install vue-carousel
 ```
 
-or if you prefer yarn
+Alternatively, to install using yarn, run this command in your command prompt:
 
 ``` bash
 yarn add vue-carousel
@@ -32,7 +51,7 @@ yarn add vue-carousel
 
 ### Global
 
-You may install Vue Carousel globally:
+To utilize Vue Carousel globally throughout your project, import both the 'vue' and 'vue-carousel' components by adding the following Javascript code to the top of your App.js file.
 
 ``` js
 import Vue from 'vue';
@@ -44,7 +63,7 @@ This will make **&lt;carousel&gt;** and **&lt;slide&gt;** available to all compo
 
 ### Local
 
-Include the carousel directly into your component using import:
+If you instead wish to use Vue Carousel locally in your project, simply import the 'Carousel' and 'Slide' components locally by including the following Javascript code at the top of the desired file.
 
 ``` js
 import { Carousel, Slide } from 'vue-carousel';
@@ -58,8 +77,10 @@ export default {
   ...
 };
 ```
+This will make **&lt;carousel&gt;** and **&lt;slide&gt;** available in your selected file.
 
 ### Configuration
+The following is a comprehensive list of each element that can be configured in order to match the desired styling for your page. This includes options in sizing, color, transitions, positioning, and more.
 | Property                    | Type    | Default | Description                                                                                                                                                                                                                                                                           |
 |:----------------------------|:--------|:--------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | adjustableHeight            | Boolean | false   | Adjust the height of the carousel for the current slide.
@@ -97,6 +118,7 @@ export default {
 
 
 ### Events
+The following is a comprehensive list of each of the trackable events which can be used to prompt other actions on your page. 
 | Event                     | Type    | Emitter  | Description                                                                                                                                                                                                                                                                           |
 |:--------------------------|:--------|:---------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `navigation-click`             |         | Carousel | Emits when the a navigation button is clicked, with the current direction (`backward` or `forward`)                                                                                                                                                                                                                     |
@@ -144,18 +166,25 @@ To listen for the 'slideclick' event you can do the following:
 ```
 ## Development
 
-A sandboxed dev environment is provided by [vue-play](https://github.com/vue-play/vue-play). Changes made to the component files will appear in real time in the sandbox.
+A sandboxed development environment is provided by [vue-play](https://github.com/vue-play/vue-play), allowing you to test various configurations of the Vue Carousel before fully implementing them in your project. As you modify and enhance your Vue Carousel components, the changes will immediately take effect in the sandbox. This tool streamlines development by providing a risk-free space to vizualize and interact with the Vue Carousel components and ensure they meet the needs of your project.
 
-To begin development, run:
+### Getting Started
+To begin development, follow these steps:
 
+1. Install project dependencies:
 ``` bash
 yarn install
-yarn dev
 ```
 
-then navigate to `http://localhost:5000`
+2. Launch the development server:
+``` bash
+yarn dev
+```
+3. Open your browser and navigate to `http://localhost:5000` to explore the sandbox environment
 
-To modify and add sandbox scenarios, edit `play/index.js`
+### Custom Scenarios
+
+To modify and add sandbox scenarios, edit the `play/index.js` file with your desired use cases and configurations.
 
 ## License
 
