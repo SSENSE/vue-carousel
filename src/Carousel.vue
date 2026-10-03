@@ -557,7 +557,7 @@ export default {
       }, this.refreshRate);
 
       this.$nextTick(() => {
-        this.goToPage(this.pageCount);
+        this.goToPage(Math.max(0, this.pageCount - 1));
       });
     },
     /**
@@ -749,7 +749,6 @@ export default {
      * Trigger actions when mouse is released
      * @param  {Object} e The event object
      */
-
     onEnd(e) {
       // restart autoplay if specified
       if (this.autoplay && !this.autoplayHoverPause) {
@@ -843,39 +842,21 @@ export default {
     },
     render() {
       // add extra slides depending on the momemtum speed
-      if (this.rtl) {
-        this.offset -=
-          Math.max(
-            -this.currentPerPage + 1,
-            Math.min(Math.round(this.dragMomentum), this.currentPerPage - 1)
-          ) * this.slideWidth;
-      } else {
-        this.offset +=
-          Math.max(
-            -this.currentPerPage + 1,
-            Math.min(Math.round(this.dragMomentum), this.currentPerPage - 1)
-          ) * this.slideWidth;
-      }
+      const momentum = Math.max(
+        -this.currentPerPage + 1,
+        Math.min(Math.round(this.dragMomentum), this.currentPerPage - 1)
+      );
+
+      this.offset += (this.rtl ? -1 : 1) * momentum * this.slideWidth;
 
       // & snap the new offset on a slide or page if scrollPerPage
       const width = this.scrollPerPage
         ? this.slideWidth * this.currentPerPage
         : this.slideWidth;
 
-      // lock offset to either the nearest page, or to the last slide
-      const lastFullPageOffset =
-        width * Math.floor(this.slideCount / (this.currentPerPage - 1));
-      const remainderOffset =
-        lastFullPageOffset +
-        this.slideWidth * (this.slideCount % this.currentPerPage);
-      if (this.offset > (lastFullPageOffset + remainderOffset) / 2) {
-        this.offset = remainderOffset;
-      } else {
-        this.offset = width * Math.round(this.offset / width);
-      }
-
-      // clamp the offset between 0 -> maxOffset
-      this.offset = Math.max(0, Math.min(this.offset, this.maxOffset));
+      // snap to nearest page/slide and clamp between 0 and maxOffset
+      const pageIndex = Math.round(this.offset / width);
+      this.offset = Math.min(Math.max(0, pageIndex * width), this.maxOffset);
 
       // update the current page
       this.currentPage = this.scrollPerPage
@@ -917,10 +898,8 @@ export default {
     }
   },
   mounted() {
-    window.addEventListener(
-      "resize",
-      debounce(this.onResize, this.refreshRate)
-    );
+    this._onResize = debounce(this.onResize, this.refreshRate);
+    window.addEventListener("resize", this._onResize);
 
     // setup the start event only if touch device or mousedrag activated
     if ((this.isTouch && this.touchDrag) || this.mouseDrag) {
@@ -934,7 +913,7 @@ export default {
     this.computeCarouselWidth();
     this.computeCarouselHeight();
 
-    this.transitionstart = getTransitionEnd();
+    this.transitionstart = getTransitionStart();
     this.$refs["VueCarousel-inner"].addEventListener(
       this.transitionstart,
       this.handleTransitionStart
@@ -954,7 +933,11 @@ export default {
   },
   beforeDestroy() {
     this.detachMutationObserver();
-    window.removeEventListener("resize", this.getBrowserWidth);
+
+    if (this._onResize) {
+      window.removeEventListener("resize", this._onResize);
+    }
+
     this.$refs["VueCarousel-inner"].removeEventListener(
       this.transitionstart,
       this.handleTransitionStart
